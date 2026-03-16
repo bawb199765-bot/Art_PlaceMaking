@@ -246,7 +246,10 @@ path.selected-region {filter:brightness(2) !important}
   padding:1.8rem 1.8rem 1.5rem;
   position:relative;overflow:hidden;
   opacity:0;transform:translateY(16px);
-  transition:background .2s,opacity .5s,transform .5s;
+  transition:background .25s,opacity .5s,transform .5s,box-shadow .25s;
+  display:flex;flex-direction:column;
+  cursor:pointer;
+  text-decoration:none;
 }
 .card.revealed{opacity:1;transform:none}
 .card.hidden{display:none}
@@ -255,7 +258,13 @@ path.selected-region {filter:brightness(2) !important}
   left:0;top:0;width:2px;height:0;
   transition:height .35s ease;
 }
-.card:hover{background:var(--surface2)}
+/* hover: lift + accent glow */
+.card:hover{
+  background:var(--surface2);
+  box-shadow:0 8px 40px rgba(0,0,0,.5);
+  transform:translateY(-2px);
+}
+.card.revealed:hover{transform:translateY(-2px)}
 .card:hover::before{height:100%}
 .card[data-r="hokkaido-tohoku"]::before{background:var(--c-hokkaido)}
 .card[data-r="kanto"]::before{background:var(--c-kanto)}
@@ -292,16 +301,39 @@ path.selected-region {filter:brightness(2) !important}
 }
 .card-body{
   font-size:.78rem;color:var(--muted);line-height:1.9;
+  flex:1;
 }
+/* ── NEW: prominent CTA button ── */
 .card-link{
-  display:inline-flex;align-items:center;gap:.4rem;
-  margin-top:1.1rem;font-size:.65rem;letter-spacing:.18em;
-  color:var(--dim);text-decoration:none;text-transform:uppercase;
-  transition:color .2s;
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:1.4rem;
+  padding:.65rem 1rem;
+  font-size:.72rem;letter-spacing:.15em;
+  color:var(--text);text-decoration:none;text-transform:uppercase;
+  border:1px solid var(--border2);
+  background:var(--bg);
+  transition:background .2s,border-color .2s,color .2s;
+  position:relative;overflow:hidden;
+  z-index:1;
 }
-.card-link::after{content:'→';transition:transform .2s}
-.card-link:hover{color:var(--gold)}
-.card-link:hover::after{transform:translateX(4px)}
+.card-link::before{
+  content:'';position:absolute;
+  inset:0;
+  background:var(--gold);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .3s ease;
+  z-index:-1;
+}
+.card-link:hover{
+  border-color:var(--gold);
+  color:var(--bg);
+}
+.card-link:hover::before{transform:scaleX(1)}
+.card-link-arrow{
+  font-size:.9rem;
+  transition:transform .25s;
+}
+.card:hover .card-link-arrow{transform:translateX(5px)}
 
 /* ── FOOTER ── */
 footer{
@@ -445,7 +477,7 @@ footer{
       <div class="card-name">札幌国際芸術祭（SIAF）</div>
       <div class="card-tag">都市型・メディアアートの拠点化</div>
       <div class="card-body">都市スケールでテクノロジー・現代表現を実装しやすいのが強み。冬季開催という独自文脈。</div>
-      <a class="card-link" href="detail-hokkaido.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-hokkaido.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="hokkaido-tohoku" data-k="青森県 AOMORI GOKAN ミュージアム連携 周遊設計 ネットワーク型文化政策">
@@ -454,7 +486,7 @@ footer{
       <div class="card-name">AOMORI GOKAN</div>
       <div class="card-tag">ミュージアム連携で県全体を編集</div>
       <div class="card-body">県内回遊・学び・観光を束ねる"ネットワーク型文化政策"。単館型より周遊設計がしやすい。</div>
-      <a class="card-link" href="detail-aomori.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-aomori.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="hokkaido-tohoku" data-k="岩手県 三陸国際芸術祭 郷土芸能 創造的復興 文化復興モデル">
@@ -463,7 +495,7 @@ footer{
       <div class="card-name">三陸国際芸術祭</div>
       <div class="card-tag">郷土芸能×創造的復興</div>
       <div class="card-body">地域の芸能を核に復興・継承・交流を同時に回す"文化復興モデル"。</div>
-      <a class="card-link" href="detail-iwate.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-iwate.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="hokkaido-tohoku" data-k="宮城県 リボーンアートフェス 震災復興 文化 地域再編集 交流人口">
@@ -472,7 +504,7 @@ footer{
       <div class="card-name">リボーンアートフェス</div>
       <div class="card-tag">震災復興と文化の接続</div>
       <div class="card-body">アートを媒介に地域再編集と交流人口の質転換を狙う点が他県より明確。</div>
-      <a class="card-link" href="detail-miyagi.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-miyagi.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="hokkaido-tohoku" data-k="秋田県 かみこあにプロジェクト 小規模自治体 持続性 等身大実装">
@@ -481,7 +513,7 @@ footer{
       <div class="card-name">かみこあにプロジェクト</div>
       <div class="card-tag">小規模自治体の等身大実装</div>
       <div class="card-body">地域負荷を抑えつつ"毎年積み上げる"設計が特徴。持続性の学びが大きい。</div>
-      <a class="card-link" href="detail-akita.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-akita.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="hokkaido-tohoku" data-k="山形県 山形ビエンナーレ 街なか分散 文化回遊 中心市街地">
@@ -490,7 +522,7 @@ footer{
       <div class="card-name">山形ビエンナーレ</div>
       <div class="card-tag">街なか分散×文化回遊</div>
       <div class="card-body">都市の空間ストックを会場化して回遊を生む。中心市街地活性に寄与しやすい。</div>
-      <a class="card-link" href="detail-yamagata.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-yamagata.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="hokkaido-tohoku" data-k="福島県 ハマカルアートプロジェクト 復興 文化接点 外部接点">
@@ -499,7 +531,7 @@ footer{
       <div class="card-name">ハマカルアートプロジェクト</div>
       <div class="card-tag">復興地域の文化接点づくり</div>
       <div class="card-body">地域に外部接点をつくり続ける点が、通常の観光型より強い"復興×文化"の実装。</div>
-      <a class="card-link" href="detail-fukushima.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-fukushima.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <!-- ===== KANTO ===== -->
@@ -509,7 +541,7 @@ footer{
       <div class="card-name">アーカスプロジェクト（ARCUS）</div>
       <div class="card-tag">AIRで関係人口を蓄積</div>
       <div class="card-body">滞在制作とネットワーク蓄積で効く「長期型」の代表格。</div>
-      <a class="card-link" href="detail-ibaraki.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-ibaraki.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kanto" data-k="栃木県 KEAT 公立館 文化ハブ 教育 普及 アクセシビリティ">
@@ -518,7 +550,7 @@ footer{
       <div class="card-name">KEAT</div>
       <div class="card-tag">公立館が地域の文化ハブ</div>
       <div class="card-body">公共性（教育・普及・アクセシビリティ）で"日常の文化接点"を増やしやすい。</div>
-      <a class="card-link" href="detail-tochigi.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-tochigi.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kanto" data-k="群馬県 中之条ビエンナーレ 温泉地 分散会場 回遊設計 集落 空き家">
@@ -527,7 +559,7 @@ footer{
       <div class="card-name">中之条ビエンナーレ</div>
       <div class="card-tag">温泉地×分散会場の回遊設計</div>
       <div class="card-body">集落・温泉・空き家を束ね、回遊と滞在を生む設計が巧い。町全体を舞台化する代表例。</div>
-      <a class="card-link" href="detail-gunma.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-gunma.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kanto" data-k="埼玉県 さいたま国際芸術祭 大都市近郊 都市更新 公共空間">
@@ -536,7 +568,7 @@ footer{
       <div class="card-name">さいたま国際芸術祭</div>
       <div class="card-tag">大都市近郊の都市更新型</div>
       <div class="card-body">交通・人口・施設を活かしやすく、都市課題（公共空間・回遊）に刺さりやすい。</div>
-      <a class="card-link" href="detail-saitama.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-saitama.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kanto" data-k="千葉県 千葉国際芸術祭 都市近郊 回遊 再編集 日常空間">
@@ -545,7 +577,7 @@ footer{
       <div class="card-name">千葉国際芸術祭</div>
       <div class="card-tag">都市近郊の回遊・再編集</div>
       <div class="card-body">近郊都市の"日常空間"を会場化し、暮らしと表現の接点を増やすタイプ。</div>
-      <a class="card-link" href="detail-chiba.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-chiba.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kanto" data-k="東京都 東京ビエンナーレ 都市 実験場 プロジェクト型 政策接続">
@@ -554,7 +586,7 @@ footer{
       <div class="card-name">東京ビエンナーレ</div>
       <div class="card-tag">都市を実験場にするプロジェクト型</div>
       <div class="card-body">都市課題に切り込む"プロジェクト実装"が強みで、政策接続の余地が大きい。</div>
-      <a class="card-link" href="detail-tokyo.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-tokyo.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kanto" data-k="神奈川県 黄金町 エリアマネジメント バザール 課題エリア 都市再生">
@@ -563,7 +595,7 @@ footer{
       <div class="card-name">黄金町バザール</div>
       <div class="card-tag">課題エリアをアートで再編集</div>
       <div class="card-body">治安・印象・創作拠点化まで含む都市再生力が際立つ"エリアマネジメント"型。</div>
-      <a class="card-link" href="detail-kanagawa.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-kanagawa.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <!-- ===== CHUBU ===== -->
@@ -573,7 +605,7 @@ footer{
       <div class="card-name">大地の芸術祭（越後妻有）</div>
       <div class="card-tag">地域芸術祭のフラッグシップ</div>
       <div class="card-body">空き家・集落・自然を会場化する"原点モデル"。日本の地域型芸術祭の参照点。</div>
-      <a class="card-link" href="detail-niigata.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-niigata.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="chubu" data-k="富山県 ガラスの街とやま ガラス美術館 産業 文化 都市ブランド 工芸">
@@ -582,7 +614,7 @@ footer{
       <div class="card-name">ガラスの街とやま</div>
       <div class="card-tag">産業×文化で都市ブランド形成</div>
       <div class="card-body">産業と文化政策の統合が強く、工芸都市としてのアイデンティティ形成が特徴。</div>
-      <a class="card-link" href="detail-toyama.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-toyama.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="chubu" data-k="石川県 Go FOR KOGEI 工芸 現代文脈 産業 文化発信 伝統">
@@ -591,7 +623,7 @@ footer{
       <div class="card-name">Go FOR KOGEI</div>
       <div class="card-tag">工芸を現代文脈に接続</div>
       <div class="card-body">「伝統＝保存」でなく、体験・回遊に翻訳して産業と文化発信を同時に強める。</div>
-      <a class="card-link" href="detail-ishikawa.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-ishikawa.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="chubu" data-k="福井県 Zen AIR 禅 アーティストインレジデンス テーマ特化 滞在制作 物語化">
@@ -600,7 +632,7 @@ footer{
       <div class="card-name">Zen AIR（禅×AIR）</div>
       <div class="card-tag">テーマ特化の滞在制作</div>
       <div class="card-body">"禅"という強い文脈で差別化でき、地域の物語化が非常にしやすい。</div>
-      <a class="card-link" href="detail-fukui.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-fukui.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="chubu" data-k="山梨県 FUJI TEXTILE WEEK 産地 デザイン ブランディング 繊維 産業再解釈">
@@ -609,7 +641,7 @@ footer{
       <div class="card-name">FUJI TEXTILE WEEK</div>
       <div class="card-tag">産地×デザインのブランディング</div>
       <div class="card-body">BtoB/BtoC両面で地域価値を更新しやすい"産業の再解釈"型。</div>
-      <a class="card-link" href="detail-yamanashi.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-yamanashi.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="chubu" data-k="長野県 御代田町 MMoP フォトフェス デザイン 複合型 カルチャー集積 暮らし">
@@ -618,7 +650,7 @@ footer{
       <div class="card-name">御代田町（MMoP等）</div>
       <div class="card-tag">複合型カルチャー集積</div>
       <div class="card-body">写真・デザイン・拠点が重層し、"暮らしの文化密度"で勝てるタイプ。</div>
-      <a class="card-link" href="detail-nagano.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-nagano.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="chubu" data-k="岐阜県 美濃和紙あかりアート展 参加型 市民 誇り 和紙 灯り">
@@ -627,7 +659,7 @@ footer{
       <div class="card-name">美濃和紙あかりアート展</div>
       <div class="card-tag">参加型で市民の誇りをつくる</div>
       <div class="card-body">市民参加で「自分ごと化」が進みやすく、街の記憶として残りやすい。</div>
-      <a class="card-link" href="detail-gifu.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-gifu.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="chubu" data-k="静岡県 アーツカウンシルしずおか 支援制度 文化エコシステム 継続性">
@@ -636,7 +668,7 @@ footer{
       <div class="card-name">アーツカウンシルしずおか</div>
       <div class="card-tag">支援制度で文化エコシステム形成</div>
       <div class="card-body">単発事業の寄せ集めでは届かない継続性を制度で担保する"支える"モデル。</div>
-      <a class="card-link" href="detail-shizuoka.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-shizuoka.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="chubu" data-k="愛知県 国際芸術祭あいち 大都市圏 国際芸術祭 広域 多層な観客">
@@ -645,7 +677,7 @@ footer{
       <div class="card-name">国際芸術祭「あいち」</div>
       <div class="card-tag">大都市圏の国際芸術祭モデル</div>
       <div class="card-body">県域スケールと国際発信力で勝てる。広域の会場配置・多層な観客層を作れる。</div>
-      <a class="card-link" href="detail-aichi.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-aichi.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <!-- ===== KANSAI ===== -->
@@ -655,7 +687,7 @@ footer{
       <div class="card-name">アートが生まれる街、亀山</div>
       <div class="card-tag">創作が生まれる"場づくり"型</div>
       <div class="card-body">制作・学び・地域関与の土台を整える方向で、持続性に寄せた設計が特徴。</div>
-      <a class="card-link" href="detail-mie.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-mie.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kansai" data-k="滋賀県 BIWAKOビエンナーレ 歴史ストック 分散展示 古民家 町並み">
@@ -664,7 +696,7 @@ footer{
       <div class="card-name">BIWAKOビエンナーレ</div>
       <div class="card-tag">歴史ストック×分散展示</div>
       <div class="card-body">古民家等を会場化しやすく、"既存ストック活用"の学びが他県比較で大きい。</div>
-      <a class="card-link" href="detail-shiga.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-shiga.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kansai" data-k="京都府 KYOTOGRAPHIE 写真 分野特化 都市回遊 観光都市 更新">
@@ -673,7 +705,7 @@ footer{
       <div class="card-name">KYOTOGRAPHIE</div>
       <div class="card-tag">分野特化で都市回遊を生む</div>
       <div class="card-body">写真に特化し、街全体を舞台化。総合芸術祭よりブランドが立ち、観光都市の更新にも効く。</div>
-      <a class="card-link" href="detail-kyoto.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-kyoto.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kansai" data-k="大阪府 北加賀屋クリエイティブビレッジ 民間主導 空間再生 制作拠点集積 不動産">
@@ -682,7 +714,7 @@ footer{
       <div class="card-name">北加賀屋クリエイティブ・ビレッジ</div>
       <div class="card-tag">民間主導の空間再生×制作拠点集積</div>
       <div class="card-body">不動産ストックを実装の場に変える"民間主導の強さ"が突出。</div>
-      <a class="card-link" href="detail-osaka.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-osaka.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kansai" data-k="兵庫県 神戸 新開地 アートひろば 下町 文化再生 担い手育成">
@@ -691,7 +723,7 @@ footer{
       <div class="card-name">神戸・新開地（アートひろば等）</div>
       <div class="card-tag">下町エリアの文化再生</div>
       <div class="card-body">既存の生活圏で文化拠点を積み上げるタイプ。地場の担い手育成に寄るのが特徴。</div>
-      <a class="card-link" href="detail-hyogo.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-hyogo.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kansai" data-k="奈良県 はならぁと 集落 空き家 面 文化財 回遊 古民家">
@@ -700,7 +732,7 @@ footer{
       <div class="card-name">はならぁと</div>
       <div class="card-tag">集落・空き家を面で使う</div>
       <div class="card-body">文化財・集落空間を会場化しやすく、"空き家×回遊"の実装として学びが大きい。</div>
-      <a class="card-link" href="detail-nara.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-nara.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kansai" data-k="和歌山県 JAPAN WALLS 国際ミューラル 景観更新 壁画 都市アイコン 外向き発信">
@@ -709,7 +741,7 @@ footer{
       <div class="card-name">JAPAN WALLS（和歌山）</div>
       <div class="card-tag">国際ミューラルで景観を更新</div>
       <div class="card-body">"壁画＝都市アイコン"で外向き発信に強い。小投資で見た目と回遊を変えやすい。</div>
-      <a class="card-link" href="detail-wakayama.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-wakayama.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <!-- ===== CHUGOKU / SHIKOKU ===== -->
@@ -719,7 +751,7 @@ footer{
       <div class="card-name">鳥取県立美術館の取り組み</div>
       <div class="card-tag">人づくりを核にした美術館整備</div>
       <div class="card-body">整備段階から"まちの拠点"として設計。教育・市民参画の基盤を作れる。</div>
-      <a class="card-link" href="detail-tottori.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-tottori.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="chugoku-shikoku" data-k="島根県 石見アーツプロジェクト 教育 地域定着 底上げ型 創造力 文化体質">
@@ -728,7 +760,7 @@ footer{
       <div class="card-name">石見アーツプロジェクト</div>
       <div class="card-tag">教育・地域定着の底上げ型</div>
       <div class="card-body">"地域の創造力を育てる"方向で、長期的な文化体質改善に強い。</div>
-      <a class="card-link" href="detail-shimane.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-shimane.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="chugoku-shikoku" data-k="岡山県 岡山芸術交流 Okayama Art Summit 都市中核 国際展 ブランド形成">
@@ -737,7 +769,7 @@ footer{
       <div class="card-name">岡山芸術交流</div>
       <div class="card-tag">都市中核の国際展でブランド形成</div>
       <div class="card-body">都市集約で鑑賞体験を設計しやすい。国際的評価と都市ブランドに効く。</div>
-      <a class="card-link" href="detail-okayama.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-okayama.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="chugoku-shikoku" data-k="広島県 広島国際建築祭 建築 都市 専門特化 記憶 更新">
@@ -746,7 +778,7 @@ footer{
       <div class="card-name">広島国際建築祭</div>
       <div class="card-tag">建築で都市を読み解く専門特化型</div>
       <div class="card-body">"建築"に振り切り、都市の記憶・更新を語れる。専門性が差別化要因。</div>
-      <a class="card-link" href="detail-hiroshima.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-hiroshima.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="chugoku-shikoku" data-k="山口県 YCAM 山口情報芸術センター 公共R&D メディアアート 実験 研究開発 還元">
@@ -755,7 +787,7 @@ footer{
       <div class="card-name">YCAM（山口情報芸術センター）</div>
       <div class="card-tag">公共R&D拠点型メディアアート</div>
       <div class="card-body">研究開発と公共空間展開が核。"実験→還元"の仕組みは全国でも希少。</div>
-      <a class="card-link" href="detail-yamaguchi.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-yamaguchi.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="chugoku-shikoku" data-k="徳島県 神山AIR 神山アーティストインレジデンス 社会実装 滞在制作 移住 仕事 暮らし">
@@ -764,7 +796,7 @@ footer{
       <div class="card-name">神山AIR</div>
       <div class="card-tag">AIR起点の社会実装</div>
       <div class="card-body">滞在制作を入口に、人・仕事・暮らしに波及させた代表例。</div>
-      <a class="card-link" href="detail-tokushima.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-tokushima.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="chugoku-shikoku" data-k="香川県 瀬戸内国際芸術祭 広域分散 国際発信 島 港 目的地">
@@ -773,7 +805,7 @@ footer{
       <div class="card-name">瀬戸内国際芸術祭</div>
       <div class="card-tag">広域分散×国際発信の代表格</div>
       <div class="card-body">島と港を巡る体験設計で、地域芸術祭を国際的目的地に押し上げた象徴。</div>
-      <a class="card-link" href="detail-kagawa.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-kagawa.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="chugoku-shikoku" data-k="愛媛県 道後温泉 アート 道後オンセナート 成熟観光地 ブランド更新 既存">
@@ -782,7 +814,7 @@ footer{
       <div class="card-name">道後オンセナート</div>
       <div class="card-tag">成熟観光地をアートで再編集</div>
       <div class="card-body">"既に有名"な観光地の更新モデル。ブランド上に重ねて効かせる。</div>
-      <a class="card-link" href="detail-ehime.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-ehime.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="chugoku-shikoku" data-k="高知県 現代地方譚 プロセス重視 批評性 関係性 問い 蓄積">
@@ -791,7 +823,7 @@ footer{
       <div class="card-name">現代地方譚（高知）</div>
       <div class="card-tag">プロセス重視の思考実践</div>
       <div class="card-body">「問い・関係性」を蓄積。即効性型の事例と比べ、深い学びと批評性が強い。</div>
-      <a class="card-link" href="detail-kochi.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-kochi.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <!-- ===== KYUSHU / OKINAWA ===== -->
@@ -801,7 +833,7 @@ footer{
       <div class="card-name">Fukuoka Art Next</div>
       <div class="card-tag">文化政策としてのアート戦略</div>
       <div class="card-body">支援・育成・発信の統合。都市の"アートエコシステム"を設計するタイプ。</div>
-      <a class="card-link" href="detail-fukuoka.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-fukuoka.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kyushu-okinawa" data-k="佐賀県 多久市ウォールアートプロジェクト 小都市 景観更新 低コスト 回遊 壁画">
@@ -810,7 +842,7 @@ footer{
       <div class="card-name">多久市ウォールアートプロジェクト</div>
       <div class="card-tag">小都市でも始めやすい景観更新</div>
       <div class="card-body">低コスト・段階導入で、中心市街地に明るさと回遊をつくれる最初の一歩モデル。</div>
-      <a class="card-link" href="detail-saga.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-saga.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kyushu-okinawa" data-k="長崎県 南島原市アートビレッジシラキノ 公共施設 AIR 廃校活用 拠点 交流">
@@ -819,7 +851,7 @@ footer{
       <div class="card-name">南島原市アートビレッジ・シラキノ</div>
       <div class="card-tag">公共施設×AIRの実装</div>
       <div class="card-body">廃校活用で滞在・制作・交流を恒常化。周縁地域でも"拠点がある"強さが出る。</div>
-      <a class="card-link" href="detail-nagasaki.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-nagasaki.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kyushu-okinawa" data-k="熊本県 くまもとアートポリス 制度化 デザイン行政 公共建築 美 埋め込む">
@@ -828,7 +860,7 @@ footer{
       <div class="card-name">くまもとアートポリス</div>
       <div class="card-tag">制度化されたデザイン行政</div>
       <div class="card-body">公共建築に美を埋め込む。全国でも最も"制度として強い"アートまちづくり。</div>
-      <a class="card-link" href="detail-kumamoto.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-kumamoto.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kyushu-okinawa" data-k="大分県 BEPPU PROJECT 中間組織 都市運用 芸術祭 拠点 人材循環 行政 民間">
@@ -837,7 +869,7 @@ footer{
       <div class="card-name">BEPPU PROJECT</div>
       <div class="card-tag">中間組織が都市を運用する</div>
       <div class="card-body">芸術祭→拠点→人材循環へ。行政/民間の間で実装を回す"運用体制"が突出。</div>
-      <a class="card-link" href="detail-oita.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-oita.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kyushu-okinawa" data-k="宮崎県 新富芸術祭 小規模自治体 住民協働 持続可能 回遊 風景読解">
@@ -846,7 +878,7 @@ footer{
       <div class="card-name">新富芸術祭</div>
       <div class="card-tag">小規模自治体の等身大芸術祭</div>
       <div class="card-body">住民協働・風景読解で"持続可能な回遊"をつくりやすい。地域負荷が小さい。</div>
-      <a class="card-link" href="detail-miyazaki.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-miyazaki.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kyushu-okinawa" data-k="鹿児島県 霧島アートの森 芸術がある町 まちづくり事業 拠点波及型 行政モデル 教育 観光">
@@ -855,7 +887,7 @@ footer{
       <div class="card-name">霧島アートの森活用まちづくり</div>
       <div class="card-tag">強い拠点を市域へ波及</div>
       <div class="card-body">ミュージアムを点で終わらせず、教育・観光・公共空間へ展開する"拠点波及型"。</div>
-      <a class="card-link" href="detail-kagoshima.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-kagoshima.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
     <div class="card" data-r="kyushu-okinawa" data-k="沖縄県 やんばるアートフェスティバル 自然共生 環境配慮 世界自然遺産 開発しない">
@@ -864,7 +896,7 @@ footer{
       <div class="card-name">やんばるアートフェスティバル</div>
       <div class="card-tag">自然共生・環境配慮型</div>
       <div class="card-body">世界自然遺産エリアで、過度な開発に寄らず自然と共存する表現・回遊をつくる。</div>
-      <a class="card-link" href="detail-okinawa.html" target="_blank">詳細を見る</a>
+      <a class="card-link" href="detail-okinawa.html" target="_blank"><span>詳細を見る</span><span class="card-link-arrow">→</span></a>
     </div>
 
   </div><!-- /cards -->
