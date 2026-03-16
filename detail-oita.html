@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>大分県 — BEPPU PROJECT | アート×まちづくりDB</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&family=Noto+Sans+JP:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080808;--bg2:#0d0d0d;--surface:#131313;--surface2:#1a1a1a;--border:#1e1e1e;--border2:#2a2a2a;--text:#ddd8cf;--muted:#777;--dim:#444;--gold:#c9a96e;--gold2:#a07840;--white:#f4f0e8;--accent:#6e8aaa;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-weight:300;line-height:1.8;overflow-x:hidden;cursor:none;}
+.cur,.cur-ring{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cur{width:7px;height:7px;background:var(--gold);border-radius:50%;}
+.cur-ring{width:28px;height:28px;border:1px solid rgba(201,169,110,.35);border-radius:50%;transition:left .22s ease,top .22s ease}
+header{position:fixed;top:0;left:0;right:0;z-index:200;height:58px;padding:0 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,.88);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:.95rem;letter-spacing:.12em;color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:.6rem;}.logo-x{color:var(--dim)}
+.breadcrumb{display:flex;align-items:center;gap:.6rem;font-size:.68rem;letter-spacing:.12em;color:var(--dim);}.breadcrumb a{color:var(--muted);text-decoration:none}.breadcrumb a:hover{color:var(--gold)}.breadcrumb-sep{color:var(--border2)}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5rem 5rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 30%,rgba(110,138,170,.08) 0%,transparent 60%),linear-gradient(170deg,#080808 0%,#0a0c0b 100%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(110,138,170,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(110,138,170,.04) 1px,transparent 1px);background-size:80px 80px;animation:gridDrift 20s linear infinite;mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 20%,transparent 75%);}
+@keyframes gridDrift{0%{background-position:0 0}100%{background-position:80px 80px}}
+.hero-meta{position:relative;z-index:1;display:flex;align-items:center;gap:1.5rem;margin-bottom:2rem;animation:fadeUp .8s ease .1s both}
+.hero-region-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.63rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(110,138,170,.3);padding:.3rem .8rem;}
+.hero-region-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.hero-type-tag{font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);border:1px solid var(--border2);padding:.3rem .8rem;}
+.hero-pref{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,12vw,11rem);font-weight:300;line-height:.85;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.08);position:absolute;bottom:3rem;right:4rem;pointer-events:none;user-select:none;z-index:0;}
+.hero-content{position:relative;z-index:1;animation:fadeUp .8s ease .2s both}
+.hero-jp{font-family:'Noto Serif JP',serif;font-size:.75rem;letter-spacing:.2em;color:var(--muted);margin-bottom:.8rem;text-transform:uppercase;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,4.2rem);font-weight:300;line-height:1.1;letter-spacing:-.01em;color:var(--white);margin-bottom:.5rem;}
+.hero-title-en{font-family:'Cormorant Garamond',serif;font-size:clamp(.9rem,1.8vw,1.3rem);font-weight:300;font-style:italic;color:var(--muted);margin-bottom:2.5rem;}
+.hero-summary{font-family:'Noto Serif JP',serif;font-size:.9rem;color:var(--muted);max-width:520px;line-height:2.1;border-left:2px solid var(--accent);padding-left:1.5rem;margin-bottom:3rem;}
+.hero-info{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:3rem}
+.info-pill{display:flex;align-items:center;gap:.5rem;padding:.4rem 1rem;background:var(--surface);border:1px solid var(--border2);font-size:.72rem;color:var(--muted);}
+.info-pill-label{color:var(--dim);font-size:.62rem;letter-spacing:.12em;margin-right:.2rem}.info-pill strong{color:var(--text)}
+.scroll-cue{display:flex;align-items:center;gap:.8rem;font-size:.63rem;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;}
+.scroll-line{width:50px;height:1px;background:linear-gradient(90deg,var(--accent),transparent);animation:linePulse 2.5s ease-in-out infinite;}
+@keyframes linePulse{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+main{max-width:900px;margin:0 auto;padding:6rem 3rem 8rem;}
+.block{margin-bottom:5rem;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}.block.visible{opacity:1;transform:none}
+.block-header{display:flex;align-items:baseline;gap:1.2rem;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.block-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;line-height:1;color:rgba(201,169,110,.15);}
+.block-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--white);}
+.block-title-ja{font-family:'Noto Serif JP',serif;font-size:.72rem;letter-spacing:.18em;color:var(--muted);display:block;margin-top:.2rem;}
+.overview-text{font-family:'Noto Serif JP',serif;font-size:.9rem;color:var(--muted);line-height:2.3;}.overview-text p{margin-bottom:1.2rem}.overview-text p:last-child{margin-bottom:0}
+.features{display:flex;flex-direction:column;gap:1px;background:var(--border)}
+.feature{background:var(--surface);padding:1.8rem 2rem;display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:start;transition:background .2s;position:relative;overflow:hidden;}
+.feature::after{content:'';position:absolute;left:0;top:0;width:0;height:100%;background:linear-gradient(90deg,rgba(110,138,170,.06),transparent);transition:width .4s ease;}
+.feature:hover{background:var(--surface2)}.feature:hover::after{width:100%}
+.feature-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:rgba(110,138,170,.3);line-height:1;min-width:2rem;text-align:right;padding-top:.1rem;}
+.feature-title{font-family:'Noto Serif JP',serif;font-size:.92rem;font-weight:400;color:var(--white);margin-bottom:.7rem;display:flex;align-items:center;gap:.8rem;}
+.feature-title::before{content:'';display:block;width:20px;height:1px;background:var(--accent);flex-shrink:0;}
+.feature-desc{font-size:.82rem;color:var(--muted);line-height:2;}
+.effects{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
+.effect{background:var(--surface);padding:1.8rem;transition:background .2s;}.effect:hover{background:var(--surface2)}
+.effect-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:rgba(110,138,170,.12);line-height:1;margin-bottom:.8rem;}
+.effect-title{font-family:'Noto Serif JP',serif;font-size:.88rem;font-weight:400;color:var(--white);margin-bottom:.7rem;line-height:1.5;}
+.effect-desc{font-size:.78rem;color:var(--muted);line-height:2}
+.refs{display:flex;flex-direction:column;gap:.8rem;}
+.ref-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:var(--surface);border:1px solid var(--border2);text-decoration:none;color:var(--muted);font-size:.78rem;transition:all .2s;position:relative;overflow:hidden;}
+.ref-link::before{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:var(--accent);transition:height .3s;}
+.ref-link:hover{background:var(--surface2);color:var(--text)}.ref-link:hover::before{height:100%}
+.ref-icon{color:var(--dim);font-size:.9rem;flex-shrink:0}.ref-text{flex:1}
+.ref-url{font-size:.68rem;color:var(--dim);margin-top:.1rem;font-family:'Cormorant Garamond',serif;font-style:italic;}
+.ref-arrow{color:var(--dim);transition:transform .2s,color .2s;font-size:.9rem}.ref-link:hover .ref-arrow{transform:translateX(4px);color:var(--gold)}
+.side-index{position:fixed;right:2.5rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1rem;z-index:100;}
+.side-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);cursor:pointer;transition:all .3s;position:relative;}.side-dot.active{background:var(--gold);transform:scale(1.4)}.side-dot:hover{background:var(--muted)}
+.side-dot-label{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:.62rem;letter-spacing:.1em;color:var(--muted);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;background:var(--surface);padding:.2rem .5rem;border:1px solid var(--border2);}.side-dot:hover .side-dot-label{opacity:1}
+.page-nav{border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:2.5rem 3rem;background:var(--bg2);}
+.nav-back,.nav-next{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:var(--muted);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;padding:.8rem 1.2rem;border:1px solid var(--border);background:transparent;transition:all .2s;}
+.nav-back:hover,.nav-next:hover{color:var(--text);border-color:var(--border2);background:var(--surface);}
+.nav-arrow{transition:transform .2s}.nav-back:hover .nav-arrow{transform:translateX(-4px)}.nav-next:hover .nav-arrow{transform:translateX(4px)}
+.nav-center{font-family:'Cormorant Garamond',serif;font-size:.8rem;color:var(--dim);letter-spacing:.15em;text-align:center;}
+footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-note{font-size:.68rem;color:var(--dim);line-height:1.9}.footer-logo{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;font-weight:300;color:var(--border2);}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2)}
+.progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--gold));z-index:9999;width:0%;}
+@media(max-width:768px){header{padding:0 1.5rem}.hero{padding:0 1.5rem 4rem}main{padding:4rem 1.5rem 6rem}.effects{grid-template-columns:1fr}.side-index{display:none}.page-nav{padding:2rem 1.5rem;flex-direction:column;gap:1rem}footer{padding:2rem 1.5rem}}
+</style></head><body>
+<div class="progress" id="prog"></div><div class="cur" id="cur"></div><div class="cur-ring" id="ring"></div>
+<header><a class="logo" href="index.html">Art <span class="logo-x">×</span> まちづくりDB</a>
+<div class="breadcrumb"><a href="index.html">TOP</a><span class="breadcrumb-sep">›</span><span style="color:var(--muted)">九州・沖縄</span><span class="breadcrumb-sep">›</span><span style="color:var(--text)">大分県</span></div></header>
+<nav class="side-index"><div class="side-dot active"><span class="side-dot-label">概要</span></div><div class="side-dot"><span class="side-dot-label">特徴</span></div><div class="side-dot"><span class="side-dot-label">街への効果</span></div><div class="side-dot"><span class="side-dot-label">参考</span></div></nav>
+<section class="hero"><div class="hero-bg"></div><div class="hero-grid"></div><div class="hero-pref">大分県</div>
+<div class="hero-meta"><div class="hero-region-tag"><div class="hero-region-dot"></div>九州・沖縄</div><div class="hero-type-tag">中間組織型（都市運用・人材循環）</div></div>
+<div class="hero-content"><div class="hero-jp">Oita</div><h1 class="hero-title">BEPPU PROJECT</h1><div class="hero-title-en">Beppu Project</div>
+<p class="hero-summary">大分県別府市を拠点に、芸術祭の運営から拠点運営・人材育成・地域課題解決まで担う中間組織。芸術祭→拠点→人材循環へと発展した「運用体制の突出したモデル」。</p><div class="hero-info"><div class="info-pill"><span class="info-pill-label">場所</span><strong>大分県別府市・大分市ほか</strong></div><div class="info-pill"><span class="info-pill-label">設立</span><strong>2005年〜</strong></div><div class="info-pill"><span class="info-pill-label">主催</span><strong>一般社団法人BEPPU PROJECT</strong></div></div>
+<div class="scroll-cue"><div class="scroll-line"></div>Scroll to explore</div></div></section>
+<main>
+<section class="block" id="sec-overview"><div class="block-header"><div class="block-num">01</div><div><div class="block-title">概要</div><span class="block-title-ja">Overview</span></div></div><div class="overview-text"><p>BEPPU PROJECTは、大分県別府市を拠点に活動する文化芸術の中間支援組織。2005年の設立以来、「混浴温泉世界」をはじめとする芸術祭の企画・運営を行いながら、拠点運営・人材育成・地域課題へのアートを通じたアプローチを展開してきた。</p><p>単発の芸術祭開催にとどまらず、継続的な組織として地域と関わり続けることで、文化・経済・社会の変化を生み出してきた点が特徴的。</p></div></section>
+<section class="block" id="sec-features"><div class="block-header"><div class="block-num">02</div><div><div class="block-title">特徴</div><span class="block-title-ja">Key Features</span></div></div><div class="features"><div class="feature"><div class="feature-num">1</div><div class="feature-body"><div class="feature-title">中間組織による長期的な都市関与</div><div class="feature-desc">行政でも民間事業者でもない中間組織として、アートと地域・行政・市民の間に立ち橋渡しする。</div></div></div><div class="feature"><div class="feature-num">2</div><div class="feature-body"><div class="feature-title">芸術祭から拠点・人材育成への発展</div><div class="feature-desc">イベント開催にとどまらず、常設拠点の運営と文化人材の育成・循環を事業として展開。</div></div></div><div class="feature"><div class="feature-num">3</div><div class="feature-body"><div class="feature-title">地域課題へのアートを通じたアプローチ</div><div class="feature-desc">別府のまちなかの空き家・商店街・温泉といった地域課題に、アートの視点からアプローチする。</div></div></div><div class="feature"><div class="feature-num">4</div><div class="feature-body"><div class="feature-title">国内外のアーティスト・クリエイターとのネットワーク</div><div class="feature-desc">長年の活動を通じて構築された広大な人的ネットワークが、新しいプロジェクト創出の基盤となる。</div></div></div></div></section>
+<section class="block" id="sec-effects"><div class="block-header"><div class="block-num">03</div><div><div class="block-title">街への効果</div><span class="block-title-ja">Urban Impact</span></div></div><div class="effects"><div class="effect"><div class="effect-num">01</div><div class="effect-title">別府市の文化的な知名度・評判の向上</div><div class="effect-desc">温泉観光地という従来像に加え、「現代アートが生まれるまち」としての認知が国内外で高まった。</div></div><div class="effect"><div class="effect-num">02</div><div class="effect-title">文化人材の別府への集積</div><div class="effect-desc">BEPPU PROJECTの活動に関わる形で、クリエイター・研究者・文化関係者が別府に集まるようになった。</div></div><div class="effect"><div class="effect-num">03</div><div class="effect-title">中間組織モデルの全国的な注目</div><div class="effect-desc">文化芸術の中間支援組織として先進的な実践を続ける組織として、全国の文化政策関係者に注目されている。</div></div><div class="effect"><div class="effect-num">04</div><div class="effect-title">地域経済へのアートの経済的波及</div><div class="effect-desc">アートイベントの来訪者増加が宿泊・飲食・交通など地域経済に波及し、観光業との相乗効果が生まれた。</div></div></div></section>
+<section class="block" id="sec-refs"><div class="block-header"><div class="block-num">04</div><div><div class="block-title">参考リンク</div><span class="block-title-ja">References</span></div></div><div class="refs"><a class="ref-link" href="https://www.beppuproject.com/" target="_blank"><span class="ref-icon">⬡</span><div class="ref-text"><div>BEPPU PROJECT 公式サイト</div><div class="ref-url">beppuproject.com</div></div><span class="ref-arrow">→</span></a></div></section>
+</main>
+<div class="page-nav"><a class="nav-back" href="detail-kumamoto.html"><span class="nav-arrow">←</span>前：熊本県</a><div class="nav-center">九州・沖縄 — 5 / 8</div><a class="nav-next" href="detail-miyazaki.html">次：宮崎県<span class="nav-arrow">→</span></a></div>
+<footer><div class="footer-note">※掲載情報は2026年1月末時点の情報を参考にしています。<br><a href="index.html" style="color:var(--gold);text-decoration:none">← 一覧ページに戻る</a></div><div class="footer-logo">Art × Placemaking</div></footer>
+<script>
+const cur=document.getElementById('cur'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function tick(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';});
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});},{threshold:.12});
+document.querySelectorAll('.block').forEach(b=>io.observe(b));
+const secs=['sec-overview','sec-features','sec-effects','sec-refs'],dots=document.querySelectorAll('.side-dot');
+new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const i=secs.indexOf(e.target.id);dots.forEach((d,j)=>d.classList.toggle('active',j===i));}});},{threshold:.4}).observe||secs.forEach(id=>{const el=document.getElementById(id);if(el)new IntersectionObserver(([e])=>{if(e.isIntersecting){const i=secs.indexOf(id);dots.forEach((d,j)=>d.classList.toggle('active',j===i));}},{threshold:.4}).observe(el);});
+const sio=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const idx=secs.indexOf(e.target.id);dots.forEach((d,i)=>d.classList.toggle('active',i===idx));}});},{threshold:.4});
+secs.forEach(id=>{const el=document.getElementById(id);if(el)sio.observe(el)});
+dots.forEach((d,i)=>{d.addEventListener('click',()=>document.getElementById(secs[i])?.scrollIntoView({behavior:'smooth'}));});
+</script></body></html>
