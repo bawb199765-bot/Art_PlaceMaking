@@ -73,10 +73,73 @@ footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;justify
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
 .hero-meta{animation:fadeUp .8s ease .1s both}.hero-content{animation:fadeUp .8s ease .2s both}
 @media(max-width:768px){header{padding:0 1.5rem}.hero{padding:0 1.5rem 4rem}main{padding:4rem 1.5rem 6rem}.effects{grid-template-columns:1fr}.side-index{display:none}.page-nav{padding:2rem 1.5rem;flex-direction:column;gap:1rem}footer{padding:2rem 1.5rem}}
-</style></head><body>
+
+/* ── STICKY INFO BAR ── */
+.sticky-bar{
+  position:fixed;top:58px;left:0;right:0;z-index:190;
+  height:0;overflow:hidden;
+  background:rgba(8,8,8,.96);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border2);
+  display:flex;align-items:center;
+  padding:0 3rem;justify-content:space-between;
+  transition:height .3s ease,opacity .3s ease;
+  opacity:0;
+}
+.sticky-bar.visible{height:46px;opacity:1;}
+.sticky-bar-left{display:flex;align-items:center;gap:1rem;min-width:0;overflow:hidden;}
+.sticky-pref{font-size:.63rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.sticky-sep{color:var(--border2);flex-shrink:0;}
+.sticky-title{font-family:'Noto Serif JP',serif;font-size:.82rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sticky-type{font-size:.58rem;letter-spacing:.1em;color:var(--dim);border:1px solid var(--border);padding:.12rem .45rem;white-space:nowrap;flex-shrink:0;display:none;}
+@media(min-width:700px){.sticky-type{display:inline;}}
+.sticky-bar-right{display:flex;align-items:center;gap:1.2rem;flex-shrink:0;margin-left:1rem;}
+.sticky-prog-wrap{width:70px;height:2px;background:var(--border2);border-radius:2px;overflow:hidden;display:none;}
+@media(min-width:580px){.sticky-prog-wrap{display:block;}}
+.sticky-prog-fill{height:100%;background:var(--accent);width:0%;transition:width .1s linear;}
+.sticky-back{font-size:.62rem;letter-spacing:.15em;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .2s;white-space:nowrap;}
+.sticky-back:hover{color:var(--gold);}
+/* ── ENHANCED REF LINKS ── */
+.ref-link{
+  display:flex;align-items:center;gap:1rem;
+  padding:1.1rem 1.4rem;
+  background:var(--surface);border:1px solid var(--border2);
+  text-decoration:none;color:var(--muted);font-size:.78rem;
+  transition:all .25s;position:relative;overflow:hidden;
+}
+.ref-link::before{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:var(--accent);transition:height .3s;}
+.ref-link:hover{background:var(--surface2);color:var(--text);}
+.ref-link:hover::before{height:100%;}
+.ref-favicon{
+  width:34px;height:34px;border-radius:5px;
+  background:var(--bg);border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;overflow:hidden;
+}
+.ref-favicon img{width:18px;height:18px;object-fit:contain;opacity:.85;}
+.ref-fav-fb{font-size:.75rem;color:var(--accent);font-family:'Cormorant Garamond',serif;font-style:italic;}
+.ref-text{flex:1;min-width:0;}
+.ref-name{color:var(--text);font-size:.82rem;margin-bottom:.18rem;}
+.ref-url{font-size:.68rem;color:var(--dim);font-family:'Cormorant Garamond',serif;font-style:italic;}
+.ref-arrow{color:var(--dim);transition:transform .2s,color .2s;font-size:.9rem;flex-shrink:0;}
+.ref-link:hover .ref-arrow{transform:translateX(4px);color:var(--gold);}
+
+</style></head><body data-pref="愛知県" data-title="国際芸術祭「あいち」" data-type="地域芸術祭型（大都市圏・国際芸術祭）">
 <div class="progress" id="prog"></div><div class="cur" id="cur"></div><div class="cur-ring" id="ring"></div>
 <header><a class="logo" href="index.html">Art <span class="logo-x">×</span> まちづくりDB</a>
 <div class="breadcrumb"><a href="index.html">TOP</a><span class="breadcrumb-sep">›</span><a href="#">各事例詳細</a><span class="breadcrumb-sep">›</span><a href="#">中部（北陸・東海）</a><span class="breadcrumb-sep">›</span><span style="color:var(--text)">愛知県</span></div></header>
+<!-- STICKY INFO BAR -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-bar-left">
+    <span class="sticky-pref" id="sPref"></span>
+    <span class="sticky-sep">—</span>
+    <span class="sticky-title" id="sTitle"></span>
+    <span class="sticky-type" id="sType"></span>
+  </div>
+  <div class="sticky-bar-right">
+    <div class="sticky-prog-wrap"><div class="sticky-prog-fill" id="sFill"></div></div>
+    <a class="sticky-back" href="index.html">← 一覧</a>
+  </div>
+</div>
 <nav class="side-index"><div class="side-dot active"><span class="side-dot-label">概要</span></div><div class="side-dot"><span class="side-dot-label">特徴</span></div><div class="side-dot"><span class="side-dot-label">街への効果</span></div><div class="side-dot"><span class="side-dot-label">参考</span></div></nav>
 <section class="hero"><div class="hero-bg"></div><div class="hero-grid"></div><div class="hero-pref">愛知県</div>
 <div class="hero-meta"><div class="hero-region-tag"><div class="hero-region-dot"></div>中部（北陸・東海）</div><div class="hero-type-tag">地域芸術祭型（大都市圏・国際芸術祭）</div></div>
@@ -86,7 +149,11 @@ footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;justify
 <section class="block" id="sec-overview"><div class="block-header"><div class="block-num">01</div><div><div class="block-title">概要</div><span class="block-title-ja">Overview</span></div></div><div class="overview-text"><p>国際芸術祭「あいち」（旧・あいちトリエンナーレ）は、愛知県内各地を舞台に開催される国際的な現代芸術祭。名古屋・常滑・一宮など複数都市に会場を展開し、国内外の現代美術・映像・舞台芸術など多様なジャンルを横断的に紹介している。</p><p>県域スケールの会場配置と行政・民間の共同運営により、地方型芸術祭とは異なる大都市圏ならではの多層な鑑賞体験を提供している。</p></div></section>
 <section class="block" id="sec-features"><div class="block-header"><div class="block-num">02</div><div><div class="block-title">特徴</div><span class="block-title-ja">Key Features</span></div></div><div class="features"><div class="feature"><div class="feature-num">1</div><div class="feature-body"><div class="feature-title">大都市圏スケールの広域展開</div><div class="feature-desc">名古屋市内だけでなく、県内複数都市に会場を分散させることで、各地域の特性を活かした多様な体験を提供。</div></div></div><div class="feature"><div class="feature-num">2</div><div class="feature-body"><div class="feature-title">現代美術×舞台芸術×映像の横断</div><div class="feature-desc">視覚芸術に限らず、パフォーミングアーツや映像も含む総合芸術祭として設計されている。</div></div></div><div class="feature"><div class="feature-num">3</div><div class="feature-body"><div class="feature-title">行政・民間の共同運営体制</div><div class="feature-desc">愛知県・名古屋市・民間が協力する体制により、安定した運営と実験性を両立。</div></div></div><div class="feature"><div class="feature-num">4</div><div class="feature-body"><div class="feature-title">国際的なキュレーション・アーティスト招聘</div><div class="feature-desc">国際的な視点からのキュレーションにより、世界の現代美術シーンとの接続が強い。</div></div></div></div></section>
 <section class="block" id="sec-effects"><div class="block-header"><div class="block-num">03</div><div><div class="block-title">街への効果</div><span class="block-title-ja">Urban Impact</span></div></div><div class="effects"><div class="effect"><div class="effect-num">01</div><div class="effect-title">愛知・名古屋の国際文化都市としての認知向上</div><div class="effect-desc">ものづくり都市としてのイメージに加え、国際的な現代アートの発信地としての評価が高まっている。</div></div><div class="effect"><div class="effect-num">02</div><div class="effect-title">多層な来訪者層の形成</div><div class="effect-desc">地元市民から国内外の美術関係者・観光客まで、多様な層が参加する芸術祭として定着。</div></div><div class="effect"><div class="effect-num">03</div><div class="effect-title">県内各地のエリア価値向上</div><div class="effect-desc">常滑・一宮など名古屋以外の会場都市も注目を集め、地域の文化的価値が向上している。</div></div><div class="effect"><div class="effect-num">04</div><div class="effect-title">現代美術のインフラ整備</div><div class="effect-desc">継続的な開催を通じて、愛知の現代美術に関わる人材・ネットワーク・施設が充実してきている。</div></div></div></section>
-<section class="block" id="sec-refs"><div class="block-header"><div class="block-num">04</div><div><div class="block-title">参考リンク</div><span class="block-title-ja">References</span></div></div><div class="refs"><a class="ref-link" href="https://aichiartsfestival.jp/" target="_blank"><span class="ref-icon">⬡</span><div class="ref-text"><div>国際芸術祭「あいち」 公式サイト</div><div class="ref-url">aichiartsfestival.jp</div></div><span class="ref-arrow">→</span></a></div></section>
+<section class="block" id="sec-refs"><div class="block-header"><div class="block-num">04</div><div><div class="block-title">参考リンク</div><span class="block-title-ja">References</span></div></div><div class="refs"><a class="ref-link" href="https://aichiartsfestival.jp/" target="_blank">
+        <div class="ref-favicon"><img src="https://www.google.com/s2/favicons?domain=aichiartsfestival.jp&sz=64" alt="" onerror="this.style.display='none';this.nextSibling.style.display='flex'"><span class="ref-fav-fb" style="display:none">A</span></div>
+        <div class="ref-text"><div class="ref-name">国際芸術祭「あいち」 公式サイト</div><div class="ref-url">aichiartsfestival.jp</div></div>
+        <span class="ref-arrow">→</span>
+      </a></div></section>
 </main>
 <div class="page-nav"><a class="nav-back" href="detail-shizuoka.html"><span class="nav-arrow">←</span>前：静岡県</a><div class="nav-center">中部（北陸・東海） — 9 / 9</div><a class="nav-next" href="index.html">一覧に戻る<span class="nav-arrow">→</span></a></div>
 <footer><div class="footer-note">※掲載情報は2026年1月末時点の情報を参考にしています。<br><a href="index.html" style="color:var(--gold);text-decoration:none">← 一覧ページに戻る</a></div><div class="footer-logo">Art × Placemaking</div></footer>
@@ -104,4 +171,22 @@ const dots=document.querySelectorAll('.side-dot');
 const sio=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const idx=sections.indexOf(e.target.id);dots.forEach((d,i)=>d.classList.toggle('active',i===idx));}});},{threshold:.4});
 sections.forEach(id=>{const el=document.getElementById(id);if(el)sio.observe(el)});
 dots.forEach((d,i)=>{d.addEventListener('click',()=>{document.getElementById(sections[i])?.scrollIntoView({behavior:'smooth'});});});
+
+// ── Sticky bar
+(function(){
+  var bar=document.getElementById('stickyBar');
+  var fill=document.getElementById('sFill');
+  var b=document.body;
+  document.getElementById('sPref').textContent=b.dataset.pref||'';
+  document.getElementById('sTitle').textContent=b.dataset.title||'';
+  document.getElementById('sType').textContent=b.dataset.type||'';
+  var hero=document.querySelector('.hero');
+  window.addEventListener('scroll',function(){
+    var hb=hero?hero.getBoundingClientRect().bottom:0;
+    bar.classList.toggle('visible',hb<0);
+    var h=document.documentElement;
+    if(fill)fill.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  },{passive:true});
+})();
+
 </script></body></html>

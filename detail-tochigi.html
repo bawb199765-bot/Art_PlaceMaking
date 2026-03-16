@@ -108,9 +108,59 @@ footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;justify
 .hero-meta{animation:fadeUp .8s ease .1s both}
 .hero-content{animation:fadeUp .8s ease .2s both}
 @media(max-width:768px){header{padding:0 1.5rem}.hero{padding:0 1.5rem 4rem}main{padding:4rem 1.5rem 6rem}.effects{grid-template-columns:1fr}.side-index{display:none}.page-nav{padding:2rem 1.5rem;flex-direction:column;gap:1rem}footer{padding:2rem 1.5rem}}
+
+/* ── STICKY INFO BAR ── */
+.sticky-bar{
+  position:fixed;top:58px;left:0;right:0;z-index:190;
+  height:0;overflow:hidden;
+  background:rgba(8,8,8,.96);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border2);
+  display:flex;align-items:center;
+  padding:0 3rem;justify-content:space-between;
+  transition:height .3s ease,opacity .3s ease;
+  opacity:0;
+}
+.sticky-bar.visible{height:46px;opacity:1;}
+.sticky-bar-left{display:flex;align-items:center;gap:1rem;min-width:0;overflow:hidden;}
+.sticky-pref{font-size:.63rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.sticky-sep{color:var(--border2);flex-shrink:0;}
+.sticky-title{font-family:'Noto Serif JP',serif;font-size:.82rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sticky-type{font-size:.58rem;letter-spacing:.1em;color:var(--dim);border:1px solid var(--border);padding:.12rem .45rem;white-space:nowrap;flex-shrink:0;display:none;}
+@media(min-width:700px){.sticky-type{display:inline;}}
+.sticky-bar-right{display:flex;align-items:center;gap:1.2rem;flex-shrink:0;margin-left:1rem;}
+.sticky-prog-wrap{width:70px;height:2px;background:var(--border2);border-radius:2px;overflow:hidden;display:none;}
+@media(min-width:580px){.sticky-prog-wrap{display:block;}}
+.sticky-prog-fill{height:100%;background:var(--accent);width:0%;transition:width .1s linear;}
+.sticky-back{font-size:.62rem;letter-spacing:.15em;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .2s;white-space:nowrap;}
+.sticky-back:hover{color:var(--gold);}
+/* ── ENHANCED REF LINKS ── */
+.ref-link{
+  display:flex;align-items:center;gap:1rem;
+  padding:1.1rem 1.4rem;
+  background:var(--surface);border:1px solid var(--border2);
+  text-decoration:none;color:var(--muted);font-size:.78rem;
+  transition:all .25s;position:relative;overflow:hidden;
+}
+.ref-link::before{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:var(--accent);transition:height .3s;}
+.ref-link:hover{background:var(--surface2);color:var(--text);}
+.ref-link:hover::before{height:100%;}
+.ref-favicon{
+  width:34px;height:34px;border-radius:5px;
+  background:var(--bg);border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;overflow:hidden;
+}
+.ref-favicon img{width:18px;height:18px;object-fit:contain;opacity:.85;}
+.ref-fav-fb{font-size:.75rem;color:var(--accent);font-family:'Cormorant Garamond',serif;font-style:italic;}
+.ref-text{flex:1;min-width:0;}
+.ref-name{color:var(--text);font-size:.82rem;margin-bottom:.18rem;}
+.ref-url{font-size:.68rem;color:var(--dim);font-family:'Cormorant Garamond',serif;font-style:italic;}
+.ref-arrow{color:var(--dim);transition:transform .2s,color .2s;font-size:.9rem;flex-shrink:0;}
+.ref-link:hover .ref-arrow{transform:translateX(4px);color:var(--gold);}
+
 </style>
 </head>
-<body>
+<body data-pref="栃木県" data-title="KEAT（Koisago Earth Art）" data-type="アーティスト主導型／集落密着・プロセス型">
 <div class="progress" id="prog"></div>
 <div class="cur" id="cur"></div>
 <div class="cur-ring" id="ring"></div>
@@ -118,6 +168,19 @@ footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;justify
   <a class="logo" href="index.html">Art <span class="logo-x">×</span> まちづくりDB</a>
   <div class="breadcrumb"><a href="index.html">TOP</a><span class="breadcrumb-sep">›</span><a href="#">各事例詳細</a><span class="breadcrumb-sep">›</span><a href="#">関東</a><span class="breadcrumb-sep">›</span><span style="color:var(--text)">栃木県</span></div>
 </header>
+<!-- STICKY INFO BAR -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-bar-left">
+    <span class="sticky-pref" id="sPref"></span>
+    <span class="sticky-sep">—</span>
+    <span class="sticky-title" id="sTitle"></span>
+    <span class="sticky-type" id="sType"></span>
+  </div>
+  <div class="sticky-bar-right">
+    <div class="sticky-prog-wrap"><div class="sticky-prog-fill" id="sFill"></div></div>
+    <a class="sticky-back" href="index.html">← 一覧</a>
+  </div>
+</div>
 <nav class="side-index">
   <div class="side-dot active"><span class="side-dot-label">概要</span></div>
   <div class="side-dot"><span class="side-dot-label">特徴</span></div>
@@ -153,7 +216,11 @@ footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;justify
   </section>
   <section class="block" id="sec-refs">
     <div class="block-header"><div class="block-num">04</div><div><div class="block-title">参考リンク</div><span class="block-title-ja">References</span></div></div>
-    <div class="refs"><a class="ref-link" href="https://koisago-art.net/#about" target="_blank"><span class="ref-icon">⬡</span><div class="ref-text"><div>KEAT 公式サイト</div><div class="ref-url">koisago-art.net</div></div><span class="ref-arrow">→</span></a></div>
+    <div class="refs"><a class="ref-link" href="https://koisago-art.net/#about" target="_blank">
+        <div class="ref-favicon"><img src="https://www.google.com/s2/favicons?domain=koisago-art.net&sz=64" alt="" onerror="this.style.display='none';this.nextSibling.style.display='flex'"><span class="ref-fav-fb" style="display:none">K</span></div>
+        <div class="ref-text"><div class="ref-name">KEAT 公式サイト</div><div class="ref-url">koisago-art.net</div></div>
+        <span class="ref-arrow">→</span>
+      </a></div>
   </section>
 </main>
 <div class="page-nav">
@@ -179,5 +246,23 @@ const dots=document.querySelectorAll('.side-dot');
 const sio=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const idx=sections.indexOf(e.target.id);dots.forEach((d,i)=>d.classList.toggle('active',i===idx));}});},{threshold:.4});
 sections.forEach(id=>{const el=document.getElementById(id);if(el)sio.observe(el)});
 dots.forEach((d,i)=>{d.addEventListener('click',()=>{document.getElementById(sections[i])?.scrollIntoView({behavior:'smooth'});});});
+
+// ── Sticky bar
+(function(){
+  var bar=document.getElementById('stickyBar');
+  var fill=document.getElementById('sFill');
+  var b=document.body;
+  document.getElementById('sPref').textContent=b.dataset.pref||'';
+  document.getElementById('sTitle').textContent=b.dataset.title||'';
+  document.getElementById('sType').textContent=b.dataset.type||'';
+  var hero=document.querySelector('.hero');
+  window.addEventListener('scroll',function(){
+    var hb=hero?hero.getBoundingClientRect().bottom:0;
+    bar.classList.toggle('visible',hb<0);
+    var h=document.documentElement;
+    if(fill)fill.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  },{passive:true});
+})();
+
 </script>
 </body></html>

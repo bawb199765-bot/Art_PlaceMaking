@@ -72,10 +72,73 @@ footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;justify
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2)}
 .progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--gold));z-index:9999;width:0%;}
 @media(max-width:768px){header{padding:0 1.5rem}.hero{padding:0 1.5rem 4rem}main{padding:4rem 1.5rem 6rem}.effects{grid-template-columns:1fr}.side-index{display:none}.page-nav{padding:2rem 1.5rem;flex-direction:column;gap:1rem}footer{padding:2rem 1.5rem}}
-</style></head><body>
+
+/* ── STICKY INFO BAR ── */
+.sticky-bar{
+  position:fixed;top:58px;left:0;right:0;z-index:190;
+  height:0;overflow:hidden;
+  background:rgba(8,8,8,.96);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border2);
+  display:flex;align-items:center;
+  padding:0 3rem;justify-content:space-between;
+  transition:height .3s ease,opacity .3s ease;
+  opacity:0;
+}
+.sticky-bar.visible{height:46px;opacity:1;}
+.sticky-bar-left{display:flex;align-items:center;gap:1rem;min-width:0;overflow:hidden;}
+.sticky-pref{font-size:.63rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.sticky-sep{color:var(--border2);flex-shrink:0;}
+.sticky-title{font-family:'Noto Serif JP',serif;font-size:.82rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sticky-type{font-size:.58rem;letter-spacing:.1em;color:var(--dim);border:1px solid var(--border);padding:.12rem .45rem;white-space:nowrap;flex-shrink:0;display:none;}
+@media(min-width:700px){.sticky-type{display:inline;}}
+.sticky-bar-right{display:flex;align-items:center;gap:1.2rem;flex-shrink:0;margin-left:1rem;}
+.sticky-prog-wrap{width:70px;height:2px;background:var(--border2);border-radius:2px;overflow:hidden;display:none;}
+@media(min-width:580px){.sticky-prog-wrap{display:block;}}
+.sticky-prog-fill{height:100%;background:var(--accent);width:0%;transition:width .1s linear;}
+.sticky-back{font-size:.62rem;letter-spacing:.15em;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .2s;white-space:nowrap;}
+.sticky-back:hover{color:var(--gold);}
+/* ── ENHANCED REF LINKS ── */
+.ref-link{
+  display:flex;align-items:center;gap:1rem;
+  padding:1.1rem 1.4rem;
+  background:var(--surface);border:1px solid var(--border2);
+  text-decoration:none;color:var(--muted);font-size:.78rem;
+  transition:all .25s;position:relative;overflow:hidden;
+}
+.ref-link::before{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:var(--accent);transition:height .3s;}
+.ref-link:hover{background:var(--surface2);color:var(--text);}
+.ref-link:hover::before{height:100%;}
+.ref-favicon{
+  width:34px;height:34px;border-radius:5px;
+  background:var(--bg);border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;overflow:hidden;
+}
+.ref-favicon img{width:18px;height:18px;object-fit:contain;opacity:.85;}
+.ref-fav-fb{font-size:.75rem;color:var(--accent);font-family:'Cormorant Garamond',serif;font-style:italic;}
+.ref-text{flex:1;min-width:0;}
+.ref-name{color:var(--text);font-size:.82rem;margin-bottom:.18rem;}
+.ref-url{font-size:.68rem;color:var(--dim);font-family:'Cormorant Garamond',serif;font-style:italic;}
+.ref-arrow{color:var(--dim);transition:transform .2s,color .2s;font-size:.9rem;flex-shrink:0;}
+.ref-link:hover .ref-arrow{transform:translateX(4px);color:var(--gold);}
+
+</style></head><body data-pref="大阪府" data-title="北加賀屋クリエイティブ・ビレッジ" data-type="民間主導型（空間再生×制作拠点集積）">
 <div class="progress" id="prog"></div><div class="cur" id="cur"></div><div class="cur-ring" id="ring"></div>
 <header><a class="logo" href="index.html">Art <span class="logo-x">×</span> まちづくりDB</a>
 <div class="breadcrumb"><a href="index.html">TOP</a><span class="breadcrumb-sep">›</span><span style="color:var(--muted)">関西</span><span class="breadcrumb-sep">›</span><span style="color:var(--text)">大阪府</span></div></header>
+<!-- STICKY INFO BAR -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-bar-left">
+    <span class="sticky-pref" id="sPref"></span>
+    <span class="sticky-sep">—</span>
+    <span class="sticky-title" id="sTitle"></span>
+    <span class="sticky-type" id="sType"></span>
+  </div>
+  <div class="sticky-bar-right">
+    <div class="sticky-prog-wrap"><div class="sticky-prog-fill" id="sFill"></div></div>
+    <a class="sticky-back" href="index.html">← 一覧</a>
+  </div>
+</div>
 <nav class="side-index"><div class="side-dot active"><span class="side-dot-label">概要</span></div><div class="side-dot"><span class="side-dot-label">特徴</span></div><div class="side-dot"><span class="side-dot-label">街への効果</span></div><div class="side-dot"><span class="side-dot-label">参考</span></div></nav>
 <section class="hero"><div class="hero-bg"></div><div class="hero-grid"></div><div class="hero-pref">大阪府</div>
 <div class="hero-meta"><div class="hero-region-tag"><div class="hero-region-dot"></div>関西</div><div class="hero-type-tag">民間主導型（空間再生×制作拠点集積）</div></div>
@@ -86,7 +149,11 @@ footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;justify
 <section class="block" id="sec-overview"><div class="block-header"><div class="block-num">01</div><div><div class="block-title">概要</div><span class="block-title-ja">Overview</span></div></div><div class="overview-text"><p>北加賀屋クリエイティブ・ビレッジは、大阪市住之江区北加賀屋エリアにおいて、名村造船所の工場跡地などを活用したクリエイティブ産業の集積地として発展してきた民間主導の取り組み。</p><p>アーティスト、デザイナー、建築家、舞台芸術家らが多数集まる制作拠点として機能しており、大阪の文化地図を大きく書き換えた事例として注目されている。</p></div></section>
 <section class="block" id="sec-features"><div class="block-header"><div class="block-num">02</div><div><div class="block-title">特徴</div><span class="block-title-ja">Key Features</span></div></div><div class="features"><div class="feature"><div class="feature-num">1</div><div class="feature-body"><div class="feature-title">民間主導による大規模な空間再生</div><div class="feature-desc">行政主導ではなく、土地所有者（民間企業）が主体となってクリエイティブ用途への転換を推進した点が特徴的。</div></div></div><div class="feature"><div class="feature-num">2</div><div class="feature-body"><div class="feature-title">多様なジャンルの制作拠点が集積</div><div class="feature-desc">現代美術・舞台芸術・デザイン・建築など異なるジャンルのクリエイターが近接して活動し、横断的な協働が生まれている。</div></div></div><div class="feature"><div class="feature-num">3</div><div class="feature-body"><div class="feature-title">産業遺産の文化的転用</div><div class="feature-desc">造船所という産業遺産をクリエイティブの場として活用することで、場所の記憶と現代の表現が共存している。</div></div></div><div class="feature"><div class="feature-num">4</div><div class="feature-body"><div class="feature-title">継続的なアートフェスティバルによる発信</div><div class="feature-desc">南港エリアを含む地域で「クリエイティブビレッジ」としての認知を高めるイベントが継続的に開催されている。</div></div></div></div></section>
 <section class="block" id="sec-effects"><div class="block-header"><div class="block-num">03</div><div><div class="block-title">街への効果</div><span class="block-title-ja">Urban Impact</span></div></div><div class="effects"><div class="effect"><div class="effect-num">01</div><div class="effect-title">大阪の文化的重心の多極化</div><div class="effect-desc">ミナミ・キタという従来の繁華街中心の文化地図に、北加賀屋という新しい創造拠点が加わった。</div></div><div class="effect"><div class="effect-num">02</div><div class="effect-title">クリエイター定住・定着の促進</div><div class="effect-desc">リーズナブルな賃料の大空間を求めてアーティストが集まり、大阪における創造人材の定着に貢献している。</div></div><div class="effect"><div class="effect-num">03</div><div class="effect-title">民間主導の文化的都市再生モデルの確立</div><div class="effect-desc">行政の補助金に依存しない持続的な運営モデルとして、全国の不動産所有者・開発事業者に示唆を与えている。</div></div><div class="effect"><div class="effect-num">04</div><div class="effect-title">クリエイティブツーリズムの芽生え</div><div class="effect-desc">アーティストのスタジオや作品を見に来る来訪者が増え、新たな観光動線が生まれつつある。</div></div></div></section>
-<section class="block" id="sec-refs"><div class="block-header"><div class="block-num">04</div><div><div class="block-title">参考リンク</div><span class="block-title-ja">References</span></div></div><div class="refs"><a class="ref-link" href="https://www.kitakagaya.net/" target="_blank"><span class="ref-icon">⬡</span><div class="ref-text"><div>北加賀屋クリエイティブ・ビレッジ</div><div class="ref-url">kitakagaya.net</div></div><span class="ref-arrow">→</span></a></div></section>
+<section class="block" id="sec-refs"><div class="block-header"><div class="block-num">04</div><div><div class="block-title">参考リンク</div><span class="block-title-ja">References</span></div></div><div class="refs"><a class="ref-link" href="https://www.kitakagaya.net/" target="_blank">
+        <div class="ref-favicon"><img src="https://www.google.com/s2/favicons?domain=kitakagaya.net&sz=64" alt="" onerror="this.style.display='none';this.nextSibling.style.display='flex'"><span class="ref-fav-fb" style="display:none">K</span></div>
+        <div class="ref-text"><div class="ref-name">北加賀屋クリエイティブ・ビレッジ</div><div class="ref-url">kitakagaya.net</div></div>
+        <span class="ref-arrow">→</span>
+      </a></div></section>
 </main>
 <div class="page-nav"><a class="nav-back" href="detail-kyoto.html"><span class="nav-arrow">←</span>前：京都府</a><div class="nav-center">関西 — 4 / 7</div><a class="nav-next" href="detail-hyogo.html">次：兵庫県<span class="nav-arrow">→</span></a></div>
 <footer><div class="footer-note">※掲載情報は2026年1月末時点の情報を参考にしています。<br><a href="index.html" style="color:var(--gold);text-decoration:none">← 一覧ページに戻る</a></div><div class="footer-logo">Art × Placemaking</div></footer>
@@ -103,4 +170,22 @@ new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){cons
 const sio=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const idx=secs.indexOf(e.target.id);dots.forEach((d,i)=>d.classList.toggle('active',i===idx));}});},{threshold:.4});
 secs.forEach(id=>{const el=document.getElementById(id);if(el)sio.observe(el)});
 dots.forEach((d,i)=>{d.addEventListener('click',()=>document.getElementById(secs[i])?.scrollIntoView({behavior:'smooth'}));});
+
+// ── Sticky bar
+(function(){
+  var bar=document.getElementById('stickyBar');
+  var fill=document.getElementById('sFill');
+  var b=document.body;
+  document.getElementById('sPref').textContent=b.dataset.pref||'';
+  document.getElementById('sTitle').textContent=b.dataset.title||'';
+  document.getElementById('sType').textContent=b.dataset.type||'';
+  var hero=document.querySelector('.hero');
+  window.addEventListener('scroll',function(){
+    var hb=hero?hero.getBoundingClientRect().bottom:0;
+    bar.classList.toggle('visible',hb<0);
+    var h=document.documentElement;
+    if(fill)fill.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  },{passive:true});
+})();
+
 </script></body></html>

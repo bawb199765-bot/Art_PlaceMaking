@@ -398,9 +398,59 @@ footer{
 }
 .hero-meta{animation:fadeUp .8s ease .1s both}
 .hero-content{animation:fadeUp .8s ease .2s both}
+
+/* ── STICKY INFO BAR ── */
+.sticky-bar{
+  position:fixed;top:58px;left:0;right:0;z-index:190;
+  height:0;overflow:hidden;
+  background:rgba(8,8,8,.96);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border2);
+  display:flex;align-items:center;
+  padding:0 3rem;justify-content:space-between;
+  transition:height .3s ease,opacity .3s ease;
+  opacity:0;
+}
+.sticky-bar.visible{height:46px;opacity:1;}
+.sticky-bar-left{display:flex;align-items:center;gap:1rem;min-width:0;overflow:hidden;}
+.sticky-pref{font-size:.63rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.sticky-sep{color:var(--border2);flex-shrink:0;}
+.sticky-title{font-family:'Noto Serif JP',serif;font-size:.82rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sticky-type{font-size:.58rem;letter-spacing:.1em;color:var(--dim);border:1px solid var(--border);padding:.12rem .45rem;white-space:nowrap;flex-shrink:0;display:none;}
+@media(min-width:700px){.sticky-type{display:inline;}}
+.sticky-bar-right{display:flex;align-items:center;gap:1.2rem;flex-shrink:0;margin-left:1rem;}
+.sticky-prog-wrap{width:70px;height:2px;background:var(--border2);border-radius:2px;overflow:hidden;display:none;}
+@media(min-width:580px){.sticky-prog-wrap{display:block;}}
+.sticky-prog-fill{height:100%;background:var(--accent);width:0%;transition:width .1s linear;}
+.sticky-back{font-size:.62rem;letter-spacing:.15em;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .2s;white-space:nowrap;}
+.sticky-back:hover{color:var(--gold);}
+/* ── ENHANCED REF LINKS ── */
+.ref-link{
+  display:flex;align-items:center;gap:1rem;
+  padding:1.1rem 1.4rem;
+  background:var(--surface);border:1px solid var(--border2);
+  text-decoration:none;color:var(--muted);font-size:.78rem;
+  transition:all .25s;position:relative;overflow:hidden;
+}
+.ref-link::before{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:var(--accent);transition:height .3s;}
+.ref-link:hover{background:var(--surface2);color:var(--text);}
+.ref-link:hover::before{height:100%;}
+.ref-favicon{
+  width:34px;height:34px;border-radius:5px;
+  background:var(--bg);border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;overflow:hidden;
+}
+.ref-favicon img{width:18px;height:18px;object-fit:contain;opacity:.85;}
+.ref-fav-fb{font-size:.75rem;color:var(--accent);font-family:'Cormorant Garamond',serif;font-style:italic;}
+.ref-text{flex:1;min-width:0;}
+.ref-name{color:var(--text);font-size:.82rem;margin-bottom:.18rem;}
+.ref-url{font-size:.68rem;color:var(--dim);font-family:'Cormorant Garamond',serif;font-style:italic;}
+.ref-arrow{color:var(--dim);transition:transform .2s,color .2s;font-size:.9rem;flex-shrink:0;}
+.ref-link:hover .ref-arrow{transform:translateX(4px);color:var(--gold);}
+
 </style>
 </head>
-<body>
+<body data-pref="北海道" data-title="札幌国際芸術祭" data-type="芸術祭型">
 
 <div class="progress" id="prog"></div>
 <div class="cur" id="cur"></div>
@@ -421,6 +471,19 @@ footer{
     <span style="color:var(--text)">北海道</span>
   </div>
 </header>
+<!-- STICKY INFO BAR -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-bar-left">
+    <span class="sticky-pref" id="sPref"></span>
+    <span class="sticky-sep">—</span>
+    <span class="sticky-title" id="sTitle"></span>
+    <span class="sticky-type" id="sType"></span>
+  </div>
+  <div class="sticky-bar-right">
+    <div class="sticky-prog-wrap"><div class="sticky-prog-fill" id="sFill"></div></div>
+    <a class="sticky-back" href="index.html">← 一覧</a>
+  </div>
+</div>
 
 <!-- SIDE INDEX -->
 <nav class="side-index" id="sideIndex">
@@ -616,27 +679,18 @@ footer{
     </div>
     <div class="refs">
       <a class="ref-link" href="https://siaf.jp/" target="_blank">
-        <span class="ref-icon">⬡</span>
-        <div class="ref-text">
-          <div>札幌国際芸術祭 公式サイト</div>
-          <div class="ref-url">siaf.jp</div>
-        </div>
+        <div class="ref-favicon"><img src="https://www.google.com/s2/favicons?domain=siaf.jp&sz=64" alt="" onerror="this.style.display='none';this.nextSibling.style.display='flex'"><span class="ref-fav-fb" style="display:none">S</span></div>
+        <div class="ref-text"><div class="ref-name">札幌国際芸術祭 公式サイト</div><div class="ref-url">siaf.jp</div></div>
         <span class="ref-arrow">→</span>
       </a>
       <a class="ref-link" href="https://www.city.sapporo.jp/shimin/bunka/sapporokokusaigeijutsusai/index.html" target="_blank">
-        <span class="ref-icon">⬡</span>
-        <div class="ref-text">
-          <div>札幌市 公式HP — 札幌国際芸術祭</div>
-          <div class="ref-url">city.sapporo.jp</div>
-        </div>
+        <div class="ref-favicon"><img src="https://www.google.com/s2/favicons?domain=city.sapporo.jp&sz=64" alt="" onerror="this.style.display='none';this.nextSibling.style.display='flex'"><span class="ref-fav-fb" style="display:none">C</span></div>
+        <div class="ref-text"><div class="ref-name">札幌市 公式HP — 札幌国際芸術祭</div><div class="ref-url">city.sapporo.jp</div></div>
         <span class="ref-arrow">→</span>
       </a>
       <a class="ref-link" href="https://www.jal.co.jp/jp/ja/dom/hokkaido/music/siaf.html" target="_blank">
-        <span class="ref-icon">⬡</span>
-        <div class="ref-text">
-          <div>JAL 特集ページ — SIAF</div>
-          <div class="ref-url">jal.co.jp</div>
-        </div>
+        <div class="ref-favicon"><img src="https://www.google.com/s2/favicons?domain=jal.co.jp&sz=64" alt="" onerror="this.style.display='none';this.nextSibling.style.display='flex'"><span class="ref-fav-fb" style="display:none">J</span></div>
+        <div class="ref-text"><div class="ref-name">JAL 特集ページ — SIAF</div><div class="ref-url">jal.co.jp</div></div>
         <span class="ref-arrow">→</span>
       </a>
     </div>
@@ -715,6 +769,24 @@ dots.forEach((d,i)=>{
     document.getElementById(sections[i])?.scrollIntoView({behavior:'smooth'});
   });
 });
+
+// ── Sticky bar
+(function(){
+  var bar=document.getElementById('stickyBar');
+  var fill=document.getElementById('sFill');
+  var b=document.body;
+  document.getElementById('sPref').textContent=b.dataset.pref||'';
+  document.getElementById('sTitle').textContent=b.dataset.title||'';
+  document.getElementById('sType').textContent=b.dataset.type||'';
+  var hero=document.querySelector('.hero');
+  window.addEventListener('scroll',function(){
+    var hb=hero?hero.getBoundingClientRect().bottom:0;
+    bar.classList.toggle('visible',hb<0);
+    var h=document.documentElement;
+    if(fill)fill.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
+  },{passive:true});
+})();
+
 </script>
 </body>
 </html>
