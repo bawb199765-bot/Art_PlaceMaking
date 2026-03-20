@@ -79,7 +79,7 @@
     transition: all .15s;
   }
   .region-btn:hover { border-color: var(--ink); color: var(--ink); }
-  .region-btn.active { background: var(--ink); color: white; border-color: var(--ink); }
+  .region-btn.active { background: var(--ink); color: #111; border-color: var(--ink); }
 
   /* Impact category filter */
   .impact-filter-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 1rem; margin-top: 1.5rem; }
@@ -206,44 +206,64 @@
     .cards-grid { grid-template-columns: 1fr; }
   }
 
-  /* type / org filter rows */
-  .filter-row2 { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 1.2rem; }
-  .filter-row2-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); flex-shrink: 0; min-width: 80px; }
-  .f2-btn {
+  /* ── MAP + FILTER PANEL LAYOUT ── */
+  .map-filter-wrap {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2.5rem;
+    padding: 2.5rem 0 0;
+    align-items: start;
+  }
+  @media (max-width: 760px) { .map-filter-wrap { grid-template-columns: 1fr; } }
+
+  /* Map */
+  .map-svg-wrap svg { width: 100%; max-width: 240px; height: auto; display: block; }
+  .map-region {
+    fill: #1e1e1e; stroke: #3a3a3a; stroke-width: 0.6;
+    cursor: pointer; transition: fill .18s, stroke .18s;
+  }
+  .map-region:hover { fill: #303030; stroke: #606060; }
+  .map-region.active { fill: var(--accent); stroke: var(--accent); }
+  .map-label { pointer-events: none; font-size: 7px; fill: rgba(255,255,255,0.45); font-family: sans-serif; }
+
+  /* Right-side filters */
+  .map-right { display: flex; flex-direction: column; gap: 1.4rem; }
+
+  /* Region legend row */
+  .region-legend { display: flex; gap: 6px; flex-wrap: wrap; }
+  .region-legend-btn {
     font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em;
-    padding: 4px 12px; border-radius: 2px; border: 1px solid var(--border);
+    padding: 4px 10px; border: 1px solid var(--border); border-radius: 2px;
+    background: transparent; color: var(--muted); cursor: pointer; transition: all .15s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .region-legend-btn:hover { border-color: #555; color: var(--ink); }
+  .region-legend-btn.active { background: var(--accent); border-color: var(--accent); color: #111; }
+  .rdot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .rd-tohoku { background: #5aa8ff; }
+  .rd-kanto  { background: #ff7c4a; }
+  .rd-chubu  { background: #e8d44a; }
+  .rd-kansai { background: #4adf8c; }
+  .rd-chushi { background: #c04aff; }
+  .rd-kyushu { background: #ff4aaa; }
+
+  /* Filter group */
+  .fgroup { display: flex; flex-direction: column; gap: 6px; }
+  .fgroup-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: var(--muted); }
+  .fgroup-row { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  /* Shared button: type / org */
+  .f2-btn {
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.04em;
+    padding: 5px 13px; border-radius: 2px; border: 1px solid var(--border);
     background: transparent; color: var(--muted); cursor: pointer; transition: all .15s;
   }
-  .f2-btn:hover { border-color: var(--ink); color: var(--ink); }
-  .f2-btn.active { background: var(--ink); color: white; border-color: var(--ink); }
+  .f2-btn:hover { border-color: #555; color: var(--ink); }
+  .f2-btn.active { background: var(--ink); border-color: var(--ink); color: #111; }
 
-  /* Japan map */
-  .map-section { padding: 2.5rem 0 0; }
-  .map-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 1rem; }
-  .map-wrap { display: flex; align-items: flex-start; gap: 2rem; flex-wrap: wrap; }
-  .map-svg-wrap { flex-shrink: 0; }
-  .map-svg-wrap svg { width: 340px; height: auto; display: block; }
-  .map-region {
-    fill: #1e1e1e; stroke: #383838; stroke-width: 0.8;
-    cursor: pointer; transition: fill .15s;
-  }
-  .map-region:hover { fill: #2e2e2e; }
-  .map-region.active { fill: var(--accent); stroke: var(--accent); }
-  .map-legend { display: flex; flex-direction: column; gap: 6px; padding-top: 4px; }
-  .map-legend-item {
-    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em;
-    color: var(--muted); display: flex; align-items: center; gap: 8px; cursor: pointer;
-    padding: 4px 10px; border: 1px solid transparent; border-radius: 2px; transition: all .15s;
-  }
-  .map-legend-item:hover { border-color: var(--border); color: var(--ink); }
-  .map-legend-item.active { border-color: var(--accent); color: var(--accent); }
-  .map-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .dot-tohoku { background: #4a9eff; }
-  .dot-kanto  { background: #ff7c4a; }
-  .dot-chubu  { background: #ffe44a; }
-  .dot-kansai { background: #4aff8c; }
-  .dot-chushi { background: #c04aff; }
-  .dot-kyushu { background: #ff4a9e; }
+  /* impact cats inline */
+  .impact-filter-groups { display: flex; flex-direction: column; gap: 8px; }
+  .impact-filter-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 
 </style>
 </head>
@@ -287,117 +307,343 @@
   <div class="filter-panel">
     <div class="filter-title">FILTER — 地域・効果・タイプ・主催者で絞り込む</div>
 
-    
-    <!-- 日本地図フィルター -->
-    <div class="map-section">
-      <div class="map-title">地図からエリアを選択</div>
-      <div class="map-wrap">
-        <div class="map-svg-wrap">
-          <svg viewBox="0 0 280 400" xmlns="http://www.w3.org/2000/svg" id="japanMap">
-            <!-- 北海道・東北 -->
-            <g class="map-region" data-region="北海道・東北" id="map-tohoku">
-              <!-- 北海道 -->
-              <ellipse cx="195" cy="48" rx="52" ry="30"/>
-              <!-- 東北 -->
-              <rect x="155" y="74" width="46" height="70" rx="4"/>
-            </g>
-            <!-- 関東 -->
-            <g class="map-region" data-region="関東" id="map-kanto">
-              <rect x="148" y="148" width="50" height="46" rx="4"/>
-            </g>
-            <!-- 中部 -->
-            <g class="map-region" data-region="中部" id="map-chubu">
-              <rect x="118" y="158" width="40" height="52" rx="4"/>
-            </g>
-            <!-- 関西 -->
-            <g class="map-region" data-region="関西" id="map-kansai">
-              <rect x="96" y="194" width="40" height="40" rx="4"/>
-            </g>
-            <!-- 中国・四国 -->
-            <g class="map-region" data-region="中国・四国" id="map-chushi">
-              <!-- 中国 -->
-              <rect x="68" y="200" width="42" height="28" rx="3"/>
-              <!-- 四国 -->
-              <rect x="80" y="234" width="38" height="24" rx="3"/>
-            </g>
-            <!-- 九州・沖縄 -->
-            <g class="map-region" data-region="九州・沖縄" id="map-kyushu">
-              <!-- 九州 -->
-              <ellipse cx="82" cy="286" rx="28" ry="32"/>
-              <!-- 沖縄 (dots) -->
-              <circle cx="62" cy="350" r="7"/>
-              <circle cx="44" cy="358" r="5"/>
-              <circle cx="28" cy="366" r="4"/>
-            </g>
-            <!-- ラベル -->
-            <text x="195" y="46" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.5)" font-family="sans-serif">北海道</text>
-            <text x="178" y="112" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.5)" font-family="sans-serif">東北</text>
-            <text x="173" y="174" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.5)" font-family="sans-serif">関東</text>
-            <text x="138" y="186" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.5)" font-family="sans-serif">中部</text>
-            <text x="116" y="216" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.5)" font-family="sans-serif">関西</text>
-            <text x="89" y="216" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.5)" font-family="sans-serif">中国</text>
-            <text x="99" y="248" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.5)" font-family="sans-serif">四国</text>
-            <text x="82" y="288" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.5)" font-family="sans-serif">九州</text>
-          </svg>
+
+    <!-- 地図 + フィルター 横並びレイアウト -->
+    <div class="map-filter-wrap">
+
+      <!-- 左: 日本地図 SVG -->
+      <div class="map-svg-wrap">
+        <svg viewBox="0 0 240 420" xmlns="http://www.w3.org/2000/svg" id="japanMap">
+          <defs>
+            <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="2.5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="glow-active" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <style>
+              .map-region {
+                fill: #1a1a1a;
+                stroke: #404040;
+                stroke-width: 0.7;
+                cursor: pointer;
+                transition: fill .22s, stroke .22s, filter .22s;
+              }
+              .map-region:hover {
+                fill: #2a2a2a;
+                stroke: #888;
+                filter: url(#glow);
+              }
+              .map-region.active {
+                fill: var(--accent);
+                stroke: var(--accent);
+                filter: url(#glow-active);
+              }
+              .map-label {
+                pointer-events: none;
+                font-size: 6px;
+                fill: rgba(255,255,255,0.38);
+                font-family: 'DM Mono', monospace;
+                letter-spacing: 0.05em;
+              }
+            </style>
+          </defs>
+
+          <!-- ━━━ 北海道 ━━━
+               東西に広く、南西に渡島半島が伸びる独特の形 -->
+          <path class="map-region" data-region="北海道・東北"
+            d="
+              M 148,14
+              C 143,10 136,8  128,9
+              C 120,10 112,13 106,18
+              C 99,23  94,29  92,36
+              C 90,40  91,44  93,47
+              C 88,47  84,48  82,52
+              C 80,55  81,59  84,61
+              C 87,63  91,62  94,60
+              C 96,64  99,67  102,67
+              C 105,67 107,65 108,62
+              C 111,63 115,63 118,61
+              C 122,59 124,55 123,51
+              C 127,52 132,52 136,50
+              C 141,47 144,43 145,38
+              C 151,39 157,38 162,35
+              C 167,32 170,27 168,22
+              C 166,17 158,13 152,13
+              C 151,13 149,13 148,14 Z
+            "/>
+
+          <!-- 渡島半島 (北海道の一部として同グループ) -->
+          <path class="map-region" data-region="北海道・東北"
+            d="
+              M 84,61
+              C 80,62  76,65  74,69
+              C 72,73  73,78  76,81
+              C 79,84  83,85  87,83
+              C 91,81  93,77  92,73
+              C 94,70  94,66  91,63
+              C 89,62  86,61  84,61 Z
+            "/>
+
+          <!-- ━━━ 東北 ━━━
+               細長い本州北部、太平洋側に三陸リアス海岸のギザギザ -->
+          <path class="map-region" data-region="北海道・東北"
+            d="
+              M 118,74
+              C 113,72  108,73  104,77
+              C 100,80  98,85  97,91
+              C 96,97  96,103 97,109
+              C 98,115 101,120 105,124
+              C 108,127 112,128 116,127
+              C 120,126 123,123 125,119
+              C 128,116 129,111 129,106
+              C 130,100 129,94  128,89
+              C 127,84  125,79  122,76
+              C 121,75  119,74  118,74 Z
+              M 125,100 C 128,99 132,100 134,103 C 136,107 135,111 133,114
+              C 131,116 128,116 126,114 C 124,112 124,108 125,105 Z
+            "/>
+
+          <!-- ━━━ 関東 ━━━
+               房総半島が南東に突き出し、北西が広い -->
+          <path class="map-region" data-region="関東"
+            d="
+              M 116,130
+              C 111,128  105,129  101,132
+              C 97,135   94,140  94,146
+              C 93,151   95,157  99,161
+              C 103,165  109,167 115,166
+              C 121,165  126,161 129,156
+              C 132,151  132,145 130,140
+              C 128,135  123,131 118,130
+              C 117,130  117,130 116,130 Z
+            "/>
+
+          <!-- 房総・伊豆半島 -->
+          <path class="map-region" data-region="関東"
+            d="
+              M 128,157
+              C 131,158  135,160  138,164
+              C 141,168  141,174  139,178
+              C 137,182  133,184  129,183
+              C 125,182  122,179  122,175
+              C 121,171  123,167  126,163
+              C 127,161  128,159  128,157 Z
+            "/>
+
+          <!-- ━━━ 中部 ━━━
+               中央が山岳、西に若狭湾、南に紀伊半島のもと -->
+          <path class="map-region" data-region="中部"
+            d="
+              M 100,145
+              C 95,144   89,145   84,149
+              C 79,153   76,159   76,166
+              C 76,172   79,178   84,181
+              C 89,184   96,184  102,181
+              C 108,178  112,173 113,167
+              C 114,161  112,154  108,150
+              C 105,147  102,145  100,145 Z
+            "/>
+
+          <!-- 能登半島 -->
+          <path class="map-region" data-region="中部"
+            d="
+              M 84,148
+              C 81,145  77,142  74,139
+              C 71,136  70,132  72,129
+              C 74,126  77,125  80,126
+              C 82,127  83,129  84,132
+              C 85,134  85,138  84,142
+              C 84,145  84,147  84,148 Z
+            "/>
+
+          <!-- ━━━ 関西 ━━━
+               琵琶湖のくびれ、紀伊半島が南に大きく張り出す -->
+          <path class="map-region" data-region="関西"
+            d="
+              M 82,177
+              C 77,176  71,177  66,181
+              C 61,185  58,191  58,197
+              C 58,203  61,209  67,212
+              C 73,215  80,215  86,211
+              C 92,207  96,201  96,195
+              C 96,189  93,183  88,179
+              C 86,178  84,177  82,177 Z
+            "/>
+
+          <!-- 紀伊半島 -->
+          <path class="map-region" data-region="関西"
+            d="
+              M 80,210
+              C 77,213  74,218  73,224
+              C 72,230  74,236  78,240
+              C 82,244  88,245  93,243
+              C 98,241  101,237 102,231
+              C 103,225 101,219  97,215
+              C 94,211  90,209  86,209
+              C 84,209  82,210  80,210 Z
+            "/>
+
+          <!-- ━━━ 中国・四国 ━━━ -->
+          <!-- 中国地方: 山陰〜山陽、西端が細くなる -->
+          <path class="map-region" data-region="中国・四国"
+            d="
+              M 63,186
+              C 57,185  50,186  44,190
+              C 38,194  33,200  31,207
+              C 29,213  31,220  36,224
+              C 41,228  48,229  55,227
+              C 62,225  68,220  71,214
+              C 74,208  74,201  71,195
+              C 69,190  66,186  63,186 Z
+            "/>
+
+          <!-- 山陰の出っ張り（島根半島・鳥取砂丘方面） -->
+          <path class="map-region" data-region="中国・四国"
+            d="
+              M 38,187
+              C 34,185  29,183  25,180
+              C 21,177  19,173  21,169
+              C 23,165  27,163  31,164
+              C 35,165  38,168  40,172
+              C 42,176  41,181  40,185
+              C 39,186  39,187  38,187 Z
+            "/>
+
+          <!-- 四国: やや台形に近い形、南岸は太平洋 -->
+          <path class="map-region" data-region="中国・四国"
+            d="
+              M 55,232
+              C 49,231  43,233  38,238
+              C 33,243  31,250  33,257
+              C 35,264  41,268  48,269
+              C 55,270  62,267  67,261
+              C 72,255  73,247  70,240
+              C 67,234  61,231  55,232 Z
+            "/>
+
+          <!-- ━━━ 九州 ━━━
+               南北に長く、中央にくびれ、南薩摩半島・大隅半島が伸びる -->
+          <path class="map-region" data-region="九州・沖縄"
+            d="
+              M 32,228
+              C 27,226  21,226  16,230
+              C 11,234   8,240   9,247
+              C 10,254  14,259  20,262
+              C 26,265  33,264  38,260
+              C 41,263  43,267  43,272
+              C 43,277  41,282  38,285
+              C 35,288  30,290  26,292
+              C 21,293  16,293  12,297
+              C  8,300   7,305   8,310
+              C  9,315  13,319  18,321
+              C 23,323  28,322  33,319
+              C 38,316  41,311  41,306
+              C 42,301  41,295  42,290
+              C 45,287  48,284  48,279
+              C 49,273  47,266  44,260
+              C 47,256  48,251  47,246
+              C 46,241  43,236  38,232
+              C 36,230  34,229  32,228 Z
+            "/>
+
+          <!-- 壱岐・対馬 -->
+          <path class="map-region" data-region="九州・沖縄"
+            d="M 8,230 C 6,228 3,227 2,229 C 0,231 1,234 3,235 C 5,236 8,235 9,233 C 10,231 9,231 8,230 Z"/>
+          <path class="map-region" data-region="九州・沖縄"
+            d="M 3,220 C 1,217 -1,215 -2,217 C -3,219 -2,222 0,223 C 2,224 4,223 4,221 C 4,220 3,220 3,220 Z"/>
+
+          <!-- ━━━ 沖縄 ━━━
+               南西に弧を描く細長い島々 -->
+          <g class="map-region" data-region="九州・沖縄">
+            <!-- 沖縄本島 -->
+            <path d="M 22,348 C 19,345 15,344 12,346 C 9,348 8,352 10,355 C 12,358 16,359 20,357 C 24,355 25,351 22,348 Z"/>
+            <!-- 宮古島 -->
+            <ellipse cx="10" cy="366" rx="6" ry="3.5" transform="rotate(-15,10,366)"/>
+            <!-- 石垣・八重山 -->
+            <ellipse cx="-2" cy="378" rx="8" ry="3" transform="rotate(-20,-2,378)"/>
+            <ellipse cx="-14" cy="385" rx="4" ry="2.5" transform="rotate(-20,-14,385)"/>
+          </g>
+
+          <!-- ━━━ テキストラベル ━━━ -->
+          <text class="map-label" x="118" y="32" text-anchor="middle">北海道</text>
+          <text class="map-label" x="115" y="100" text-anchor="middle">東北</text>
+          <text class="map-label" x="115" y="152" text-anchor="middle">関東</text>
+          <text class="map-label" x="93"  y="167" text-anchor="middle">中部</text>
+          <text class="map-label" x="75"  y="200" text-anchor="middle">関西</text>
+          <text class="map-label" x="50"  y="210" text-anchor="middle">中国</text>
+          <text class="map-label" x="52"  y="252" text-anchor="middle">四国</text>
+          <text class="map-label" x="26"  y="270" text-anchor="middle">九州</text>
+          <text class="map-label" x="14"  y="353" text-anchor="middle">沖縄</text>
+        </svg>
+      </div>
+
+      <!-- 右: フィルター群 -->
+      <div class="map-right">
+
+        <!-- エリア選択 (凡例ボタン) -->
+        <div class="fgroup">
+          <div class="fgroup-label">AREA — エリアで絞り込む</div>
+          <div class="fgroup-row" id="regionFilter">
+            <button class="region-btn active" data-region="all">すべて</button>
+            <button class="region-legend-btn" data-region="北海道・東北"><span class="rdot rd-tohoku"></span>北海道・東北</button>
+            <button class="region-legend-btn" data-region="関東"><span class="rdot rd-kanto"></span>関東</button>
+            <button class="region-legend-btn" data-region="中部"><span class="rdot rd-chubu"></span>中部</button>
+            <button class="region-legend-btn" data-region="関西"><span class="rdot rd-kansai"></span>関西</button>
+            <button class="region-legend-btn" data-region="中国・四国"><span class="rdot rd-chushi"></span>中国・四国</button>
+            <button class="region-legend-btn" data-region="九州・沖縄"><span class="rdot rd-kyushu"></span>九州・沖縄</button>
+          </div>
         </div>
-        <div class="map-legend">
-          <div class="map-legend-item" data-region="北海道・東北"><div class="map-dot dot-tohoku"></div>北海道・東北（7）</div>
-          <div class="map-legend-item" data-region="関東"><div class="map-dot dot-kanto"></div>関東（7）</div>
-          <div class="map-legend-item" data-region="中部"><div class="map-dot dot-chubu"></div>中部（11）</div>
-          <div class="map-legend-item" data-region="関西"><div class="map-dot dot-kansai"></div>関西（7）</div>
-          <div class="map-legend-item" data-region="中国・四国"><div class="map-dot dot-chushi"></div>中国・四国（10）</div>
-          <div class="map-legend-item" data-region="九州・沖縄"><div class="map-dot dot-kyushu"></div>九州・沖縄（8）</div>
+
+        <!-- 事例タイプ -->
+        <div class="fgroup">
+          <div class="fgroup-label">TYPE — 事例タイプ</div>
+          <div class="fgroup-row">
+            <button class="f2-btn" data-type="芸術祭型">芸術祭型</button>
+            <button class="f2-btn" data-type="エリアマネジメント型">エリアマネジメント型</button>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- 事例タイプ・主催者フィルター -->
-    <div class="filter-row2" style="margin-top:1.8rem;">
-      <span class="filter-row2-label">事例タイプ</span>
-      <button class="f2-btn" data-type="芸術祭型">芸術祭型</button>
-      <button class="f2-btn" data-type="エリアマネジメント型">エリアマネジメント型</button>
-    </div>
-    <div class="filter-row2">
-      <span class="filter-row2-label">主催者</span>
-      <button class="f2-btn" data-org="芸術祭実行委員会型">芸術祭実行委員会型</button>
-      <button class="f2-btn" data-org="行政・NPO主導型">行政・NPO主導型</button>
-      <button class="f2-btn" data-org="民間主導型">民間主導型</button>
-    </div>
+        <!-- 主催者 -->
+        <div class="fgroup">
+          <div class="fgroup-label">ORG — 主催者タイプ</div>
+          <div class="fgroup-row">
+            <button class="f2-btn" data-org="芸術祭実行委員会型">実行委員会型</button>
+            <button class="f2-btn" data-org="行政・NPO主導型">行政・NPO型</button>
+            <button class="f2-btn" data-org="民間主導型">民間主導型</button>
+          </div>
+        </div>
 
-    <!-- 地域フィルター -->
-    <div class="region-row" id="regionFilter">
-      <button class="region-btn active" data-region="all">すべて</button>
-      <button class="region-btn" data-region="北海道・東北">北海道・東北</button>
-      <button class="region-btn" data-region="関東">関東</button>
-      <button class="region-btn" data-region="中部">中部</button>
-      <button class="region-btn" data-region="関西">関西</button>
-      <button class="region-btn" data-region="中国・四国">中国・四国</button>
-      <button class="region-btn" data-region="九州・沖縄">九州・沖縄</button>
-    </div>
+        <!-- 9カテゴリ効果 -->
+        <div class="fgroup">
+          <div class="fgroup-label">IMPACT — 街への効果（複数選択可）</div>
+          <div class="impact-filter-groups">
+            <div class="impact-filter-row">
+              <span class="impact-group-label gl-eco">経済</span>
+              <button class="cat-btn cat-btn-eco" data-cat="1-1">1-① 交流人口</button>
+              <button class="cat-btn cat-btn-eco" data-cat="1-2">1-② 経済効果</button>
+              <button class="cat-btn cat-btn-eco" data-cat="1-3">1-③ 空間再編</button>
+            </div>
+            <div class="impact-filter-row">
+              <span class="impact-group-label gl-soc">社会</span>
+              <button class="cat-btn cat-btn-soc" data-cat="2-1">2-① コミュニティ</button>
+              <button class="cat-btn cat-btn-soc" data-cat="2-2">2-② 移住・定住</button>
+              <button class="cat-btn cat-btn-soc" data-cat="2-3">2-③ 社会包摂</button>
+            </div>
+            <div class="impact-filter-row">
+              <span class="impact-group-label gl-cul">文化</span>
+              <button class="cat-btn cat-btn-cul" data-cat="3-1">3-① ブランディング</button>
+              <button class="cat-btn cat-btn-cul" data-cat="3-2">3-② ランドマーク</button>
+              <button class="cat-btn cat-btn-cul" data-cat="3-3">3-③ エコシステム</button>
+            </div>
+          </div>
+        </div>
 
-    <!-- 9カテゴリ効果フィルター -->
-    <div class="impact-filter-label">街への効果カテゴリで絞り込む（複数選択可）</div>
-    <div class="impact-filter-groups">
-      <div class="impact-filter-row">
-        <span class="impact-group-label gl-eco">経済的効果</span>
-        <button class="cat-btn cat-btn-eco" data-cat="1-1">1-① 交流人口増加</button>
-        <button class="cat-btn cat-btn-eco" data-cat="1-2">1-② 経済効果</button>
-        <button class="cat-btn cat-btn-eco" data-cat="1-3">1-③ 都市空間の再編</button>
-      </div>
-      <div class="impact-filter-row">
-        <span class="impact-group-label gl-soc">社会的効果</span>
-        <button class="cat-btn cat-btn-soc" data-cat="2-1">2-① コミュニティ形成</button>
-        <button class="cat-btn cat-btn-soc" data-cat="2-2">2-② 移住・定住促進</button>
-        <button class="cat-btn cat-btn-soc" data-cat="2-3">2-③ 社会包摂</button>
-      </div>
-      <div class="impact-filter-row">
-        <span class="impact-group-label gl-cul">文化的効果</span>
-        <button class="cat-btn cat-btn-cul" data-cat="3-1">3-① 地域ブランディング</button>
-        <button class="cat-btn cat-btn-cul" data-cat="3-2">3-② ランドマーク形成</button>
-        <button class="cat-btn cat-btn-cul" data-cat="3-3">3-③ クリエイティブエコシステム</button>
+        <button class="filter-clear" id="clearFilters">フィルターをクリア</button>
       </div>
     </div>
-    <button class="filter-clear" id="clearFilters">フィルターをクリア</button>
   </div>
 
   <!-- リストヘッダー -->
@@ -1192,21 +1438,17 @@
   let activeType = null;
   let activeOrg = null;
 
-  // ── Region buttons (text) ──
+  // ── Region buttons ──
   document.getElementById('regionFilter').addEventListener('click', e => {
-    const btn = e.target.closest('.region-btn');
+    const btn = e.target.closest('.region-btn, .region-legend-btn');
     if (!btn) return;
     const r = btn.dataset.region;
     if (activeRegion === r && r !== 'all') {
-      // toggle off
       activeRegion = 'all';
-      document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
-      document.querySelector('[data-region="all"]').classList.add('active');
     } else {
-      document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
       activeRegion = r;
     }
+    syncRegionUI();
     syncMapHighlight();
     applyFilters();
   });
@@ -1215,45 +1457,26 @@
   document.querySelectorAll('.map-region').forEach(shape => {
     shape.addEventListener('click', () => {
       const r = shape.dataset.region;
-      if (activeRegion === r) {
-        activeRegion = 'all';
-        document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
-        document.querySelector('[data-region="all"]').classList.add('active');
-      } else {
-        activeRegion = r;
-        document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
-        const rb = document.querySelector(`.region-btn[data-region="${r}"]`);
-        if (rb) rb.classList.add('active');
-      }
+      activeRegion = (activeRegion === r) ? 'all' : r;
+      syncRegionUI();
       syncMapHighlight();
       applyFilters();
     });
   });
 
-  // ── Map legend items ──
-  document.querySelectorAll('.map-legend-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const r = item.dataset.region;
-      if (activeRegion === r) {
-        activeRegion = 'all';
-        document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
-        document.querySelector('[data-region="all"]').classList.add('active');
-      } else {
-        activeRegion = r;
-        document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
-        const rb = document.querySelector(`.region-btn[data-region="${r}"]`);
-        if (rb) rb.classList.add('active');
-      }
-      syncMapHighlight();
-      applyFilters();
-    });
-  });
 
+
+  function syncRegionUI() {
+    document.querySelectorAll('.region-btn, .region-legend-btn').forEach(b => b.classList.remove('active'));
+    if (activeRegion === 'all') {
+      document.querySelector('.region-btn[data-region="all"]').classList.add('active');
+    } else {
+      const rb = document.querySelector(`.region-legend-btn[data-region="${activeRegion}"]`);
+      if (rb) rb.classList.add('active');
+    }
+  }
   function syncMapHighlight() {
     document.querySelectorAll('.map-region').forEach(s => {
-      s.classList.toggle('active', s.dataset.region === activeRegion);
-    });
-    document.querySelectorAll('.map-legend-item').forEach(s => {
       s.classList.toggle('active', s.dataset.region === activeRegion);
     });
   }
@@ -1295,8 +1518,7 @@
   // ── Clear ──
   document.getElementById('clearFilters').addEventListener('click', () => {
     activeRegion = 'all'; activeCats.clear(); activeType = null; activeOrg = null;
-    document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
-    document.querySelector('[data-region="all"]').classList.add('active');
+    syncRegionUI();
     document.querySelectorAll('.cat-btn, .f2-btn').forEach(b => b.classList.remove('active'));
     syncMapHighlight();
     searchInput.value = '';
