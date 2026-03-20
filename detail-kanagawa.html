@@ -1,272 +1,325 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>神奈川県 — 黄金町バザール／黄金町エリアマネジメントセンター | アート×まちづくりDB</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&family=Noto+Sans+JP:wght@200;300;400&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>神奈川 — 黄金町バザール | アート×まちづくりDB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#080808;--bg2:#0d0d0d;--surface:#131313;--surface2:#1a1a1a;
-  --border:#1e1e1e;--border2:#2a2a2a;--text:#ddd8cf;--muted:#777;
-  --dim:#444;--gold:#c9a96e;--gold2:#a07840;--white:#f4f0e8;
-  --accent:#aa6e8a;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-weight:300;line-height:1.8;overflow-x:hidden;cursor:none;}
-.cur,.cur-ring{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
-.cur{width:7px;height:7px;background:var(--gold);border-radius:50%;}
-.cur-ring{width:28px;height:28px;border:1px solid rgba(201,169,110,.35);border-radius:50%;transition:left .22s ease,top .22s ease}
-header{position:fixed;top:0;left:0;right:0;z-index:200;height:58px;padding:0 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,.88);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
-.logo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:.95rem;letter-spacing:.12em;color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:.6rem;}
-.logo-x{color:var(--dim)}
-.breadcrumb{display:flex;align-items:center;gap:.6rem;font-size:.68rem;letter-spacing:.12em;color:var(--dim);}
-.breadcrumb a{color:var(--muted);text-decoration:none;transition:color .2s}
-.breadcrumb a:hover{color:var(--gold)}
-.breadcrumb-sep{color:var(--border2)}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5rem 5rem;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 30%,rgba(170,110,138,.08) 0%,transparent 60%),radial-gradient(ellipse 40% 80% at 10% 90%,rgba(201,169,110,.04) 0%,transparent 50%),linear-gradient(170deg,#080808 0%,#0a0c0b 100%);}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(170,110,138,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(170,110,138,.04) 1px,transparent 1px);background-size:80px 80px;animation:gridDrift 20s linear infinite;mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 20%,transparent 75%);}
-@keyframes gridDrift{0%{background-position:0 0}100%{background-position:80px 80px}}
-.hero-meta{position:relative;z-index:1;display:flex;align-items:center;gap:1.5rem;margin-bottom:2rem;}
-.hero-region-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.63rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(170,110,138,.3);padding:.3rem .8rem;}
-.hero-region-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.hero-type-tag{font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);border:1px solid var(--border2);padding:.3rem .8rem;}
-.hero-pref{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,12vw,11rem);font-weight:300;line-height:.85;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.08);position:absolute;bottom:3rem;right:4rem;pointer-events:none;user-select:none;z-index:0;}
-.hero-content{position:relative;z-index:1}
-.hero-jp{font-family:'Noto Serif JP',serif;font-size:.75rem;letter-spacing:.2em;color:var(--muted);margin-bottom:.8rem;text-transform:uppercase;}
-.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,4.2rem);font-weight:300;line-height:1.1;letter-spacing:-.01em;color:var(--white);margin-bottom:.5rem;}
-.hero-title-en{font-family:'Cormorant Garamond',serif;font-size:clamp(.9rem,1.8vw,1.3rem);font-weight:300;font-style:italic;color:var(--muted);margin-bottom:2.5rem;letter-spacing:.02em;}
-.hero-summary{font-family:'Noto Serif JP',serif;font-size:.9rem;color:var(--muted);max-width:520px;line-height:2.1;border-left:2px solid var(--accent);padding-left:1.5rem;margin-bottom:3rem;}
-.hero-info{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:3rem}
-.info-pill{display:flex;align-items:center;gap:.5rem;padding:.4rem 1rem;background:var(--surface);border:1px solid var(--border2);font-size:.72rem;color:var(--muted);}
-.info-pill-label{color:var(--dim);font-size:.62rem;letter-spacing:.12em;margin-right:.2rem}
-.info-pill strong{color:var(--text)}
-.scroll-cue{display:flex;align-items:center;gap:.8rem;font-size:.63rem;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;}
-.scroll-line{width:50px;height:1px;background:linear-gradient(90deg,var(--accent),transparent);animation:linePulse 2.5s ease-in-out infinite;}
-@keyframes linePulse{0%,100%{opacity:.3}50%{opacity:1}}
-main{max-width:900px;margin:0 auto;padding:6rem 3rem 8rem;}
-.block{margin-bottom:5rem;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
-.block.visible{opacity:1;transform:none}
-.block-header{display:flex;align-items:baseline;gap:1.2rem;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
-.block-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;line-height:1;color:rgba(201,169,110,.15);letter-spacing:-.02em;}
-.block-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--white);letter-spacing:.03em;}
-.block-title-ja{font-family:'Noto Serif JP',serif;font-size:.72rem;letter-spacing:.18em;color:var(--muted);display:block;margin-top:.2rem;}
-.overview-text{font-family:'Noto Serif JP',serif;font-size:.9rem;color:var(--muted);line-height:2.3;}
-.overview-text p{margin-bottom:1.2rem}
-.overview-text p:last-child{margin-bottom:0}
-.features{display:flex;flex-direction:column;gap:1px;background:var(--border)}
-.feature{background:var(--surface);padding:1.8rem 2rem;display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:start;transition:background .2s;position:relative;overflow:hidden;}
-.feature::after{content:'';position:absolute;left:0;top:0;width:0;height:100%;background:linear-gradient(90deg,rgba(170,110,138,.06),transparent);transition:width .4s ease;}
-.feature:hover{background:var(--surface2)}
-.feature:hover::after{width:100%}
-.feature-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:rgba(170,110,138,.3);line-height:1;min-width:2rem;text-align:right;padding-top:.1rem;}
-.feature-title{font-family:'Noto Serif JP',serif;font-size:.92rem;font-weight:400;color:var(--white);margin-bottom:.7rem;display:flex;align-items:center;gap:.8rem;}
-.feature-title::before{content:'';display:block;width:20px;height:1px;background:var(--accent);flex-shrink:0;}
-.feature-desc{font-size:.82rem;color:var(--muted);line-height:2;}
-.feature-points{list-style:none;margin-top:.8rem;display:flex;flex-direction:column;gap:.4rem;}
-.feature-points li{font-size:.8rem;color:var(--dim);padding-left:1rem;position:relative;line-height:1.8;}
-.feature-points li::before{content:'·';position:absolute;left:0;color:var(--accent);}
-.effects{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
-.effect{background:var(--surface);padding:1.8rem;position:relative;overflow:hidden;transition:background .2s;}
-.effect:hover{background:var(--surface2)}
-.effect-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:rgba(170,110,138,.12);line-height:1;margin-bottom:.8rem;}
-.effect-title{font-family:'Noto Serif JP',serif;font-size:.88rem;font-weight:400;color:var(--white);margin-bottom:.7rem;line-height:1.5;}
-.effect-desc{font-size:.78rem;color:var(--muted);line-height:2}
-.refs{display:flex;flex-direction:column;gap:.8rem;}
-.ref-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:var(--surface);border:1px solid var(--border2);text-decoration:none;color:var(--muted);font-size:.78rem;transition:all .2s;position:relative;overflow:hidden;}
-.ref-link::before{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:var(--accent);transition:height .3s;}
-.ref-link:hover{background:var(--surface2);color:var(--text)}
-.ref-link:hover::before{height:100%}
-.ref-icon{color:var(--dim);font-size:.9rem;flex-shrink:0}
-.ref-text{flex:1}
-.ref-url{font-size:.68rem;color:var(--dim);margin-top:.1rem;font-family:'Cormorant Garamond',serif;font-style:italic;}
-.ref-arrow{color:var(--dim);transition:transform .2s,color .2s;font-size:.9rem}
-.ref-link:hover .ref-arrow{transform:translateX(4px);color:var(--gold)}
-.side-index{position:fixed;right:2.5rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1rem;z-index:100;}
-.side-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);cursor:pointer;transition:all .3s;position:relative;}
-.side-dot.active{background:var(--gold);transform:scale(1.4)}
-.side-dot:hover{background:var(--muted)}
-.side-dot-label{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:.62rem;letter-spacing:.1em;color:var(--muted);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;background:var(--surface);padding:.2rem .5rem;border:1px solid var(--border2);}
-.side-dot:hover .side-dot-label{opacity:1}
-.page-nav{border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:2.5rem 3rem;background:var(--bg2);}
-.nav-back,.nav-next{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:var(--muted);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;padding:.8rem 1.2rem;border:1px solid var(--border);background:transparent;transition:all .2s;}
-.nav-back:hover,.nav-next:hover{color:var(--text);border-color:var(--border2);background:var(--surface);}
-.nav-arrow{transition:transform .2s}
-.nav-back:hover .nav-arrow{transform:translateX(-4px)}
-.nav-next:hover .nav-arrow{transform:translateX(4px)}
-.nav-center{font-family:'Cormorant Garamond',serif;font-size:.8rem;color:var(--dim);letter-spacing:.15em;text-align:center;}
-footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-.footer-note{font-size:.68rem;color:var(--dim);line-height:1.9}
-.footer-logo{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;font-weight:300;color:var(--border2);}
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--border2)}
-::-webkit-scrollbar-thumb:hover{background:var(--gold2)}
-.progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--gold));z-index:9999;width:0%;transition:width .1s linear;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
-.hero-meta{animation:fadeUp .8s ease .1s both}
-.hero-content{animation:fadeUp .8s ease .2s both}
-@media(max-width:768px){header{padding:0 1.5rem}.hero{padding:0 1.5rem 4rem}main{padding:4rem 1.5rem 6rem}.effects{grid-template-columns:1fr}.side-index{display:none}.page-nav{padding:2rem 1.5rem;flex-direction:column;gap:1rem}footer{padding:2rem 1.5rem}}
-
-/* ── STICKY INFO BAR ── */
-.sticky-bar{
-  position:fixed;top:58px;left:0;right:0;z-index:190;
-  height:0;overflow:hidden;
-  background:rgba(8,8,8,.96);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border2);
-  display:flex;align-items:center;
-  padding:0 3rem;justify-content:space-between;
-  transition:height .3s ease,opacity .3s ease;
-  opacity:0;
-}
-.sticky-bar.visible{height:46px;opacity:1;}
-.sticky-bar-left{display:flex;align-items:center;gap:1rem;min-width:0;overflow:hidden;}
-.sticky-pref{font-size:.63rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
-.sticky-sep{color:var(--border2);flex-shrink:0;}
-.sticky-title{font-family:'Noto Serif JP',serif;font-size:.82rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.sticky-type{font-size:.58rem;letter-spacing:.1em;color:var(--dim);border:1px solid var(--border);padding:.12rem .45rem;white-space:nowrap;flex-shrink:0;display:none;}
-@media(min-width:700px){.sticky-type{display:inline;}}
-.sticky-bar-right{display:flex;align-items:center;gap:1.2rem;flex-shrink:0;margin-left:1rem;}
-.sticky-prog-wrap{width:70px;height:2px;background:var(--border2);border-radius:2px;overflow:hidden;display:none;}
-@media(min-width:580px){.sticky-prog-wrap{display:block;}}
-.sticky-prog-fill{height:100%;background:var(--accent);width:0%;transition:width .1s linear;}
-.sticky-back{font-size:.62rem;letter-spacing:.15em;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .2s;white-space:nowrap;}
-.sticky-back:hover{color:var(--gold);}
-/* ── ENHANCED REF LINKS ── */
-.ref-link{
-  display:flex;align-items:center;gap:1rem;
-  padding:1.1rem 1.4rem;
-  background:var(--surface);border:1px solid var(--border2);
-  text-decoration:none;color:var(--muted);font-size:.78rem;
-  transition:all .25s;position:relative;overflow:hidden;
-}
-.ref-link::before{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:var(--accent);transition:height .3s;}
-.ref-link:hover{background:var(--surface2);color:var(--text);}
-.ref-link:hover::before{height:100%;}
-.ref-favicon{
-  width:34px;height:34px;border-radius:5px;
-  background:var(--bg);border:1px solid var(--border2);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;overflow:hidden;
-}
-.ref-favicon img{width:18px;height:18px;object-fit:contain;opacity:.85;}
-.ref-fav-fb{font-size:.75rem;color:var(--accent);font-family:'Cormorant Garamond',serif;font-style:italic;}
-.ref-text{flex:1;min-width:0;}
-.ref-name{color:var(--text);font-size:.82rem;margin-bottom:.18rem;}
-.ref-url{font-size:.68rem;color:var(--dim);font-family:'Cormorant Garamond',serif;font-style:italic;}
-.ref-arrow{color:var(--dim);transition:transform .2s,color .2s;font-size:.9rem;flex-shrink:0;}
-.ref-link:hover .ref-arrow{transform:translateX(4px);color:var(--gold);}
-
+  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+  .nav-logo:hover { color: var(--ink); }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
+  .nav-back:hover { background: var(--accent); color: white; }
+  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
+  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
+  .tag-region { border-color: var(--muted); color: var(--muted); }
+  .tag-type { border-color: var(--accent); color: var(--accent); }
+  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
+  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
+  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
+  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .meta-row:first-child { border-top: 1px solid var(--border); }
+  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
+  .meta-value { font-weight: 600; }
+  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
+  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
+  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
+  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
+  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
+  .overview-text p + p { margin-top: 1.5em; }
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
+  .feature-card { background: var(--paper); padding: 2rem; }
+  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
+  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
+  .feature-body ul { list-style: none; margin-top: 0.75rem; }
+  .feature-body li::before { content: '—  '; color: var(--muted); }
+  .feature-body li { margin-bottom: 4px; }
+  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .impact-category-group { margin-bottom: 2.5rem; }
+  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
+  .cat-economic { background: var(--tag-eco); }
+  .cat-social { background: var(--tag-soc); }
+  .cat-cultural { background: var(--tag-cul); }
+  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
+  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
+  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
+  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-eco { background: var(--tag-eco); }
+  .dot-soc { background: var(--tag-soc); }
+  .dot-cul { background: var(--tag-cul); }
+  .impact-tag-text { color: var(--muted); }
+  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
+  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
+  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
+  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
+  .badge-eco { border-color: #5dade2; color: #5dade2; }
+  .badge-soc { border-color: #58d68d; color: #58d68d; }
+  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
+  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
+  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
+  .ref-item:hover { background: white; }
+  .ref-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+  .ref-icon img { width: 16px; height: 16px; }
+  .ref-title { font-size: 14px; font-weight: 600; }
+  .ref-domain { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .ref-arrow { margin-left: auto; font-size: 18px; color: var(--muted); }
+  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
+  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
+  .footer-nav-item:hover { background: var(--effect-bg); }
+  .fnav-right { border-left: 1px solid var(--border); text-align: right; align-items: flex-end; }
+  .fnav-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.1em; }
+  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
+  .fnav-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 3rem 2rem 2rem; }
+    .hero-meta { padding: 2rem; }
+    .content { padding: 0 2rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .section-nav { padding: 0 2rem; overflow-x: auto; }
+    .footer-nav { grid-template-columns: 1fr; }
+    .fnav-right { border-left: none; border-top: 1px solid var(--border); text-align: left; align-items: flex-start; }
+  }
 </style>
 </head>
-<body data-pref="神奈川県" data-title="黄金町バザール／黄金町エリアマネジメントセンター" data-type="都市再生・空間活用型（中間組織主導）">
-<div class="progress" id="prog"></div>
-<div class="cur" id="cur"></div>
-<div class="cur-ring" id="ring"></div>
-<header>
-  <a class="logo" href="index.html">Art <span class="logo-x">×</span> まちづくりDB</a>
-  <div class="breadcrumb"><a href="index.html">TOP</a><span class="breadcrumb-sep">›</span><a href="#">各事例詳細</a><span class="breadcrumb-sep">›</span><a href="#">関東</a><span class="breadcrumb-sep">›</span><span style="color:var(--text)">神奈川県</span></div>
-</header>
-<!-- STICKY INFO BAR -->
-<div class="sticky-bar" id="stickyBar">
-  <div class="sticky-bar-left">
-    <span class="sticky-pref" id="sPref"></span>
-    <span class="sticky-sep">—</span>
-    <span class="sticky-title" id="sTitle"></span>
-    <span class="sticky-type" id="sType"></span>
-  </div>
-  <div class="sticky-bar-right">
-    <div class="sticky-prog-wrap"><div class="sticky-prog-fill" id="sFill"></div></div>
-    <a class="sticky-back" href="index.html">← 一覧</a>
-  </div>
-</div>
-<nav class="side-index">
-  <div class="side-dot active"><span class="side-dot-label">概要</span></div>
-  <div class="side-dot"><span class="side-dot-label">特徴</span></div>
-  <div class="side-dot"><span class="side-dot-label">街への効果</span></div>
-  <div class="side-dot"><span class="side-dot-label">参考</span></div>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Art × Placemaking DB</a>
+  <div class="breadcrumb"><a href="index.html">HOME</a><span>›</span><span>神奈川</span></div>
+  <a href="index.html" class="nav-back">← 一覧</a>
 </nav>
-<section class="hero">
-  <div class="hero-bg"></div><div class="hero-grid"></div>
-  <div class="hero-pref">神奈川県</div>
-  <div class="hero-meta"><div class="hero-region-tag"><div class="hero-region-dot"></div>関東</div><div class="hero-type-tag">都市再生・空間活用型（中間組織主導）</div></div>
-  <div class="hero-content">
-    <div class="hero-jp">Kanagawa</div>
-    <h1 class="hero-title">黄金町バザール／黄金町エリアマネジメントセンター</h1>
-    <div class="hero-title-en">Koganecho Bazaar / Koganecho Area Management Center</div>
-    <p class="hero-summary">かつて違法風俗が集積していた黄金町エリアで、アートと創造活動を軸に地区再生を進めてきた中間組織とその発信イベント。
-「課題エリアをアートで再編集」した都市再生の象徴的事例。</p>
-    <div class="hero-info"><div class="info-pill"><span class="info-pill-label">場所</span><strong>横浜市中区黄金町（京急日ノ出町〜黄金町高架下周辺）</strong></div><div class="info-pill"><span class="info-pill-label">開催</span><strong>2009年〜（継続事業）</strong></div><div class="info-pill"><span class="info-pill-label">主催</span><strong>NPO法人 黄金町エリアマネジメントセンター</strong></div></div>
-    <div class="scroll-cue"><div class="scroll-line"></div>Scroll to explore</div>
+
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-tags">
+      <span class="tag tag-region">関東</span>
+      <span class="tag tag-region">神奈川県</span>
+      <span class="tag tag-type">横浜・港町・在日文化・エリア再生</span>
+    </div>
+    <div class="hero-index">Case 14 / 47</div>
+    <h1>黄金町バザール</h1>
+    <div class="hero-en">Koganecho Bazaar</div>
+    <p class="hero-desc">横浜・黄金町の売春・違法営業エリアだった場所を、アートによって安全で文化的な街に転換した都市再生プロジェクト。治安改善から創作拠点化まで含む総合的な都市再生モデルとして国際的に評価される。港町・在日文化・旧遊郭の歴史というこの場所固有のアイデンティティをアートが媒介する。</p>
   </div>
-</section>
-<main>
-  <section class="block" id="sec-overview">
-    <div class="block-header"><div class="block-num">01</div><div><div class="block-title">概要</div><span class="block-title-ja">Overview</span></div></div>
-    <div class="overview-text"><p>黄金町エリアマネジメントセンターは、かつて違法風俗が集積し治安課題を抱えていた黄金町エリアにおいて、アートと創造活動を軸に地区再生を進めてきた中間組織。</p><p>高架下空間や既存建築を活用し、アーティストのスタジオ、ギャラリー、イベント、滞在制作などを継続的に展開することで、地域のイメージ転換と持続的なエリアマネジメントを実践している。黄金町バザールはその象徴的な発信イベントであり、2008年より毎年秋に開催されている。</p></div>
-  </section>
-  <section class="block" id="sec-features">
-    <div class="block-header"><div class="block-num">02</div><div><div class="block-title">特徴</div><span class="block-title-ja">Key Features</span></div></div>
-    <div class="features"><div class="feature"><div class="feature-num">1</div><div class="feature-body"><div class="feature-title">治安改善と都市再生を目的としたアート活用</div><div class="feature-desc">アートを観光資源ではなく、違法利用が横行していた空間の健全化と地区再生の手段として導入。</div></div></div><div class="feature"><div class="feature-num">2</div><div class="feature-body"><div class="feature-title">中間組織による常設型エリアマネジメント</div><div class="feature-desc">イベント単発ではなく、NPOが常駐し、スタジオ運営や人材育成、地域調整を担う体制を構築。</div></div></div><div class="feature"><div class="feature-num">3</div><div class="feature-body"><div class="feature-title">高架下・既存ストックの創造拠点化</div><div class="feature-desc">鉄道高架下や老朽建築を、アーティストの制作・展示・滞在拠点として再編集している。</div></div></div><div class="feature"><div class="feature-num">4</div><div class="feature-body"><div class="feature-title">バザールによる対外発信と関係拡張</div><div class="feature-desc">黄金町バザールを通じて、地区内の活動を外部に可視化し、国内外のアーティストや来訪者との接点を創出。</div></div></div></div>
-  </section>
-  <section class="block" id="sec-effects">
-    <div class="block-header"><div class="block-num">03</div><div><div class="block-title">街への効果</div><span class="block-title-ja">Urban Impact</span></div></div>
-    <div class="effects"><div class="effect"><div class="effect-num">01</div><div class="effect-title">エリアイメージの劇的転換</div><div class="effect-desc">「危険な歓楽街」から「アートと創造の街」へと、黄金町の社会的評価が大きく更新された。</div></div><div class="effect"><div class="effect-num">02</div><div class="effect-title">公共空間・高架下活用モデルの確立</div><div class="effect-desc">鉄道高架下を文化拠点として活用する先駆的事例となり、他都市の再生事業にも影響を与えている。</div></div><div class="effect"><div class="effect-num">03</div><div class="effect-title">関係人口・創造人材の定着</div><div class="effect-desc">アーティストやクリエイターが長期的に関わり、地域と外部をつなぐ人的ネットワークが蓄積された。</div></div><div class="effect"><div class="effect-num">04</div><div class="effect-title">都市再生におけるアートの実装知の蓄積</div><div class="effect-desc">治安、規制、住民合意といった課題を乗り越えた実践から、アートによる都市再生の現実的手法が示された。</div></div></div>
-  </section>
-  <section class="block" id="sec-refs">
-    <div class="block-header"><div class="block-num">04</div><div><div class="block-title">参考リンク</div><span class="block-title-ja">References</span></div></div>
-    <div class="refs"><a class="ref-link" href="https://koganecho.net/" target="_blank">
-        <div class="ref-favicon"><img src="https://www.google.com/s2/favicons?domain=koganecho.net&sz=64" alt="" onerror="this.style.display='none';this.nextSibling.style.display='flex'"><span class="ref-fav-fb" style="display:none">K</span></div>
-        <div class="ref-text"><div class="ref-name">黄金町エリアマネジメントセンター</div><div class="ref-url">koganecho.net</div></div>
-        <span class="ref-arrow">→</span>
-      </a><a class="ref-link" href="https://koganecho-bazaar.jp/" target="_blank">
-        <div class="ref-favicon"><img src="https://www.google.com/s2/favicons?domain=koganecho-bazaar.jp&sz=64" alt="" onerror="this.style.display='none';this.nextSibling.style.display='flex'"><span class="ref-fav-fb" style="display:none">K</span></div>
-        <div class="ref-text"><div class="ref-name">黄金町バザール 公式サイト</div><div class="ref-url">koganecho-bazaar.jp</div></div>
-        <span class="ref-arrow">→</span>
-      </a></div>
-  </section>
-</main>
-<div class="page-nav">
-  <a class="nav-back" href="detail-tokyo.html"><span class="nav-arrow">←</span>前：東京都</a>
-  <div class="nav-center">関東 — 7 / 7</div>
-  <a class="nav-next" href="index.html">一覧に戻る<span class="nav-arrow">→</span></a>
+  <div class="hero-meta">
+    <div class="meta-row"><span class="meta-label">地域</span><span class="meta-value">神奈川県横浜市・黄金町エリア</span></div>
+    <div class="meta-row"><span class="meta-label">形態</span><span class="meta-value">エリアマネジメント型芸術祭・常設AIR</span></div>
+    <div class="meta-row"><span class="meta-label">開始</span><span class="meta-value">2008年〜継続</span></div>
+    <div class="meta-row"><span class="meta-label">主体</span><span class="meta-value">NPO法人黄金町エリアマネジメントセンター</span></div>
+    <div class="meta-row"><span class="meta-label">規模</span><span class="meta-value">高架下スタジオ群・年1回の芸術祭</span></div>
+  </div>
 </div>
+
+<nav class="section-nav">
+  <a href="#overview" class="sec-link">概要</a>
+  <a href="#features" class="sec-link">特徴</a>
+  <a href="#impact" class="sec-link">街への効果</a>
+  <a href="#refs" class="sec-link">参考</a>
+</nav>
+
+<div class="content">
+
+  <section id="overview" class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>概要 <span>Overview</span></h2>
+    </div>
+    <div class="overview-text">
+      <p>黄金町バザールは、横浜市・京浜急行電鉄・NPOなどが連携して2008年に始めた都市再生型アートプロジェクト。かつて違法な売春施設が立ち並んでいた黄金町エリアの高架下・小屋群を撤去・改修し、アーティストの制作スタジオ・展示空間として活用する「黄金スタジオ」を整備した。</p>
+      <p>年1回の国際芸術祭「黄金町バザール」と、通年運営の高架下スタジオ群によって、エリア全体が常時クリエイティブな活動の場となっている。治安改善・エリアイメージの刷新・創作拠点の形成という三位一体の都市再生が実現した、国際的にも注目されるモデル事例。</p>
+      <p>横浜の港町文化・在日コリアン・在日外国人コミュニティ・旧遊郭の歴史など、この場所が持つ複雑で固有のアイデンティティをアートが媒介し、「なかったことにしない」かたちで地域の記憶を継承している点でも高く評価されている。</p>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>特徴 <span>Features</span></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <div class="feature-title">高架下スタジオ群による常設クリエイティブ拠点化</div>
+        <div class="feature-body">
+          京急電鉄の高架下を改修した「黄金スタジオ」が、国内外アーティストの制作スタジオ・ショップ・展示空間として通年運用される。「芸術祭の時だけ賑わう」ではなく、日常的にクリエイターが活動する拠点として機能している。
+          <ul>
+            <li>高架下スタジオの常設アーティスト入居</li>
+            <li>展示・制作・販売が同時進行する空間</li>
+            <li>年間を通じた回遊性・訪問目的の提供</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <div class="feature-title">治安改善・エリアイメージ刷新という都市再生の実績</div>
+        <div class="feature-body">
+          違法営業の撤去後の空洞をアートで埋め、エリアイメージを「危険な場所」から「訪れる価値のある文化的場所」へと転換。アートによる都市再生が治安・安全・エリア評価の実質的な改善に寄与したモデルとして、都市政策の観点からも参照される。
+          <ul>
+            <li>高架下の違法施設撤去後のアート転用</li>
+            <li>昼夜の来訪者増加による「目」の確保</li>
+            <li>エリアイメージの実質的な刷新</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <div class="feature-title">港町・在日文化・場所の歴史を媒介するアート</div>
+        <div class="feature-body">
+          横浜の港町文化・在日コリアン・在日外国人コミュニティ・旧遊郭の歴史など、この場所が持つ固有の記憶と文化的多様性を素材にした作品制作が多く行われる。「難しい歴史」から目を背けず、アートが誠実に向き合うことで、新たな文化的アイデンティティが生まれる。
+          <ul>
+            <li>在日文化・多文化共生をテーマにした制作</li>
+            <li>港町・旧遊郭の歴史への芸術的アプローチ</li>
+            <li>地域住民・在日コミュニティとの協働</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">04</div>
+        <div class="feature-title">NPO主導の自律的なエリアマネジメント</div>
+        <div class="feature-body">
+          行政依存ではなく、NPO法人が中心となって持続的なエリアマネジメントを担う体制が確立されている。アーティストの入居審査・スタジオ管理・芸術祭運営・周辺コミュニティとの関係構築まで、民間自律的な組織が担っている。
+          <ul>
+            <li>NPO法人による持続的エリアマネジメント</li>
+            <li>行政・民間・アーティストの三者連携</li>
+            <li>自律的な資金調達・収益確保の仕組み</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact" class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>街への効果 <span>Urban Impact</span></h2>
+    </div>
+    <p class="impact-intro">黄金町バザールが持つ都市への効果を9分類システムで分析する。高架下・遊休空間の都市再編、市民コミュニティの再形成、港町・在日文化の固有アイデンティティの継承、そしてクリエイティブエコシステムの形成という4軸で効果が確認されている。</p>
+
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-economic">経済的効果 / Economic</div>
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-eco"></span>
+            <span class="impact-tag-text">1-③ 経済的効果｜都市空間の再編</span>
+          </div>
+          <div class="impact-card-title">違法施設跡地・高架下のクリエイティブ拠点への全面転換</div>
+          <div class="impact-card-body">違法な売春施設が立ち並んでいた高架下スペースを、アーティストスタジオ・ギャラリー・工房へと全面転換した。都市の「問題空間」が文化的・経済的価値を持つ拠点へと再生された事例として、国内外の都市再生政策の参照モデルとなっている。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-social">社会的効果 / Social</div>
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-soc"></span>
+            <span class="impact-tag-text">2-① 社会的効果｜コミュニティ形成</span>
+          </div>
+          <div class="impact-card-title">多様な背景を持つ住民・アーティストの共存コミュニティ形成</div>
+          <div class="impact-card-body">在日外国人・地域高齢者・若手アーティスト・行政関係者など多様な属性の人々が共存するコミュニティが黄金町に形成された。アーティストと住民の日常的な交流が積み重なることで、「この街に住み続けたい」という帰属意識が育まれている。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-cultural">文化的効果 / Cultural</div>
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-cul"></span>
+            <span class="impact-tag-text">3-① 文化的効果｜地域ブランディング・アイデンティティ</span>
+          </div>
+          <div class="impact-card-title">港町・在日文化・場所の記憶をアートが媒介する複合的アイデンティティの構築</div>
+          <div class="impact-card-body">横浜の港町としての歴史・在日コリアンを含む多様な外来文化・旧遊郭という困難な歴史を「なかったこと」にせず、アートが誠実に向き合う。場所の複雑な固有性が「黄金町らしさ」として積極的に評価される文化的アイデンティティへと転換されている。</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-cul"></span>
+            <span class="impact-tag-text">3-③ 文化的効果｜クリエイティブエコシステム創出</span>
+          </div>
+          <div class="impact-card-title">常設スタジオ群が育む持続的クリエイティブエコシステム</div>
+          <div class="impact-card-body">高架下スタジオへの国内外アーティストの入居が通年で続き、制作・展示・販売・交流が日常的に行われるクリエイティブ・エコシステムが定着。芸術祭期間外も継続するこの日常的な文化活動こそが、黄金町の持続的な再生力の源泉となっている。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-badges">
+      <span class="impact-badges-label">選定カテゴリ</span>
+      <span class="badge badge-eco">1-③ 都市空間の再編</span>
+      <span class="badge badge-soc">2-① コミュニティ形成</span>
+      <span class="badge badge-cul">3-① 地域ブランディング</span>
+      <span class="badge badge-cul">3-③ クリエイティブエコシステム</span>
+    </div>
+  </section>
+
+  <section id="refs" class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>参考リンク <span>References</span></h2>
+    </div>
+    <div class="refs-grid">
+      <a href="https://www.koganecho.net/" target="_blank" rel="noopener" class="ref-item">
+        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=koganecho.net&sz=64" alt=""></div>
+        <div>
+          <div class="ref-title">黄金町エリアマネジメントセンター 公式サイト</div>
+          <div class="ref-domain">koganecho.net</div>
+        </div>
+        <div class="ref-arrow">→</div>
+      </a>
+      <a href="https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/toshiseibi/kaihatsu/area/koganecho.html" target="_blank" rel="noopener" class="ref-item">
+        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=city.yokohama.lg.jp&sz=64" alt=""></div>
+        <div>
+          <div class="ref-title">横浜市 黄金町地区まちづくり</div>
+          <div class="ref-domain">city.yokohama.lg.jp</div>
+        </div>
+        <div class="ref-arrow">→</div>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<div class="footer-nav">
+  <a href="detail-tokyo.html" class="footer-nav-item">
+    <span class="fnav-label">← 前の事例</span>
+    <span class="fnav-title">東京ビエンナーレ</span>
+    <span class="fnav-count">関東 — 6 / 7</span>
+  </a>
+  <a href="detail-niigata.html" class="footer-nav-item fnav-right">
+    <span class="fnav-label">次の事例 →</span>
+    <span class="fnav-title">大地の芸術祭 越後妻有</span>
+    <span class="fnav-count">中部 — 1 / 9</span>
+  </a>
+</div>
+
 <footer>
-  <div class="footer-note">※掲載情報は2026年1月末時点の情報を参考にしています。<br><a href="index.html" style="color:var(--gold);text-decoration:none">← 一覧ページに戻る</a></div>
-  <div class="footer-logo">Art × Placemaking</div>
+  <span>※掲載情報は2026年1月末時点の情報を参考にしています。</span>
+  <a href="index.html" style="color: var(--muted); text-decoration: none;">Art × Placemaking</a>
 </footer>
-<script>
-const cur=document.getElementById('cur'),ring=document.getElementById('ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-(function tick(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
-const prog=document.getElementById('prog');
-window.addEventListener('scroll',()=>{const h=document.documentElement;const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;prog.style.width=pct+'%';});
-const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});},{threshold:.12});
-document.querySelectorAll('.block').forEach(b=>io.observe(b));
-const sections=['sec-overview','sec-features','sec-effects','sec-refs'];
-const dots=document.querySelectorAll('.side-dot');
-const sio=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const idx=sections.indexOf(e.target.id);dots.forEach((d,i)=>d.classList.toggle('active',i===idx));}});},{threshold:.4});
-sections.forEach(id=>{const el=document.getElementById(id);if(el)sio.observe(el)});
-dots.forEach((d,i)=>{d.addEventListener('click',()=>{document.getElementById(sections[i])?.scrollIntoView({behavior:'smooth'});});});
 
-// ── Sticky bar
-(function(){
-  var bar=document.getElementById('stickyBar');
-  var fill=document.getElementById('sFill');
-  var b=document.body;
-  document.getElementById('sPref').textContent=b.dataset.pref||'';
-  document.getElementById('sTitle').textContent=b.dataset.title||'';
-  document.getElementById('sType').textContent=b.dataset.type||'';
-  var hero=document.querySelector('.hero');
-  window.addEventListener('scroll',function(){
-    var hb=hero?hero.getBoundingClientRect().bottom:0;
-    bar.classList.toggle('visible',hb<0);
-    var h=document.documentElement;
-    if(fill)fill.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
-  },{passive:true});
-})();
-
-</script>
-</body></html>
+</body>
+</html>

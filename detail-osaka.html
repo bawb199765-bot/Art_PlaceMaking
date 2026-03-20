@@ -1,191 +1,342 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>大阪府 — 北加賀屋クリエイティブ・ビレッジ | アート×まちづくりDB</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&family=Noto+Sans+JP:wght@200;300;400&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大阪 — 水都大阪アートプロジェクト | アート×まちづくりDB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080808;--bg2:#0d0d0d;--surface:#131313;--surface2:#1a1a1a;--border:#1e1e1e;--border2:#2a2a2a;--text:#ddd8cf;--muted:#777;--dim:#444;--gold:#c9a96e;--gold2:#a07840;--white:#f4f0e8;--accent:#aa8a5e;}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-weight:300;line-height:1.8;overflow-x:hidden;cursor:none;}
-.cur,.cur-ring{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
-.cur{width:7px;height:7px;background:var(--gold);border-radius:50%;}
-.cur-ring{width:28px;height:28px;border:1px solid rgba(201,169,110,.35);border-radius:50%;transition:left .22s ease,top .22s ease}
-header{position:fixed;top:0;left:0;right:0;z-index:200;height:58px;padding:0 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,.88);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
-.logo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:.95rem;letter-spacing:.12em;color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:.6rem;}.logo-x{color:var(--dim)}
-.breadcrumb{display:flex;align-items:center;gap:.6rem;font-size:.68rem;letter-spacing:.12em;color:var(--dim);}.breadcrumb a{color:var(--muted);text-decoration:none}.breadcrumb a:hover{color:var(--gold)}.breadcrumb-sep{color:var(--border2)}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5rem 5rem;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 30%,rgba(170,138,94,.08) 0%,transparent 60%),linear-gradient(170deg,#080808 0%,#0a0c0b 100%);}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(170,138,94,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(170,138,94,.04) 1px,transparent 1px);background-size:80px 80px;animation:gridDrift 20s linear infinite;mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 20%,transparent 75%);}
-@keyframes gridDrift{0%{background-position:0 0}100%{background-position:80px 80px}}
-.hero-meta{position:relative;z-index:1;display:flex;align-items:center;gap:1.5rem;margin-bottom:2rem;animation:fadeUp .8s ease .1s both}
-.hero-region-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.63rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(170,138,94,.3);padding:.3rem .8rem;}
-.hero-region-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.hero-type-tag{font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);border:1px solid var(--border2);padding:.3rem .8rem;}
-.hero-pref{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,12vw,11rem);font-weight:300;line-height:.85;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.08);position:absolute;bottom:3rem;right:4rem;pointer-events:none;user-select:none;z-index:0;}
-.hero-content{position:relative;z-index:1;animation:fadeUp .8s ease .2s both}
-.hero-jp{font-family:'Noto Serif JP',serif;font-size:.75rem;letter-spacing:.2em;color:var(--muted);margin-bottom:.8rem;text-transform:uppercase;}
-.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,4.2rem);font-weight:300;line-height:1.1;letter-spacing:-.01em;color:var(--white);margin-bottom:.5rem;}
-.hero-title-en{font-family:'Cormorant Garamond',serif;font-size:clamp(.9rem,1.8vw,1.3rem);font-weight:300;font-style:italic;color:var(--muted);margin-bottom:2.5rem;}
-.hero-summary{font-family:'Noto Serif JP',serif;font-size:.9rem;color:var(--muted);max-width:520px;line-height:2.1;border-left:2px solid var(--accent);padding-left:1.5rem;margin-bottom:3rem;}
-.hero-info{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:3rem}
-.info-pill{display:flex;align-items:center;gap:.5rem;padding:.4rem 1rem;background:var(--surface);border:1px solid var(--border2);font-size:.72rem;color:var(--muted);}
-.info-pill-label{color:var(--dim);font-size:.62rem;letter-spacing:.12em;margin-right:.2rem}.info-pill strong{color:var(--text)}
-.scroll-cue{display:flex;align-items:center;gap:.8rem;font-size:.63rem;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;}
-.scroll-line{width:50px;height:1px;background:linear-gradient(90deg,var(--accent),transparent);animation:linePulse 2.5s ease-in-out infinite;}
-@keyframes linePulse{0%,100%{opacity:.3}50%{opacity:1}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
-main{max-width:900px;margin:0 auto;padding:6rem 3rem 8rem;}
-.block{margin-bottom:5rem;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}.block.visible{opacity:1;transform:none}
-.block-header{display:flex;align-items:baseline;gap:1.2rem;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
-.block-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;line-height:1;color:rgba(201,169,110,.15);}
-.block-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--white);}
-.block-title-ja{font-family:'Noto Serif JP',serif;font-size:.72rem;letter-spacing:.18em;color:var(--muted);display:block;margin-top:.2rem;}
-.overview-text{font-family:'Noto Serif JP',serif;font-size:.9rem;color:var(--muted);line-height:2.3;}.overview-text p{margin-bottom:1.2rem}.overview-text p:last-child{margin-bottom:0}
-.features{display:flex;flex-direction:column;gap:1px;background:var(--border)}
-.feature{background:var(--surface);padding:1.8rem 2rem;display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:start;transition:background .2s;position:relative;overflow:hidden;}
-.feature::after{content:'';position:absolute;left:0;top:0;width:0;height:100%;background:linear-gradient(90deg,rgba(170,138,94,.06),transparent);transition:width .4s ease;}
-.feature:hover{background:var(--surface2)}.feature:hover::after{width:100%}
-.feature-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:rgba(170,138,94,.3);line-height:1;min-width:2rem;text-align:right;padding-top:.1rem;}
-.feature-title{font-family:'Noto Serif JP',serif;font-size:.92rem;font-weight:400;color:var(--white);margin-bottom:.7rem;display:flex;align-items:center;gap:.8rem;}
-.feature-title::before{content:'';display:block;width:20px;height:1px;background:var(--accent);flex-shrink:0;}
-.feature-desc{font-size:.82rem;color:var(--muted);line-height:2;}
-.effects{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
-.effect{background:var(--surface);padding:1.8rem;transition:background .2s;}.effect:hover{background:var(--surface2)}
-.effect-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:rgba(170,138,94,.12);line-height:1;margin-bottom:.8rem;}
-.effect-title{font-family:'Noto Serif JP',serif;font-size:.88rem;font-weight:400;color:var(--white);margin-bottom:.7rem;line-height:1.5;}
-.effect-desc{font-size:.78rem;color:var(--muted);line-height:2}
-.refs{display:flex;flex-direction:column;gap:.8rem;}
-.ref-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:var(--surface);border:1px solid var(--border2);text-decoration:none;color:var(--muted);font-size:.78rem;transition:all .2s;position:relative;overflow:hidden;}
-.ref-link::before{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:var(--accent);transition:height .3s;}
-.ref-link:hover{background:var(--surface2);color:var(--text)}.ref-link:hover::before{height:100%}
-.ref-icon{color:var(--dim);font-size:.9rem;flex-shrink:0}.ref-text{flex:1}
-.ref-url{font-size:.68rem;color:var(--dim);margin-top:.1rem;font-family:'Cormorant Garamond',serif;font-style:italic;}
-.ref-arrow{color:var(--dim);transition:transform .2s,color .2s;font-size:.9rem}.ref-link:hover .ref-arrow{transform:translateX(4px);color:var(--gold)}
-.side-index{position:fixed;right:2.5rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1rem;z-index:100;}
-.side-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);cursor:pointer;transition:all .3s;position:relative;}.side-dot.active{background:var(--gold);transform:scale(1.4)}.side-dot:hover{background:var(--muted)}
-.side-dot-label{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:.62rem;letter-spacing:.1em;color:var(--muted);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;background:var(--surface);padding:.2rem .5rem;border:1px solid var(--border2);}.side-dot:hover .side-dot-label{opacity:1}
-.page-nav{border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:2.5rem 3rem;background:var(--bg2);}
-.nav-back,.nav-next{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:var(--muted);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;padding:.8rem 1.2rem;border:1px solid var(--border);background:transparent;transition:all .2s;}
-.nav-back:hover,.nav-next:hover{color:var(--text);border-color:var(--border2);background:var(--surface);}
-.nav-arrow{transition:transform .2s}.nav-back:hover .nav-arrow{transform:translateX(-4px)}.nav-next:hover .nav-arrow{transform:translateX(4px)}
-.nav-center{font-family:'Cormorant Garamond',serif;font-size:.8rem;color:var(--dim);letter-spacing:.15em;text-align:center;}
-footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-.footer-note{font-size:.68rem;color:var(--dim);line-height:1.9}.footer-logo{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;font-weight:300;color:var(--border2);}
-::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2)}
-.progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--gold));z-index:9999;width:0%;}
-@media(max-width:768px){header{padding:0 1.5rem}.hero{padding:0 1.5rem 4rem}main{padding:4rem 1.5rem 6rem}.effects{grid-template-columns:1fr}.side-index{display:none}.page-nav{padding:2rem 1.5rem;flex-direction:column;gap:1rem}footer{padding:2rem 1.5rem}}
+  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+  .nav-logo:hover { color: var(--ink); }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
+  .nav-back:hover { background: var(--accent); color: white; }
+  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
+  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
+  .tag-region { border-color: var(--muted); color: var(--muted); }
+  .tag-type { border-color: var(--accent); color: var(--accent); }
+  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
+  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
+  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
+  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .meta-row:first-child { border-top: 1px solid var(--border); }
+  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
+  .meta-value { font-weight: 600; }
+  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
+  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
+  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
+  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
+  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
+  .overview-text p + p { margin-top: 1.5em; }
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
+  .feature-card { background: var(--paper); padding: 2rem; }
+  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
+  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
+  .feature-body ul { list-style: none; margin-top: 0.75rem; }
+  .feature-body li::before { content: '—  '; color: var(--muted); }
+  .feature-body li { margin-bottom: 4px; }
+  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .impact-category-group { margin-bottom: 2.5rem; }
+  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
+  .cat-economic { background: var(--tag-eco); }
+  .cat-social { background: var(--tag-soc); }
+  .cat-cultural { background: var(--tag-cul); }
+  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
+  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
+  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
+  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-eco { background: var(--tag-eco); }
+  .dot-soc { background: var(--tag-soc); }
+  .dot-cul { background: var(--tag-cul); }
+  .impact-tag-text { color: var(--muted); }
+  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
+  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
+  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
+  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
+  .badge-eco { border-color: #5dade2; color: #5dade2; }
+  .badge-soc { border-color: #58d68d; color: #58d68d; }
+  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
+  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
+  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
+  .ref-item:hover { background: white; }
+  .ref-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); flex-shrink: 0; }
+  .ref-title { font-size: 14px; font-weight: 600; }
+  .ref-url { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  .ref-arrow { margin-left: auto; color: var(--accent); font-size: 18px; flex-shrink: 0; }
+  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
+  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
+  .footer-nav-item:hover { background: var(--effect-bg); }
+  .fnav-right { border-left: 1px solid var(--border); text-align: right; }
+  .fnav-dir { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
+  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
+  .fnav-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  .footer-case { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 3rem 2rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-meta { padding: 2rem; }
+    .content { padding: 0 2rem; }
+    .section-nav { padding: 0 2rem; overflow-x: auto; }
+    .features-grid { grid-template-columns: 1fr; }
+    .footer-nav { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
 
-/* ── STICKY INFO BAR ── */
-.sticky-bar{
-  position:fixed;top:58px;left:0;right:0;z-index:190;
-  height:0;overflow:hidden;
-  background:rgba(8,8,8,.96);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border2);
-  display:flex;align-items:center;
-  padding:0 3rem;justify-content:space-between;
-  transition:height .3s ease,opacity .3s ease;
-  opacity:0;
-}
-.sticky-bar.visible{height:46px;opacity:1;}
-.sticky-bar-left{display:flex;align-items:center;gap:1rem;min-width:0;overflow:hidden;}
-.sticky-pref{font-size:.63rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
-.sticky-sep{color:var(--border2);flex-shrink:0;}
-.sticky-title{font-family:'Noto Serif JP',serif;font-size:.82rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.sticky-type{font-size:.58rem;letter-spacing:.1em;color:var(--dim);border:1px solid var(--border);padding:.12rem .45rem;white-space:nowrap;flex-shrink:0;display:none;}
-@media(min-width:700px){.sticky-type{display:inline;}}
-.sticky-bar-right{display:flex;align-items:center;gap:1.2rem;flex-shrink:0;margin-left:1rem;}
-.sticky-prog-wrap{width:70px;height:2px;background:var(--border2);border-radius:2px;overflow:hidden;display:none;}
-@media(min-width:580px){.sticky-prog-wrap{display:block;}}
-.sticky-prog-fill{height:100%;background:var(--accent);width:0%;transition:width .1s linear;}
-.sticky-back{font-size:.62rem;letter-spacing:.15em;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .2s;white-space:nowrap;}
-.sticky-back:hover{color:var(--gold);}
-/* ── ENHANCED REF LINKS ── */
-.ref-link{
-  display:flex;align-items:center;gap:1rem;
-  padding:1.1rem 1.4rem;
-  background:var(--surface);border:1px solid var(--border2);
-  text-decoration:none;color:var(--muted);font-size:.78rem;
-  transition:all .25s;position:relative;overflow:hidden;
-}
-.ref-link::before{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:var(--accent);transition:height .3s;}
-.ref-link:hover{background:var(--surface2);color:var(--text);}
-.ref-link:hover::before{height:100%;}
-.ref-favicon{
-  width:34px;height:34px;border-radius:5px;
-  background:var(--bg);border:1px solid var(--border2);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;overflow:hidden;
-}
-.ref-favicon img{width:18px;height:18px;object-fit:contain;opacity:.85;}
-.ref-fav-fb{font-size:.75rem;color:var(--accent);font-family:'Cormorant Garamond',serif;font-style:italic;}
-.ref-text{flex:1;min-width:0;}
-.ref-name{color:var(--text);font-size:.82rem;margin-bottom:.18rem;}
-.ref-url{font-size:.68rem;color:var(--dim);font-family:'Cormorant Garamond',serif;font-style:italic;}
-.ref-arrow{color:var(--dim);transition:transform .2s,color .2s;font-size:.9rem;flex-shrink:0;}
-.ref-link:hover .ref-arrow{transform:translateX(4px);color:var(--gold);}
-
-</style></head><body data-pref="大阪府" data-title="北加賀屋クリエイティブ・ビレッジ" data-type="民間主導型（空間再生×制作拠点集積）">
-<div class="progress" id="prog"></div><div class="cur" id="cur"></div><div class="cur-ring" id="ring"></div>
-<header><a class="logo" href="index.html">Art <span class="logo-x">×</span> まちづくりDB</a>
-<div class="breadcrumb"><a href="index.html">TOP</a><span class="breadcrumb-sep">›</span><span style="color:var(--muted)">関西</span><span class="breadcrumb-sep">›</span><span style="color:var(--text)">大阪府</span></div></header>
-<!-- STICKY INFO BAR -->
-<div class="sticky-bar" id="stickyBar">
-  <div class="sticky-bar-left">
-    <span class="sticky-pref" id="sPref"></span>
-    <span class="sticky-sep">—</span>
-    <span class="sticky-title" id="sTitle"></span>
-    <span class="sticky-type" id="sType"></span>
+<nav>
+  <a href="index.html" class="nav-logo">ART × PLACEMAKING DB</a>
+  <div class="breadcrumb">
+    <a href="index.html">TOP</a>
+    <span>›</span>
+    <span>大阪</span>
   </div>
-  <div class="sticky-bar-right">
-    <div class="sticky-prog-wrap"><div class="sticky-prog-fill" id="sFill"></div></div>
-    <a class="sticky-back" href="index.html">← 一覧</a>
+  <a href="index.html" class="nav-back">← 一覧へ</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-tags">
+      <span class="tag tag-region">近畿</span>
+      <span class="tag tag-region">大阪府</span>
+      <span class="tag tag-type">水辺再生</span>
+      <span class="tag tag-type">都市型アートプロジェクト</span>
+    </div>
+    <div class="hero-index">Case 27 / 47</div>
+    <h1>水都大阪<br>アートプロジェクト</h1>
+    <div class="hero-en">SUITO OSAKA ART PROJECT</div>
+    <p class="hero-desc">「水の都」大阪の川・堀・港を舞台に、水辺の公共空間を市民とアートで再生する都市型プロジェクト。中之島・道頓堀・天満・港エリアなど大阪固有の水辺文化と商都の記憶をアートで再解釈し、都市の新たな魅力を創出する。</p>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-row">
+      <span class="meta-label">REGION</span>
+      <span class="meta-value">大阪市内水辺エリア全域</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">STARTED</span>
+      <span class="meta-value">2009年〜</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">ORGANIZER</span>
+      <span class="meta-value">大阪市・水都大阪コンソーシアム</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">SCALE</span>
+      <span class="meta-value">大阪市内8区・水辺40以上のポイント</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">KEYWORDS</span>
+      <span class="meta-value">川・水辺・中之島・商都文化・公共空間</span>
+    </div>
   </div>
 </div>
-<nav class="side-index"><div class="side-dot active"><span class="side-dot-label">概要</span></div><div class="side-dot"><span class="side-dot-label">特徴</span></div><div class="side-dot"><span class="side-dot-label">街への効果</span></div><div class="side-dot"><span class="side-dot-label">参考</span></div></nav>
-<section class="hero"><div class="hero-bg"></div><div class="hero-grid"></div><div class="hero-pref">大阪府</div>
-<div class="hero-meta"><div class="hero-region-tag"><div class="hero-region-dot"></div>関西</div><div class="hero-type-tag">民間主導型（空間再生×制作拠点集積）</div></div>
-<div class="hero-content"><div class="hero-jp">Osaka</div><h1 class="hero-title">北加賀屋クリエイティブ・ビレッジ</h1><div class="hero-title-en">Kitakagaya Creative Village</div>
-<p class="hero-summary">大阪市住之江区の北加賀屋エリアで、民間企業（名村造船所跡地）が中心となって展開するクリエイティブ集積地。不動産ストックを実装の場に変える民間主導の強さが突出。</p><div class="hero-info"><div class="info-pill"><span class="info-pill-label">場所</span><strong>大阪市住之江区北加賀屋（名村造船所跡地ほか）</strong></div><div class="info-pill"><span class="info-pill-label">形態</span><strong>常設型（継続的なエリア運営）</strong></div><div class="info-pill"><span class="info-pill-label">主催</span><strong>株式会社名村造船所大阪工場跡地・各種団体</strong></div></div>
-<div class="scroll-cue"><div class="scroll-line"></div>Scroll to explore</div></div></section>
-<main>
-<section class="block" id="sec-overview"><div class="block-header"><div class="block-num">01</div><div><div class="block-title">概要</div><span class="block-title-ja">Overview</span></div></div><div class="overview-text"><p>北加賀屋クリエイティブ・ビレッジは、大阪市住之江区北加賀屋エリアにおいて、名村造船所の工場跡地などを活用したクリエイティブ産業の集積地として発展してきた民間主導の取り組み。</p><p>アーティスト、デザイナー、建築家、舞台芸術家らが多数集まる制作拠点として機能しており、大阪の文化地図を大きく書き換えた事例として注目されている。</p></div></section>
-<section class="block" id="sec-features"><div class="block-header"><div class="block-num">02</div><div><div class="block-title">特徴</div><span class="block-title-ja">Key Features</span></div></div><div class="features"><div class="feature"><div class="feature-num">1</div><div class="feature-body"><div class="feature-title">民間主導による大規模な空間再生</div><div class="feature-desc">行政主導ではなく、土地所有者（民間企業）が主体となってクリエイティブ用途への転換を推進した点が特徴的。</div></div></div><div class="feature"><div class="feature-num">2</div><div class="feature-body"><div class="feature-title">多様なジャンルの制作拠点が集積</div><div class="feature-desc">現代美術・舞台芸術・デザイン・建築など異なるジャンルのクリエイターが近接して活動し、横断的な協働が生まれている。</div></div></div><div class="feature"><div class="feature-num">3</div><div class="feature-body"><div class="feature-title">産業遺産の文化的転用</div><div class="feature-desc">造船所という産業遺産をクリエイティブの場として活用することで、場所の記憶と現代の表現が共存している。</div></div></div><div class="feature"><div class="feature-num">4</div><div class="feature-body"><div class="feature-title">継続的なアートフェスティバルによる発信</div><div class="feature-desc">南港エリアを含む地域で「クリエイティブビレッジ」としての認知を高めるイベントが継続的に開催されている。</div></div></div></div></section>
-<section class="block" id="sec-effects"><div class="block-header"><div class="block-num">03</div><div><div class="block-title">街への効果</div><span class="block-title-ja">Urban Impact</span></div></div><div class="effects"><div class="effect"><div class="effect-num">01</div><div class="effect-title">大阪の文化的重心の多極化</div><div class="effect-desc">ミナミ・キタという従来の繁華街中心の文化地図に、北加賀屋という新しい創造拠点が加わった。</div></div><div class="effect"><div class="effect-num">02</div><div class="effect-title">クリエイター定住・定着の促進</div><div class="effect-desc">リーズナブルな賃料の大空間を求めてアーティストが集まり、大阪における創造人材の定着に貢献している。</div></div><div class="effect"><div class="effect-num">03</div><div class="effect-title">民間主導の文化的都市再生モデルの確立</div><div class="effect-desc">行政の補助金に依存しない持続的な運営モデルとして、全国の不動産所有者・開発事業者に示唆を与えている。</div></div><div class="effect"><div class="effect-num">04</div><div class="effect-title">クリエイティブツーリズムの芽生え</div><div class="effect-desc">アーティストのスタジオや作品を見に来る来訪者が増え、新たな観光動線が生まれつつある。</div></div></div></section>
-<section class="block" id="sec-refs"><div class="block-header"><div class="block-num">04</div><div><div class="block-title">参考リンク</div><span class="block-title-ja">References</span></div></div><div class="refs"><a class="ref-link" href="https://www.kitakagaya.net/" target="_blank">
-        <div class="ref-favicon"><img src="https://www.google.com/s2/favicons?domain=kitakagaya.net&sz=64" alt="" onerror="this.style.display='none';this.nextSibling.style.display='flex'"><span class="ref-fav-fb" style="display:none">K</span></div>
-        <div class="ref-text"><div class="ref-name">北加賀屋クリエイティブ・ビレッジ</div><div class="ref-url">kitakagaya.net</div></div>
+
+<div class="section-nav">
+  <a href="#overview" class="sec-link">01 概要</a>
+  <a href="#features" class="sec-link">02 特徴</a>
+  <a href="#impact" class="sec-link">03 街への効果</a>
+  <a href="#refs" class="sec-link">04 参考</a>
+</div>
+
+<div class="content">
+
+  <section class="section" id="overview">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>概要 <span>OVERVIEW</span></h2>
+    </div>
+    <div class="overview-text">
+      <p>水都大阪アートプロジェクトは、かつて「八百八橋」と呼ばれた水の都・大阪の水辺空間を、アートを媒介として市民に取り戻すことを目指したプロジェクトです。高度成長期に道路整備のために多くの水路が埋め立てられ、水辺から切り離されてきた大阪の都市空間を、アートの力で再活性化します。</p>
+      <p>中之島・道頓堀・天満・港・此花・西成など大阪固有の水辺エリアに、国内外のアーティストによる恒久・仮設作品が展開されます。商都・大阪の歴史的記憶——問屋街・船場文化・漁業・港湾労働——をモチーフにした作品が、現代の都市生活者に地域のアイデンティティを喚起します。</p>
+      <p>また、水上テラスやリバーサイドカフェなど水辺活用の実証実験とアートが連動し、水辺の賑わい創出と都市空間の再編を同時に推進する取り組みも特徴的です。</p>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>特徴 <span>FEATURES</span></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <div class="feature-title">水辺の公共空間再生</div>
+        <div class="feature-body">
+          <p>川沿いの遊歩道・橋下空間・旧倉庫などをアートと水辺活用実証実験で再生。民間事業者によるリバーカフェ・水上マーケット開設など、アートが呼び水となった経済活動が川沿いに広がる。</p>
+          <ul>
+            <li>中之島リバーサイドの公共アート常設化</li>
+            <li>橋下空間の週末マーケット・ライブ空間化</li>
+            <li>旧倉庫を活用したアートセンター整備</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <div class="feature-title">商都・大阪の記憶の再解釈</div>
+        <div class="feature-body">
+          <p>問屋街・船場・港湾など大阪固有の商業文化・産業の歴史をアーティストが現代視点で再解釈した作品群。「食い倒れ」「笑い」「商人気質」など大阪らしさをモチーフにした参加型アートも充実。</p>
+          <ul>
+            <li>船場の古い帳簿・商取引記録をインスタレーション化</li>
+            <li>大阪湾の漁業史をドキュメンタリーアートで記録</li>
+            <li>落語・漫才文化と現代パフォーミングアートの接続</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <div class="feature-title">多様なコミュニティの参加</div>
+        <div class="feature-body">
+          <p>在日コリアン文化が根付く鶴橋・生野や、アート拠点が集まる西成・此花など多様な地域コミュニティがプロジェクトに参画。社会的包摂を重視した多文化的なアートプログラムが展開される。</p>
+          <ul>
+            <li>生野区の多文化共生アートプロジェクト連携</li>
+            <li>西成・釜ヶ崎アートの文脈との接続</li>
+            <li>外国人住民が参加する多言語アートWS</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">04</div>
+        <div class="feature-title">クリエイティブ産業集積の促進</div>
+        <div class="feature-body">
+          <p>中之島・南堀江・堀江エリアなどにデザイン事務所・映像制作会社・スタートアップが集積し始め、アートプロジェクトが整備した空間・コミュニティが呼び水となるクリエイティブエコシステムが形成される。</p>
+          <ul>
+            <li>中之島デザインミュージアムとの連携</li>
+            <li>クリエイター向け空き倉庫シェアオフィス化</li>
+            <li>大阪イノベーションハブとのコラボレーション</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="impact">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>街への効果 <span>URBAN IMPACT</span></h2>
+    </div>
+    <p class="impact-intro">水辺再生×商都文化の再解釈により、都市空間の質的変容とクリエイティブ産業集積、地域アイデンティティの再発見が連動する。</p>
+
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-economic">ECONOMIC — 経済的効果</div>
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag"><div class="impact-tag-dot dot-eco"></div><span class="impact-tag-text">1-③ 都市空間の再編</span></div>
+          <div class="impact-card-title">水辺の賑わい創出と空間更新</div>
+          <div class="impact-card-body">放置されていた橋下・廃倉庫・遊歩道がアートと水辺活用実証実験によって活性化。民間のリバーカフェやマーケット出店へと発展し、川沿いの地価上昇や賃貸需要増加も報告されている。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-social">SOCIAL — 社会的効果</div>
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag"><div class="impact-tag-dot dot-soc"></div><span class="impact-tag-text">2-② 移住・定住促進</span></div>
+          <div class="impact-card-title">クリエイター層の都市内移動</div>
+          <div class="impact-card-body">水辺空間が再生されたエリアに若いデザイナー・アーティスト・起業家が移り住み始め、空き倉庫・空き店舗のリノベーションが活発化。大阪の都市内における創造的な再分布が進んでいる。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-cultural">CULTURAL — 文化的効果</div>
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-① 地域ブランディング・アイデンティティ</span></div>
+          <div class="impact-card-title">「水の都」アイデンティティの再覚醒</div>
+          <div class="impact-card-body">商都・大阪固有の水辺文化・問屋文化・船場の商人精神がアートによってフィーチャーされ、市民が大阪の都市としての固有性を再認識。「水の都」というアイデンティティが観光・都市ブランドとして再活性化した。</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-③ クリエイティブエコシステム創出</span></div>
+          <div class="impact-card-title">水辺を拠点とした創造産業の集積</div>
+          <div class="impact-card-body">アートプロジェクトが整備した中之島・南堀江周辺に、デザイン・映像・ファッション・フードなど多様なクリエイティブ産業が集積。大阪の創造都市化を加速するエコシステムの核となりつつある。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-badges">
+      <span class="impact-badges-label">IMPACT TAGS</span>
+      <span class="badge badge-eco">1-③ 都市空間の再編</span>
+      <span class="badge badge-soc">2-② 移住・定住促進</span>
+      <span class="badge badge-cul">3-① 地域ブランディング</span>
+      <span class="badge badge-cul">3-③ クリエイティブエコシステム</span>
+    </div>
+  </section>
+
+  <section class="section" id="refs">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>参考 <span>REFERENCES</span></h2>
+    </div>
+    <div class="refs-grid">
+      <a href="https://www.suito-osaka.jp/" target="_blank" class="ref-item">
+        <span class="ref-num">01</span>
+        <div>
+          <div class="ref-title">水都大阪公式サイト</div>
+          <div class="ref-url">suito-osaka.jp</div>
+        </div>
         <span class="ref-arrow">→</span>
-      </a></div></section>
-</main>
-<div class="page-nav"><a class="nav-back" href="detail-kyoto.html"><span class="nav-arrow">←</span>前：京都府</a><div class="nav-center">関西 — 4 / 7</div><a class="nav-next" href="detail-hyogo.html">次：兵庫県<span class="nav-arrow">→</span></a></div>
-<footer><div class="footer-note">※掲載情報は2026年1月末時点の情報を参考にしています。<br><a href="index.html" style="color:var(--gold);text-decoration:none">← 一覧ページに戻る</a></div><div class="footer-logo">Art × Placemaking</div></footer>
-<script>
-const cur=document.getElementById('cur'),ring=document.getElementById('ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-(function tick(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
-window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';});
-const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});},{threshold:.12});
-document.querySelectorAll('.block').forEach(b=>io.observe(b));
-const secs=['sec-overview','sec-features','sec-effects','sec-refs'],dots=document.querySelectorAll('.side-dot');
-new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const i=secs.indexOf(e.target.id);dots.forEach((d,j)=>d.classList.toggle('active',j===i));}});},{threshold:.4}).observe||secs.forEach(id=>{const el=document.getElementById(id);if(el)new IntersectionObserver(([e])=>{if(e.isIntersecting){const i=secs.indexOf(id);dots.forEach((d,j)=>d.classList.toggle('active',j===i));}},{threshold:.4}).observe(el);});
-const sio=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const idx=secs.indexOf(e.target.id);dots.forEach((d,i)=>d.classList.toggle('active',i===idx));}});},{threshold:.4});
-secs.forEach(id=>{const el=document.getElementById(id);if(el)sio.observe(el)});
-dots.forEach((d,i)=>{d.addEventListener('click',()=>document.getElementById(secs[i])?.scrollIntoView({behavior:'smooth'}));});
+      </a>
+      <a href="https://www.city.osaka.lg.jp/toshikeikaku/" target="_blank" class="ref-item">
+        <span class="ref-num">02</span>
+        <div>
+          <div class="ref-title">大阪市都市計画局</div>
+          <div class="ref-url">city.osaka.lg.jp</div>
+        </div>
+        <span class="ref-arrow">→</span>
+      </a>
+      <a href="https://nakanoshima-design.com/" target="_blank" class="ref-item">
+        <span class="ref-num">03</span>
+        <div>
+          <div class="ref-title">中之島デザインミュージアム</div>
+          <div class="ref-url">nakanoshima-design.com</div>
+        </div>
+        <span class="ref-arrow">→</span>
+      </a>
+    </div>
+  </section>
 
-// ── Sticky bar
-(function(){
-  var bar=document.getElementById('stickyBar');
-  var fill=document.getElementById('sFill');
-  var b=document.body;
-  document.getElementById('sPref').textContent=b.dataset.pref||'';
-  document.getElementById('sTitle').textContent=b.dataset.title||'';
-  document.getElementById('sType').textContent=b.dataset.type||'';
-  var hero=document.querySelector('.hero');
-  window.addEventListener('scroll',function(){
-    var hb=hero?hero.getBoundingClientRect().bottom:0;
-    bar.classList.toggle('visible',hb<0);
-    var h=document.documentElement;
-    if(fill)fill.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
-  },{passive:true});
-})();
+</div>
 
-</script></body></html>
+<div class="footer-nav">
+  <a href="detail-kyoto.html" class="footer-nav-item">
+    <span class="fnav-dir">← PREV</span>
+    <span class="fnav-title">KYOTO STEAM</span>
+    <span class="fnav-count">Case 26 — 京都</span>
+  </a>
+  <a href="detail-hyogo.html" class="footer-nav-item fnav-right">
+    <span class="fnav-dir">NEXT →</span>
+    <span class="fnav-title">神戸アートビレッジセンター</span>
+    <span class="fnav-count">Case 28 — 兵庫</span>
+  </a>
+</div>
+
+<footer>
+  <span class="footer-copy">© 2024 Art × Placemaking DB</span>
+  <span class="footer-case">Case 27 / 47 — 大阪</span>
+</footer>
+
+</body>
+</html>

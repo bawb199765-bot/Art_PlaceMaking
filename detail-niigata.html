@@ -1,193 +1,325 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>新潟県 — 大地の芸術祭 越後妻有アートトリエンナーレ | アート×まちづくりDB</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&family=Noto+Sans+JP:wght@200;300;400&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新潟 — 大地の芸術祭 越後妻有 | アート×まちづくりDB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080808;--bg2:#0d0d0d;--surface:#131313;--surface2:#1a1a1a;--border:#1e1e1e;--border2:#2a2a2a;--text:#ddd8cf;--muted:#777;--dim:#444;--gold:#c9a96e;--gold2:#a07840;--white:#f4f0e8;--accent:#6b9e8a;}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-weight:300;line-height:1.8;overflow-x:hidden;cursor:none;}
-.cur,.cur-ring{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
-.cur{width:7px;height:7px;background:var(--gold);border-radius:50%;}
-.cur-ring{width:28px;height:28px;border:1px solid rgba(201,169,110,.35);border-radius:50%;transition:left .22s ease,top .22s ease}
-header{position:fixed;top:0;left:0;right:0;z-index:200;height:58px;padding:0 3rem;display:flex;align-items:center;justify-content:space-between;background:rgba(8,8,8,.88);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
-.logo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:.95rem;letter-spacing:.12em;color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:.6rem;}.logo-x{color:var(--dim)}
-.breadcrumb{display:flex;align-items:center;gap:.6rem;font-size:.68rem;letter-spacing:.12em;color:var(--dim);}.breadcrumb a{color:var(--muted);text-decoration:none;transition:color .2s}.breadcrumb a:hover{color:var(--gold)}.breadcrumb-sep{color:var(--border2)}
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 5rem 5rem;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 80% 30%,rgba(107,158,138,.08) 0%,transparent 60%),radial-gradient(ellipse 40% 80% at 10% 90%,rgba(201,169,110,.04) 0%,transparent 50%),linear-gradient(170deg,#080808 0%,#0a0c0b 100%);}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(107,158,138,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(107,158,138,.04) 1px,transparent 1px);background-size:80px 80px;animation:gridDrift 20s linear infinite;mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 20%,transparent 75%);}
-@keyframes gridDrift{0%{background-position:0 0}100%{background-position:80px 80px}}
-.hero-meta{position:relative;z-index:1;display:flex;align-items:center;gap:1.5rem;margin-bottom:2rem;}
-.hero-region-tag{display:inline-flex;align-items:center;gap:.5rem;font-size:.63rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(107,158,138,.3);padding:.3rem .8rem;}
-.hero-region-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.hero-type-tag{font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);border:1px solid var(--border2);padding:.3rem .8rem;}
-.hero-pref{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,12vw,11rem);font-weight:300;line-height:.85;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.08);position:absolute;bottom:3rem;right:4rem;pointer-events:none;user-select:none;z-index:0;}
-.hero-content{position:relative;z-index:1}
-.hero-jp{font-family:'Noto Serif JP',serif;font-size:.75rem;letter-spacing:.2em;color:var(--muted);margin-bottom:.8rem;text-transform:uppercase;}
-.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,4.2rem);font-weight:300;line-height:1.1;letter-spacing:-.01em;color:var(--white);margin-bottom:.5rem;}
-.hero-title-en{font-family:'Cormorant Garamond',serif;font-size:clamp(.9rem,1.8vw,1.3rem);font-weight:300;font-style:italic;color:var(--muted);margin-bottom:2.5rem;letter-spacing:.02em;}
-.hero-summary{font-family:'Noto Serif JP',serif;font-size:.9rem;color:var(--muted);max-width:520px;line-height:2.1;border-left:2px solid var(--accent);padding-left:1.5rem;margin-bottom:3rem;}
-.hero-info{display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:3rem}
-.info-pill{display:flex;align-items:center;gap:.5rem;padding:.4rem 1rem;background:var(--surface);border:1px solid var(--border2);font-size:.72rem;color:var(--muted);}
-.info-pill-label{color:var(--dim);font-size:.62rem;letter-spacing:.12em;margin-right:.2rem}.info-pill strong{color:var(--text)}
-.scroll-cue{display:flex;align-items:center;gap:.8rem;font-size:.63rem;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;}
-.scroll-line{width:50px;height:1px;background:linear-gradient(90deg,var(--accent),transparent);animation:linePulse 2.5s ease-in-out infinite;}
-@keyframes linePulse{0%,100%{opacity:.3}50%{opacity:1}}
-main{max-width:900px;margin:0 auto;padding:6rem 3rem 8rem;}
-.block{margin-bottom:5rem;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}.block.visible{opacity:1;transform:none}
-.block-header{display:flex;align-items:baseline;gap:1.2rem;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
-.block-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;line-height:1;color:rgba(201,169,110,.15);letter-spacing:-.02em;}
-.block-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--white);letter-spacing:.03em;}
-.block-title-ja{font-family:'Noto Serif JP',serif;font-size:.72rem;letter-spacing:.18em;color:var(--muted);display:block;margin-top:.2rem;}
-.overview-text{font-family:'Noto Serif JP',serif;font-size:.9rem;color:var(--muted);line-height:2.3;}.overview-text p{margin-bottom:1.2rem}.overview-text p:last-child{margin-bottom:0}
-.features{display:flex;flex-direction:column;gap:1px;background:var(--border)}
-.feature{background:var(--surface);padding:1.8rem 2rem;display:grid;grid-template-columns:auto 1fr;gap:1.5rem;align-items:start;transition:background .2s;position:relative;overflow:hidden;}
-.feature::after{content:'';position:absolute;left:0;top:0;width:0;height:100%;background:linear-gradient(90deg,rgba(107,158,138,.06),transparent);transition:width .4s ease;}
-.feature:hover{background:var(--surface2)}.feature:hover::after{width:100%}
-.feature-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:rgba(107,158,138,.3);line-height:1;min-width:2rem;text-align:right;padding-top:.1rem;}
-.feature-title{font-family:'Noto Serif JP',serif;font-size:.92rem;font-weight:400;color:var(--white);margin-bottom:.7rem;display:flex;align-items:center;gap:.8rem;}
-.feature-title::before{content:'';display:block;width:20px;height:1px;background:var(--accent);flex-shrink:0;}
-.feature-desc{font-size:.82rem;color:var(--muted);line-height:2;}
-.effects{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
-.effect{background:var(--surface);padding:1.8rem;position:relative;overflow:hidden;transition:background .2s;}.effect:hover{background:var(--surface2)}
-.effect-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:rgba(107,158,138,.12);line-height:1;margin-bottom:.8rem;}
-.effect-title{font-family:'Noto Serif JP',serif;font-size:.88rem;font-weight:400;color:var(--white);margin-bottom:.7rem;line-height:1.5;}
-.effect-desc{font-size:.78rem;color:var(--muted);line-height:2}
-.refs{display:flex;flex-direction:column;gap:.8rem;}
-.ref-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:var(--surface);border:1px solid var(--border2);text-decoration:none;color:var(--muted);font-size:.78rem;transition:all .2s;position:relative;overflow:hidden;}
-.ref-link::before{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:var(--accent);transition:height .3s;}
-.ref-link:hover{background:var(--surface2);color:var(--text)}.ref-link:hover::before{height:100%}
-.ref-icon{color:var(--dim);font-size:.9rem;flex-shrink:0}.ref-text{flex:1}
-.ref-url{font-size:.68rem;color:var(--dim);margin-top:.1rem;font-family:'Cormorant Garamond',serif;font-style:italic;}
-.ref-arrow{color:var(--dim);transition:transform .2s,color .2s;font-size:.9rem}.ref-link:hover .ref-arrow{transform:translateX(4px);color:var(--gold)}
-.side-index{position:fixed;right:2.5rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1rem;z-index:100;}
-.side-dot{width:6px;height:6px;border-radius:50%;background:var(--border2);cursor:pointer;transition:all .3s;position:relative;}.side-dot.active{background:var(--gold);transform:scale(1.4)}.side-dot:hover{background:var(--muted)}
-.side-dot-label{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:.62rem;letter-spacing:.1em;color:var(--muted);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;background:var(--surface);padding:.2rem .5rem;border:1px solid var(--border2);}.side-dot:hover .side-dot-label{opacity:1}
-.page-nav{border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:2.5rem 3rem;background:var(--bg2);}
-.nav-back,.nav-next{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:var(--muted);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;padding:.8rem 1.2rem;border:1px solid var(--border);background:transparent;transition:all .2s;}
-.nav-back:hover,.nav-next:hover{color:var(--text);border-color:var(--border2);background:var(--surface);}
-.nav-arrow{transition:transform .2s}.nav-back:hover .nav-arrow{transform:translateX(-4px)}.nav-next:hover .nav-arrow{transform:translateX(4px)}
-.nav-center{font-family:'Cormorant Garamond',serif;font-size:.8rem;color:var(--dim);letter-spacing:.15em;text-align:center;}
-footer{padding:2rem 3rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-.footer-note{font-size:.68rem;color:var(--dim);line-height:1.9}.footer-logo{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;font-weight:300;color:var(--border2);}
-::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border2)}::-webkit-scrollbar-thumb:hover{background:var(--gold2)}
-.progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--gold));z-index:9999;width:0%;transition:width .1s linear;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
-.hero-meta{animation:fadeUp .8s ease .1s both}.hero-content{animation:fadeUp .8s ease .2s both}
-@media(max-width:768px){header{padding:0 1.5rem}.hero{padding:0 1.5rem 4rem}main{padding:4rem 1.5rem 6rem}.effects{grid-template-columns:1fr}.side-index{display:none}.page-nav{padding:2rem 1.5rem;flex-direction:column;gap:1rem}footer{padding:2rem 1.5rem}}
+  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+  .nav-logo:hover { color: var(--ink); }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
+  .nav-back:hover { background: var(--accent); color: white; }
+  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
+  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
+  .tag-region { border-color: var(--muted); color: var(--muted); }
+  .tag-type { border-color: var(--accent); color: var(--accent); }
+  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
+  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
+  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
+  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .meta-row:first-child { border-top: 1px solid var(--border); }
+  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
+  .meta-value { font-weight: 600; }
+  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
+  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
+  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
+  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
+  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
+  .overview-text p + p { margin-top: 1.5em; }
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
+  .feature-card { background: var(--paper); padding: 2rem; }
+  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
+  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
+  .feature-body ul { list-style: none; margin-top: 0.75rem; }
+  .feature-body li::before { content: '—  '; color: var(--muted); }
+  .feature-body li { margin-bottom: 4px; }
+  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .impact-category-group { margin-bottom: 2.5rem; }
+  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
+  .cat-economic { background: var(--tag-eco); }
+  .cat-social { background: var(--tag-soc); }
+  .cat-cultural { background: var(--tag-cul); }
+  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
+  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
+  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
+  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-eco { background: var(--tag-eco); }
+  .dot-soc { background: var(--tag-soc); }
+  .dot-cul { background: var(--tag-cul); }
+  .impact-tag-text { color: var(--muted); }
+  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
+  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
+  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
+  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
+  .badge-eco { border-color: #5dade2; color: #5dade2; }
+  .badge-soc { border-color: #58d68d; color: #58d68d; }
+  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
+  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
+  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
+  .ref-item:hover { background: white; }
+  .ref-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+  .ref-icon img { width: 16px; height: 16px; }
+  .ref-title { font-size: 14px; font-weight: 600; }
+  .ref-domain { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .ref-arrow { margin-left: auto; font-size: 18px; color: var(--muted); }
+  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
+  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
+  .footer-nav-item:hover { background: var(--effect-bg); }
+  .fnav-right { border-left: 1px solid var(--border); text-align: right; align-items: flex-end; }
+  .fnav-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.1em; }
+  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
+  .fnav-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 3rem 2rem 2rem; }
+    .hero-meta { padding: 2rem; }
+    .content { padding: 0 2rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .section-nav { padding: 0 2rem; overflow-x: auto; }
+    .footer-nav { grid-template-columns: 1fr; }
+    .fnav-right { border-left: none; border-top: 1px solid var(--border); text-align: left; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
 
-/* ── STICKY INFO BAR ── */
-.sticky-bar{
-  position:fixed;top:58px;left:0;right:0;z-index:190;
-  height:0;overflow:hidden;
-  background:rgba(8,8,8,.96);backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border2);
-  display:flex;align-items:center;
-  padding:0 3rem;justify-content:space-between;
-  transition:height .3s ease,opacity .3s ease;
-  opacity:0;
-}
-.sticky-bar.visible{height:46px;opacity:1;}
-.sticky-bar-left{display:flex;align-items:center;gap:1rem;min-width:0;overflow:hidden;}
-.sticky-pref{font-size:.63rem;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
-.sticky-sep{color:var(--border2);flex-shrink:0;}
-.sticky-title{font-family:'Noto Serif JP',serif;font-size:.82rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.sticky-type{font-size:.58rem;letter-spacing:.1em;color:var(--dim);border:1px solid var(--border);padding:.12rem .45rem;white-space:nowrap;flex-shrink:0;display:none;}
-@media(min-width:700px){.sticky-type{display:inline;}}
-.sticky-bar-right{display:flex;align-items:center;gap:1.2rem;flex-shrink:0;margin-left:1rem;}
-.sticky-prog-wrap{width:70px;height:2px;background:var(--border2);border-radius:2px;overflow:hidden;display:none;}
-@media(min-width:580px){.sticky-prog-wrap{display:block;}}
-.sticky-prog-fill{height:100%;background:var(--accent);width:0%;transition:width .1s linear;}
-.sticky-back{font-size:.62rem;letter-spacing:.15em;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .2s;white-space:nowrap;}
-.sticky-back:hover{color:var(--gold);}
-/* ── ENHANCED REF LINKS ── */
-.ref-link{
-  display:flex;align-items:center;gap:1rem;
-  padding:1.1rem 1.4rem;
-  background:var(--surface);border:1px solid var(--border2);
-  text-decoration:none;color:var(--muted);font-size:.78rem;
-  transition:all .25s;position:relative;overflow:hidden;
-}
-.ref-link::before{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:var(--accent);transition:height .3s;}
-.ref-link:hover{background:var(--surface2);color:var(--text);}
-.ref-link:hover::before{height:100%;}
-.ref-favicon{
-  width:34px;height:34px;border-radius:5px;
-  background:var(--bg);border:1px solid var(--border2);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;overflow:hidden;
-}
-.ref-favicon img{width:18px;height:18px;object-fit:contain;opacity:.85;}
-.ref-fav-fb{font-size:.75rem;color:var(--accent);font-family:'Cormorant Garamond',serif;font-style:italic;}
-.ref-text{flex:1;min-width:0;}
-.ref-name{color:var(--text);font-size:.82rem;margin-bottom:.18rem;}
-.ref-url{font-size:.68rem;color:var(--dim);font-family:'Cormorant Garamond',serif;font-style:italic;}
-.ref-arrow{color:var(--dim);transition:transform .2s,color .2s;font-size:.9rem;flex-shrink:0;}
-.ref-link:hover .ref-arrow{transform:translateX(4px);color:var(--gold);}
+<nav>
+  <a href="index.html" class="nav-logo">Art × Placemaking DB</a>
+  <div class="breadcrumb"><a href="index.html">HOME</a><span>›</span><span>新潟</span></div>
+  <a href="index.html" class="nav-back">← 一覧</a>
+</nav>
 
-</style></head><body data-pref="新潟県" data-title="大地の芸術祭 越後妻有アートトリエンナーレ" data-type="地域芸術祭型（農村・里山再生型）">
-<div class="progress" id="prog"></div><div class="cur" id="cur"></div><div class="cur-ring" id="ring"></div>
-<header><a class="logo" href="index.html">Art <span class="logo-x">×</span> まちづくりDB</a>
-<div class="breadcrumb"><a href="index.html">TOP</a><span class="breadcrumb-sep">›</span><a href="#">各事例詳細</a><span class="breadcrumb-sep">›</span><a href="#">中部（北陸・東海）</a><span class="breadcrumb-sep">›</span><span style="color:var(--text)">新潟県</span></div></header>
-<!-- STICKY INFO BAR -->
-<div class="sticky-bar" id="stickyBar">
-  <div class="sticky-bar-left">
-    <span class="sticky-pref" id="sPref"></span>
-    <span class="sticky-sep">—</span>
-    <span class="sticky-title" id="sTitle"></span>
-    <span class="sticky-type" id="sType"></span>
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-tags">
+      <span class="tag tag-region">中部</span>
+      <span class="tag tag-region">新潟県</span>
+      <span class="tag tag-type">棚田・農・集落・地域型芸術祭の原点</span>
+    </div>
+    <div class="hero-index">Case 15 / 47</div>
+    <h1>大地の芸術祭<br>越後妻有</h1>
+    <div class="hero-en">Echigo-Tsumari Art Triennale</div>
+    <p class="hero-desc">日本の地域型芸術祭の原点。棚田・集落・農という越後妻有の大地の固有性そのものを作品の素材にする「原点モデル」として国際的に評価される。新潟の棚田・豪雪・農の風土がアートによって再発見・再評価され、過疎地域の文化的アイデンティティを内外に発信する。</p>
   </div>
-  <div class="sticky-bar-right">
-    <div class="sticky-prog-wrap"><div class="sticky-prog-fill" id="sFill"></div></div>
-    <a class="sticky-back" href="index.html">← 一覧</a>
+  <div class="hero-meta">
+    <div class="meta-row"><span class="meta-label">地域</span><span class="meta-value">新潟県十日町市・津南町（越後妻有地域）</span></div>
+    <div class="meta-row"><span class="meta-label">形態</span><span class="meta-value">国際芸術祭（3年に1度）</span></div>
+    <div class="meta-row"><span class="meta-label">開始</span><span class="meta-value">2000年〜継続</span></div>
+    <div class="meta-row"><span class="meta-label">主体</span><span class="meta-value">越後妻有里山協働機構・NPO法人越後妻有里山協働機構</span></div>
+    <div class="meta-row"><span class="meta-label">規模</span><span class="meta-value">約750km²・200以上の作品・50万人以上来場</span></div>
   </div>
 </div>
-<nav class="side-index"><div class="side-dot active"><span class="side-dot-label">概要</span></div><div class="side-dot"><span class="side-dot-label">特徴</span></div><div class="side-dot"><span class="side-dot-label">街への効果</span></div><div class="side-dot"><span class="side-dot-label">参考</span></div></nav>
-<section class="hero"><div class="hero-bg"></div><div class="hero-grid"></div><div class="hero-pref">新潟県</div>
-<div class="hero-meta"><div class="hero-region-tag"><div class="hero-region-dot"></div>中部（北陸・東海）</div><div class="hero-type-tag">地域芸術祭型（農村・里山再生型）</div></div>
-<div class="hero-content"><div class="hero-jp">Niigata</div><h1 class="hero-title">大地の芸術祭 越後妻有アートトリエンナーレ</h1><div class="hero-title-en">Echigo-Tsumari Art Triennial</div>
-<p class="hero-summary">人口減少と高齢化が進む越後妻有の農村・里山地域を舞台に、集落・田畑・廃校・自然そのものを会場として展開される国際芸術祭。
-日本における地域型芸術祭の原点かつ参照点。</p><div class="hero-info"><div class="info-pill"><span class="info-pill-label">場所</span><strong>新潟県十日町市・津南町（越後妻有地域）</strong></div><div class="info-pill"><span class="info-pill-label">開催</span><strong>2000年〜（3年に1度）</strong></div><div class="info-pill"><span class="info-pill-label">主催</span><strong>大地の芸術祭実行委員会</strong></div></div><div class="scroll-cue"><div class="scroll-line"></div>Scroll to explore</div></div></section>
-<main>
-<section class="block" id="sec-overview"><div class="block-header"><div class="block-num">01</div><div><div class="block-title">概要</div><span class="block-title-ja">Overview</span></div></div><div class="overview-text"><p>大地の芸術祭は、人口減少と高齢化が進む越後妻有の農村・里山地域を舞台に、集落、田畑、廃校、自然環境そのものを会場として展開される国際芸術祭。</p><p>アートを「地域活性化イベント」ではなく「人と土地の関係を再構築する装置」として位置づけ、日本における地域型芸術祭の原点かつ参照点となっている。</p></div></section>
-<section class="block" id="sec-features"><div class="block-header"><div class="block-num">02</div><div><div class="block-title">特徴</div><span class="block-title-ja">Key Features</span></div></div><div class="features"><div class="feature"><div class="feature-num">1</div><div class="feature-body"><div class="feature-title">日本の地域型芸術祭の原点・代表例</div><div class="feature-desc">全国各地の地域芸術祭の多くが参照点としており、日本におけるアート×まちづくりの出発点として位置づけられる。</div></div></div><div class="feature"><div class="feature-num">2</div><div class="feature-body"><div class="feature-title">農村・里山を会場化する分散型モデル</div><div class="feature-desc">美術館や都市空間ではなく、集落や自然環境そのものを展示空間とし、地域全体を一つのミュージアムとして捉える構成を確立。</div></div></div><div class="feature"><div class="feature-num">3</div><div class="feature-body"><div class="feature-title">住民参加を前提とした長期的関係構築</div><div class="feature-desc">制作・維持管理に住民が関与し、アーティストと地域が継続的に関係を築く仕組みが組み込まれている。</div></div></div><div class="feature"><div class="feature-num">4</div><div class="feature-body"><div class="feature-title">常設作品によるレガシー重視の設計</div><div class="feature-desc">期間限定イベントに終わらず、通年鑑賞可能な作品や拠点を残すことで、文化的資産が地域に蓄積されている。</div></div></div></div></section>
-<section class="block" id="sec-effects"><div class="block-header"><div class="block-num">03</div><div><div class="block-title">街への効果</div><span class="block-title-ja">Urban Impact</span></div></div><div class="effects"><div class="effect"><div class="effect-num">01</div><div class="effect-title">地域芸術祭＝一過性という認識の転換</div><div class="effect-desc">アートはイベントで終わるものではなく、地域に根づき得るという認識を全国に広め、日本のアート×まちづくりの方向性を規定した。</div></div><div class="effect"><div class="effect-num">02</div><div class="effect-title">交流人口・関係人口モデルの確立</div><div class="effect-desc">単なる観光客ではなく、リピーターや長期的関与者を生み出すモデルを示し、他地域の施策設計に影響を与えている。</div></div><div class="effect"><div class="effect-num">03</div><div class="effect-title">シビックプライドの内発的醸成</div><div class="effect-desc">住民が自らの暮らしや風景を誇れるものとして再認識し、外から評価されることで内側の意識変化が生まれた。</div></div><div class="effect"><div class="effect-num">04</div><div class="effect-title">農村地域におけるアート活用の可能性提示</div><div class="effect-desc">条件不利地域でもアートが成立し得ることを実証し、全国の中山間地域にとっての思考モデルとなっている。</div></div></div></section>
-<section class="block" id="sec-refs"><div class="block-header"><div class="block-num">04</div><div><div class="block-title">参考リンク</div><span class="block-title-ja">References</span></div></div><div class="refs"><a class="ref-link" href="https://www.echigo-tsumari.jp/" target="_blank">
-        <div class="ref-favicon"><img src="https://www.google.com/s2/favicons?domain=echigo-tsumari.jp&sz=64" alt="" onerror="this.style.display='none';this.nextSibling.style.display='flex'"><span class="ref-fav-fb" style="display:none">E</span></div>
-        <div class="ref-text"><div class="ref-name">大地の芸術祭 公式サイト</div><div class="ref-url">echigo-tsumari.jp</div></div>
-        <span class="ref-arrow">→</span>
-      </a></div></section>
-</main>
-<div class="page-nav"><a class="nav-back" href="detail-kanagawa.html"><span class="nav-arrow">←</span>前：神奈川県</a><div class="nav-center">中部（北陸・東海） — 1 / 9</div><a class="nav-next" href="detail-toyama.html">次：富山県<span class="nav-arrow">→</span></a></div>
-<footer><div class="footer-note">※掲載情報は2026年1月末時点の情報を参考にしています。<br><a href="index.html" style="color:var(--gold);text-decoration:none">← 一覧ページに戻る</a></div><div class="footer-logo">Art × Placemaking</div></footer>
-<script>
-const cur=document.getElementById('cur'),ring=document.getElementById('ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-(function tick(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
-const prog=document.getElementById('prog');
-window.addEventListener('scroll',()=>{const h=document.documentElement;const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;prog.style.width=pct+'%';});
-const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});},{threshold:.12});
-document.querySelectorAll('.block').forEach(b=>io.observe(b));
-const sections=['sec-overview','sec-features','sec-effects','sec-refs'];
-const dots=document.querySelectorAll('.side-dot');
-const sio=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const idx=sections.indexOf(e.target.id);dots.forEach((d,i)=>d.classList.toggle('active',i===idx));}});},{threshold:.4});
-sections.forEach(id=>{const el=document.getElementById(id);if(el)sio.observe(el)});
-dots.forEach((d,i)=>{d.addEventListener('click',()=>{document.getElementById(sections[i])?.scrollIntoView({behavior:'smooth'});});});
 
-// ── Sticky bar
-(function(){
-  var bar=document.getElementById('stickyBar');
-  var fill=document.getElementById('sFill');
-  var b=document.body;
-  document.getElementById('sPref').textContent=b.dataset.pref||'';
-  document.getElementById('sTitle').textContent=b.dataset.title||'';
-  document.getElementById('sType').textContent=b.dataset.type||'';
-  var hero=document.querySelector('.hero');
-  window.addEventListener('scroll',function(){
-    var hb=hero?hero.getBoundingClientRect().bottom:0;
-    bar.classList.toggle('visible',hb<0);
-    var h=document.documentElement;
-    if(fill)fill.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%';
-  },{passive:true});
-})();
+<nav class="section-nav">
+  <a href="#overview" class="sec-link">概要</a>
+  <a href="#features" class="sec-link">特徴</a>
+  <a href="#impact" class="sec-link">街への効果</a>
+  <a href="#refs" class="sec-link">参考</a>
+</nav>
 
-</script></body></html>
+<div class="content">
+
+  <section id="overview" class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>概要 <span>Overview</span></h2>
+    </div>
+    <div class="overview-text">
+      <p>大地の芸術祭 越後妻有アートトリエンナーレは、2000年に北川フラムをディレクターに迎えて始まった、新潟県十日町市・津南町の越後妻有地域全体を舞台にする国際芸術祭。日本の地域型芸術祭の先駆けであり、世界最大級の野外アート展として国際的に評価されている。</p>
+      <p>棚田・豪雪・農村集落という越後妻有固有の自然・農業景観の中に作品を設置し、「人間は自然の一部」というテーマのもと、土地の記憶・農の文化・集落の暮らしをアートが媒介する。200を超える常設・会期中作品が750km²の広大なエリアに点在し、来訪者が地域を歩き・泊まり・食べながら鑑賞する滞在型のアート体験を実現。</p>
+      <p>過疎化・高齢化が深刻だった地域が、芸術祭を通じて来訪者を呼び込み、若い移住者や新規農業従事者を迎え入れる循環が生まれている。棚田・農・豪雪という「不利条件」と見られていたものが、この地域にしかない固有の魅力として再定義された。</p>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>特徴 <span>Features</span></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <div class="feature-title">棚田・農・豪雪という大地の固有性を素材にした作品群</div>
+        <div class="feature-body">
+          越後妻有の棚田・雪・農業文化・集落の建築を素材として、国内外のアーティストがサイトスペシフィックな作品を制作。「日本の農村という場所」への深いリスペクトと理解が、作品の深度と来訪者の感動の源泉となっている。
+          <ul>
+            <li>棚田・雪原・農村景観を活かした野外作品</li>
+            <li>廃校・古民家を改修した恒久作品拠点</li>
+            <li>農業文化・地域の記憶を素材にした制作</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <div class="feature-title">「こへび隊」サポーターによる住民とのコミュニティ形成</div>
+        <div class="feature-body">
+          全国から集まるボランティアサポーター「こへび隊」が、農作業から作品管理・案内まで多様な形で活動に参加。サポーターと地域住民の交流が継続的な関係人口を生み、一部は移住・定住へと発展している。
+          <ul>
+            <li>こへび隊（全国ボランティアサポーター）制度</li>
+            <li>農作業・集落活動への参加機会</li>
+            <li>住民とサポーターの長期的な関係構築</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <div class="feature-title">恒久設置作品による通年鑑賞と関係人口の維持</div>
+        <div class="feature-body">
+          会期中だけでなく通年で訪問できる恒久作品群（約200点以上）が設置されており、「越後妻有はいつ来ても作品がある」状態が維持されている。リピーターや四季ごとの訪問を促す仕組みとして機能。
+          <ul>
+            <li>200以上の恒久設置作品群</li>
+            <li>各季節の景観と作品の組み合わせ</li>
+            <li>年間を通じた来訪機会の提供</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">04</div>
+        <div class="feature-title">移住促進・農業継承・関係人口への転換</div>
+        <div class="feature-body">
+          芸術祭への参加・サポーター活動を経て、越後妻有への移住・農業継承・起業を選ぶ人が継続的に生まれている。「アートがきっかけで農村に関わりはじめた」という関係人口から、実際の担い手へとつながる事例が積み重なっている。
+          <ul>
+            <li>移住・UIターン者の継続的な誘引</li>
+            <li>若手農業従事者・起業家の定着</li>
+            <li>集落の維持・農地の継承への貢献</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact" class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>街への効果 <span>Urban Impact</span></h2>
+    </div>
+    <p class="impact-intro">大地の芸術祭が持つ地域への効果を9分類システムで分析する。3年に一度の来訪者確保と通年の経済効果、移住・定住の促進、そして棚田・農・豪雪という越後妻有の大地固有のアイデンティティのブランド化という3軸が主な効果として確認されている。</p>
+
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-economic">経済的効果 / Economic</div>
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-eco"></span>
+            <span class="impact-tag-text">1-① 経済的効果｜交流人口増加</span>
+          </div>
+          <div class="impact-card-title">50万人超の来場者と通年型の関係人口確保</div>
+          <div class="impact-card-body">3年に一度の会期中に50万人以上が来場し、宿泊・飲食・農産品購入・交通消費が広域に波及する。恒久作品群により会期外も訪問者が絶えず、地域に年間を通じた来訪の流れを生んでいる。</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-eco"></span>
+            <span class="impact-tag-text">1-② 経済的効果｜経済効果</span>
+          </div>
+          <div class="impact-card-title">農産物・工芸・体験産品のブランド付加価値向上</div>
+          <div class="impact-card-body">芸術祭によって越後妻有の棚田米・地場食材・工芸品が「アートの大地で育まれたもの」としてブランド化。農産物の直売・農家民泊・農業体験など、農の産業そのものに付加価値が付与され、農家の収入向上に貢献している。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-social">社会的効果 / Social</div>
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-soc"></span>
+            <span class="impact-tag-text">2-② 社会的効果｜移住・定住促進</span>
+          </div>
+          <div class="impact-card-title">こへび隊・サポーター活動を経た移住・農業継承の実現</div>
+          <div class="impact-card-body">全国から集まるこへび隊サポーターが地域と深く関わる中で、移住・就農・起業を選ぶケースが継続的に発生。農村の担い手不足・高齢化という課題に対して、アートが移住促進の有効な媒介として機能している。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-cultural">文化的効果 / Cultural</div>
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-cul"></span>
+            <span class="impact-tag-text">3-① 文化的効果｜地域ブランディング・アイデンティティ</span>
+          </div>
+          <div class="impact-card-title">棚田・農・豪雪を「固有の魅力」として再定義する地域ブランド確立</div>
+          <div class="impact-card-body">「不利条件」とされてきた豪雪・過疎・棚田農業が、国内外のアーティストがこぞって作品を生み出す場所の「固有の魅力」として世界的に再評価された。越後妻有は「日本の農村文化の精髄を体験できる場所」として独自のブランドを確立している。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-badges">
+      <span class="impact-badges-label">選定カテゴリ</span>
+      <span class="badge badge-eco">1-① 交流人口増加</span>
+      <span class="badge badge-eco">1-② 経済効果</span>
+      <span class="badge badge-soc">2-② 移住・定住促進</span>
+      <span class="badge badge-cul">3-① 地域ブランディング</span>
+    </div>
+  </section>
+
+  <section id="refs" class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>参考リンク <span>References</span></h2>
+    </div>
+    <div class="refs-grid">
+      <a href="https://www.echigo-tsumari.jp/" target="_blank" rel="noopener" class="ref-item">
+        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=echigo-tsumari.jp&sz=64" alt=""></div>
+        <div>
+          <div class="ref-title">大地の芸術祭 越後妻有 公式サイト</div>
+          <div class="ref-domain">echigo-tsumari.jp</div>
+        </div>
+        <div class="ref-arrow">→</div>
+      </a>
+      <a href="https://www.tokamachi.jp/" target="_blank" rel="noopener" class="ref-item">
+        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=tokamachi.jp&sz=64" alt=""></div>
+        <div>
+          <div class="ref-title">十日町市 公式サイト</div>
+          <div class="ref-domain">tokamachi.jp</div>
+        </div>
+        <div class="ref-arrow">→</div>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<div class="footer-nav">
+  <a href="detail-kanagawa.html" class="footer-nav-item">
+    <span class="fnav-label">← 前の事例</span>
+    <span class="fnav-title">黄金町バザール</span>
+    <span class="fnav-count">関東 — 7 / 7</span>
+  </a>
+  <a href="detail-toyama.html" class="footer-nav-item fnav-right">
+    <span class="fnav-label">次の事例 →</span>
+    <span class="fnav-title">ガラスの街とやま</span>
+    <span class="fnav-count">中部 — 2 / 9</span>
+  </a>
+</div>
+
+<footer>
+  <span>※掲載情報は2026年1月末時点の情報を参考にしています。</span>
+  <a href="index.html" style="color: var(--muted); text-decoration: none;">Art × Placemaking</a>
+</footer>
+
+</body>
+</html>
