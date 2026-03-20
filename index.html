@@ -9,15 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1a1714;
-    --paper: #f5f1eb;
-    --accent: #c8410e;
-    --muted: #8a7f72;
-    --border: #d4cec5;
-    --tag-eco: #1a5276;
-    --tag-soc: #1d6840;
-    --tag-cul: #6d2f8f;
-    --card-bg: #faf7f2;
+    --ink: #e8e4de;
+    --paper: #0e0e0e;
+    --accent: #e05a20;
+    --muted: #6a6560;
+    --border: #282828;
+    --tag-eco: #1d6494;
+    --tag-soc: #22804e;
+    --tag-cul: #8040aa;
+    --card-bg: #161616;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -26,7 +26,7 @@
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(245,241,235,0.96); backdrop-filter: blur(8px);
+    background: rgba(14,14,14,0.96); backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
     padding: 0 2.5rem;
     display: flex; align-items: center; justify-content: space-between;
@@ -53,7 +53,7 @@
   .hero-overline { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 1.5rem; }
   h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
   h1 em { font-style: normal; color: var(--accent); }
-  .hero-desc { font-size: 15px; color: #4a4540; max-width: 520px; line-height: 1.9; }
+  .hero-desc { font-size: 15px; color: #9a9590; max-width: 520px; line-height: 1.9; }
   .hero-stats {
     display: flex; flex-direction: column; justify-content: flex-end; gap: 0;
     border-left: 1px solid var(--border); padding-left: 3rem;
@@ -145,15 +145,15 @@
     transition: background .15s;
     display: flex; flex-direction: column;
   }
-  .card:hover { background: white; }
+  .card:hover { background: #1e1e1e; }
   .card.hidden { display: none; }
 
   .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; }
   .card-region { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.12em; color: var(--muted); }
-  .card-index { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--border); }
+  .card-pref { font-family: 'Shippori Mincho', serif; font-size: 1.15rem; font-weight: 800; color: var(--ink); letter-spacing: 0.04em; margin-top: 2px; }
   .card-title { font-family: 'Shippori Mincho', serif; font-size: 1.05rem; font-weight: 800; margin-bottom: 0.4rem; line-height: 1.3; }
   .card-sub { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-bottom: 1rem; }
-  .card-desc { font-size: 12px; line-height: 1.8; color: #5a5550; flex-grow: 1; margin-bottom: 1.2rem; }
+  .card-desc { font-size: 12px; line-height: 1.8; color: #7a7570; flex-grow: 1; margin-bottom: 1.2rem; }
   
   .card-cats { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 1.2rem; }
   .card-cat {
@@ -165,12 +165,14 @@
   .cc-cul { border-color: var(--tag-cul); color: var(--tag-cul); }
 
   .card-link {
-    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em;
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em;
     color: var(--accent); text-decoration: none;
     display: inline-flex; align-items: center; gap: 6px;
-    border-bottom: 1px solid transparent; transition: border-color .15s;
+    border: 1px solid var(--accent); padding: 6px 14px; border-radius: 2px;
+    margin-top: auto; align-self: flex-start;
+    transition: background .15s, color .15s;
   }
-  .card-link:hover { border-bottom-color: var(--accent); }
+  .card-link:hover { background: var(--accent); color: #0e0e0e; }
 
   .no-results {
     grid-column: 1 / -1;
@@ -203,6 +205,46 @@
     .search-input { width: 100%; }
     .cards-grid { grid-template-columns: 1fr; }
   }
+
+  /* type / org filter rows */
+  .filter-row2 { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 1.2rem; }
+  .filter-row2-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); flex-shrink: 0; min-width: 80px; }
+  .f2-btn {
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em;
+    padding: 4px 12px; border-radius: 2px; border: 1px solid var(--border);
+    background: transparent; color: var(--muted); cursor: pointer; transition: all .15s;
+  }
+  .f2-btn:hover { border-color: var(--ink); color: var(--ink); }
+  .f2-btn.active { background: var(--ink); color: white; border-color: var(--ink); }
+
+  /* Japan map */
+  .map-section { padding: 2.5rem 0 0; }
+  .map-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 1rem; }
+  .map-wrap { display: flex; align-items: flex-start; gap: 2rem; flex-wrap: wrap; }
+  .map-svg-wrap { flex-shrink: 0; }
+  .map-svg-wrap svg { width: 340px; height: auto; display: block; }
+  .map-region {
+    fill: #1e1e1e; stroke: #383838; stroke-width: 0.8;
+    cursor: pointer; transition: fill .15s;
+  }
+  .map-region:hover { fill: #2e2e2e; }
+  .map-region.active { fill: var(--accent); stroke: var(--accent); }
+  .map-legend { display: flex; flex-direction: column; gap: 6px; padding-top: 4px; }
+  .map-legend-item {
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em;
+    color: var(--muted); display: flex; align-items: center; gap: 8px; cursor: pointer;
+    padding: 4px 10px; border: 1px solid transparent; border-radius: 2px; transition: all .15s;
+  }
+  .map-legend-item:hover { border-color: var(--border); color: var(--ink); }
+  .map-legend-item.active { border-color: var(--accent); color: var(--accent); }
+  .map-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dot-tohoku { background: #4a9eff; }
+  .dot-kanto  { background: #ff7c4a; }
+  .dot-chubu  { background: #ffe44a; }
+  .dot-kansai { background: #4aff8c; }
+  .dot-chushi { background: #c04aff; }
+  .dot-kyushu { background: #ff4a9e; }
+
 </style>
 </head>
 <body>
@@ -243,7 +285,84 @@
 
   <!-- フィルターパネル -->
   <div class="filter-panel">
-    <div class="filter-title">FILTER — 地域・街への効果で絞り込む</div>
+    <div class="filter-title">FILTER — 地域・効果・タイプ・主催者で絞り込む</div>
+
+    
+    <!-- 日本地図フィルター -->
+    <div class="map-section">
+      <div class="map-title">地図からエリアを選択</div>
+      <div class="map-wrap">
+        <div class="map-svg-wrap">
+          <svg viewBox="0 0 280 400" xmlns="http://www.w3.org/2000/svg" id="japanMap">
+            <!-- 北海道・東北 -->
+            <g class="map-region" data-region="北海道・東北" id="map-tohoku">
+              <!-- 北海道 -->
+              <ellipse cx="195" cy="48" rx="52" ry="30"/>
+              <!-- 東北 -->
+              <rect x="155" y="74" width="46" height="70" rx="4"/>
+            </g>
+            <!-- 関東 -->
+            <g class="map-region" data-region="関東" id="map-kanto">
+              <rect x="148" y="148" width="50" height="46" rx="4"/>
+            </g>
+            <!-- 中部 -->
+            <g class="map-region" data-region="中部" id="map-chubu">
+              <rect x="118" y="158" width="40" height="52" rx="4"/>
+            </g>
+            <!-- 関西 -->
+            <g class="map-region" data-region="関西" id="map-kansai">
+              <rect x="96" y="194" width="40" height="40" rx="4"/>
+            </g>
+            <!-- 中国・四国 -->
+            <g class="map-region" data-region="中国・四国" id="map-chushi">
+              <!-- 中国 -->
+              <rect x="68" y="200" width="42" height="28" rx="3"/>
+              <!-- 四国 -->
+              <rect x="80" y="234" width="38" height="24" rx="3"/>
+            </g>
+            <!-- 九州・沖縄 -->
+            <g class="map-region" data-region="九州・沖縄" id="map-kyushu">
+              <!-- 九州 -->
+              <ellipse cx="82" cy="286" rx="28" ry="32"/>
+              <!-- 沖縄 (dots) -->
+              <circle cx="62" cy="350" r="7"/>
+              <circle cx="44" cy="358" r="5"/>
+              <circle cx="28" cy="366" r="4"/>
+            </g>
+            <!-- ラベル -->
+            <text x="195" y="46" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.5)" font-family="sans-serif">北海道</text>
+            <text x="178" y="112" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.5)" font-family="sans-serif">東北</text>
+            <text x="173" y="174" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.5)" font-family="sans-serif">関東</text>
+            <text x="138" y="186" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.5)" font-family="sans-serif">中部</text>
+            <text x="116" y="216" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.5)" font-family="sans-serif">関西</text>
+            <text x="89" y="216" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.5)" font-family="sans-serif">中国</text>
+            <text x="99" y="248" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.5)" font-family="sans-serif">四国</text>
+            <text x="82" y="288" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.5)" font-family="sans-serif">九州</text>
+          </svg>
+        </div>
+        <div class="map-legend">
+          <div class="map-legend-item" data-region="北海道・東北"><div class="map-dot dot-tohoku"></div>北海道・東北（7）</div>
+          <div class="map-legend-item" data-region="関東"><div class="map-dot dot-kanto"></div>関東（7）</div>
+          <div class="map-legend-item" data-region="中部"><div class="map-dot dot-chubu"></div>中部（11）</div>
+          <div class="map-legend-item" data-region="関西"><div class="map-dot dot-kansai"></div>関西（7）</div>
+          <div class="map-legend-item" data-region="中国・四国"><div class="map-dot dot-chushi"></div>中国・四国（10）</div>
+          <div class="map-legend-item" data-region="九州・沖縄"><div class="map-dot dot-kyushu"></div>九州・沖縄（8）</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 事例タイプ・主催者フィルター -->
+    <div class="filter-row2" style="margin-top:1.8rem;">
+      <span class="filter-row2-label">事例タイプ</span>
+      <button class="f2-btn" data-type="芸術祭型">芸術祭型</button>
+      <button class="f2-btn" data-type="エリアマネジメント型">エリアマネジメント型</button>
+    </div>
+    <div class="filter-row2">
+      <span class="filter-row2-label">主催者</span>
+      <button class="f2-btn" data-org="芸術祭実行委員会型">芸術祭実行委員会型</button>
+      <button class="f2-btn" data-org="行政・NPO主導型">行政・NPO主導型</button>
+      <button class="f2-btn" data-org="民間主導型">民間主導型</button>
+    </div>
 
     <!-- 地域フィルター -->
     <div class="region-row" id="regionFilter">
@@ -298,11 +417,11 @@
 
     <!-- 各カードは data-region, data-cats 属性でフィルタリング -->
 
-    <div class="card" data-region="北海道・東北" data-cats="1-1 1-2 3-1 3-3" data-text="札幌国際芸術祭 hokkaido 都市 テクノロジー メディアアート">
+    <div class="card" data-region="北海道・東北" data-cats="1-1 1-2 3-1 3-3" data-type="芸術祭型" data-org="行政・NPO主導型" data-text="札幌国際芸術祭 hokkaido 都市 テクノロジー メディアアート">
       <div class="card-header">
         <div>
           <div class="card-region">北海道・東北</div>
-          <div class="card-index">Hokkaido</div>
+          <div class="card-pref">北海道</div>
         </div>
       </div>
       <div class="card-title">札幌国際芸術祭（SIAF）</div>
@@ -317,9 +436,9 @@
       <a href="detail-hokkaido.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="北海道・東北" data-cats="1-1 1-3 3-1 3-3" data-text="AOMORI GOKAN 青森 ミュージアム 美術館 ネットワーク">
+    <div class="card" data-region="北海道・東北" data-cats="1-1 1-3 3-1 3-3" data-text="AOMORI GOKAN 青森 ミュージアム 美術館 ネットワーク" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">北海道・東北</div><div class="card-index">Aomori</div></div>
+        <div><div class="card-region">北海道・東北</div><div class="card-pref">青森</div></div>
       </div>
       <div class="card-title">AOMORI GOKAN</div>
       <div class="card-sub">ミュージアム連携で県全体を編集</div>
@@ -333,9 +452,9 @@
       <a href="detail-aomori.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="北海道・東北" data-cats="1-1 2-1 2-3 3-1" data-text="三陸国際芸術祭 岩手 郷土芸能 復興 コミュニティ 伝統">
+    <div class="card" data-region="北海道・東北" data-cats="1-1 2-1 2-3 3-1" data-text="三陸国際芸術祭 岩手 郷土芸能 復興 コミュニティ 伝統" data-type="芸術祭型" data-org="芸術祭実行委員会型">
       <div class="card-header">
-        <div><div class="card-region">北海道・東北</div><div class="card-index">Iwate</div></div>
+        <div><div class="card-region">北海道・東北</div><div class="card-pref">岩手</div></div>
       </div>
       <div class="card-title">三陸国際芸術祭</div>
       <div class="card-sub">郷土芸能×創造的復興</div>
@@ -349,9 +468,9 @@
       <a href="detail-iwate.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="北海道・東北" data-cats="1-1 1-3 2-1 3-1" data-text="リボーンアートフェス 宮城 震災復興 石巻">
+    <div class="card" data-region="北海道・東北" data-cats="1-1 1-3 2-1 3-1" data-text="リボーンアートフェス 宮城 震災復興 石巻" data-type="芸術祭型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">北海道・東北</div><div class="card-index">Miyagi</div></div>
+        <div><div class="card-region">北海道・東北</div><div class="card-pref">宮城</div></div>
       </div>
       <div class="card-title">リボーンアートフェス</div>
       <div class="card-sub">震災復興と文化の接続</div>
@@ -365,9 +484,9 @@
       <a href="detail-miyagi.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="北海道・東北" data-cats="2-1 2-2 3-1 3-3" data-text="かみこあにプロジェクト 秋田 小規模 自治体 持続">
+    <div class="card" data-region="北海道・東北" data-cats="2-1 2-2 3-1 3-3" data-text="かみこあにプロジェクト 秋田 小規模 自治体 持続" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">北海道・東北</div><div class="card-index">Akita</div></div>
+        <div><div class="card-region">北海道・東北</div><div class="card-pref">秋田</div></div>
       </div>
       <div class="card-title">かみこあにプロジェクト</div>
       <div class="card-sub">小規模自治体の等身大実装</div>
@@ -381,9 +500,9 @@
       <a href="detail-akita.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="北海道・東北" data-cats="1-1 1-3 3-1 3-2" data-text="山形ビエンナーレ 山形 街なか 空き家 回遊">
+    <div class="card" data-region="北海道・東北" data-cats="1-1 1-3 3-1 3-2" data-text="山形ビエンナーレ 山形 街なか 空き家 回遊" data-type="芸術祭型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">北海道・東北</div><div class="card-index">Yamagata</div></div>
+        <div><div class="card-region">北海道・東北</div><div class="card-pref">山形</div></div>
       </div>
       <div class="card-title">山形ビエンナーレ</div>
       <div class="card-sub">街なか分散×文化回遊</div>
@@ -397,9 +516,9 @@
       <a href="detail-yamagata.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="北海道・東北" data-cats="1-1 2-1 2-3 3-1" data-text="ハマカルアートプロジェクト 福島 復興 浜通り">
+    <div class="card" data-region="北海道・東北" data-cats="1-1 2-1 2-3 3-1" data-text="ハマカルアートプロジェクト 福島 復興 浜通り" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">北海道・東北</div><div class="card-index">Fukushima</div></div>
+        <div><div class="card-region">北海道・東北</div><div class="card-pref">福島</div></div>
       </div>
       <div class="card-title">ハマカルアートプロジェクト</div>
       <div class="card-sub">復興地域の文化接点づくり</div>
@@ -413,9 +532,9 @@
       <a href="detail-fukushima.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="関東" data-cats="1-1 2-2 3-3 3-1" data-text="アーカスプロジェクト ARCUS 茨城 AIR 滞在制作 関係人口">
+    <div class="card" data-region="関東" data-cats="1-1 2-2 2-3 3-3" data-text="アーカスプロジェクト ARCUS 茨城 AIR 滞在制作 関係人口" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">関東</div><div class="card-index">Ibaraki</div></div>
+        <div><div class="card-region">関東</div><div class="card-pref">茨城</div></div>
       </div>
       <div class="card-title">アーカスプロジェクト（ARCUS）</div>
       <div class="card-sub">AIRで関係人口を蓄積</div>
@@ -423,15 +542,15 @@
       <div class="card-cats">
         <span class="card-cat cc-eco">1-① 交流人口増加</span>
         <span class="card-cat cc-soc">2-② 移住・定住促進</span>
+        <span class="card-cat cc-soc">2-③ 社会包摂</span>
         <span class="card-cat cc-cul">3-③ クリエイティブ</span>
-        <span class="card-cat cc-cul">3-① 地域ブランディング</span>
       </div>
       <a href="detail-ibaraki.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="関東" data-cats="1-1 2-3 3-1 3-2" data-text="KEAT 栃木 公立 文化ハブ 教育 アクセシビリティ">
+    <div class="card" data-region="関東" data-cats="1-1 2-3 3-1 3-2" data-text="KEAT 栃木 公立 文化ハブ 教育 アクセシビリティ" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">関東</div><div class="card-index">Tochigi</div></div>
+        <div><div class="card-region">関東</div><div class="card-pref">栃木</div></div>
       </div>
       <div class="card-title">KEAT</div>
       <div class="card-sub">公立館が地域の文化ハブ</div>
@@ -445,9 +564,9 @@
       <a href="detail-tochigi.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="関東" data-cats="1-1 1-3 2-2 3-1" data-text="中之条ビエンナーレ 群馬 温泉 空き家 回遊">
+    <div class="card" data-region="関東" data-cats="1-1 1-3 2-2 3-1" data-text="中之条ビエンナーレ 群馬 温泉 空き家 回遊" data-type="芸術祭型" data-org="芸術祭実行委員会型">
       <div class="card-header">
-        <div><div class="card-region">関東</div><div class="card-index">Gunma</div></div>
+        <div><div class="card-region">関東</div><div class="card-pref">群馬</div></div>
       </div>
       <div class="card-title">中之条ビエンナーレ</div>
       <div class="card-sub">温泉地×分散会場の回遊設計</div>
@@ -461,9 +580,9 @@
       <a href="detail-gunma.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="関東" data-cats="1-1 1-2 1-3 3-1" data-text="さいたま国際芸術祭 埼玉 大都市 都市更新">
+    <div class="card" data-region="関東" data-cats="1-1 1-2 1-3 3-1" data-text="さいたま国際芸術祭 埼玉 大都市 都市更新" data-type="芸術祭型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">関東</div><div class="card-index">Saitama</div></div>
+        <div><div class="card-region">関東</div><div class="card-pref">埼玉</div></div>
       </div>
       <div class="card-title">さいたま国際芸術祭</div>
       <div class="card-sub">大都市近郊の都市更新型</div>
@@ -477,9 +596,9 @@
       <a href="detail-saitama.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="関東" data-cats="1-1 1-3 2-1 3-1" data-text="千葉国際芸術祭 千葉 近郊 日常空間">
+    <div class="card" data-region="関東" data-cats="1-1 1-3 2-1 3-1" data-text="千葉国際芸術祭 千葉 近郊 日常空間" data-type="芸術祭型" data-org="芸術祭実行委員会型">
       <div class="card-header">
-        <div><div class="card-region">関東</div><div class="card-index">Chiba</div></div>
+        <div><div class="card-region">関東</div><div class="card-pref">千葉</div></div>
       </div>
       <div class="card-title">千葉国際芸術祭</div>
       <div class="card-sub">都市近郊の回遊・再編集</div>
@@ -493,57 +612,57 @@
       <a href="detail-chiba.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="関東" data-cats="1-2 1-3 2-1 3-3" data-text="東京ビエンナーレ 東京 都市 実験 プロジェクト">
+    <div class="card" data-region="関東" data-cats="1-3 2-1 3-1 3-3" data-text="東京ビエンナーレ 東京 都市 実験 プロジェクト 下町 職人" data-type="芸術祭型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">関東</div><div class="card-index">Tokyo</div></div>
+        <div><div class="card-region">関東</div><div class="card-pref">東京</div></div>
       </div>
       <div class="card-title">東京ビエンナーレ</div>
       <div class="card-sub">都市を実験場にするプロジェクト型</div>
-      <div class="card-desc">都市課題に切り込む"プロジェクト実装"が強みで、政策接続の余地が大きい。</div>
+      <div class="card-desc">都市課題に切り込む"プロジェクト実装"が強みで、下町・職人のまち記憶をアートがフックアップ。</div>
       <div class="card-cats">
-        <span class="card-cat cc-eco">1-② 経済効果</span>
         <span class="card-cat cc-eco">1-③ 都市空間の再編</span>
         <span class="card-cat cc-soc">2-① コミュニティ形成</span>
+        <span class="card-cat cc-cul">3-① 地域ブランディング</span>
         <span class="card-cat cc-cul">3-③ クリエイティブ</span>
       </div>
       <a href="detail-tokyo.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="関東" data-cats="1-2 1-3 2-1 3-3" data-text="黄金町バザール 神奈川 横浜 エリアマネジメント 再生">
+    <div class="card" data-region="関東" data-cats="1-3 2-1 3-1 3-3" data-text="黄金町バザール 神奈川 横浜 エリアマネジメント 再生 港町 在日文化" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">関東</div><div class="card-index">Kanagawa</div></div>
+        <div><div class="card-region">関東</div><div class="card-pref">神奈川</div></div>
       </div>
       <div class="card-title">黄金町バザール</div>
       <div class="card-sub">課題エリアをアートで再編集</div>
-      <div class="card-desc">治安・印象・創作拠点化まで含む都市再生力が際立つ"エリアマネジメント"型。</div>
+      <div class="card-desc">治安・印象・創作拠点化まで含む都市再生力が際立つ。黄金町の歴史・港町・在日文化のアイデンティティをアートが呼び起こす。</div>
       <div class="card-cats">
-        <span class="card-cat cc-eco">1-② 経済効果</span>
         <span class="card-cat cc-eco">1-③ 都市空間の再編</span>
         <span class="card-cat cc-soc">2-① コミュニティ形成</span>
+        <span class="card-cat cc-cul">3-① 地域ブランディング</span>
         <span class="card-cat cc-cul">3-③ クリエイティブ</span>
       </div>
       <a href="detail-kanagawa.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中部" data-cats="1-1 1-2 1-3 2-2" data-text="大地の芸術祭 越後妻有 新潟 空き家 集落 原点">
+    <div class="card" data-region="中部" data-cats="1-1 1-2 3-1 2-2" data-text="大地の芸術祭 越後妻有 新潟 空き家 集落 原点 棚田 農" data-type="芸術祭型" data-org="芸術祭実行委員会型">
       <div class="card-header">
-        <div><div class="card-region">中部</div><div class="card-index">Niigata</div></div>
+        <div><div class="card-region">中部</div><div class="card-pref">新潟</div></div>
       </div>
       <div class="card-title">大地の芸術祭（越後妻有）</div>
       <div class="card-sub">地域芸術祭のフラッグシップ</div>
-      <div class="card-desc">空き家・集落・自然を会場化する"原点モデル"。日本の地域型芸術祭の参照点。</div>
+      <div class="card-desc">棚田・集落・農という大地の固有性そのものを作品にする"原点モデル"。日本の地域型芸術祭の参照点。</div>
       <div class="card-cats">
         <span class="card-cat cc-eco">1-① 交流人口増加</span>
         <span class="card-cat cc-eco">1-② 経済効果</span>
-        <span class="card-cat cc-eco">1-③ 都市空間の再編</span>
+        <span class="card-cat cc-cul">3-① 地域ブランディング</span>
         <span class="card-cat cc-soc">2-② 移住・定住促進</span>
       </div>
       <a href="detail-niigata.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中部" data-cats="1-1 1-2 3-1 3-2" data-text="ガラスの街とやま 富山 産業 工芸 ブランド">
+    <div class="card" data-region="中部" data-cats="1-1 1-2 3-1 3-2" data-text="ガラスの街とやま 富山 産業 工芸 ブランド" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">中部</div><div class="card-index">Toyama</div></div>
+        <div><div class="card-region">中部</div><div class="card-pref">富山</div></div>
       </div>
       <div class="card-title">ガラスの街とやま</div>
       <div class="card-sub">産業×文化で都市ブランド形成</div>
@@ -557,9 +676,9 @@
       <a href="detail-toyama.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中部" data-cats="1-1 1-2 3-1 3-3" data-text="Go FOR KOGEI 石川 工芸 金沢 伝統 現代">
+    <div class="card" data-region="中部" data-cats="1-1 1-2 3-1 3-3" data-text="Go FOR KOGEI 石川 工芸 金沢 伝統 現代" data-type="芸術祭型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">中部</div><div class="card-index">Ishikawa</div></div>
+        <div><div class="card-region">中部</div><div class="card-pref">石川</div></div>
       </div>
       <div class="card-title">Go FOR KOGEI</div>
       <div class="card-sub">工芸を現代文脈に接続</div>
@@ -573,9 +692,9 @@
       <a href="detail-ishikawa.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中部" data-cats="2-2 3-1 3-3 1-1" data-text="Zen AIR 福井 禅 滞在制作 AIR テーマ">
+    <div class="card" data-region="中部" data-cats="2-2 3-1 3-3 1-1" data-text="Zen AIR 福井 禅 滞在制作 AIR テーマ" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">中部</div><div class="card-index">Fukui</div></div>
+        <div><div class="card-region">中部</div><div class="card-pref">福井</div></div>
       </div>
       <div class="card-title">Zen AIR（禅×AIR）</div>
       <div class="card-sub">テーマ特化の滞在制作</div>
@@ -589,9 +708,9 @@
       <a href="detail-fukui.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中部" data-cats="1-1 1-2 3-1 3-3" data-text="FUJI TEXTILE WEEK 山梨 富士 テキスタイル 産地 デザイン">
+    <div class="card" data-region="中部" data-cats="1-1 1-2 3-1 3-3" data-text="FUJI TEXTILE WEEK 山梨 富士 テキスタイル 産地 デザイン" data-type="芸術祭型" data-org="民間主導型">
       <div class="card-header">
-        <div><div class="card-region">中部</div><div class="card-index">Yamanashi</div></div>
+        <div><div class="card-region">中部</div><div class="card-pref">山梨</div></div>
       </div>
       <div class="card-title">FUJI TEXTILE WEEK</div>
       <div class="card-sub">産地×デザインのブランディング</div>
@@ -605,9 +724,9 @@
       <a href="detail-yamanashi.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中部" data-cats="1-1 1-2 2-2 3-1" data-text="御代田町 MMoP 長野 写真 カルチャー 複合 移住">
+    <div class="card" data-region="中部" data-cats="1-1 1-2 2-2 3-1" data-text="御代田町 MMoP 長野 写真 カルチャー 複合 移住" data-type="エリアマネジメント型" data-org="民間主導型">
       <div class="card-header">
-        <div><div class="card-region">中部</div><div class="card-index">Nagano</div></div>
+        <div><div class="card-region">中部</div><div class="card-pref">長野</div></div>
       </div>
       <div class="card-title">御代田町（MMoP等）</div>
       <div class="card-sub">複合型カルチャー集積</div>
@@ -621,9 +740,9 @@
       <a href="detail-nagano.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中部" data-cats="2-1 2-3 3-1 3-2" data-text="美濃和紙あかりアート展 岐阜 参加型 市民 和紙">
+    <div class="card" data-region="中部" data-cats="2-1 2-3 3-1 3-2" data-text="美濃和紙あかりアート展 岐阜 参加型 市民 和紙" data-type="芸術祭型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">中部</div><div class="card-index">Gifu</div></div>
+        <div><div class="card-region">中部</div><div class="card-pref">岐阜</div></div>
       </div>
       <div class="card-title">美濃和紙あかりアート展</div>
       <div class="card-sub">参加型で市民の誇りをつくる</div>
@@ -637,25 +756,25 @@
       <a href="detail-gifu.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中部" data-cats="3-3 1-2 2-1 3-1" data-text="アーツカウンシルしずおか 静岡 支援 制度 エコシステム">
+    <div class="card" data-region="中部" data-cats="2-1 2-3 3-1 3-3" data-text="アーツカウンシルしずおか 静岡 支援 制度 エコシステム 茶 富士" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">中部</div><div class="card-index">Shizuoka</div></div>
+        <div><div class="card-region">中部</div><div class="card-pref">静岡</div></div>
       </div>
       <div class="card-title">アーツカウンシルしずおか</div>
       <div class="card-sub">支援制度で文化エコシステム形成</div>
-      <div class="card-desc">単発事業の寄せ集めでは届かない継続性を制度で担保する"支える"モデル。</div>
+      <div class="card-desc">単発事業の寄せ集めでは届かない継続性を制度で担保しつつ、静岡の茶・富士・海洋文化のアイデンティティを地域から呼び起こす"支える"モデル。</div>
       <div class="card-cats">
-        <span class="card-cat cc-cul">3-③ クリエイティブ</span>
-        <span class="card-cat cc-eco">1-② 経済効果</span>
         <span class="card-cat cc-soc">2-① コミュニティ形成</span>
+        <span class="card-cat cc-soc">2-③ 社会包摂</span>
         <span class="card-cat cc-cul">3-① 地域ブランディング</span>
+        <span class="card-cat cc-cul">3-③ クリエイティブ</span>
       </div>
       <a href="detail-shizuoka.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中部" data-cats="1-1 1-2 3-1 3-3" data-text="国際芸術祭あいち 愛知 名古屋 国際 大都市圏">
+    <div class="card" data-region="中部" data-cats="1-1 1-2 3-1 3-3" data-text="国際芸術祭あいち 愛知 名古屋 国際 大都市圏" data-type="芸術祭型" data-org="芸術祭実行委員会型">
       <div class="card-header">
-        <div><div class="card-region">中部</div><div class="card-index">Aichi</div></div>
+        <div><div class="card-region">中部</div><div class="card-pref">愛知</div></div>
       </div>
       <div class="card-title">国際芸術祭「あいち」</div>
       <div class="card-sub">大都市圏の国際芸術祭モデル</div>
@@ -669,9 +788,9 @@
       <a href="detail-aichi.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中部" data-cats="2-1 2-2 3-3 3-1" data-text="アートが生まれる街 亀山 三重 創作 場づくり AIR">
+    <div class="card" data-region="中部" data-cats="2-1 2-2 3-3 3-1" data-text="アートが生まれる街 亀山 三重 創作 場づくり AIR" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">中部</div><div class="card-index">Mie</div></div>
+        <div><div class="card-region">中部</div><div class="card-pref">三重</div></div>
       </div>
       <div class="card-title">アートが生まれる街、亀山</div>
       <div class="card-sub">創作が生まれる"場づくり"型</div>
@@ -685,9 +804,9 @@
       <a href="detail-mie.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="関西" data-cats="1-1 1-3 3-1 3-2" data-text="BIWAKOビエンナーレ 滋賀 琵琶湖 古民家 歴史ストック">
+    <div class="card" data-region="関西" data-cats="1-1 1-3 3-1 3-2" data-text="BIWAKOビエンナーレ 滋賀 琵琶湖 古民家 歴史ストック" data-type="芸術祭型" data-org="芸術祭実行委員会型">
       <div class="card-header">
-        <div><div class="card-region">関西</div><div class="card-index">Shiga</div></div>
+        <div><div class="card-region">関西</div><div class="card-pref">滋賀</div></div>
       </div>
       <div class="card-title">BIWAKOビエンナーレ</div>
       <div class="card-sub">歴史ストック×分散展示</div>
@@ -701,9 +820,9 @@
       <a href="detail-shiga.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="関西" data-cats="1-1 1-2 3-1 3-2" data-text="KYOTOGRAPHIE 京都 写真 観光 分野特化">
+    <div class="card" data-region="関西" data-cats="1-1 1-2 3-1 3-2" data-text="KYOTOGRAPHIE 京都 写真 観光 分野特化" data-type="芸術祭型" data-org="民間主導型">
       <div class="card-header">
-        <div><div class="card-region">関西</div><div class="card-index">Kyoto</div></div>
+        <div><div class="card-region">関西</div><div class="card-pref">京都</div></div>
       </div>
       <div class="card-title">KYOTOGRAPHIE</div>
       <div class="card-sub">分野特化で都市回遊を生む</div>
@@ -717,25 +836,25 @@
       <a href="detail-kyoto.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="関西" data-cats="1-2 1-3 3-3 2-2" data-text="北加賀屋 大阪 クリエイティブ 民間 空間再生 制作拠点">
+    <div class="card" data-region="関西" data-cats="1-3 3-1 3-3 2-2" data-text="北加賀屋 大阪 クリエイティブ 民間 空間再生 制作拠点 造船所 工業地帯" data-type="エリアマネジメント型" data-org="民間主導型">
       <div class="card-header">
-        <div><div class="card-region">関西</div><div class="card-index">Osaka</div></div>
+        <div><div class="card-region">関西</div><div class="card-pref">大阪</div></div>
       </div>
       <div class="card-title">北加賀屋クリエイティブ・ビレッジ</div>
       <div class="card-sub">民間主導の空間再生×制作拠点集積</div>
-      <div class="card-desc">不動産ストックを実装の場に変える"民間主導の強さ"が突出。</div>
+      <div class="card-desc">造船所跡・工業地帯という場所のアイデンティティをアートが継承・再解釈。不動産ストックを実装の場に変える"民間主導の強さ"が突出。</div>
       <div class="card-cats">
-        <span class="card-cat cc-eco">1-② 経済効果</span>
         <span class="card-cat cc-eco">1-③ 都市空間の再編</span>
+        <span class="card-cat cc-cul">3-① 地域ブランディング</span>
         <span class="card-cat cc-cul">3-③ クリエイティブ</span>
         <span class="card-cat cc-soc">2-② 移住・定住促進</span>
       </div>
       <a href="detail-osaka.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="関西" data-cats="1-3 2-1 3-3 3-1" data-text="神戸 新開地 アートひろば 兵庫 下町 文化再生 担い手">
+    <div class="card" data-region="関西" data-cats="1-3 2-1 3-3 3-1" data-text="神戸 新開地 アートひろば 兵庫 下町 文化再生 担い手" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">関西</div><div class="card-index">Hyogo</div></div>
+        <div><div class="card-region">関西</div><div class="card-pref">兵庫</div></div>
       </div>
       <div class="card-title">神戸・新開地（アートひろば等）</div>
       <div class="card-sub">下町エリアの文化再生</div>
@@ -749,25 +868,25 @@
       <a href="detail-hyogo.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="関西" data-cats="1-1 1-3 2-1 3-2" data-text="はならぁと 奈良 集落 空き家 文化財 回遊">
+    <div class="card" data-region="関西" data-cats="1-1 1-3 3-1 3-2" data-text="はならぁと 奈良 集落 空き家 文化財 回遊 伝統産業" data-type="芸術祭型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">関西</div><div class="card-index">Nara</div></div>
+        <div><div class="card-region">関西</div><div class="card-pref">奈良</div></div>
       </div>
       <div class="card-title">はならぁと</div>
       <div class="card-sub">集落・空き家を面で使う</div>
-      <div class="card-desc">文化財・集落空間を会場化しやすく、"空き家×回遊"の実装として学びが大きい。</div>
+      <div class="card-desc">文化財・集落空間を会場化し、奈良の伝統産業・暮らしのアイデンティティをアートが再発見させる"空き家×回遊"の実装。</div>
       <div class="card-cats">
         <span class="card-cat cc-eco">1-① 交流人口増加</span>
         <span class="card-cat cc-eco">1-③ 都市空間の再編</span>
-        <span class="card-cat cc-soc">2-① コミュニティ形成</span>
+        <span class="card-cat cc-cul">3-① 地域ブランディング</span>
         <span class="card-cat cc-cul">3-② ランドマーク形成</span>
       </div>
       <a href="detail-nara.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="関西" data-cats="1-1 1-2 3-1 3-2" data-text="JAPAN WALLS 和歌山 ミューラル 壁画 景観 国際">
+    <div class="card" data-region="関西" data-cats="1-1 1-2 3-1 3-2" data-text="JAPAN WALLS 和歌山 ミューラル 壁画 景観 国際" data-type="芸術祭型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">関西</div><div class="card-index">Wakayama</div></div>
+        <div><div class="card-region">関西</div><div class="card-pref">和歌山</div></div>
       </div>
       <div class="card-title">JAPAN WALLS（和歌山）</div>
       <div class="card-sub">国際ミューラルで景観を更新</div>
@@ -781,41 +900,41 @@
       <a href="detail-wakayama.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中国・四国" data-cats="2-1 2-3 3-2 3-3" data-text="鳥取県立美術館 鳥取 人づくり 美術館整備 教育 市民参画">
+    <div class="card" data-region="中国・四国" data-cats="2-1 2-3 3-1 3-2" data-text="鳥取県立美術館 鳥取 人づくり 美術館整備 教育 市民参画 民藝 砂丘" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">中国・四国</div><div class="card-index">Tottori</div></div>
+        <div><div class="card-region">中国・四国</div><div class="card-pref">鳥取</div></div>
       </div>
       <div class="card-title">鳥取県立美術館の取り組み</div>
       <div class="card-sub">人づくりを核にした美術館整備</div>
-      <div class="card-desc">整備段階から"まちの拠点"として設計。教育・市民参画の基盤を作れる。</div>
+      <div class="card-desc">整備段階から"まちの拠点"として設計。民藝運動・砂丘・日本海の風土というアイデンティティを呼び起こすランドマークに。</div>
       <div class="card-cats">
         <span class="card-cat cc-soc">2-① コミュニティ形成</span>
         <span class="card-cat cc-soc">2-③ 社会包摂</span>
+        <span class="card-cat cc-cul">3-① 地域ブランディング</span>
         <span class="card-cat cc-cul">3-② ランドマーク形成</span>
-        <span class="card-cat cc-cul">3-③ クリエイティブ</span>
       </div>
       <a href="detail-tottori.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中国・四国" data-cats="2-1 2-3 3-3 2-2" data-text="石見アーツプロジェクト 島根 教育 地域定着 底上げ">
+    <div class="card" data-region="中国・四国" data-cats="2-1 2-2 3-1 3-3" data-text="石見アーツプロジェクト 島根 教育 地域定着 底上げ 石見神楽 石見銀山" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">中国・四国</div><div class="card-index">Shimane</div></div>
+        <div><div class="card-region">中国・四国</div><div class="card-pref">島根</div></div>
       </div>
       <div class="card-title">石見アーツプロジェクト</div>
       <div class="card-sub">教育・地域定着の底上げ型</div>
-      <div class="card-desc">"地域の創造力を育てる"方向で、長期的な文化体質改善に強い。</div>
+      <div class="card-desc">石見神楽・石見銀山・山陰の風土をアートが呼び起こしつつ、"地域の創造力を育てる"方向で長期的な文化体質改善に強い。</div>
       <div class="card-cats">
         <span class="card-cat cc-soc">2-① コミュニティ形成</span>
-        <span class="card-cat cc-soc">2-③ 社会包摂</span>
-        <span class="card-cat cc-cul">3-③ クリエイティブ</span>
         <span class="card-cat cc-soc">2-② 移住・定住促進</span>
+        <span class="card-cat cc-cul">3-① 地域ブランディング</span>
+        <span class="card-cat cc-cul">3-③ クリエイティブ</span>
       </div>
       <a href="detail-shimane.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中国・四国" data-cats="1-1 1-2 3-1 3-2" data-text="岡山芸術交流 岡山 国際展 ブランド 都市中核">
+    <div class="card" data-region="中国・四国" data-cats="1-1 1-2 3-1 3-2" data-text="岡山芸術交流 岡山 国際展 ブランド 都市中核" data-type="芸術祭型" data-org="芸術祭実行委員会型">
       <div class="card-header">
-        <div><div class="card-region">中国・四国</div><div class="card-index">Okayama</div></div>
+        <div><div class="card-region">中国・四国</div><div class="card-pref">岡山</div></div>
       </div>
       <div class="card-title">岡山芸術交流</div>
       <div class="card-sub">都市中核の国際展でブランド形成</div>
@@ -829,9 +948,9 @@
       <a href="detail-okayama.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中国・四国" data-cats="1-1 3-1 3-2 3-3" data-text="広島国際建築祭 広島 建築 都市記憶 専門特化">
+    <div class="card" data-region="中国・四国" data-cats="1-1 3-1 3-2 3-3" data-text="広島国際建築祭 広島 建築 都市記憶 専門特化" data-type="芸術祭型" data-org="芸術祭実行委員会型">
       <div class="card-header">
-        <div><div class="card-region">中国・四国</div><div class="card-index">Hiroshima</div></div>
+        <div><div class="card-region">中国・四国</div><div class="card-pref">広島</div></div>
       </div>
       <div class="card-title">広島国際建築祭</div>
       <div class="card-sub">建築で都市を読み解く専門特化型</div>
@@ -845,9 +964,9 @@
       <a href="detail-hiroshima.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中国・四国" data-cats="1-2 3-3 3-1 2-1" data-text="YCAM 山口情報芸術センター 山口 R&D メディアアート 研究開発">
+    <div class="card" data-region="中国・四国" data-cats="1-2 3-3 3-1 2-1" data-text="YCAM 山口情報芸術センター 山口 R&D メディアアート 研究開発" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">中国・四国</div><div class="card-index">Yamaguchi</div></div>
+        <div><div class="card-region">中国・四国</div><div class="card-pref">山口</div></div>
       </div>
       <div class="card-title">YCAM（山口情報芸術センター）</div>
       <div class="card-sub">公共R&D拠点型メディアアート</div>
@@ -861,9 +980,9 @@
       <a href="detail-yamaguchi.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中国・四国" data-cats="2-2 1-3 3-3 2-1" data-text="神山AIR 徳島 AIR 社会実装 移住 神山">
+    <div class="card" data-region="中国・四国" data-cats="2-2 1-3 2-1 3-3" data-text="神山AIR 徳島 AIR 社会実装 移住 神山" data-type="エリアマネジメント型" data-org="民間主導型">
       <div class="card-header">
-        <div><div class="card-region">中国・四国</div><div class="card-index">Tokushima</div></div>
+        <div><div class="card-region">中国・四国</div><div class="card-pref">徳島</div></div>
       </div>
       <div class="card-title">神山AIR</div>
       <div class="card-sub">AIR起点の社会実装</div>
@@ -871,15 +990,15 @@
       <div class="card-cats">
         <span class="card-cat cc-soc">2-② 移住・定住促進</span>
         <span class="card-cat cc-eco">1-③ 都市空間の再編</span>
-        <span class="card-cat cc-cul">3-③ クリエイティブ</span>
         <span class="card-cat cc-soc">2-① コミュニティ形成</span>
+        <span class="card-cat cc-cul">3-③ クリエイティブ</span>
       </div>
       <a href="detail-tokushima.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中国・四国" data-cats="1-1 1-2 3-1 3-2" data-text="瀬戸内国際芸術祭 香川 島 港 広域分散 国際発信">
+    <div class="card" data-region="中国・四国" data-cats="1-1 1-2 3-1 3-2" data-text="瀬戸内国際芸術祭 香川 島 港 広域分散 国際発信" data-type="芸術祭型" data-org="芸術祭実行委員会型">
       <div class="card-header">
-        <div><div class="card-region">中国・四国</div><div class="card-index">Kagawa</div></div>
+        <div><div class="card-region">中国・四国</div><div class="card-pref">香川</div></div>
       </div>
       <div class="card-title">瀬戸内国際芸術祭</div>
       <div class="card-sub">広域分散×国際発信の代表格</div>
@@ -893,9 +1012,9 @@
       <a href="detail-kagawa.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中国・四国" data-cats="1-1 1-2 3-1 3-2" data-text="道後オンセナート 愛媛 道後温泉 観光地 ブランド更新">
+    <div class="card" data-region="中国・四国" data-cats="1-1 1-2 3-1 3-2" data-text="道後オンセナート 愛媛 道後温泉 観光地 ブランド更新" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">中国・四国</div><div class="card-index">Ehime</div></div>
+        <div><div class="card-region">中国・四国</div><div class="card-pref">愛媛</div></div>
       </div>
       <div class="card-title">道後オンセナート</div>
       <div class="card-sub">成熟観光地をアートで再編集</div>
@@ -909,9 +1028,9 @@
       <a href="detail-ehime.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="中国・四国" data-cats="2-1 3-3 3-1 2-3" data-text="現代地方譚 高知 プロセス 思考 批評 関係性">
+    <div class="card" data-region="中国・四国" data-cats="2-1 3-3 3-1 2-3" data-text="現代地方譚 高知 プロセス 思考 批評 関係性" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">中国・四国</div><div class="card-index">Kochi</div></div>
+        <div><div class="card-region">中国・四国</div><div class="card-pref">高知</div></div>
       </div>
       <div class="card-title">現代地方譚（高知）</div>
       <div class="card-sub">プロセス重視の思考実践</div>
@@ -925,9 +1044,9 @@
       <a href="detail-kochi.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="九州・沖縄" data-cats="1-2 3-1 3-3 2-1" data-text="Fukuoka Art Next 福岡 文化政策 アート戦略 エコシステム 育成">
+    <div class="card" data-region="九州・沖縄" data-cats="1-2 3-1 3-3 2-1" data-text="Fukuoka Art Next 福岡 文化政策 アート戦略 エコシステム 育成" data-type="芸術祭型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">九州・沖縄</div><div class="card-index">Fukuoka</div></div>
+        <div><div class="card-region">九州・沖縄</div><div class="card-pref">福岡</div></div>
       </div>
       <div class="card-title">Fukuoka Art Next</div>
       <div class="card-sub">文化政策としてのアート戦略</div>
@@ -941,9 +1060,9 @@
       <a href="detail-fukuoka.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="九州・沖縄" data-cats="1-2 1-3 3-1 3-2" data-text="多久市ウォールアート 佐賀 景観更新 壁画 中心市街地 小都市">
+    <div class="card" data-region="九州・沖縄" data-cats="1-2 1-3 3-1 3-2" data-text="多久市ウォールアート 佐賀 景観更新 壁画 中心市街地 小都市" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">九州・沖縄</div><div class="card-index">Saga</div></div>
+        <div><div class="card-region">九州・沖縄</div><div class="card-pref">佐賀</div></div>
       </div>
       <div class="card-title">多久市ウォールアートプロジェクト</div>
       <div class="card-sub">小都市でも始めやすい景観更新</div>
@@ -957,9 +1076,9 @@
       <a href="detail-saga.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="九州・沖縄" data-cats="1-3 2-2 3-3 2-1" data-text="南島原市アートビレッジシラキノ 長崎 廃校 AIR 滞在 交流">
+    <div class="card" data-region="九州・沖縄" data-cats="1-3 2-2 3-3 2-1" data-text="南島原市アートビレッジシラキノ 長崎 廃校 AIR 滞在 交流" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">九州・沖縄</div><div class="card-index">Nagasaki</div></div>
+        <div><div class="card-region">九州・沖縄</div><div class="card-pref">長崎</div></div>
       </div>
       <div class="card-title">南島原市アートビレッジ・シラキノ</div>
       <div class="card-sub">公共施設×AIRの実装</div>
@@ -973,9 +1092,9 @@
       <a href="detail-nagasaki.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="九州・沖縄" data-cats="1-3 3-1 3-2 3-3" data-text="くまもとアートポリス 熊本 制度 デザイン行政 公共建築">
+    <div class="card" data-region="九州・沖縄" data-cats="1-3 3-1 3-2 3-3" data-text="くまもとアートポリス 熊本 制度 デザイン行政 公共建築" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">九州・沖縄</div><div class="card-index">Kumamoto</div></div>
+        <div><div class="card-region">九州・沖縄</div><div class="card-pref">熊本</div></div>
       </div>
       <div class="card-title">くまもとアートポリス</div>
       <div class="card-sub">制度化されたデザイン行政</div>
@@ -989,25 +1108,25 @@
       <a href="detail-kumamoto.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="九州・沖縄" data-cats="1-2 1-3 3-3 2-1" data-text="BEPPU PROJECT 大分 別府 中間組織 運用体制 芸術祭">
+    <div class="card" data-region="九州・沖縄" data-cats="1-2 1-3 3-1 3-3" data-text="BEPPU PROJECT 大分 別府 中間組織 運用体制 芸術祭 温泉 地場" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">九州・沖縄</div><div class="card-index">Oita</div></div>
+        <div><div class="card-region">九州・沖縄</div><div class="card-pref">大分</div></div>
       </div>
       <div class="card-title">BEPPU PROJECT</div>
       <div class="card-sub">中間組織が都市を運用する</div>
-      <div class="card-desc">芸術祭→拠点→人材循環へ。行政/民間の間で実装を回す"運用体制"が突出。</div>
+      <div class="card-desc">別府温泉・湯布院の地場資源・混浴文化をアートが再発見させながら、芸術祭→拠点→人材循環へ。行政/民間の間で実装を回す"運用体制"が突出。</div>
       <div class="card-cats">
         <span class="card-cat cc-eco">1-② 経済効果</span>
         <span class="card-cat cc-eco">1-③ 都市空間の再編</span>
+        <span class="card-cat cc-cul">3-① 地域ブランディング</span>
         <span class="card-cat cc-cul">3-③ クリエイティブ</span>
-        <span class="card-cat cc-soc">2-① コミュニティ形成</span>
       </div>
       <a href="detail-oita.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="九州・沖縄" data-cats="1-1 2-1 2-2 3-1" data-text="新富芸術祭 宮崎 小規模 住民協働 持続可能 回遊">
+    <div class="card" data-region="九州・沖縄" data-cats="1-1 2-1 2-2 3-1" data-text="新富芸術祭 宮崎 小規模 住民協働 持続可能 回遊" data-type="芸術祭型" data-org="芸術祭実行委員会型">
       <div class="card-header">
-        <div><div class="card-region">九州・沖縄</div><div class="card-index">Miyazaki</div></div>
+        <div><div class="card-region">九州・沖縄</div><div class="card-pref">宮崎</div></div>
       </div>
       <div class="card-title">新富芸術祭</div>
       <div class="card-sub">小規模自治体の等身大芸術祭</div>
@@ -1021,25 +1140,25 @@
       <a href="detail-miyazaki.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="九州・沖縄" data-cats="1-1 1-2 3-2 3-3" data-text="霧島アートの森 鹿児島 拠点波及 ミュージアム 教育 観光">
+    <div class="card" data-region="九州・沖縄" data-cats="1-1 1-2 3-1 3-2" data-text="霧島アートの森 鹿児島 拠点波及 ミュージアム 教育 観光 火山 薩摩" data-type="エリアマネジメント型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">九州・沖縄</div><div class="card-index">Kagoshima</div></div>
+        <div><div class="card-region">九州・沖縄</div><div class="card-pref">鹿児島</div></div>
       </div>
       <div class="card-title">霧島アートの森活用まちづくり</div>
       <div class="card-sub">強い拠点を市域へ波及</div>
-      <div class="card-desc">ミュージアムを点で終わらせず、教育・観光・公共空間へ展開する"拠点波及型"。</div>
+      <div class="card-desc">霧島の火山地形・薩摩の自然・文化のアイデンティティをミュージアムが体現し、教育・観光・公共空間へ展開する"拠点波及型"。</div>
       <div class="card-cats">
         <span class="card-cat cc-eco">1-① 交流人口増加</span>
         <span class="card-cat cc-eco">1-② 経済効果</span>
+        <span class="card-cat cc-cul">3-① 地域ブランディング</span>
         <span class="card-cat cc-cul">3-② ランドマーク形成</span>
-        <span class="card-cat cc-cul">3-③ クリエイティブ</span>
       </div>
       <a href="detail-kagoshima.html" class="card-link">詳細を見る →</a>
     </div>
 
-    <div class="card" data-region="九州・沖縄" data-cats="1-1 2-1 3-1 2-3" data-text="やんばるアートフェスティバル 沖縄 自然共生 世界自然遺産 やんばる">
+    <div class="card" data-region="九州・沖縄" data-cats="1-1 2-1 3-1 2-3" data-text="やんばるアートフェスティバル 沖縄 自然共生 世界自然遺産 やんばる" data-type="芸術祭型" data-org="行政・NPO主導型">
       <div class="card-header">
-        <div><div class="card-region">九州・沖縄</div><div class="card-index">Okinawa</div></div>
+        <div><div class="card-region">九州・沖縄</div><div class="card-pref">沖縄</div></div>
       </div>
       <div class="card-title">やんばるアートフェスティバル</div>
       <div class="card-sub">自然共生・環境配慮型</div>
@@ -1070,67 +1189,139 @@
 
   let activeRegion = 'all';
   let activeCats = new Set();
+  let activeType = null;
+  let activeOrg = null;
 
-  // Region filter
+  // ── Region buttons (text) ──
   document.getElementById('regionFilter').addEventListener('click', e => {
     const btn = e.target.closest('.region-btn');
     if (!btn) return;
-    document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeRegion = btn.dataset.region;
+    const r = btn.dataset.region;
+    if (activeRegion === r && r !== 'all') {
+      // toggle off
+      activeRegion = 'all';
+      document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector('[data-region="all"]').classList.add('active');
+    } else {
+      document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeRegion = r;
+    }
+    syncMapHighlight();
     applyFilters();
   });
 
-  // Category filter (toggle)
+  // ── Map SVG regions ──
+  document.querySelectorAll('.map-region').forEach(shape => {
+    shape.addEventListener('click', () => {
+      const r = shape.dataset.region;
+      if (activeRegion === r) {
+        activeRegion = 'all';
+        document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-region="all"]').classList.add('active');
+      } else {
+        activeRegion = r;
+        document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
+        const rb = document.querySelector(`.region-btn[data-region="${r}"]`);
+        if (rb) rb.classList.add('active');
+      }
+      syncMapHighlight();
+      applyFilters();
+    });
+  });
+
+  // ── Map legend items ──
+  document.querySelectorAll('.map-legend-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const r = item.dataset.region;
+      if (activeRegion === r) {
+        activeRegion = 'all';
+        document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('[data-region="all"]').classList.add('active');
+      } else {
+        activeRegion = r;
+        document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
+        const rb = document.querySelector(`.region-btn[data-region="${r}"]`);
+        if (rb) rb.classList.add('active');
+      }
+      syncMapHighlight();
+      applyFilters();
+    });
+  });
+
+  function syncMapHighlight() {
+    document.querySelectorAll('.map-region').forEach(s => {
+      s.classList.toggle('active', s.dataset.region === activeRegion);
+    });
+    document.querySelectorAll('.map-legend-item').forEach(s => {
+      s.classList.toggle('active', s.dataset.region === activeRegion);
+    });
+  }
+
+  // ── Category filter ──
   document.querySelectorAll('.cat-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const cat = btn.dataset.cat;
-      if (activeCats.has(cat)) {
-        activeCats.delete(cat);
-        btn.classList.remove('active');
-      } else {
-        activeCats.add(cat);
-        btn.classList.add('active');
+      if (activeCats.has(cat)) { activeCats.delete(cat); btn.classList.remove('active'); }
+      else { activeCats.add(cat); btn.classList.add('active'); }
+      applyFilters();
+    });
+  });
+
+  // ── Type / Org filter ──
+  document.querySelectorAll('.f2-btn[data-type]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const t = btn.dataset.type;
+      if (activeType === t) { activeType = null; btn.classList.remove('active'); }
+      else {
+        document.querySelectorAll('.f2-btn[data-type]').forEach(b => b.classList.remove('active'));
+        activeType = t; btn.classList.add('active');
+      }
+      applyFilters();
+    });
+  });
+  document.querySelectorAll('.f2-btn[data-org]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const o = btn.dataset.org;
+      if (activeOrg === o) { activeOrg = null; btn.classList.remove('active'); }
+      else {
+        document.querySelectorAll('.f2-btn[data-org]').forEach(b => b.classList.remove('active'));
+        activeOrg = o; btn.classList.add('active');
       }
       applyFilters();
     });
   });
 
-  // Clear filters
+  // ── Clear ──
   document.getElementById('clearFilters').addEventListener('click', () => {
-    activeRegion = 'all';
-    activeCats.clear();
+    activeRegion = 'all'; activeCats.clear(); activeType = null; activeOrg = null;
     document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
     document.querySelector('[data-region="all"]').classList.add('active');
-    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.cat-btn, .f2-btn').forEach(b => b.classList.remove('active'));
+    syncMapHighlight();
     searchInput.value = '';
     applyFilters();
   });
 
-  // Search
   searchInput.addEventListener('input', applyFilters);
 
   function applyFilters() {
     const q = searchInput.value.trim().toLowerCase();
     let visible = 0;
-
     cards.forEach(card => {
-      const cardRegion = card.dataset.region;
       const cardCats = card.dataset.cats ? card.dataset.cats.split(' ') : [];
       const cardText = (card.dataset.text || '') + ' ' + card.innerText;
-
-      const regionMatch = activeRegion === 'all' || cardRegion === activeRegion;
+      const regionMatch = activeRegion === 'all' || card.dataset.region === activeRegion;
       const catMatch = activeCats.size === 0 || [...activeCats].every(c => cardCats.includes(c));
+      const typeMatch = !activeType || card.dataset.type === activeType;
+      const orgMatch = !activeOrg || card.dataset.org === activeOrg;
       const textMatch = !q || cardText.toLowerCase().includes(q);
-
-      if (regionMatch && catMatch && textMatch) {
-        card.classList.remove('hidden');
-        visible++;
+      if (regionMatch && catMatch && typeMatch && orgMatch && textMatch) {
+        card.classList.remove('hidden'); visible++;
       } else {
         card.classList.add('hidden');
       }
     });
-
     countNum.textContent = visible;
     noResults.classList.toggle('visible', visible === 0);
   }
