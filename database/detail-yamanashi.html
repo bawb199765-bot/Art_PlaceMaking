@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>山梨 — 清里フォトアートミュージアム周辺プロジェクト | アート×まちづくりDB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+  .nav-logo:hover { color: var(--ink); }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
+  .nav-back:hover { background: var(--accent); color: white; }
+  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
+  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
+  .tag-region { border-color: var(--muted); color: var(--muted); }
+  .tag-type { border-color: var(--accent); color: var(--accent); }
+  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
+  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
+  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
+  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .meta-row:first-child { border-top: 1px solid var(--border); }
+  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
+  .meta-value { font-weight: 600; }
+  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
+  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
+  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
+  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
+  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
+  .overview-text p + p { margin-top: 1.5em; }
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
+  .feature-card { background: var(--paper); padding: 2rem; }
+  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
+  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
+  .feature-body ul { list-style: none; margin-top: 0.75rem; }
+  .feature-body li::before { content: '—  '; color: var(--muted); }
+  .feature-body li { margin-bottom: 4px; }
+  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .impact-category-group { margin-bottom: 2.5rem; }
+  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
+  .cat-economic { background: var(--tag-eco); }
+  .cat-social { background: var(--tag-soc); }
+  .cat-cultural { background: var(--tag-cul); }
+  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
+  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
+  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
+  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-eco { background: var(--tag-eco); }
+  .dot-soc { background: var(--tag-soc); }
+  .dot-cul { background: var(--tag-cul); }
+  .impact-tag-text { color: var(--muted); }
+  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
+  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
+  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
+  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
+  .badge-eco { border-color: #5dade2; color: #5dade2; }
+  .badge-soc { border-color: #58d68d; color: #58d68d; }
+  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
+  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
+  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
+  .ref-item:hover { background: white; }
+  .ref-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); flex-shrink: 0; }
+  .ref-title { font-size: 14px; font-weight: 600; }
+  .ref-domain { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .ref-arrow { margin-left: auto; font-size: 18px; color: var(--muted); }
+  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
+  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
+  .footer-nav-item:hover { background: var(--effect-bg); }
+  .fnav-right { border-left: 1px solid var(--border); text-align: right; align-items: flex-end; }
+  .fnav-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.1em; }
+  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
+  .fnav-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 3rem 2rem 2rem; }
+    .hero-meta { padding: 2rem; }
+    .content { padding: 0 2rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .section-nav { padding: 0 2rem; overflow-x: auto; }
+    .footer-nav { grid-template-columns: 1fr; }
+    .fnav-right { border-left: none; border-top: 1px solid var(--border); text-align: left; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Art × Placemaking DB</a>
+  <div class="breadcrumb"><a href="index.html">HOME</a><span>›</span><span>山梨</span></div>
+  <a href="index.html" class="nav-back">← 一覧</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-tags">
+      <span class="tag tag-region">中部</span>
+      <span class="tag tag-region">山梨県</span>
+      <span class="tag tag-type">写真芸術×高原リゾート×観光</span>
+    </div>
+    <div class="hero-index">Case 19 / 47</div>
+    <h1>清里フォトアートミュージアム周辺プロジェクト</h1>
+    <div class="hero-en">KIYOSATO MUSEUM OF PHOTOGRAPHIC ARTS</div>
+    <p class="hero-desc">八ヶ岳山麓・清里高原に開館した日本初の写真専門美術館K.MoPA（清里フォトアートミュージアム）を核とした、写真芸術と高原リゾート観光を結ぶまちづくりプロジェクト。</p>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-row"><span class="meta-label">LOCATION</span><span class="meta-value">山梨県北杜市（清里高原）</span></div>
+    <div class="meta-row"><span class="meta-label">STARTED</span><span class="meta-value">1995年〜（K.MoPA開館）</span></div>
+    <div class="meta-row"><span class="meta-label">SCALE</span><span class="meta-value">美術館・周辺施設・高原エリア</span></div>
+    <div class="meta-row"><span class="meta-label">ORGANIZER</span><span class="meta-value">公益財団法人清里フォトアートミュージアム</span></div>
+    <div class="meta-row"><span class="meta-label">CATEGORY</span><span class="meta-value">写真芸術／リゾートアート観光</span></div>
+  </div>
+</div>
+
+<nav class="section-nav">
+  <a href="#overview" class="sec-link">概要</a>
+  <a href="#features" class="sec-link">特徴</a>
+  <a href="#impact" class="sec-link">街への効果</a>
+  <a href="#refs" class="sec-link">参考</a>
+</nav>
+
+<div class="content">
+
+  <section id="overview" class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>概要 <span>OVERVIEW</span></h2>
+    </div>
+    <div class="overview-text">
+      <p>山梨県北杜市・清里高原に位置する清里フォトアートミュージアム（K.MoPA）は、1995年に開館した日本初の写真専門美術館です。国内外の写真作品コレクション・企画展・教育事業を通じて、清里の自然環境と写真芸術を結びつける文化的拠点として機能しています。</p>
+      <p>清里はかつてリゾートブームで賑わった高原地域ですが、その後の観光低迷を経て、アートを軸にした新たな観光価値を生み出す取り組みが進んでいます。K.MoPAはアーティスト・イン・レジデンス事業や、世界の写真家を招いた展覧会を展開し、国際的な写真芸術の交流拠点として「アートで訪れる清里」というイメージを構築しています。</p>
+      <p>八ヶ岳の雄大な自然・農業・アートが共存するこのエリアの取り組みは、山梨の自然景観というアイデンティティをアート文脈で再発見させる事例として注目されています。</p>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>特徴 <span>FEATURES</span></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <div class="feature-title">日本初・写真専門美術館としての先驆性</div>
+        <div class="feature-body">
+          <p>写真を美術として位置づけた日本最初の専門施設として、収集・保存・展示・教育を一体的に担う。国内外のアーティスト作品が高原の自然の中に息づく。</p>
+          <ul>
+            <li>国内外の写真作品を収蔵・展示する恒久コレクション</li>
+            <li>若手写真家の発掘・支援プログラム</li>
+            <li>写真家・研究者向けアーカイブの公開</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <div class="feature-title">高原の自然×写真芸術という唯一の体験</div>
+        <div class="feature-body">
+          <p>八ヶ岳の雄大な自然景観の中で写真芸術を鑑賞するという、他の美術館では得られない体験価値を提供。景観そのものが「ギャラリー」となる。</p>
+          <ul>
+            <li>清里の自然環境を活かした野外展示・インスタレーション</li>
+            <li>撮影ワークショップ・フォトツーリズムの実施</li>
+            <li>牧場・農場・高原リゾートとの連携</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <div class="feature-title">アーティスト・イン・レジデンスと国際交流</div>
+        <div class="feature-body">
+          <p>国内外の写真家が清里に滞在・制作する事業を展開。高原の自然を題材にした作品制作が、地域と世界の写真芸術をつなぐ。</p>
+          <ul>
+            <li>国内外アーティスト招聘・滞在制作支援</li>
+            <li>滞在成果の展覧会・出版</li>
+            <li>海外写真美術館・機関とのネットワーク構築</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">04</div>
+        <div class="feature-title">写真教育・市民参加プログラム</div>
+        <div class="feature-body">
+          <p>子どもから大人まで写真に親しむワークショップ・講座を通じて、地域市民の芸術的素養を育て、写真を通じた地域表現の文化を育む。</p>
+          <ul>
+            <li>学校向け写真教育プログラム</li>
+            <li>市民フォトコンテスト・展示</li>
+            <li>清里の自然を被写体にした地域記録活動</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact" class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>街への効果 <span>URBAN IMPACT</span></h2>
+    </div>
+    <p class="impact-intro">写真専門美術館が清里高原の自然×アートという観光価値を再構築し、交流人口回復・地域ブランドの再生・クリエイターの集積に貢献している。</p>
+
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-economic">経済的効果 — ECONOMIC</div>
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag"><span class="impact-tag-dot dot-eco"></span><span class="impact-tag-text">1-① 交流人口増加</span></div>
+          <div class="impact-card-title">写真・アートを目的とした観光誘客</div>
+          <div class="impact-card-body">リゾートブーム後に観光客が減少した清里において、写真芸術を目的とした訪問者・アート愛好家が年間を通じて来訪。アート観光の定着により観光の質的向上が実現。</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-card-tag"><span class="impact-tag-dot dot-eco"></span><span class="impact-tag-text">1-② 経済効果</span></div>
+          <div class="impact-card-title">文化観光消費・滞在型観光の促進</div>
+          <div class="impact-card-body">美術館訪問を軸にした宿泊・飲食・農場体験などとの連携で、清里エリアへの経済効果を持続的に創出。単日観光から滞在型観光へのシフトを促している。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-cultural">文化的効果 — CULTURAL</div>
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag"><span class="impact-tag-dot dot-cul"></span><span class="impact-tag-text">3-① 地域ブランディング・アイデンティティ</span></div>
+          <div class="impact-card-title">「清里×写真」という唯一の地域アイデンティティ</div>
+          <div class="impact-card-body">八ヶ岳の自然景観という山梨固有の風土をアート（写真）で可視化・発信することで、「自然の中でアートに出会える場所・清里」というブランドイメージが国内外に定着。かつてのリゾート地から文化的目的地への転換を実現している。</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-card-tag"><span class="impact-tag-dot dot-cul"></span><span class="impact-tag-text">3-③ クリエイティブエコシステム創出</span></div>
+          <div class="impact-card-title">写真家・アーティストが集う創造的環境の形成</div>
+          <div class="impact-card-body">レジデンスや展覧会を通じて国内外の写真家・アーティストが清里に集い、地域の自然を題材にした創作活動が継続的に行われる生態系が定着している。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-badges">
+      <span class="impact-badges-label">IMPACT TAGS</span>
+      <span class="badge badge-eco">1-① 交流人口増加</span>
+      <span class="badge badge-eco">1-② 経済効果</span>
+      <span class="badge badge-cul">3-① 地域ブランディング</span>
+      <span class="badge badge-cul">3-③ クリエイティブエコシステム</span>
+    </div>
+  </section>
+
+  <section id="refs" class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>参考 <span>REFERENCES</span></h2>
+    </div>
+    <div class="refs-grid">
+      <a href="https://www.kmopa.com/" target="_blank" class="ref-item">
+        <div class="ref-icon">web</div>
+        <div><div class="ref-title">清里フォトアートミュージアム（K.MoPA）</div><div class="ref-domain">kmopa.com</div></div>
+        <span class="ref-arrow">↗</span>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<div class="footer-nav">
+  <a href="detail-fukui.html" class="footer-nav-item">
+    <span class="fnav-label">← PREV</span>
+    <span class="fnav-title">鯖江市めがねのまちのアートプロジェクト</span>
+    <span class="fnav-count">Case 18 — 福井</span>
+  </a>
+  <a href="detail-nagano.html" class="footer-nav-item fnav-right">
+    <span class="fnav-label">NEXT →</span>
+    <span class="fnav-title">北アルプス国際芸術祭</span>
+    <span class="fnav-count">Case 20 — 長野</span>
+  </a>
+</div>
+
+<footer>
+  <span>Art × Placemaking DB</span>
+  <span>Case 19 / 47 — 山梨</span>
+</footer>
+
+</body>
+</html>

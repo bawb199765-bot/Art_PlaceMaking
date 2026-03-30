@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>佐賀 — 有田陶磁器×アートプロジェクト | アート×まちづくりDB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+  .nav-logo:hover { color: var(--ink); }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
+  .nav-back:hover { background: var(--accent); color: white; }
+  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
+  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
+  .tag-region { border-color: var(--muted); color: var(--muted); }
+  .tag-type { border-color: var(--accent); color: var(--accent); }
+  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
+  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
+  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
+  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .meta-row:first-child { border-top: 1px solid var(--border); }
+  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
+  .meta-value { font-weight: 600; }
+  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
+  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
+  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
+  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
+  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
+  .overview-text p + p { margin-top: 1.5em; }
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
+  .feature-card { background: var(--paper); padding: 2rem; }
+  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
+  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
+  .feature-body ul { list-style: none; margin-top: 0.75rem; }
+  .feature-body li::before { content: '—  '; color: var(--muted); }
+  .feature-body li { margin-bottom: 4px; }
+  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .impact-category-group { margin-bottom: 2.5rem; }
+  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
+  .cat-economic { background: var(--tag-eco); }
+  .cat-social { background: var(--tag-soc); }
+  .cat-cultural { background: var(--tag-cul); }
+  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
+  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
+  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
+  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-eco { background: var(--tag-eco); }
+  .dot-soc { background: var(--tag-soc); }
+  .dot-cul { background: var(--tag-cul); }
+  .impact-tag-text { color: var(--muted); }
+  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
+  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
+  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
+  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
+  .badge-eco { border-color: #5dade2; color: #5dade2; }
+  .badge-soc { border-color: #58d68d; color: #58d68d; }
+  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
+  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
+  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
+  .ref-item:hover { background: white; }
+  .ref-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); flex-shrink: 0; }
+  .ref-title { font-size: 14px; font-weight: 600; }
+  .ref-url { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  .ref-arrow { margin-left: auto; color: var(--accent); font-size: 18px; flex-shrink: 0; }
+  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
+  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
+  .footer-nav-item:hover { background: var(--effect-bg); }
+  .fnav-right { border-left: 1px solid var(--border); text-align: right; }
+  .fnav-dir { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
+  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
+  .fnav-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  .footer-case { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 3rem 2rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-meta { padding: 2rem; }
+    .content { padding: 0 2rem; }
+    .section-nav { padding: 0 2rem; overflow-x: auto; }
+    .features-grid { grid-template-columns: 1fr; }
+    .footer-nav { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">ART × PLACEMAKING DB</a>
+  <div class="breadcrumb"><a href="index.html">TOP</a><span>›</span><span>佐賀</span></div>
+  <a href="index.html" class="nav-back">← 一覧へ</a>
+</nav>
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-tags"><span class="tag tag-region">九州</span>
+      <span class="tag tag-region">佐賀県</span>
+      <span class="tag tag-type">産業×アート</span>
+      <span class="tag tag-type">陶磁器</span>
+</div>
+    <div class="hero-index">Case 41 / 47</div>
+    <h1>有田陶磁器×アートプロジェクト</h1>
+    <div class="hero-en">ARITA PORCELAIN ART PROJECT / SAGA</div>
+    <p class="hero-desc">世界的ブランドの有田焼産地・有田町を舞台に、400年の陶磁器産業と現代アートが融合するプロジェクト。有田焼の職人技術・窯元文化・白磁の美をアートで再解釈し、伝統産業の国際的競争力を高めながら地域固有のアイデンティティを発信する。</p>
+  </div>
+  <div class="hero-meta">    <div class="meta-row"><span class="meta-label">REGION</span><span class="meta-value">有田町・伊万里市・唐津市ほか</span></div>
+    <div class="meta-row"><span class="meta-label">STARTED</span><span class="meta-value">2016年〜（有田焼創業400年を機に）</span></div>
+    <div class="meta-row"><span class="meta-label">ORGANIZER</span><span class="meta-value">有田町・佐賀県・有田陶磁器工業協同組合</span></div>
+    <div class="meta-row"><span class="meta-label">SCALE</span><span class="meta-value">有田・伊万里・唐津・吉野ヶ里エリア</span></div>
+    <div class="meta-row"><span class="meta-label">KEYWORDS</span><span class="meta-value">有田焼・伊万里焼・唐津焼・白磁・窯元文化</span></div></div>
+</div>
+<div class="section-nav">
+  <a href="#overview" class="sec-link">01 概要</a>
+  <a href="#features" class="sec-link">02 特徴</a>
+  <a href="#impact" class="sec-link">03 街への効果</a>
+  <a href="#refs" class="sec-link">04 参考</a>
+</div>
+<div class="content">
+  <section class="section" id="overview">
+    <div class="section-header"><span class="section-num">01</span><h2>概要 <span>OVERVIEW</span></h2></div>
+    <div class="overview-text">      <p>有田陶磁器アートプロジェクトは、2016年の有田焼創業400周年を契機に始まった伝統産業とアートの融合プロジェクトです。17世紀初頭から続く有田焼の窯元文化・白磁の技術・藍のコバルトブルーという有田固有の美意識を、現代アーティストが新たな視点で再解釈します。</p>
+      <p>国内外のアーティストが有田の窯元に長期滞在し、職人と共に作品を制作するレジデンスプログラムが核心です。「土・火・釉薬」という陶磁器制作の根源的な素材・プロセスが現代アート表現に取り込まれ、伝統と革新が交差する新たな有田焼の文化的文脈が生まれます。</p>
+      <p>また、世界的な陶磁器見本市・メッセフランクフルトとのコラボレーションや、ヨーロッパの磁器産地（マイセン・セーブル・デルフト）との国際交流も活発で、有田焼の国際的ブランド価値のさらなる向上を図っています。</p></div>
+  </section>
+  <section class="section" id="features">
+    <div class="section-header"><span class="section-num">02</span><h2>特徴 <span>FEATURES</span></h2></div>
+    <div class="features-grid"><div class="feature-card"><div class="feature-num">01</div><div class="feature-title">有田窯元でのアーティスト・レジデンス</div><div class="feature-body"><p>国内外のアーティストが有田の窯元に長期滞在し、職人と共に陶磁器作品を制作。「白磁の白さ」「コバルトの青」「炎と土」という有田焼の本質的な素材美がアート表現の核となる。</p><ul><li>窯元でのオープンアトリエ・制作プロセス公開</li><li>職人×アーティストのコラボ有田焼作品の商品化</li><li>世界の陶芸家を招聘する国際レジデンスプログラム</li></ul></div></div>
+<div class="feature-card"><div class="feature-num">02</div><div class="feature-title">有田の白磁×現代美術の展示</div><div class="feature-body"><p>有田の歴史的な街並み・窯元・旧磁器商家を会場に、白磁をテーマにした現代美術の展覧会を開催。有田の街全体が美術館となる「まちじゅうギャラリー」スタイルで観光客を誘導する。</p><ul><li>有田町内の空き店舗・古民家ギャラリー化</li><li>旧磁器商家の蔵をアートスペースに活用</li><li>有田焼のタイル・建材を活用した公共アートの設置</li></ul></div></div>
+<div class="feature-card"><div class="feature-num">03</div><div class="feature-title">欧州磁器産地との国際交流</div><div class="feature-body"><p>マイセン（ドイツ）・セーブル（フランス）・デルフト（オランダ）など欧州の磁器産地との姉妹提携・共同制作事業を展開。世界的な磁器文化の文脈の中で有田焼の固有性と普遍性を探求する。</p><ul><li>マイセン×有田焼の共同制作作品</li><li>欧州磁器産地との職人交換プログラム</li><li>有田焼の国際見本市・メッセフランクフルト出展支援</li></ul></div></div>
+<div class="feature-card"><div class="feature-num">04</div><div class="feature-title">唐津・伊万里との広域連携</div><div class="feature-body"><p>唐津焼・伊万里焼・鍋島焼など佐賀固有の多様な陶磁器文化を広域的に連携させ、「佐賀は焼き物の国」というブランドを束ねて発信。吉野ヶ里歴史公園との連携で佐賀の歴史的深みも加える。</p><ul><li>有田・伊万里・唐津を回遊する陶磁器ツーリズムルート</li><li>吉野ヶ里遺跡×焼き物の歴史を繋ぐ展示</li><li>佐賀焼き物博覧会の定期開催</li></ul></div></div>
+</div>
+  </section>
+  <section class="section" id="impact">
+    <div class="section-header"><span class="section-num">03</span><h2>街への効果 <span>URBAN IMPACT</span></h2></div>
+    <p class="impact-intro">有田焼400年の産業文化を核に、産業の国際的付加価値向上・地域ブランドの強化・観光誘客が連動する。</p>
+    <div class="impact-category-group"><div class="impact-cat-label cat-economic">ECONOMIC — 経済的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-eco"></div><span class="impact-tag-text">1-② 経済効果</span></div><div class="impact-card-title">有田焼ブランドの国際的付加価値向上</div><div class="impact-card-body">アーティストとのコラボ作品・国際レジデンス成果の発表が欧米・アジアの富裕層コレクター市場への訴求力を高め、有田焼の単価上昇・新規輸出先開拓につながっている。</div></div>
+<div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-eco"></div><span class="impact-tag-text">1-③ 都市空間の再編</span></div><div class="impact-card-title">有田の空き商家・窯跡の文化拠点化</div><div class="impact-card-body">後継者不足で空き家化した旧磁器商家・廃窯跡がギャラリー・アーティスト・レジデンス施設として再生され、有田の歴史的街並みの保全と活用が進んでいる。</div></div>
+</div></div>
+<div class="impact-category-group"><div class="impact-cat-label cat-cultural">CULTURAL — 文化的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-① 地域ブランディング・アイデンティティ</span></div><div class="impact-card-title">有田焼の産業文化的価値のアートによる国際発信</div><div class="impact-card-body">有田焼の白磁・コバルトブルー・窯元文化という佐賀固有の産業的美意識がアートを通じて国際的に再発見され、住民が「日本の磁器文化の発祥地」という誇りを再確認する機会となっている。</div></div>
+<div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-② ランドマーク形成</span></div><div class="impact-card-title">有田の街並みのアート的観光地化</div><div class="impact-card-body">窯元・旧磁器商家・トンバイ塀の街並みという有田固有の歴史的景観がアートと結びつくことで、焼き物好き以外の観光客も引き寄せる新しい文化的目的地として全国的認知が高まっている。</div></div>
+</div></div>
+
+    <div class="impact-badges"><span class="impact-badges-label">IMPACT TAGS</span><span class="badge badge-eco">1-② 経済効果</span>
+<span class="badge badge-eco">1-③ 都市空間の再編</span>
+<span class="badge badge-cul">3-① 地域ブランディング</span>
+<span class="badge badge-cul">3-② ランドマーク形成</span>
+</div>
+  </section>
+  <section class="section" id="refs">
+    <div class="section-header"><span class="section-num">04</span><h2>参考 <span>REFERENCES</span></h2></div>
+    <div class="refs-grid"><a href="https://arita.jp/" target="_blank" class="ref-item"><span class="ref-num">01</span><div><div class="ref-title">有田観光協会</div><div class="ref-url">arita.jp</div></div><span class="ref-arrow">→</span></a>
+<a href="https://sagabai.com/" target="_blank" class="ref-item"><span class="ref-num">02</span><div><div class="ref-title">佐賀県観光連盟</div><div class="ref-url">sagabai.com</div></div><span class="ref-arrow">→</span></a>
+<a href="https://arita-toujikinosato.jp/" target="_blank" class="ref-item"><span class="ref-num">03</span><div><div class="ref-title">有田陶磁の里プラザ</div><div class="ref-url">arita-toujikinosato.jp</div></div><span class="ref-arrow">→</span></a>
+</div>
+  </section>
+</div>
+<div class="footer-nav">
+  <a href="detail-fukuoka.html" class="footer-nav-item">
+    <span class="fnav-dir">← PREV</span>
+    <span class="fnav-title">アジア太平洋トリエンナーレ福岡</span>
+    <span class="fnav-count">Case 40 — 福岡</span>
+  </a>
+  <a href="detail-nagasaki.html" class="footer-nav-item fnav-right">
+    <span class="fnav-dir">NEXT →</span>
+    <span class="fnav-title">長崎・出島アートプロジェクト</span>
+    <span class="fnav-count">Case 42 — 長崎</span>
+  </a>
+</div>
+<footer>
+  <span class="footer-copy">© 2024 Art × Placemaking DB</span>
+  <span class="footer-case">Case 41 / 47 — 佐賀</span>
+</footer>
+</body>
+</html>

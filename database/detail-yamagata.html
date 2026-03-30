@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>山形 — 山形ビエンナーレ | アート×まちづくりDB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+  .nav-logo:hover { color: var(--ink); }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
+  .nav-back:hover { background: var(--accent); color: white; }
+  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
+  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
+  .tag-region { border-color: var(--muted); color: var(--muted); }
+  .tag-type { border-color: var(--accent); color: var(--accent); }
+  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
+  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
+  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
+  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .meta-row:first-child { border-top: 1px solid var(--border); }
+  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
+  .meta-value { font-weight: 600; }
+  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
+  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
+  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
+  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
+  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
+  .overview-text p + p { margin-top: 1.5em; }
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
+  .feature-card { background: var(--paper); padding: 2rem; }
+  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
+  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
+  .feature-body ul { list-style: none; margin-top: 0.75rem; }
+  .feature-body li::before { content: '—  '; color: var(--muted); }
+  .feature-body li { margin-bottom: 4px; }
+  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .impact-category-group { margin-bottom: 2.5rem; }
+  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
+  .cat-economic { background: var(--tag-eco); }
+  .cat-social { background: var(--tag-soc); }
+  .cat-cultural { background: var(--tag-cul); }
+  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
+  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
+  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
+  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-eco { background: var(--tag-eco); }
+  .dot-soc { background: var(--tag-soc); }
+  .dot-cul { background: var(--tag-cul); }
+  .impact-tag-text { color: var(--muted); }
+  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
+  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
+  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
+  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
+  .badge-eco { border-color: #5dade2; color: #5dade2; }
+  .badge-soc { border-color: #58d68d; color: #58d68d; }
+  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
+  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
+  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
+  .ref-item:hover { background: white; }
+  .ref-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+  .ref-icon img { width: 16px; height: 16px; }
+  .ref-title { font-size: 14px; font-weight: 600; }
+  .ref-domain { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .ref-arrow { margin-left: auto; font-size: 18px; color: var(--muted); }
+  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
+  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
+  .footer-nav-item:hover { background: var(--effect-bg); }
+  .fnav-right { border-left: 1px solid var(--border); text-align: right; align-items: flex-end; }
+  .fnav-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.1em; }
+  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
+  .fnav-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 3rem 2rem 2rem; }
+    .hero-meta { padding: 2rem; }
+    .content { padding: 0 2rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .section-nav { padding: 0 2rem; overflow-x: auto; }
+    .footer-nav { grid-template-columns: 1fr; }
+    .fnav-right { border-left: none; border-top: 1px solid var(--border); text-align: left; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Art × Placemaking DB</a>
+  <div class="breadcrumb">
+    <a href="index.html">HOME</a>
+    <span>›</span>
+    <span>山形</span>
+  </div>
+  <a href="index.html" class="nav-back">← 一覧</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-tags">
+      <span class="tag tag-region">東北</span>
+      <span class="tag tag-region">山形県</span>
+      <span class="tag tag-type">ビエンナーレ・都市アート</span>
+    </div>
+    <div class="hero-index">Case 06 / 47</div>
+    <h1>山形ビエンナーレ</h1>
+    <div class="hero-en">Yamagata Biennale</div>
+    <p class="hero-desc">東北芸術工科大学が主導する隔年開催の芸術祭。「山形の暮らし・産業・風土」をテーマに、市内の商店街・蔵・広場・農村集落などを舞台に国内外のアーティストが滞在制作・展示を行う。山形固有の食・工芸・自然をアートで再解釈し、地域のアイデンティティを問い直す試みを続けている。</p>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-row">
+      <span class="meta-label">開催地</span>
+      <span class="meta-value">山形県山形市（県全域）</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">開始年</span>
+      <span class="meta-value">2014年</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">開催頻度</span>
+      <span class="meta-value">隔年（偶数年）</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">主催</span>
+      <span class="meta-value">東北芸術工科大学</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">カテゴリ</span>
+      <span class="meta-value">大学主導型芸術祭・地域アート</span>
+    </div>
+  </div>
+</div>
+
+<nav class="section-nav">
+  <a href="#overview" class="sec-link">01 概要</a>
+  <a href="#features" class="sec-link">02 特徴</a>
+  <a href="#impact" class="sec-link">03 街への効果</a>
+  <a href="#refs" class="sec-link">04 参考</a>
+</nav>
+
+<div class="content">
+
+  <section id="overview" class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>概要 <span>Overview</span></h2>
+    </div>
+    <div class="overview-text">
+      <p>山形ビエンナーレは、東北芸術工科大学（TUAD）が主催し、山形市を中心に隔年開催される現代アートの芸術祭である。2014年に第1回が開催され、以降「山形の暮らし・産業・風土」を軸テーマに、毎回新たなキュレーションで展開されている。山形市中心部の商店街・蔵・公共空間に加え、周辺農村集落や蔵王・月山などの自然景観も会場として活用する。</p>
+      <p>特徴的なのは、大学（TUAD）が教育機関としての学術的視点とキュレーション能力を活かし、芸術祭を運営する「大学主導型」モデルである点。国内外から招聘したアーティストが山形に滞在しリサーチ・制作を行うことで、山形固有の素材（玉こんにゃく・芋煮・最上川・雪・桜桃・工芸）がアートによって新たな意味を付与される。人口減少・中心商業地の空洞化という課題に対し、文化的活動が解答の一つを提示している。</p>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>主な特徴 <span>Key Features</span></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <div class="feature-title">東北芸術工科大学によるキュレーション主導</div>
+        <div class="feature-body">
+          芸術大学の知的資源・ネットワーク・教育的視点が芸術祭の質を担保。学生・教員・卒業生が制作・運営・広報に参加し、大学と地域社会が深く接続するエコシステムを形成。
+          <ul>
+            <li>学生キュレーター・制作スタッフ育成</li>
+            <li>教員・研究者のリサーチ・ディレクション</li>
+            <li>卒業生ネットワークによる全国的な告知</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <div class="feature-title">山形固有の食・工芸・風土のアートによる再解釈</div>
+        <div class="feature-body">
+          山形の食文化（芋煮・最上川・さくらんぼ）、伝統工芸（鋳物・将棋駒・紅花染）、自然景観（月山・蔵王・最上川）を素材にアーティストが制作。「山形にしかないもの」の再発見を促す。
+          <ul>
+            <li>地場産業職人とのコラボレーション</li>
+            <li>農村・食・生活文化をテーマにした展示</li>
+            <li>自然景観をインスタレーション会場に転用</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <div class="feature-title">中心商業地・蔵の活用による回遊型展開</div>
+        <div class="feature-body">
+          山形市中心部の空き店舗・蔵・路地を会場として活用する回遊型の展示構成。来場者が街を歩きながら作品と出会う設計が、中心市街地の賑わい創出と連動している。
+          <ul>
+            <li>七日町・本町商店街での展示展開</li>
+            <li>歴史的な蔵・蔵座敷の一時活用</li>
+            <li>屋外パブリックアートの設置</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">04</div>
+        <div class="feature-title">滞在制作（AIR）による地域リサーチ深化</div>
+        <div class="feature-body">
+          国内外のアーティストが山形に長期滞在し、地域住民・職人・農家との交流を通じてリサーチ・制作を行うAIR（アーティスト・イン・レジデンス）プログラムを核に据える。
+          <ul>
+            <li>農家・職人宅でのリサーチ滞在</li>
+            <li>地域住民との共同制作・ワークショップ</li>
+            <li>滞在後も山形と関わり続ける関係人口の形成</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact" class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>街への効果 <span>Urban Impact</span></h2>
+    </div>
+    <p class="impact-intro">山形ビエンナーレの地域への効果を9分類システムで分析する。交流人口・都市空間再編・地域ブランディング・ランドマーク形成の4軸が主な効果軸として確認されている。</p>
+
+    <!-- 経済的効果 -->
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-economic">経済的効果 / Economic</div>
+      <div class="impact-cards">
+
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-eco"></span>
+            <span class="impact-tag-text">1-① 経済的効果｜交流人口増加</span>
+          </div>
+          <div class="impact-card-title">東北・全国からの文化観光客の誘引</div>
+          <div class="impact-card-body">隔年開催の芸術祭として、開催年に山形市への来訪者を集中的に創出。東北内の他県・首都圏・関西からの文化目的来訪者が増加し、宿泊・飲食・交通消費が市内に循環する。TUADの全国ネットワークによる告知力が来場者の広域誘致を支えている。</div>
+        </div>
+
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-eco"></span>
+            <span class="impact-tag-text">1-③ 経済的効果｜都市空間の再編</span>
+          </div>
+          <div class="impact-card-title">空き店舗・蔵の一時的アート活用による中心部活性化</div>
+          <div class="impact-card-body">山形市中心商業地の空き店舗・旧蔵・空き地を会場として活用することで、未使用空間に価値と人の動きを生み出す。商店街との協力関係が継続的に深まり、芸術祭期間外にも文化的用途での活用事例が増加している。</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 文化的効果 -->
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-cultural">文化的効果 / Cultural</div>
+      <div class="impact-cards">
+
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-cul"></span>
+            <span class="impact-tag-text">3-① 文化的効果｜地域ブランディング・アイデンティティ</span>
+          </div>
+          <div class="impact-card-title">山形固有の食・工芸・風土のアートによる再発見</div>
+          <div class="impact-card-body">玉こんにゃく・最上川・紅花・将棋駒・蔵王など山形固有の素材をアーティストがリサーチ・作品化することで、地域住民が「山形にしかないもの」の価値を再認識する機会が生まれる。外部アーティストの視点が、住民自身が見えていなかった地域固有の魅力を照射する。</div>
+        </div>
+
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-cul"></span>
+            <span class="impact-tag-text">3-② 文化的効果｜ランドマークの形成</span>
+          </div>
+          <div class="impact-card-title">芸術祭を通じた山形市の文化的ランドマーク更新</div>
+          <div class="impact-card-body">毎回の芸術祭で制作・設置される屋外作品・パブリックアートが街なかに点在することで、山形市に「アートで歩ける街」という文化的イメージが蓄積される。商店街・七日町エリアが文化的回遊エリアとして認識されるようになってきた。</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="impact-badges">
+      <span class="impact-badges-label">選定カテゴリ</span>
+      <span class="badge badge-eco">1-① 交流人口増加</span>
+      <span class="badge badge-eco">1-③ 都市空間の再編</span>
+      <span class="badge badge-cul">3-① 地域ブランディング</span>
+      <span class="badge badge-cul">3-② ランドマーク形成</span>
+    </div>
+  </section>
+
+  <section id="refs" class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>参考リンク <span>References</span></h2>
+    </div>
+    <div class="refs-grid">
+      <a href="https://biennale.tuad.ac.jp/" target="_blank" rel="noopener" class="ref-item">
+        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=biennale.tuad.ac.jp&sz=64" alt=""></div>
+        <div>
+          <div class="ref-title">山形ビエンナーレ 公式サイト</div>
+          <div class="ref-domain">biennale.tuad.ac.jp</div>
+        </div>
+        <div class="ref-arrow">→</div>
+      </a>
+      <a href="https://www.tuad.ac.jp/" target="_blank" rel="noopener" class="ref-item">
+        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=tuad.ac.jp&sz=64" alt=""></div>
+        <div>
+          <div class="ref-title">東北芸術工科大学 公式サイト</div>
+          <div class="ref-domain">tuad.ac.jp</div>
+        </div>
+        <div class="ref-arrow">→</div>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<div class="footer-nav">
+  <a href="detail-akita.html" class="footer-nav-item">
+    <span class="fnav-label">← 前の事例</span>
+    <span class="fnav-title">秋田公立美術大学×地域連携</span>
+    <span class="fnav-count">北海道・東北 — 5 / 7</span>
+  </a>
+  <a href="detail-fukushima.html" class="footer-nav-item fnav-right">
+    <span class="fnav-label">次の事例 →</span>
+    <span class="fnav-title">はじまりの美術館</span>
+    <span class="fnav-count">北海道・東北 — 7 / 7</span>
+  </a>
+</div>
+
+<footer>
+  <span>※掲載情報は2026年1月末時点の情報を参考にしています。</span>
+  <a href="index.html" style="color: var(--muted); text-decoration: none;">Art × Placemaking</a>
+</footer>
+
+</body>
+</html>

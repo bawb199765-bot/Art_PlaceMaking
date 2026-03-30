@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>青森県 — AOMORI GOKAN | アート×まちづくりDB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1714;
+    --paper: #f5f1eb;
+    --accent: #c8410e;
+    --muted: #8a7f72;
+    --border: #d4cec5;
+    --tag-eco: #1a5276;
+    --tag-soc: #1d6840;
+    --tag-cul: #6d2f8f;
+    --effect-bg: #faf7f2;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+  .nav-logo:hover { color: var(--ink); }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
+  .nav-back:hover { background: var(--accent); color: white; }
+  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
+  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
+  .tag-region { border-color: var(--muted); color: var(--muted); }
+  .tag-type { border-color: var(--accent); color: var(--accent); }
+  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
+  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
+  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
+  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .meta-row:first-child { border-top: 1px solid var(--border); }
+  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
+  .meta-value { font-weight: 600; }
+  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; }
+  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
+  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
+  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
+  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
+  .overview-text p + p { margin-top: 1.5em; }
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
+  .feature-card { background: var(--paper); padding: 2rem; }
+  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
+  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
+  .feature-body ul { list-style: none; margin-top: 0.75rem; }
+  .feature-body li::before { content: '—  '; color: var(--muted); }
+  .feature-body li { margin-bottom: 4px; }
+  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .impact-category-group { margin-bottom: 2.5rem; }
+  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
+  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
+  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
+  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-eco { background: var(--tag-eco); }
+  .dot-soc { background: var(--tag-soc); }
+  .dot-cul { background: var(--tag-cul); }
+  .impact-tag-text { color: var(--muted); }
+  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
+  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
+  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
+  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid; }
+  .badge-eco { border-color: #5dade2; color: #5dade2; }
+  .badge-soc { border-color: #58d68d; color: #58d68d; }
+  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
+  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
+  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
+  .ref-item:hover { background: white; }
+  .ref-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+  .ref-icon img { width: 16px; height: 16px; }
+  .ref-title { font-size: 14px; font-weight: 600; }
+  .ref-domain { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .ref-arrow { margin-left: auto; font-size: 18px; color: var(--muted); }
+  .footer-nav { border-top: 2px solid var(--ink); display: grid; grid-template-columns: 1fr 1fr; }
+  .footer-nav-item { padding: 2rem 4rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
+  .footer-nav-item:hover { background: rgba(0,0,0,0.03); }
+  .footer-nav-item + .footer-nav-item { border-left: 1px solid var(--border); }
+  .fnav-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
+  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 600; }
+  .fnav-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  .fnav-right { text-align: right; }
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 4rem 1.5rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-meta { padding: 2rem 1.5rem; }
+    .content { padding: 0 1.5rem; }
+    .section-nav { padding: 0 1.5rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .footer-nav { grid-template-columns: 1fr; }
+    .footer-nav-item { padding: 2rem 1.5rem; }
+    .footer-nav-item + .footer-nav-item { border-left: none; border-top: 1px solid var(--border); }
+    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
+    .fnav-right { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Art × まちづくりDB</a>
+  <div class="breadcrumb">
+    <a href="index.html">TOP</a>
+    <span>›</span>
+    <span>北海道・東北</span>
+    <span>›</span>
+    <span>青森県</span>
+  </div>
+  <a href="index.html" class="nav-back">← 一覧</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-tags">
+      <span class="tag tag-region">北海道・東北</span>
+      <span class="tag tag-type">行政主導型（常設ネットワーク型）</span>
+    </div>
+    <div class="hero-index">Aomori — 02</div>
+    <h1>AOMORI GOKAN</h1>
+    <div class="hero-en">Aomori Gokan Art Network</div>
+    <p class="hero-desc">青森県内の主要な美術館・文化施設を一つの"文化圏"として捉え直す取り組み。既存インフラの編集力で、県全体をミュージアムのように体験させる。</p>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-row">
+      <span class="meta-label">場所</span>
+      <span class="meta-value">青森市・十和田市・弘前市ほか</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">形態</span>
+      <span class="meta-value">常設（連携事業として継続）</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">始動</span>
+      <span class="meta-value">2023年度〜</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">主催</span>
+      <span class="meta-value">青森県（青森県立美術館を中心に各館が連携）</span>
+    </div>
+  </div>
+</section>
+
+<nav class="section-nav">
+  <a href="#overview" class="sec-link">概要</a>
+  <a href="#features" class="sec-link">特徴</a>
+  <a href="#impact" class="sec-link">街への効果</a>
+  <a href="#refs" class="sec-link">参考</a>
+</nav>
+
+<div class="content">
+
+  <section id="overview" class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>概要 <span>Overview</span></h2>
+    </div>
+    <div class="overview-text">
+      <p>青森県内に点在する主要な美術館・文化施設を一つの"文化圏・回遊圏"として捉え直す取り組み。各館が独立して運営されながらも、展示連携・情報発信・共通テーマ設定などを通じて、「県全体をミュージアムのように体験する」構造をつくっている。</p>
+      <p>参加美術館は青森県立美術館、十和田市現代美術館、弘前れんが倉庫美術館など。2023年度より連携事業として本格始動した。</p>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>特徴 <span>Key Features</span></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <div class="feature-title">「芸術祭をやらない」戦略</div>
+        <div class="feature-body">
+          期間限定の大型芸術祭ではない、既存の文化インフラを束ねる編集型アプローチ。運営負荷・一過性を回避。
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <div class="feature-title">点在型・分散型の文化拠点ネットワーク</div>
+        <div class="feature-body">
+          個性の異なる拠点が補完関係を形成。「一都市集中」ではなく、県全体をスケールにした文化戦略。
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <div class="feature-title">風土・歴史・現代性を横断</div>
+        <div class="feature-body">
+          縄文文化、近代美術、現代アートを横断的に扱い、「青森らしさ」を単一の文脈に固定しない。
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">04</div>
+        <div class="feature-title">観光と文化政策の中間に位置する設計</div>
+        <div class="feature-body">
+          観光イベントに寄りすぎず、かつ文化施設の内向き化も避ける。文化を"移動・滞在"と結びつける。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact" class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>街への効果 <span>Urban Impact</span></h2>
+    </div>
+    <p class="impact-intro">以下の効果を、経済・社会・文化の3領域、9つの観点から分類・整理。各事例につき最も当てはまる4項目を選定しています。</p>
+
+    <div class="impact-category-group">
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-eco"></span>
+            <span class="impact-tag-text">1-① 経済的効果｜交流人口増加</span>
+          </div>
+          <div class="impact-card-title">複数都市を巡る文化観光の創出</div>
+          <div class="impact-card-body">青森市・十和田市・弘前市など複数都市を巡る動機づけを提供。単一館への来訪から「県内周遊」へと観光スタイルを変容させ、宿泊を伴う滞在型の文化観光客を増加。点の観光から線・面の体験へと転換を促している。</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-eco"></span>
+            <span class="impact-tag-text">1-③ 経済的効果｜都市空間の再編</span>
+          </div>
+          <div class="impact-card-title">既存文化インフラの有効活用</div>
+          <div class="impact-card-body">新規大型施設投資に頼らず、既存の美術館・文化施設を編集・再接続することで価値を最大化。弘前れんが倉庫美術館のような産業遺産転用施設も連携に組み込み、空間の文化的再編を実現している。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-category-group">
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-cul"></span>
+            <span class="impact-tag-text">3-① 文化的効果｜地域ブランディング・アイデンティティ</span>
+          </div>
+          <div class="impact-card-title">「現代文化・美術の青森」への認識更新</div>
+          <div class="impact-card-body">「ねぶた・自然」だけでなく「現代文化・美術の県」という認識を付加。縄文、近代美術、現代アートを横断的に発信することで、青森の多層的な文化アイデンティティを県スケールで再構築。国内外への文化発信力を強化。</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-cul"></span>
+            <span class="impact-tag-text">3-③ 文化的効果｜クリエイティブエコシステム創出</span>
+          </div>
+          <div class="impact-card-title">人口減少地域での持続的文化モデル提示</div>
+          <div class="impact-card-body">芸術祭の開催が難しい広域分散・人口減少県でも成立する「編集型文化戦略」のモデルを確立。各館の専門性と独自性を活かしつつ連携することで、持続的な文化エコシステムを形成。地方都市の文化政策の参照点となっている。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-badges">
+      <span class="impact-badges-label">選定カテゴリ</span>
+      <span class="badge badge-eco">1-① 交流人口増加</span>
+      <span class="badge badge-eco">1-③ 都市空間の再編</span>
+      <span class="badge badge-cul">3-① 地域ブランディング</span>
+      <span class="badge badge-cul">3-③ クリエイティブエコシステム</span>
+    </div>
+  </section>
+
+  <section id="refs" class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>参考リンク <span>References</span></h2>
+    </div>
+    <div class="refs-grid">
+      <a href="https://aomori-gokan.jp/" target="_blank" rel="noopener" class="ref-item">
+        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=aomori-gokan.jp&sz=64" alt=""></div>
+        <div>
+          <div class="ref-title">AOMORI GOKAN 公式サイト</div>
+          <div class="ref-domain">aomori-gokan.jp</div>
+        </div>
+        <div class="ref-arrow">→</div>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<div class="footer-nav">
+  <a href="detail-hokkaido.html" class="footer-nav-item">
+    <span class="fnav-label">← 前の事例</span>
+    <span class="fnav-title">札幌国際芸術祭</span>
+    <span class="fnav-count">北海道・東北 — 1 / 7</span>
+  </a>
+  <a href="detail-iwate.html" class="footer-nav-item fnav-right">
+    <span class="fnav-label">次の事例 →</span>
+    <span class="fnav-title">三陸国際芸術祭</span>
+    <span class="fnav-count">北海道・東北 — 3 / 7</span>
+  </a>
+</div>
+
+<footer>
+  <span>※掲載情報は2026年1月末時点の情報を参考にしています。</span>
+  <a href="index.html" style="color: var(--muted); text-decoration: none;">Art × Placemaking</a>
+</footer>
+
+</body>
+</html>

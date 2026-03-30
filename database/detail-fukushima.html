@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福島 — はじまりの美術館 | アート×まちづくりDB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+  .nav-logo:hover { color: var(--ink); }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
+  .nav-back:hover { background: var(--accent); color: white; }
+  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
+  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
+  .tag-region { border-color: var(--muted); color: var(--muted); }
+  .tag-type { border-color: var(--accent); color: var(--accent); }
+  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
+  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
+  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
+  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .meta-row:first-child { border-top: 1px solid var(--border); }
+  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
+  .meta-value { font-weight: 600; }
+  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
+  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
+  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
+  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
+  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
+  .overview-text p + p { margin-top: 1.5em; }
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
+  .feature-card { background: var(--paper); padding: 2rem; }
+  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
+  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
+  .feature-body ul { list-style: none; margin-top: 0.75rem; }
+  .feature-body li::before { content: '—  '; color: var(--muted); }
+  .feature-body li { margin-bottom: 4px; }
+  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .impact-category-group { margin-bottom: 2.5rem; }
+  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
+  .cat-economic { background: var(--tag-eco); }
+  .cat-social { background: var(--tag-soc); }
+  .cat-cultural { background: var(--tag-cul); }
+  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
+  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
+  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
+  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-eco { background: var(--tag-eco); }
+  .dot-soc { background: var(--tag-soc); }
+  .dot-cul { background: var(--tag-cul); }
+  .impact-tag-text { color: var(--muted); }
+  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
+  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
+  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
+  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
+  .badge-eco { border-color: #5dade2; color: #5dade2; }
+  .badge-soc { border-color: #58d68d; color: #58d68d; }
+  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
+  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
+  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
+  .ref-item:hover { background: white; }
+  .ref-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+  .ref-icon img { width: 16px; height: 16px; }
+  .ref-title { font-size: 14px; font-weight: 600; }
+  .ref-domain { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .ref-arrow { margin-left: auto; font-size: 18px; color: var(--muted); }
+  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
+  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
+  .footer-nav-item:hover { background: var(--effect-bg); }
+  .fnav-right { border-left: 1px solid var(--border); text-align: right; align-items: flex-end; }
+  .fnav-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.1em; }
+  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
+  .fnav-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 3rem 2rem 2rem; }
+    .hero-meta { padding: 2rem; }
+    .content { padding: 0 2rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .section-nav { padding: 0 2rem; overflow-x: auto; }
+    .footer-nav { grid-template-columns: 1fr; }
+    .fnav-right { border-left: none; border-top: 1px solid var(--border); text-align: left; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Art × Placemaking DB</a>
+  <div class="breadcrumb">
+    <a href="index.html">HOME</a>
+    <span>›</span>
+    <span>福島</span>
+  </div>
+  <a href="index.html" class="nav-back">← 一覧</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-tags">
+      <span class="tag tag-region">東北</span>
+      <span class="tag tag-region">福島県</span>
+      <span class="tag tag-type">包摂型美術館・農村アート</span>
+    </div>
+    <div class="hero-index">Case 07 / 47</div>
+    <h1>はじまりの美術館</h1>
+    <div class="hero-en">Hajimari Art Center</div>
+    <p class="hero-desc">福島県猪苗代町の古民家を改修した小さな美術館。「ここからはじまる」をコンセプトに、障がいのある人々の表現活動を中心に据えながら、地域住民・観光客・福祉従事者が交差する場を創出。東日本大震災後の福島の再生とアートの社会的役割を問い続ける実践の場。</p>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-row">
+      <span class="meta-label">所在地</span>
+      <span class="meta-value">福島県耶麻郡猪苗代町</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">開館年</span>
+      <span class="meta-value">2012年</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">運営</span>
+      <span class="meta-value">一般社団法人はじまりの美術館</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">施設形態</span>
+      <span class="meta-value">古民家改修型・地域密着型美術館</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">カテゴリ</span>
+      <span class="meta-value">社会包摂型アートスペース</span>
+    </div>
+  </div>
+</div>
+
+<nav class="section-nav">
+  <a href="#overview" class="sec-link">01 概要</a>
+  <a href="#features" class="sec-link">02 特徴</a>
+  <a href="#impact" class="sec-link">03 街への効果</a>
+  <a href="#refs" class="sec-link">04 参考</a>
+</nav>
+
+<div class="content">
+
+  <section id="overview" class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>概要 <span>Overview</span></h2>
+    </div>
+    <div class="overview-text">
+      <p>はじまりの美術館は、福島県猪苗代町の古民家を改修して2012年に開館した小規模ながら先駆的な美術館である。「ここからはじまる」というコンセプトのもと、知的障がい・精神障がいを持つ人々の表現活動（アール・ブリュット）を核に据えながら、地域住民・観光客・アーティスト・福祉従事者が交差する開かれた場を目指している。</p>
+      <p>磐梯山・猪苗代湖を擁する自然豊かな農村地帯に立地し、震災後の福島県内での開館という文脈も背負いながら、「アートと福祉が交差する場」「地域の暮らしに根ざした美術館」という独自のポジションを確立してきた。障がい者の表現を展示するだけでなく、地域の農業・生活文化との接続や、障がい者が地域社会に参加する機会の創出にも取り組んでいる。</p>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>主な特徴 <span>Key Features</span></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <div class="feature-title">障がいのある人の表現を中心に据えたキュレーション</div>
+        <div class="feature-body">
+          知的障がい・精神障がいを持つ人々が制作した作品（アール・ブリュット・アウトサイダーアート）を中心的な展示内容として位置づけ、表現の多様性とその固有の価値を発信する。
+          <ul>
+            <li>アール・ブリュット作品の収集・保存・展示</li>
+            <li>障がい者アーティストとの継続的な協働</li>
+            <li>福祉施設・支援機関との連携ネットワーク</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <div class="feature-title">古民家の改修による地域的文脈の継承</div>
+        <div class="feature-body">
+          猪苗代町の古民家を美術館に改修した施設デザインが、地域の建築的・歴史的文脈を引き継ぎながら現代的な文化施設として機能する。新築ではなく「改修」という選択が地域の暮らしとの連続性を保持。
+          <ul>
+            <li>農村集落の建築的文脈を尊重した改修設計</li>
+            <li>地域素材・職人の技術を活用</li>
+            <li>周辺の農村景観と美術館の調和</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <div class="feature-title">震災後の福島における文化的回復の実践</div>
+        <div class="feature-body">
+          東日本大震災・原発事故後に開館し、「福島からアートで発信する」という姿勢を継続。外部からの視線が福島に集まる中で、アートを通じた地域の主体的な発信・自己回復の場として機能している。
+          <ul>
+            <li>震災・原発問題をテーマにした展示企画</li>
+            <li>福島県内アーティストとの共同プロジェクト</li>
+            <li>復興の文脈でのアートの役割の発信</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">04</div>
+        <div class="feature-title">地域の農業・暮らし文化とアートの接続</div>
+        <div class="feature-body">
+          猪苗代の農業・農村生活・自然景観とアートを接続するプログラムを展開。農家との協働、農的体験とアート鑑賞を組み合わせたプログラムが、美術館と地域の暮らしの垣根を低くしている。
+          <ul>
+            <li>農業体験×アートワークショップの複合プログラム</li>
+            <li>地元農産物・食文化との連携イベント</li>
+            <li>地域住民が担い手として参加する運営</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact" class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>街への効果 <span>Urban Impact</span></h2>
+    </div>
+    <p class="impact-intro">はじまりの美術館の地域への効果を9分類システムで分析する。交流人口形成・コミュニティ形成・社会包摂・地域ブランディングの4軸が主効果として確認される。</p>
+
+    <!-- 経済的効果 -->
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-economic">経済的効果 / Economic</div>
+      <div class="impact-cards">
+
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-eco"></span>
+            <span class="impact-tag-text">1-① 経済的効果｜交流人口増加</span>
+          </div>
+          <div class="impact-card-title">磐梯・猪苗代への「アート目的」来訪者の創出</div>
+          <div class="impact-card-body">観光地・猪苗代に「アール・ブリュット美術館に行く」という新たな来訪目的を加え、文化観光客の誘引を実現。スキー・湖水浴など既存観光資源と組み合わせた周遊型来訪が増加し、地域の観光ポートフォリオを多様化させている。</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 社会的効果 -->
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-social">社会的効果 / Social</div>
+      <div class="impact-cards">
+
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-soc"></span>
+            <span class="impact-tag-text">2-① 社会的効果｜コミュニティ形成</span>
+          </div>
+          <div class="impact-card-title">地域住民・観光客・福祉関係者・アーティストの交差点</div>
+          <div class="impact-card-body">障がい者・地域住民・観光客・福祉従事者・アーティストが一つの場で交わる「混在型コミュニティ」が美術館の周辺に形成されている。特定の専門家や愛好家だけが集まる美術館ではなく、多様な人々が日常的に訪れる開かれた場として機能。</div>
+        </div>
+
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-soc"></span>
+            <span class="impact-tag-text">2-③ 社会的効果｜社会包摂・インクルージョン</span>
+          </div>
+          <div class="impact-card-title">障がい者の表現活動を通じた社会参加と包摂</div>
+          <div class="impact-card-body">知的・精神障がいを持つ人々の制作活動・展示参加を通じて、障がい者が地域社会に表現者・文化の担い手として参加する機会を創出。「ケアされる側」から「表現する主体」へという関係性の転換が、地域における障がい者への眼差しを変容させている。</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 文化的効果 -->
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-cultural">文化的効果 / Cultural</div>
+      <div class="impact-cards">
+
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-cul"></span>
+            <span class="impact-tag-text">3-① 文化的効果｜地域ブランディング・アイデンティティ</span>
+          </div>
+          <div class="impact-card-title">「アートと福祉が交差する猪苗代」という独自の文化的立場</div>
+          <div class="impact-card-body">磐梯山・猪苗代湖という自然景観の地に、障がい者の表現を核とした美術館が根づくことで、猪苗代町が「アール・ブリュットと農村の交差点」という独自の文化的立場を持つ土地として認識されるようになった。震災後の福島という文脈とも相まって、土地固有の記憶と再生の物語がアートを通じて可視化されている。</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="impact-badges">
+      <span class="impact-badges-label">選定カテゴリ</span>
+      <span class="badge badge-eco">1-① 交流人口増加</span>
+      <span class="badge badge-soc">2-① コミュニティ形成</span>
+      <span class="badge badge-soc">2-③ 社会包摂・インクルージョン</span>
+      <span class="badge badge-cul">3-① 地域ブランディング</span>
+    </div>
+  </section>
+
+  <section id="refs" class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>参考リンク <span>References</span></h2>
+    </div>
+    <div class="refs-grid">
+      <a href="https://hajimari-ac.com/" target="_blank" rel="noopener" class="ref-item">
+        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=hajimari-ac.com&sz=64" alt=""></div>
+        <div>
+          <div class="ref-title">はじまりの美術館 公式サイト</div>
+          <div class="ref-domain">hajimari-ac.com</div>
+        </div>
+        <div class="ref-arrow">→</div>
+      </a>
+      <a href="https://www.pref.fukushima.lg.jp/site/portal/index.html" target="_blank" rel="noopener" class="ref-item">
+        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=pref.fukushima.lg.jp&sz=64" alt=""></div>
+        <div>
+          <div class="ref-title">福島県 公式ポータルサイト</div>
+          <div class="ref-domain">pref.fukushima.lg.jp</div>
+        </div>
+        <div class="ref-arrow">→</div>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<div class="footer-nav">
+  <a href="detail-yamagata.html" class="footer-nav-item">
+    <span class="fnav-label">← 前の事例</span>
+    <span class="fnav-title">山形ビエンナーレ</span>
+    <span class="fnav-count">北海道・東北 — 6 / 7</span>
+  </a>
+  <a href="detail-ibaraki.html" class="footer-nav-item fnav-right">
+    <span class="fnav-label">次の事例 →</span>
+    <span class="fnav-title">取手アートプロジェクト</span>
+    <span class="fnav-count">関東 — 1 / 9</span>
+  </a>
+</div>
+
+<footer>
+  <span>※掲載情報は2026年1月末時点の情報を参考にしています。</span>
+  <a href="index.html" style="color: var(--muted); text-decoration: none;">Art × Placemaking</a>
+</footer>
+
+</body>
+</html>

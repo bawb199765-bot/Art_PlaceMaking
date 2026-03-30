@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三重 — 伊勢・志摩・熊野のアートプロジェクト | アート×まちづくりDB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+  .nav-logo:hover { color: var(--ink); }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
+  .nav-back:hover { background: var(--accent); color: white; }
+  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
+  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
+  .tag-region { border-color: var(--muted); color: var(--muted); }
+  .tag-type { border-color: var(--accent); color: var(--accent); }
+  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
+  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
+  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
+  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .meta-row:first-child { border-top: 1px solid var(--border); }
+  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
+  .meta-value { font-weight: 600; }
+  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
+  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
+  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
+  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
+  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
+  .overview-text p + p { margin-top: 1.5em; }
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
+  .feature-card { background: var(--paper); padding: 2rem; }
+  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
+  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
+  .feature-body ul { list-style: none; margin-top: 0.75rem; }
+  .feature-body li::before { content: '—  '; color: var(--muted); }
+  .feature-body li { margin-bottom: 4px; }
+  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .impact-category-group { margin-bottom: 2.5rem; }
+  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
+  .cat-economic { background: var(--tag-eco); }
+  .cat-social { background: var(--tag-soc); }
+  .cat-cultural { background: var(--tag-cul); }
+  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
+  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
+  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
+  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-eco { background: var(--tag-eco); }
+  .dot-soc { background: var(--tag-soc); }
+  .dot-cul { background: var(--tag-cul); }
+  .impact-tag-text { color: var(--muted); }
+  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
+  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
+  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
+  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
+  .badge-eco { border-color: #5dade2; color: #5dade2; }
+  .badge-soc { border-color: #58d68d; color: #58d68d; }
+  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
+  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
+  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
+  .ref-item:hover { background: white; }
+  .ref-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); flex-shrink: 0; }
+  .ref-title { font-size: 14px; font-weight: 600; }
+  .ref-url { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  .ref-arrow { margin-left: auto; color: var(--accent); font-size: 18px; flex-shrink: 0; }
+  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
+  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
+  .footer-nav-item:hover { background: var(--effect-bg); }
+  .fnav-right { border-left: 1px solid var(--border); text-align: right; }
+  .fnav-dir { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
+  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
+  .fnav-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  .footer-case { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 3rem 2rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-meta { padding: 2rem; }
+    .content { padding: 0 2rem; }
+    .section-nav { padding: 0 2rem; overflow-x: auto; }
+    .features-grid { grid-template-columns: 1fr; }
+    .footer-nav { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">ART × PLACEMAKING DB</a>
+  <div class="breadcrumb">
+    <a href="index.html">TOP</a>
+    <span>›</span>
+    <span>三重</span>
+  </div>
+  <a href="index.html" class="nav-back">← 一覧へ</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-tags">
+      <span class="tag tag-region">東海</span>
+      <span class="tag tag-region">三重県</span>
+      <span class="tag tag-type">アートプロジェクト</span>
+      <span class="tag tag-type">地域芸術祭</span>
+    </div>
+    <div class="hero-index">Case 24 / 47</div>
+    <h1>熊野古道<br>アートプロジェクト</h1>
+    <div class="hero-en">KUMANO KODO ART PROJECT / MIE</div>
+    <p class="hero-desc">世界遺産「熊野古道」の沿道集落を舞台に、巡礼路の精神性と現代アートを融合させた取り組み。過疎化が進む山里に国内外のアーティストを招聘し、地域住民との協働制作を通じてコミュニティの再生と聖地文化の継承を図る。</p>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-row">
+      <span class="meta-label">REGION</span>
+      <span class="meta-value">三重県南部（尾鷲・熊野・御浜）</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">STARTED</span>
+      <span class="meta-value">2010年〜</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">ORGANIZER</span>
+      <span class="meta-value">三重県・熊野古道センター</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">SCALE</span>
+      <span class="meta-value">世界遺産沿道複数集落</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">KEYWORDS</span>
+      <span class="meta-value">聖地巡礼・過疎・協働・世界遺産</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-nav">
+  <a href="#overview" class="sec-link">01 概要</a>
+  <a href="#features" class="sec-link">02 特徴</a>
+  <a href="#impact" class="sec-link">03 街への効果</a>
+  <a href="#refs" class="sec-link">04 参考</a>
+</div>
+
+<div class="content">
+
+  <section class="section" id="overview">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>概要 <span>OVERVIEW</span></h2>
+    </div>
+    <div class="overview-text">
+      <p>熊野古道アートプロジェクトは、ユネスコ世界遺産に登録された巡礼路「熊野古道」の沿道地域を舞台として展開されるアートと地域再生の複合的な取り組みです。南紀の豊かな自然と独特の精神文化を背景に、現代アーティストが地域住民と共に創作活動を行い、失われつつある集落の活力を取り戻すことを目指しています。</p>
+      <p>古道沿いの集落では空き家を活用したアーティスト・イン・レジデンス、森や沿岸部を舞台にした野外インスタレーション、地域の職人や漁師との共同ワークショップなど多彩なプログラムが展開されます。「歩く」という巡礼行為とアート鑑賞を結びつけた体験は、訪問者に深い記憶と場所への愛着を生み出します。</p>
+      <p>また、訪日外国人観光客が熊野古道を訪れる機会を活用し、アートを介した国際文化交流も盛んに行われています。地域アイデンティティを世界に発信しながら、地元住民が自らの土地の価値を再発見するプロセスが重視されています。</p>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>特徴 <span>FEATURES</span></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <div class="feature-title">世界遺産と現代アートの接続</div>
+        <div class="feature-body">
+          <p>千年以上の歴史を持つ巡礼路と現代の創造表現を融合。古道の精神性—生と死、自然と人間、聖と俗—をモチーフにした作品が道中各所に点在し、歩く体験を豊かにする。</p>
+          <ul>
+            <li>古道沿いの社や祠にインタラクティブ作品</li>
+            <li>森林・海岸の自然素材を用いた野外彫刻</li>
+            <li>地域の口承文化を映像や音響で記録・展示</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <div class="feature-title">集落単位の協働制作</div>
+        <div class="feature-body">
+          <p>各集落に長期滞在するアーティストが住民と共に作品を制作。漁師、木こり、農家など地域の職人技術や生活知識がアート表現に取り込まれ、地域固有の文化が可視化される。</p>
+          <ul>
+            <li>空き家・空き蔵を活用したスタジオ兼展示空間</li>
+            <li>地域の素材（木材・石・海産物）を用いた制作</li>
+            <li>子どもから高齢者まで参加するWSプログラム</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <div class="feature-title">国際レジデンスと文化交流</div>
+        <div class="feature-body">
+          <p>国内外からアーティストを招聘するレジデンス事業を展開。訪日外国人観光客と地域住民が同じアート体験を共有する場を創出し、言語を超えたコミュニケーションを促進する。</p>
+          <ul>
+            <li>年間10〜15組の国際レジデンスアーティスト</li>
+            <li>スペイン・カミーノ・デ・サンティアゴとの姉妹路協定</li>
+            <li>多言語対応のアートガイドツアー</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">04</div>
+        <div class="feature-title">移住・定住促進プログラム</div>
+        <div class="feature-body">
+          <p>アーティスト・イン・レジデンスに参加した若いクリエイターが地域に魅力を感じ、移住・定住するケースが増加。空き家バンクとの連携でアーティスト向け住居をマッチングする仕組みも整備。</p>
+          <ul>
+            <li>移住後の起業・創作活動を支援する補助金制度</li>
+            <li>地域おこし協力隊とアート事業の連携</li>
+            <li>都市部クリエイターへの移住体験プログラム</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="impact">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>街への効果 <span>URBAN IMPACT</span></h2>
+    </div>
+    <p class="impact-intro">聖地文化を核に、コミュニティの再生・移住促進・地域ブランディングの三軸が連動する複合的な効果を生んでいる。</p>
+
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-social">SOCIAL — 社会的効果</div>
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag"><div class="impact-tag-dot dot-soc"></div><span class="impact-tag-text">2-① コミュニティ形成</span></div>
+          <div class="impact-card-title">集落の絆再生と世代間対話</div>
+          <div class="impact-card-body">長期滞在アーティストが集落に溶け込み、住民同士の交流拠点となる「場」を生み出す。高齢の職人と若いアーティストの技術交換が活発になり、失われつつあった伝統技法の記録・継承が進んだ集落もある。</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-card-tag"><div class="impact-tag-dot dot-soc"></div><span class="impact-tag-text">2-② 移住・定住促進</span></div>
+          <div class="impact-card-title">クリエイター移住の連鎖</div>
+          <div class="impact-card-body">レジデンスをきっかけに熊野地域へ移住したアーティストや職人が徐々に増加。彼らが地域の古民家を改修しアトリエや民泊を開業するケースもあり、過疎集落に新たな経済活動の芽が生まれている。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-cultural">CULTURAL — 文化的効果</div>
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-③ クリエイティブエコシステム創出</span></div>
+          <div class="impact-card-title">聖地文化のクリエイティブ拠点化</div>
+          <div class="impact-card-body">熊野の精神文化・自然・口承文学を素材に創作するアーティストが世界中から集まることで、独自の表現文化が蓄積。地域がインスピレーションの源泉として国際的なクリエイター・コミュニティに認知されつつある。</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-① 地域ブランディング・アイデンティティ</span></div>
+          <div class="impact-card-title">世界遺産の精神性を現代に翻訳</div>
+          <div class="impact-card-body">アートが熊野古道の「再生・蘇り」という固有の精神的価値を現代語に翻訳し、国内外への発信力を高めた。巡礼という行為の普遍性がアートと結びつくことで、新たな層の訪問者を引き寄せている。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-badges">
+      <span class="impact-badges-label">IMPACT TAGS</span>
+      <span class="badge badge-soc">2-① コミュニティ形成</span>
+      <span class="badge badge-soc">2-② 移住・定住促進</span>
+      <span class="badge badge-cul">3-① 地域ブランディング</span>
+      <span class="badge badge-cul">3-③ クリエイティブエコシステム</span>
+    </div>
+  </section>
+
+  <section class="section" id="refs">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>参考 <span>REFERENCES</span></h2>
+    </div>
+    <div class="refs-grid">
+      <a href="https://www.pref.mie.lg.jp/BUNKA/" target="_blank" class="ref-item">
+        <span class="ref-num">01</span>
+        <div>
+          <div class="ref-title">三重県文化振興事業</div>
+          <div class="ref-url">pref.mie.lg.jp</div>
+        </div>
+        <span class="ref-arrow">→</span>
+      </a>
+      <a href="https://www.tb-kumano.jp/" target="_blank" class="ref-item">
+        <span class="ref-num">02</span>
+        <div>
+          <div class="ref-title">熊野古道センター</div>
+          <div class="ref-url">tb-kumano.jp</div>
+        </div>
+        <span class="ref-arrow">→</span>
+      </a>
+      <a href="https://www.kankomie.or.jp/" target="_blank" class="ref-item">
+        <span class="ref-num">03</span>
+        <div>
+          <div class="ref-title">三重県観光連盟</div>
+          <div class="ref-url">kankomie.or.jp</div>
+        </div>
+        <span class="ref-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<div class="footer-nav">
+  <a href="detail-aichi.html" class="footer-nav-item">
+    <span class="fnav-dir">← PREV</span>
+    <span class="fnav-title">国際芸術祭「あいち」</span>
+    <span class="fnav-count">Case 23 — 愛知</span>
+  </a>
+  <a href="detail-shiga.html" class="footer-nav-item fnav-right">
+    <span class="fnav-dir">NEXT →</span>
+    <span class="fnav-title">湖南アートプロジェクト</span>
+    <span class="fnav-count">Case 25 — 滋賀</span>
+  </a>
+</div>
+
+<footer>
+  <span class="footer-copy">© 2024 Art × Placemaking DB</span>
+  <span class="footer-case">Case 24 / 47 — 三重</span>
+</footer>
+
+</body>
+</html>

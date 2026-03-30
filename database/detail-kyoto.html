@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京都 — KYOTO STEAM | アート×まちづくりDB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+  .nav-logo:hover { color: var(--ink); }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
+  .nav-back:hover { background: var(--accent); color: white; }
+  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
+  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
+  .tag-region { border-color: var(--muted); color: var(--muted); }
+  .tag-type { border-color: var(--accent); color: var(--accent); }
+  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
+  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
+  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
+  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .meta-row:first-child { border-top: 1px solid var(--border); }
+  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
+  .meta-value { font-weight: 600; }
+  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
+  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
+  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
+  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
+  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
+  .overview-text p + p { margin-top: 1.5em; }
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
+  .feature-card { background: var(--paper); padding: 2rem; }
+  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
+  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
+  .feature-body ul { list-style: none; margin-top: 0.75rem; }
+  .feature-body li::before { content: '—  '; color: var(--muted); }
+  .feature-body li { margin-bottom: 4px; }
+  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .impact-category-group { margin-bottom: 2.5rem; }
+  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
+  .cat-economic { background: var(--tag-eco); }
+  .cat-social { background: var(--tag-soc); }
+  .cat-cultural { background: var(--tag-cul); }
+  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
+  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
+  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
+  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-eco { background: var(--tag-eco); }
+  .dot-soc { background: var(--tag-soc); }
+  .dot-cul { background: var(--tag-cul); }
+  .impact-tag-text { color: var(--muted); }
+  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
+  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
+  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
+  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
+  .badge-eco { border-color: #5dade2; color: #5dade2; }
+  .badge-soc { border-color: #58d68d; color: #58d68d; }
+  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
+  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
+  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
+  .ref-item:hover { background: white; }
+  .ref-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); flex-shrink: 0; }
+  .ref-title { font-size: 14px; font-weight: 600; }
+  .ref-url { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  .ref-arrow { margin-left: auto; color: var(--accent); font-size: 18px; flex-shrink: 0; }
+  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
+  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
+  .footer-nav-item:hover { background: var(--effect-bg); }
+  .fnav-right { border-left: 1px solid var(--border); text-align: right; }
+  .fnav-dir { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
+  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
+  .fnav-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  .footer-case { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 3rem 2rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-meta { padding: 2rem; }
+    .content { padding: 0 2rem; }
+    .section-nav { padding: 0 2rem; overflow-x: auto; }
+    .features-grid { grid-template-columns: 1fr; }
+    .footer-nav { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">ART × PLACEMAKING DB</a>
+  <div class="breadcrumb">
+    <a href="index.html">TOP</a>
+    <span>›</span>
+    <span>京都</span>
+  </div>
+  <a href="index.html" class="nav-back">← 一覧へ</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-tags">
+      <span class="tag tag-region">近畿</span>
+      <span class="tag tag-region">京都府</span>
+      <span class="tag tag-type">国際芸術祭</span>
+      <span class="tag tag-type">STEAM教育</span>
+    </div>
+    <div class="hero-index">Case 26 / 47</div>
+    <h1>KYOTO STEAM<br>世界文化交流祭</h1>
+    <div class="hero-en">KYOTO STEAM — WORLD CULTURE EXCHANGE FESTIVAL</div>
+    <p class="hero-desc">千年の都・京都が「伝統文化×最先端テクノロジー」を軸に展開する国際芸術祭。西陣・祇園・岡崎など歴史的市街地を舞台に、染色・陶芸・茶道などの伝統産業と現代アート・テクノロジーが交差する実験的な場を創出する。</p>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-row">
+      <span class="meta-label">REGION</span>
+      <span class="meta-value">京都市内・京都府全域</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">STARTED</span>
+      <span class="meta-value">2020年〜</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">ORGANIZER</span>
+      <span class="meta-value">京都府・京都市・京都商工会議所</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">SCALE</span>
+      <span class="meta-value">市内外30以上の会場</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">KEYWORDS</span>
+      <span class="meta-value">伝統×テクノロジー・西陣・岡崎・STEAM</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-nav">
+  <a href="#overview" class="sec-link">01 概要</a>
+  <a href="#features" class="sec-link">02 特徴</a>
+  <a href="#impact" class="sec-link">03 街への効果</a>
+  <a href="#refs" class="sec-link">04 参考</a>
+</div>
+
+<div class="content">
+
+  <section class="section" id="overview">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>概要 <span>OVERVIEW</span></h2>
+    </div>
+    <div class="overview-text">
+      <p>KYOTO STEAMは京都府が主導する国際的な芸術祭で、Science・Technology・Engineering・Art・Mathematicsを統合したSTEAM教育の概念を核に据えた文化プログラムです。京都が持つ1000年以上の伝統産業——西陣織・京友禅・清水焼・茶道・能楽——を最先端技術と融合させることで、現代の創造都市としての京都を国内外に発信します。</p>
+      <p>西陣の町家、岡崎の文化ゾーン、二条城周辺など歴史的市街地の多様な会場に、国際的な現代アーティストと京都の職人・工芸作家が協働した作品が展開。鑑賞者は単に作品を見るだけでなく、職人とアーティストの対話プロセスそのものを体験する場も設けられています。</p>
+      <p>また、京都の大学群（京大・同志社・立命館・京都芸術大学など）と連携した研究・教育プログラムが組み込まれており、学術知と芸術実践が交差する場として国際的な注目を集めています。</p>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>特徴 <span>FEATURES</span></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <div class="feature-title">伝統産業×テクノロジーの実験場</div>
+        <div class="feature-body">
+          <p>西陣織の染色技術とデジタルプリント、清水焼の成形技術と3Dプリンタなど、伝統と先端技術を掛け合わせた共同制作プロジェクトが核心。双方の技術者が互いの可能性を拡張し合う。</p>
+          <ul>
+            <li>AIを活用した西陣織パターン生成実験</li>
+            <li>AR技術と能舞台を組み合わせた没入体験</li>
+            <li>職人の「手業」をモーションキャプチャで記録</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <div class="feature-title">歴史的市街地をギャラリー化</div>
+        <div class="feature-body">
+          <p>町家・社寺・美術館・文化施設など市街地の既存資源を会場として徹底活用。「歩いて回れる芸術祭」として、観光客が普段見落としがちな路地や裏通りへの誘導も意図している。</p>
+          <ul>
+            <li>西陣地区の非公開町家をWS・展示空間に開放</li>
+            <li>岡崎文化ゾーン周遊型インスタレーション</li>
+            <li>神社境内での夜間ライトアート演出</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <div class="feature-title">大学・研究機関との産学連携</div>
+        <div class="feature-body">
+          <p>京都大学・京都芸術大学・立命館大学など市内の高等教育機関が共同研究者・出展者として参画。STEAM概念を体現した学際的プログラムが国際的な研究者・教育者を集める。</p>
+          <ul>
+            <li>国際シンポジウム・ワークショップ年30回以上</li>
+            <li>大学院生・研究者の展示参加枠</li>
+            <li>文化財デジタルアーカイブとの連携展示</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">04</div>
+        <div class="feature-title">インバウンドと経済波及</div>
+        <div class="feature-body">
+          <p>年間数千万人が訪れる世界的観光都市の集客基盤にアート×テクノロジーの体験価値を上乗せし、単なる寺社観光からの脱却を促進。高付加価値型の文化観光として滞在日数延長に貢献。</p>
+          <ul>
+            <li>伝統産業ツアーとの連携造成</li>
+            <li>クラフト体験×アート鑑賞パッケージ</li>
+            <li>外国人富裕層向け特別VIPプログラム</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="impact">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>街への効果 <span>URBAN IMPACT</span></h2>
+    </div>
+    <p class="impact-intro">世界的観光都市の強みに「創造都市」の付加価値を重ね、伝統産業の活性化・新たな経済波及・文化ブランドの強化が連動する。</p>
+
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-economic">ECONOMIC — 経済的効果</div>
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag"><div class="impact-tag-dot dot-eco"></div><span class="impact-tag-text">1-① 交流人口増加</span></div>
+          <div class="impact-card-title">文化観光の深化と滞在延長</div>
+          <div class="impact-card-body">寺社仏閣観光だけでなく「創造都市・京都」を体験したい国内外の来訪者を呼び込み、滞在型消費を促進。特に欧米・アジアの文化観光客がSTEAMコンテンツを目的に訪れるケースが増加している。</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-card-tag"><div class="impact-tag-dot dot-eco"></div><span class="impact-tag-text">1-② 経済効果</span></div>
+          <div class="impact-card-title">伝統産業への新規需要創出</div>
+          <div class="impact-card-body">西陣織・京友禅・清水焼など衰退傾向にある伝統産業がアートとの協働によって新たな商品・サービスを生み出し、若い顧客層や国際市場への販路を開拓。芸術祭を契機にしたビジネスマッチングも活発。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-cultural">CULTURAL — 文化的効果</div>
+      <div class="impact-cards">
+        <div class="impact-card">
+          <div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-① 地域ブランディング・アイデンティティ</span></div>
+          <div class="impact-card-title">「伝統×革新」の京都ブランド強化</div>
+          <div class="impact-card-body">歴史都市というイメージに「最先端の創造的実験場」という新しい側面を加え、京都のブランド価値を更新。西陣織や清水焼などの地場産業がアートを通じて国際的な文脈で再解釈・発信される。</div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-② ランドマーク形成</span></div>
+          <div class="impact-card-title">岡崎・西陣エリアの文化的再生</div>
+          <div class="impact-card-body">岡崎文化ゾーンや西陣地区が「現代アートと伝統が交差するエリア」として注目を集め、これまで観光客が足を向けなかった路地・町家が新たな文化スポットとして定着しつつある。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-badges">
+      <span class="impact-badges-label">IMPACT TAGS</span>
+      <span class="badge badge-eco">1-① 交流人口増加</span>
+      <span class="badge badge-eco">1-② 経済効果</span>
+      <span class="badge badge-cul">3-① 地域ブランディング</span>
+      <span class="badge badge-cul">3-② ランドマーク形成</span>
+    </div>
+  </section>
+
+  <section class="section" id="refs">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>参考 <span>REFERENCES</span></h2>
+    </div>
+    <div class="refs-grid">
+      <a href="https://kyoto-steam.com/" target="_blank" class="ref-item">
+        <span class="ref-num">01</span>
+        <div>
+          <div class="ref-title">KYOTO STEAM 公式サイト</div>
+          <div class="ref-url">kyoto-steam.com</div>
+        </div>
+        <span class="ref-arrow">→</span>
+      </a>
+      <a href="https://www.pref.kyoto.jp/bunka/" target="_blank" class="ref-item">
+        <span class="ref-num">02</span>
+        <div>
+          <div class="ref-title">京都府文化スポーツ部</div>
+          <div class="ref-url">pref.kyoto.jp</div>
+        </div>
+        <span class="ref-arrow">→</span>
+      </a>
+      <a href="https://kyoto-np.co.jp/" target="_blank" class="ref-item">
+        <span class="ref-num">03</span>
+        <div>
+          <div class="ref-title">京都新聞（文化芸術関連記事）</div>
+          <div class="ref-url">kyoto-np.co.jp</div>
+        </div>
+        <span class="ref-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<div class="footer-nav">
+  <a href="detail-shiga.html" class="footer-nav-item">
+    <span class="fnav-dir">← PREV</span>
+    <span class="fnav-title">びわ湖アートフェスティバル</span>
+    <span class="fnav-count">Case 25 — 滋賀</span>
+  </a>
+  <a href="detail-osaka.html" class="footer-nav-item fnav-right">
+    <span class="fnav-dir">NEXT →</span>
+    <span class="fnav-title">水都大阪アートプロジェクト</span>
+    <span class="fnav-count">Case 27 — 大阪</span>
+  </a>
+</div>
+
+<footer>
+  <span class="footer-copy">© 2024 Art × Placemaking DB</span>
+  <span class="footer-case">Case 26 / 47 — 京都</span>
+</footer>
+
+</body>
+</html>

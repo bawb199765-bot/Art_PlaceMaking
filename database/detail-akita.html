@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋田 — 秋田公立美術大学×地域連携 | アート×まちづくりDB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+  .nav-logo:hover { color: var(--ink); }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
+  .nav-back:hover { background: var(--accent); color: white; }
+  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
+  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
+  .tag-region { border-color: var(--muted); color: var(--muted); }
+  .tag-type { border-color: var(--accent); color: var(--accent); }
+  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
+  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
+  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
+  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .meta-row:first-child { border-top: 1px solid var(--border); }
+  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
+  .meta-value { font-weight: 600; }
+  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
+  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
+  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
+  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
+  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
+  .overview-text p + p { margin-top: 1.5em; }
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
+  .feature-card { background: var(--paper); padding: 2rem; }
+  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
+  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
+  .feature-body ul { list-style: none; margin-top: 0.75rem; }
+  .feature-body li::before { content: '—  '; color: var(--muted); }
+  .feature-body li { margin-bottom: 4px; }
+  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .impact-category-group { margin-bottom: 2.5rem; }
+  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
+  .cat-economic { background: var(--tag-eco); }
+  .cat-social { background: var(--tag-soc); }
+  .cat-cultural { background: var(--tag-cul); }
+  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
+  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
+  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
+  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-eco { background: var(--tag-eco); }
+  .dot-soc { background: var(--tag-soc); }
+  .dot-cul { background: var(--tag-cul); }
+  .impact-tag-text { color: var(--muted); }
+  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
+  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
+  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
+  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
+  .badge-eco { border-color: #5dade2; color: #5dade2; }
+  .badge-soc { border-color: #58d68d; color: #58d68d; }
+  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
+  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
+  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
+  .ref-item:hover { background: white; }
+  .ref-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+  .ref-icon img { width: 16px; height: 16px; }
+  .ref-title { font-size: 14px; font-weight: 600; }
+  .ref-domain { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .ref-arrow { margin-left: auto; font-size: 18px; color: var(--muted); }
+  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
+  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
+  .footer-nav-item:hover { background: var(--effect-bg); }
+  .fnav-right { border-left: 1px solid var(--border); text-align: right; align-items: flex-end; }
+  .fnav-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.1em; }
+  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
+  .fnav-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 3rem 2rem 2rem; }
+    .hero-meta { padding: 2rem; }
+    .content { padding: 0 2rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .section-nav { padding: 0 2rem; overflow-x: auto; }
+    .footer-nav { grid-template-columns: 1fr; }
+    .fnav-right { border-left: none; border-top: 1px solid var(--border); text-align: left; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Art × Placemaking DB</a>
+  <div class="breadcrumb">
+    <a href="index.html">HOME</a>
+    <span>›</span>
+    <span>秋田</span>
+  </div>
+  <a href="index.html" class="nav-back">← 一覧</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-tags">
+      <span class="tag tag-region">東北</span>
+      <span class="tag tag-region">秋田県</span>
+      <span class="tag tag-type">大学連携・農村アート</span>
+    </div>
+    <div class="hero-index">Case 05 / 47</div>
+    <h1>秋田公立美術大学×地域連携</h1>
+    <div class="hero-en">Akita University of Art × Community Collaboration</div>
+    <p class="hero-desc">2013年開学の秋田公立美術大学を軸に、農村集落・中心市街地・自然景観と接続するアートプロジェクト群。学生・教員・住民が協働し、人口減少が進む農山村での暮らしの再発見と、秋田固有の風土・民俗・産業をアートが媒介する試みが継続展開されている。</p>
+  </div>
+  <div class="hero-meta">
+    <div class="meta-row">
+      <span class="meta-label">拠点</span>
+      <span class="meta-value">秋田県秋田市・秋田県全域</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">開始年</span>
+      <span class="meta-value">2013年（大学開学）</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">主体</span>
+      <span class="meta-value">秋田公立美術大学 / 各地域実行委員会</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">形態</span>
+      <span class="meta-value">大学地域連携・滞在制作・農村プロジェクト</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">カテゴリ</span>
+      <span class="meta-value">大学連携型アートまちづくり</span>
+    </div>
+  </div>
+</div>
+
+<nav class="section-nav">
+  <a href="#overview" class="sec-link">01 概要</a>
+  <a href="#features" class="sec-link">02 特徴</a>
+  <a href="#impact" class="sec-link">03 街への効果</a>
+  <a href="#refs" class="sec-link">04 参考</a>
+</nav>
+
+<div class="content">
+
+  <section id="overview" class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2>概要 <span>Overview</span></h2>
+    </div>
+    <div class="overview-text">
+      <p>秋田公立美術大学（AUA）は、2013年に秋田市に開学した公立の美術大学で、「地域と共にある美術大学」を理念に掲げ、開学当初から地域連携プロジェクトを教育の中核に位置づけてきた。秋田の農村集落・漁村・自然景観・民俗文化などをフィールドに、学生・教員・地域住民が共同でリサーチ・制作・発表を行うプロジェクトが多数展開されている。</p>
+      <p>大学が触媒となり、あきた文化産業施設「松下」（旧料亭松下）のリノベーション活用や、農村での長期滞在型制作、地場産業（木工・漆・染織など）との協働など、秋田固有の資産をアートで再解釈するプロジェクトが蓄積されている。人口減少・少子高齢化が著しい秋田において、アートが移住・定住の文脈とも交差しながら地域の持続可能性に寄与している。</p>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2>主な特徴 <span>Key Features</span></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <div class="feature-title">大学を「地域の触媒」として機能させる設計</div>
+        <div class="feature-body">
+          教育カリキュラムに地域連携を組み込み、学生が実際の農村・集落・中心市街地でのプロジェクトを単位取得と連動して実施。大学が地域社会に対して開かれた実験場として機能する。
+          <ul>
+            <li>地域フィールドワークの正規カリキュラム化</li>
+            <li>農村集落での長期滞在制作プログラム</li>
+            <li>卒業後も秋田に残る人材の輩出</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <div class="feature-title">秋田固有の民俗・産業・自然をアートで再解釈</div>
+        <div class="feature-body">
+          なまはげ・竿燈などの民俗芸能、曲木・漆器・比内地鶏などの地場産業、田沢湖・男鹿半島の自然景観など、秋田固有の素材をリサーチ・アート化するプロジェクトが継続展開されている。
+          <ul>
+            <li>地場産業職人とのコラボレーション制作</li>
+            <li>民俗芸能の現代的再解釈プロジェクト</li>
+            <li>農村景観・棚田をフィールドにした制作</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <div class="feature-title">移住・定住と接続するアートコミュニティ</div>
+        <div class="feature-body">
+          大学関係者・卒業生・アーティストが秋田に定住し、地域のアートコミュニティを形成するケースが増加。移住促進政策とも連動しながら、アートを媒介とした「秋田で暮らす選択肢」の可視化に貢献。
+          <ul>
+            <li>卒業生による農村移住・拠点設立</li>
+            <li>県内市町村との連携移住促進プログラム</li>
+            <li>空き家をアトリエ・滞在施設として活用</li>
+          </ul>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">04</div>
+        <div class="feature-title">松下・旧料亭リノベーションによる拠点形成</div>
+        <div class="feature-body">
+          秋田市内の歴史的建物「旧料亭松下」を文化産業施設としてリノベーション活用。アート展示・ワークショップ・交流スペースとして機能し、中心市街地の文化的拠点として市民に親しまれている。
+          <ul>
+            <li>歴史的建造物の文化施設への転用</li>
+            <li>展示・制作・交流の複合文化拠点</li>
+            <li>観光・まちなか回遊との連携</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact" class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2>街への効果 <span>Urban Impact</span></h2>
+    </div>
+    <p class="impact-intro">秋田公立美術大学を軸とした地域連携プロジェクト群の都市・地域への効果を分析する。コミュニティ形成・移住促進・地域ブランディング・クリエイティブエコシステムの4軸での効果が顕著。</p>
+
+    <!-- 社会的効果 -->
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-social">社会的効果 / Social</div>
+      <div class="impact-cards">
+
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-soc"></span>
+            <span class="impact-tag-text">2-① 社会的効果｜コミュニティ形成</span>
+          </div>
+          <div class="impact-card-title">農村集落と大学・アーティストをつなぐ新たな関係性</div>
+          <div class="impact-card-body">高齢化が進む農村集落に学生・アーティストが継続的に関わることで、集落住民と外部者の間に新しい交流・協働関係が生まれている。単なる「調査対象」としてではなく、共に制作・表現する関係が集落のコミュニティ再活性化に貢献。</div>
+        </div>
+
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-soc"></span>
+            <span class="impact-tag-text">2-② 社会的効果｜移住・定住促進</span>
+          </div>
+          <div class="impact-card-title">アートを媒介とした「秋田に住む」選択肢の可視化</div>
+          <div class="impact-card-body">大学卒業生・関係アーティストが秋田に定住し、農村や中心市街地でアトリエ・拠点を構えるケースが増加。アートコミュニティを通じた移住促進が、行政の移住支援施策と相乗効果を生んでいる。</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 文化的効果 -->
+    <div class="impact-category-group">
+      <div class="impact-cat-label cat-cultural">文化的効果 / Cultural</div>
+      <div class="impact-cards">
+
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-cul"></span>
+            <span class="impact-tag-text">3-① 文化的効果｜地域ブランディング・アイデンティティ</span>
+          </div>
+          <div class="impact-card-title">秋田固有の民俗・産業・自然のアートによる再発見</div>
+          <div class="impact-card-body">なまはげ・曲木・漆・農村景観など秋田固有の素材をアートが媒介することで、県内外の人々が「秋田にしかないもの」を再評価する機会が生まれる。外部向けの観光ブランディングではなく、地域住民自身が固有の価値を再発見するプロセスとして機能している点が特徴。</div>
+        </div>
+
+        <div class="impact-card">
+          <div class="impact-card-tag">
+            <span class="impact-tag-dot dot-cul"></span>
+            <span class="impact-tag-text">3-③ 文化的効果｜クリエイティブエコシステム創出</span>
+          </div>
+          <div class="impact-card-title">地方に根ざした若手クリエイター育成のエコシステム</div>
+          <div class="impact-card-body">秋田公立美術大学を核に、学生・卒業生・地域住民・地場産業が連携するクリエイティブなネットワークが形成されつつある。東京等への人材流出に対し、「地方でクリエイターとして生きる」モデルを実証する事例として全国的にも注目されている。</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="impact-badges">
+      <span class="impact-badges-label">選定カテゴリ</span>
+      <span class="badge badge-soc">2-① コミュニティ形成</span>
+      <span class="badge badge-soc">2-② 移住・定住促進</span>
+      <span class="badge badge-cul">3-① 地域ブランディング</span>
+      <span class="badge badge-cul">3-③ クリエイティブエコシステム</span>
+    </div>
+  </section>
+
+  <section id="refs" class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2>参考リンク <span>References</span></h2>
+    </div>
+    <div class="refs-grid">
+      <a href="https://www.akibi.ac.jp/" target="_blank" rel="noopener" class="ref-item">
+        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=akibi.ac.jp&sz=64" alt=""></div>
+        <div>
+          <div class="ref-title">秋田公立美術大学 公式サイト</div>
+          <div class="ref-domain">akibi.ac.jp</div>
+        </div>
+        <div class="ref-arrow">→</div>
+      </a>
+      <a href="https://www.pref.akita.lg.jp/pages/archive/2285" target="_blank" rel="noopener" class="ref-item">
+        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=pref.akita.lg.jp&sz=64" alt=""></div>
+        <div>
+          <div class="ref-title">秋田県 文化・芸術振興ページ</div>
+          <div class="ref-domain">pref.akita.lg.jp</div>
+        </div>
+        <div class="ref-arrow">→</div>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<div class="footer-nav">
+  <a href="detail-miyagi.html" class="footer-nav-item">
+    <span class="fnav-label">← 前の事例</span>
+    <span class="fnav-title">仙台短編映像祭</span>
+    <span class="fnav-count">北海道・東北 — 4 / 7</span>
+  </a>
+  <a href="detail-yamagata.html" class="footer-nav-item fnav-right">
+    <span class="fnav-label">次の事例 →</span>
+    <span class="fnav-title">山形ビエンナーレ</span>
+    <span class="fnav-count">北海道・東北 — 6 / 7</span>
+  </a>
+</div>
+
+<footer>
+  <span>※掲載情報は2026年1月末時点の情報を参考にしています。</span>
+  <a href="index.html" style="color: var(--muted); text-decoration: none;">Art × Placemaking</a>
+</footer>
+
+</body>
+</html>

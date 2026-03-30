@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>徳島 — マチ★アソビ | アート×まちづくりDB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+  .nav-logo:hover { color: var(--ink); }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
+  .nav-back:hover { background: var(--accent); color: white; }
+  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
+  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
+  .tag-region { border-color: var(--muted); color: var(--muted); }
+  .tag-type { border-color: var(--accent); color: var(--accent); }
+  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
+  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
+  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
+  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .meta-row:first-child { border-top: 1px solid var(--border); }
+  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
+  .meta-value { font-weight: 600; }
+  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
+  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
+  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
+  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
+  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
+  .overview-text p + p { margin-top: 1.5em; }
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
+  .feature-card { background: var(--paper); padding: 2rem; }
+  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
+  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
+  .feature-body ul { list-style: none; margin-top: 0.75rem; }
+  .feature-body li::before { content: '—  '; color: var(--muted); }
+  .feature-body li { margin-bottom: 4px; }
+  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .impact-category-group { margin-bottom: 2.5rem; }
+  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
+  .cat-economic { background: var(--tag-eco); }
+  .cat-social { background: var(--tag-soc); }
+  .cat-cultural { background: var(--tag-cul); }
+  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
+  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
+  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
+  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-eco { background: var(--tag-eco); }
+  .dot-soc { background: var(--tag-soc); }
+  .dot-cul { background: var(--tag-cul); }
+  .impact-tag-text { color: var(--muted); }
+  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
+  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
+  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
+  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
+  .badge-eco { border-color: #5dade2; color: #5dade2; }
+  .badge-soc { border-color: #58d68d; color: #58d68d; }
+  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
+  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
+  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
+  .ref-item:hover { background: white; }
+  .ref-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); flex-shrink: 0; }
+  .ref-title { font-size: 14px; font-weight: 600; }
+  .ref-url { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  .ref-arrow { margin-left: auto; color: var(--accent); font-size: 18px; flex-shrink: 0; }
+  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
+  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
+  .footer-nav-item:hover { background: var(--effect-bg); }
+  .fnav-right { border-left: 1px solid var(--border); text-align: right; }
+  .fnav-dir { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
+  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
+  .fnav-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  .footer-case { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 3rem 2rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-meta { padding: 2rem; }
+    .content { padding: 0 2rem; }
+    .section-nav { padding: 0 2rem; overflow-x: auto; }
+    .features-grid { grid-template-columns: 1fr; }
+    .footer-nav { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">ART × PLACEMAKING DB</a>
+  <div class="breadcrumb"><a href="index.html">TOP</a><span>›</span><span>徳島</span></div>
+  <a href="index.html" class="nav-back">← 一覧へ</a>
+</nav>
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-tags"><span class="tag tag-region">四国</span>
+      <span class="tag tag-region">徳島県</span>
+      <span class="tag tag-type">アニメ・コンテンツ</span>
+      <span class="tag tag-type">地域芸術祭</span>
+</div>
+    <div class="hero-index">Case 36 / 47</div>
+    <h1>マチ★アソビ</h1>
+    <div class="hero-en">MACHI★ASOBI / TOKUSHIMA</div>
+    <p class="hero-desc">徳島市の城下町・眉山・吉野川河川敷を舞台にしたアニメ・マンガ・ゲームのポップカルチャーフェスティバル。サブカルチャーを地域活性化の武器として活用し、全国からのオタク観光客を呼び込みながら空き家・廃校の活用も推進する。</p>
+  </div>
+  <div class="hero-meta">    <div class="meta-row"><span class="meta-label">REGION</span><span class="meta-value">徳島市内・吉野川流域・那賀町</span></div>
+    <div class="meta-row"><span class="meta-label">STARTED</span><span class="meta-value">2009年〜（年2回）</span></div>
+    <div class="meta-row"><span class="meta-label">ORGANIZER</span><span class="meta-value">ufotable・徳島市</span></div>
+    <div class="meta-row"><span class="meta-label">SCALE</span><span class="meta-value">徳島市内各所・県内アウトリーチ</span></div>
+    <div class="meta-row"><span class="meta-label">KEYWORDS</span><span class="meta-value">アニメ・マンガ・コスプレ・阿波踊り・吉野川</span></div></div>
+</div>
+<div class="section-nav">
+  <a href="#overview" class="sec-link">01 概要</a>
+  <a href="#features" class="sec-link">02 特徴</a>
+  <a href="#impact" class="sec-link">03 街への効果</a>
+  <a href="#refs" class="sec-link">04 参考</a>
+</div>
+<div class="content">
+  <section class="section" id="overview">
+    <div class="section-header"><span class="section-num">01</span><h2>概要 <span>OVERVIEW</span></h2></div>
+    <div class="overview-text">      <p>マチ★アソビは徳島市のアニメ制作会社・ufotableが主導するポップカルチャーフェスティバルで、年2回（春・秋）開催されます。徳島の城下町・眉山山頂・吉野川河川敷・港エリアなど市内各地が会場となり、アニメ・マンガ・ゲームのコンテンツ体験とキャラクターグリーティング、声優トークなどが展開されます。</p>
+      <p>特定のサブカルチャーコンテンツを目的として全国からファンが訪れるというモデルは、一般的な「地域の文化資産を見せる」芸術祭とは異なるアプローチです。オタク・コスプレイヤー・アニメファンという特定コミュニティを徳島に呼び込むことで、飲食・宿泊・物販の消費を生み出しています。</p>
+      <p>近年は那賀町など過疎地域の古民家・廃校を「聖地化」してファンを誘導するアウトリーチ活動も行われており、ポップカルチャーの集客力を地方創生に応用する新しいモデルとして注目を集めています。</p></div>
+  </section>
+  <section class="section" id="features">
+    <div class="section-header"><span class="section-num">02</span><h2>特徴 <span>FEATURES</span></h2></div>
+    <div class="features-grid"><div class="feature-card"><div class="feature-num">01</div><div class="feature-title">ポップカルチャー×城下町の空間活用</div><div class="feature-body"><p>徳島の城下町・眉山・吉野川というローカルな風景とアニメ・マンガのコンテンツが重なることで、「ここでしか体験できない」聖地体験が生まれる。ufotableの制作拠点が徳島にあることで地元密着感も高い。</p><ul><li>眉山山頂でのアニメ野外イベント</li><li>吉野川河川敷の大型コスプレ広場</li><li>ufotableカフェの期間限定メニュー展開</li></ul></div></div>
+<div class="feature-card"><div class="feature-num">02</div><div class="feature-title">阿波踊りとのコラボレーション</div><div class="feature-body"><p>日本三大盆踊りの一つ・阿波踊りとアニメ・コスプレ文化を組み合わせた独自プログラムを展開。伝統文化とポップカルチャーが交差することで、両者のファンが出会う場が生まれる。</p><ul><li>アニメキャラクターコスプレ×阿波踊りパレード</li><li>阿波踊り×ゲームコラボレーションイベント</li><li>伝統踊り師とアニメファンの交流WS</li></ul></div></div>
+<div class="feature-card"><div class="feature-num">03</div><div class="feature-title">過疎地域への聖地化アウトリーチ</div><div class="feature-body"><p>那賀町など過疎化が深刻な地域の廃校・古民家をufotable作品の「聖地」として設定し、ファンを誘導。人口減少が続く山間部の集落に全国からの訪問者が訪れる仕掛けを創出する。</p><ul><li>那賀町の廃校を「聖地」として整備・開放</li><li>山間集落での限定グッズ・スタンプラリー展開</li><li>ファンと地元住民が触れ合う交流イベント</li></ul></div></div>
+<div class="feature-card"><div class="feature-num">04</div><div class="feature-title">移住・定住者の創出</div><div class="feature-body"><p>マチ★アソビをきっかけに徳島の魅力を知り移住するケースが出始めている。IT・クリエイター人材の移住を促進する「とくしまサテライトオフィス」構想とも連携し、ポップカルチャー×移住という新しいモデルが形成されつつある。</p><ul><li>アニメ・ゲーム業界人向け移住相談コーナー</li><li>クリエイター向けサテライトオフィス整備</li><li>UFO TABLE徳島スタジオ周辺への産業集積</li></ul></div></div>
+</div>
+  </section>
+  <section class="section" id="impact">
+    <div class="section-header"><span class="section-num">03</span><h2>街への効果 <span>URBAN IMPACT</span></h2></div>
+    <p class="impact-intro">ポップカルチャーという大衆的集客力を活用し、徳島の交流人口増加・空き家活用・移住促進・伝統文化との融合が連動する。</p>
+    <div class="impact-category-group"><div class="impact-cat-label cat-economic">ECONOMIC — 経済的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-eco"></div><span class="impact-tag-text">1-③ 都市空間の再編</span></div><div class="impact-card-title">那賀町・山間部の廃校・古民家の聖地化</div><div class="impact-card-body">過疎地域の廃校や古民家がアニメの「聖地」として活用されることで、訪問者受け入れのための改修・整備が進み、空き施設の利活用が動き始めている。</div></div>
+</div></div>
+<div class="impact-category-group"><div class="impact-cat-label cat-social">SOCIAL — 社会的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-soc"></div><span class="impact-tag-text">2-① コミュニティ形成</span></div><div class="impact-card-title">オタクファンと地元住民の新たな交流</div><div class="impact-card-body">全国から訪れるアニメファンと徳島市民・農村住民が接触する場が生まれ、これまで地域外との接点が少なかった住民にとって新たな交流・刺激の機会となっている。</div></div>
+<div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-soc"></div><span class="impact-tag-text">2-② 移住・定住促進</span></div><div class="impact-card-title">クリエイター・IT人材の移住促進</div><div class="impact-card-body">マチ★アソビ経由で徳島に関心を持ったクリエイター・IT人材が移住するケースが積み重なり、徳島県の「サテライトオフィス誘致」戦略と相乗効果を生んでいる。</div></div>
+</div></div>
+<div class="impact-category-group"><div class="impact-cat-label cat-cultural">CULTURAL — 文化的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-③ クリエイティブエコシステム創出</span></div><div class="impact-card-title">アニメ・ゲーム産業の地方集積モデル</div><div class="impact-card-body">ufotableを核にアニメ・ゲーム関連産業が徳島に集積しつつある。地方都市が東京依存を脱してクリエイティブ産業の拠点となる可能性を示す先例として注目される。</div></div>
+</div></div>
+
+    <div class="impact-badges"><span class="impact-badges-label">IMPACT TAGS</span><span class="badge badge-eco">1-③ 都市空間の再編</span>
+<span class="badge badge-soc">2-① コミュニティ形成</span>
+<span class="badge badge-soc">2-② 移住・定住促進</span>
+<span class="badge badge-cul">3-③ クリエイティブエコシステム</span>
+</div>
+  </section>
+  <section class="section" id="refs">
+    <div class="section-header"><span class="section-num">04</span><h2>参考 <span>REFERENCES</span></h2></div>
+    <div class="refs-grid"><a href="https://machiasobi.com/" target="_blank" class="ref-item"><span class="ref-num">01</span><div><div class="ref-title">マチ★アソビ公式</div><div class="ref-url">machiasobi.com</div></div><span class="ref-arrow">→</span></a>
+<a href="https://ufotable.com/" target="_blank" class="ref-item"><span class="ref-num">02</span><div><div class="ref-title">ufotable公式</div><div class="ref-url">ufotable.com</div></div><span class="ref-arrow">→</span></a>
+<a href="https://awanavi.jp/" target="_blank" class="ref-item"><span class="ref-num">03</span><div><div class="ref-title">徳島県観光情報サイト</div><div class="ref-url">awanavi.jp</div></div><span class="ref-arrow">→</span></a>
+</div>
+  </section>
+</div>
+<div class="footer-nav">
+  <a href="detail-yamaguchi.html" class="footer-nav-item">
+    <span class="fnav-dir">← PREV</span>
+    <span class="fnav-title">山口情報芸術センター YCAM</span>
+    <span class="fnav-count">Case 35 — 山口</span>
+  </a>
+  <a href="detail-kagawa.html" class="footer-nav-item fnav-right">
+    <span class="fnav-dir">NEXT →</span>
+    <span class="fnav-title">瀬戸内国際芸術祭</span>
+    <span class="fnav-count">Case 37 — 香川</span>
+  </a>
+</div>
+<footer>
+  <span class="footer-copy">© 2024 Art × Placemaking DB</span>
+  <span class="footer-case">Case 36 / 47 — 徳島</span>
+</footer>
+</body>
+</html>

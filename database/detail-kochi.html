@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高知 — 土佐まるごと社中 | アート×まちづくりDB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+  .nav-logo:hover { color: var(--ink); }
+  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
+  .nav-back:hover { background: var(--accent); color: white; }
+  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
+  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
+  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
+  .tag-region { border-color: var(--muted); color: var(--muted); }
+  .tag-type { border-color: var(--accent); color: var(--accent); }
+  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
+  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
+  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
+  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
+  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
+  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .meta-row:first-child { border-top: 1px solid var(--border); }
+  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
+  .meta-value { font-weight: 600; }
+  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
+  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
+  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
+  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
+  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
+  .overview-text p + p { margin-top: 1.5em; }
+  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
+  .feature-card { background: var(--paper); padding: 2rem; }
+  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
+  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
+  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
+  .feature-body ul { list-style: none; margin-top: 0.75rem; }
+  .feature-body li::before { content: '—  '; color: var(--muted); }
+  .feature-body li { margin-bottom: 4px; }
+  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .impact-category-group { margin-bottom: 2.5rem; }
+  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
+  .cat-economic { background: var(--tag-eco); }
+  .cat-social { background: var(--tag-soc); }
+  .cat-cultural { background: var(--tag-cul); }
+  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
+  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
+  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
+  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-eco { background: var(--tag-eco); }
+  .dot-soc { background: var(--tag-soc); }
+  .dot-cul { background: var(--tag-cul); }
+  .impact-tag-text { color: var(--muted); }
+  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
+  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
+  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
+  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
+  .badge-eco { border-color: #5dade2; color: #5dade2; }
+  .badge-soc { border-color: #58d68d; color: #58d68d; }
+  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
+  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
+  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
+  .ref-item:hover { background: white; }
+  .ref-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); flex-shrink: 0; }
+  .ref-title { font-size: 14px; font-weight: 600; }
+  .ref-url { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  .ref-arrow { margin-left: auto; color: var(--accent); font-size: 18px; flex-shrink: 0; }
+  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
+  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
+  .footer-nav-item:hover { background: var(--effect-bg); }
+  .fnav-right { border-left: 1px solid var(--border); text-align: right; }
+  .fnav-dir { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
+  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
+  .fnav-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  .footer-case { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-text { padding: 3rem 2rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-meta { padding: 2rem; }
+    .content { padding: 0 2rem; }
+    .section-nav { padding: 0 2rem; overflow-x: auto; }
+    .features-grid { grid-template-columns: 1fr; }
+    .footer-nav { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">ART × PLACEMAKING DB</a>
+  <div class="breadcrumb"><a href="index.html">TOP</a><span>›</span><span>高知</span></div>
+  <a href="index.html" class="nav-back">← 一覧へ</a>
+</nav>
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-tags"><span class="tag tag-region">四国</span>
+      <span class="tag tag-region">高知県</span>
+      <span class="tag tag-type">アートプロジェクト</span>
+      <span class="tag tag-type">地域おこし</span>
+</div>
+    <div class="hero-index">Case 39 / 47</div>
+    <h1>土佐まるごと社中</h1>
+    <div class="hero-en">TOSA MARUGOTO SHACHU / KOCHI</div>
+    <p class="hero-desc">坂本龍馬・自由民権運動・土佐の漁業・林業という高知固有の歴史文化を軸に、アートが過疎集落と都市部の市民を結ぶプロジェクト。四万十川・室戸岬・黒潮の恵みを素材に、地域コミュニティと創造的エコシステムの再生を目指す。</p>
+  </div>
+  <div class="hero-meta">    <div class="meta-row"><span class="meta-label">REGION</span><span class="meta-value">高知市・四万十市・室戸市・いの町ほか</span></div>
+    <div class="meta-row"><span class="meta-label">STARTED</span><span class="meta-value">2014年〜</span></div>
+    <div class="meta-row"><span class="meta-label">ORGANIZER</span><span class="meta-value">高知県・高知市・NPO土佐まるごと社中</span></div>
+    <div class="meta-row"><span class="meta-label">SCALE</span><span class="meta-value">県内15市町・40以上の作品</span></div>
+    <div class="meta-row"><span class="meta-label">KEYWORDS</span><span class="meta-value">四万十川・室戸岬・土佐和紙・龍馬・自由民権</span></div></div>
+</div>
+<div class="section-nav">
+  <a href="#overview" class="sec-link">01 概要</a>
+  <a href="#features" class="sec-link">02 特徴</a>
+  <a href="#impact" class="sec-link">03 街への効果</a>
+  <a href="#refs" class="sec-link">04 参考</a>
+</div>
+<div class="content">
+  <section class="section" id="overview">
+    <div class="section-header"><span class="section-num">01</span><h2>概要 <span>OVERVIEW</span></h2></div>
+    <div class="overview-text">      <p>土佐まるごと社中は、高知県の多様な自然・文化・歴史をアートで繋ぐ総合的なプロジェクトです。四万十川・室戸岬・黒潮という大自然の恵みを背景に、土佐和紙・カツオ漁業・林業・柚子農業など高知固有の産業文化をアートが再解釈します。</p>
+      <p>坂本龍馬・板垣退助・中岡慎太郎など幕末維新の英雄を輩出した土地の記憶、自由民権運動という政治的伝統、よさこい踊りという祭り文化など、高知の精神的・文化的個性をアートが現代に翻訳する試みが継続されています。</p>
+      <p>過疎化・高齢化が深刻な高知県の山間部・沿岸集落にアーティストを派遣し、地域住民との協働制作を通じてコミュニティの絆を再生しながら、都市部の若い移住希望者に高知の魅力を発信するプラットフォームとしても機能しています。</p></div>
+  </section>
+  <section class="section" id="features">
+    <div class="section-header"><span class="section-num">02</span><h2>特徴 <span>FEATURES</span></h2></div>
+    <div class="features-grid"><div class="feature-card"><div class="feature-num">01</div><div class="feature-title">四万十川・室戸岬の自然とアート</div><div class="feature-body"><p>日本最後の清流・四万十川や岩礁美しい室戸岬など高知の圧倒的な自然景観を舞台に、環境・生命・流れをテーマにした大規模野外インスタレーションを展開する。</p><ul><li>四万十川沿岸のランドアート・水面インスタレーション</li><li>室戸岬の岩場でのサイトスペシフィック作品</li><li>黒潮町の砂浜でのビーチアートイベント</li></ul></div></div>
+<div class="feature-card"><div class="feature-num">02</div><div class="feature-title">土佐和紙・カツオ漁業との協働</div><div class="feature-body"><p>1000年以上の歴史を持つ土佐和紙や、一本釣りで知られる高知のカツオ漁業とアーティストが協働。伝統的な製紙・漁業の技術がアート表現に取り込まれ、消えゆく職人技術が記録・継承される。</p><ul><li>土佐和紙職人×テキスタイルアーティストの共同制作</li><li>カツオ漁船でのアーティスト・レジデンス</li><li>柚子農園をギャラリー化した季節限定展示</li></ul></div></div>
+<div class="feature-card"><div class="feature-num">03</div><div class="feature-title">よさこい文化×現代パフォーマンス</div><div class="feature-body"><p>高知発祥のよさこい踊りと現代のパフォーミングアーツを融合させた実験的プログラムを展開。祭り文化の活力とアートの創造性が結びつき、若い担い手の育成と観客の裾野拡大を図る。</p><ul><li>よさこいダンサー×コンテンポラリーダンスの共演</li><li>よさこい衣装デザインとファッションアートの協働</li><li>高校生チームによるよさこい×映像アート制作</li></ul></div></div>
+<div class="feature-card"><div class="feature-num">04</div><div class="feature-title">過疎集落でのコミュニティアート</div><div class="feature-body"><p>山間部・沿岸部の過疎集落にアーティストが長期滞在し、住民と共に集落の歴史・暮らし・自然をテーマにした作品を制作。集落の誇りの回復と、都市部への情報発信を通じた移住促進を図る。</p><ul><li>いの町・四万十源流部の集落でのレジデンス</li><li>廃校を活用した地域アーカイブ展</li><li>土佐の棚田・炭焼き文化を記録するドキュメンタリーアート</li></ul></div></div>
+</div>
+  </section>
+  <section class="section" id="impact">
+    <div class="section-header"><span class="section-num">03</span><h2>街への効果 <span>URBAN IMPACT</span></h2></div>
+    <p class="impact-intro">四万十川・室戸岬の自然資源と土佐和紙・カツオ漁業・よさこいの文化資産をアートで結び、コミュニティ再生とクリエイティブエコシステムが育まれる。</p>
+    <div class="impact-category-group"><div class="impact-cat-label cat-social">SOCIAL — 社会的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-soc"></div><span class="impact-tag-text">2-① コミュニティ形成</span></div><div class="impact-card-title">過疎集落の絆再生と誇り回復</div><div class="impact-card-body">山間部・沿岸集落でのアーティスト長期滞在が、バラバラになった住民の間に対話と協働の機会を生み出している。「自分たちの集落にも見せたいものがある」という住民の誇り回復が報告されている。</div></div>
+<div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-soc"></div><span class="impact-tag-text">2-③ 社会包摂・インクルージョン</span></div><div class="impact-card-title">過疎高齢集落への継続的関与</div><div class="impact-card-body">過疎化・高齢化が最も深刻な地域の一つである高知の山間集落・沿岸集落に継続的なアートプロジェクトが関与することで、住民が孤立せず外の世界と繋がり続ける回路が生まれている。</div></div>
+</div></div>
+<div class="impact-category-group"><div class="impact-cat-label cat-cultural">CULTURAL — 文化的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-③ クリエイティブエコシステム創出</span></div><div class="impact-card-title">土佐の自然×文化を源泉とした創造産業の芽生え</div><div class="impact-card-body">四万十川・室戸・土佐和紙という高知固有の自然・文化資源に引き寄せられたアーティスト・クリエイターが高知に移住・滞在し始めており、自然共生型のクリエイティブ産業の萌芽が見られる。</div></div>
+<div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-① 地域ブランディング・アイデンティティ</span></div><div class="impact-card-title">土佐の産業・精神文化のアートによる発信</div><div class="impact-card-body">土佐和紙・カツオ漁業・よさこい・龍馬・自由民権という高知固有の産業文化的資産がアートを通じてフィーチャーされ、「この土地にしかない豊かさ」が国内外に発信される。</div></div>
+</div></div>
+
+    <div class="impact-badges"><span class="impact-badges-label">IMPACT TAGS</span><span class="badge badge-soc">2-① コミュニティ形成</span>
+<span class="badge badge-soc">2-③ 社会包摂・インクルージョン</span>
+<span class="badge badge-cul">3-① 地域ブランディング</span>
+<span class="badge badge-cul">3-③ クリエイティブエコシステム</span>
+</div>
+  </section>
+  <section class="section" id="refs">
+    <div class="section-header"><span class="section-num">04</span><h2>参考 <span>REFERENCES</span></h2></div>
+    <div class="refs-grid"><a href="https://pref.kochi.lg.jp/" target="_blank" class="ref-item"><span class="ref-num">01</span><div><div class="ref-title">高知県文化生活部</div><div class="ref-url">pref.kochi.lg.jp</div></div><span class="ref-arrow">→</span></a>
+<a href="https://welcome-kochi.jp/" target="_blank" class="ref-item"><span class="ref-num">02</span><div><div class="ref-title">高知市観光協会</div><div class="ref-url">welcome-kochi.jp</div></div><span class="ref-arrow">→</span></a>
+<a href="https://shimanto.ne.jp/" target="_blank" class="ref-item"><span class="ref-num">03</span><div><div class="ref-title">四万十川財団</div><div class="ref-url">shimanto.ne.jp</div></div><span class="ref-arrow">→</span></a>
+</div>
+  </section>
+</div>
+<div class="footer-nav">
+  <a href="detail-kagawa.html" class="footer-nav-item">
+    <span class="fnav-dir">← PREV</span>
+    <span class="fnav-title">瀬戸内国際芸術祭</span>
+    <span class="fnav-count">Case 37 — 香川</span>
+  </a>
+  <a href="detail-fukuoka.html" class="footer-nav-item fnav-right">
+    <span class="fnav-dir">NEXT →</span>
+    <span class="fnav-title">アジア太平洋トリエンナーレ福岡</span>
+    <span class="fnav-count">Case 40 — 福岡</span>
+  </a>
+</div>
+<footer>
+  <span class="footer-copy">© 2024 Art × Placemaking DB</span>
+  <span class="footer-case">Case 39 / 47 — 高知</span>
+</footer>
+</body>
+</html>
