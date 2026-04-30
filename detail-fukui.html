@@ -1,300 +1,217 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>福井 — 鯖江市めがねのまちのアートプロジェクト | アート×まちづくりDB</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
-<style>
-  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
-  .nav-logo:hover { color: var(--ink); }
-  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-  .breadcrumb a { color: var(--muted); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--accent); }
-  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
-  .nav-back:hover { background: var(--accent); color: white; }
-  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
-  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
-  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
-  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
-  .tag-region { border-color: var(--muted); color: var(--muted); }
-  .tag-type { border-color: var(--accent); color: var(--accent); }
-  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
-  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
-  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
-  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
-  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
-  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .meta-row:first-child { border-top: 1px solid var(--border); }
-  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
-  .meta-value { font-weight: 600; }
-  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
-  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
-  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
-  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
-  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
-  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
-  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
-  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
-  .overview-text p + p { margin-top: 1.5em; }
-  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
-  .feature-card { background: var(--paper); padding: 2rem; }
-  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
-  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
-  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
-  .feature-body ul { list-style: none; margin-top: 0.75rem; }
-  .feature-body li::before { content: '—  '; color: var(--muted); }
-  .feature-body li { margin-bottom: 4px; }
-  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
-  .impact-category-group { margin-bottom: 2.5rem; }
-  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
-  .cat-economic { background: var(--tag-eco); }
-  .cat-social { background: var(--tag-soc); }
-  .cat-cultural { background: var(--tag-cul); }
-  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
-  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
-  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
-  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-eco { background: var(--tag-eco); }
-  .dot-soc { background: var(--tag-soc); }
-  .dot-cul { background: var(--tag-cul); }
-  .impact-tag-text { color: var(--muted); }
-  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
-  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
-  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
-  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
-  .badge-eco { border-color: #5dade2; color: #5dade2; }
-  .badge-soc { border-color: #58d68d; color: #58d68d; }
-  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
-  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
-  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
-  .ref-item:hover { background: white; }
-  .ref-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); flex-shrink: 0; }
-  .ref-title { font-size: 14px; font-weight: 600; }
-  .ref-domain { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
-  .ref-arrow { margin-left: auto; font-size: 18px; color: var(--muted); }
-  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
-  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
-  .footer-nav-item:hover { background: var(--effect-bg); }
-  .fnav-right { border-left: 1px solid var(--border); text-align: right; align-items: flex-end; }
-  .fnav-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.1em; }
-  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
-  .fnav-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
-  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-text { padding: 3rem 2rem 2rem; }
-    .hero-meta { padding: 2rem; }
-    .content { padding: 0 2rem; }
-    .features-grid { grid-template-columns: 1fr; }
-    .section-nav { padding: 0 2rem; overflow-x: auto; }
-    .footer-nav { grid-template-columns: 1fr; }
-    .fnav-right { border-left: none; border-top: 1px solid var(--border); text-align: left; align-items: flex-start; }
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>福井 — Zen AIR（禅×AIR） | アート×まちづくりDB</title>
+  <meta name="description" content="禅の里・永平寺町を会場にしたテーマ特化型アーティスト・イン・レジデンス。禅文化と現代アートが対話する独自の滞在制作プログラム。"/>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400&display=swap');
+  :root {
+    --bg:#181818;--bg2:#1f1f1f;--bg3:#262626;
+    --line:#2e2e2e;--line2:#3a3a3a;
+    --text:#f0f0f0;--muted:#666;--dim:#444;--accent:#e8c96e;
   }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;}
+  nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;}
+  .nav-logo{font-family:'Archivo Black',sans-serif;font-size:12px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--accent);text-decoration:none;}
+  .nav-back{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;
+    letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.15s;}
+  .nav-back:hover{color:var(--text);}
+  .hero{border-bottom:1px solid var(--line);padding:56px 32px 40px;max-width:860px;margin:0 auto;}
+  .hero-meta{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+  .hero-region{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+    letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);}
+  .hero-sep{color:var(--line2);}
+  .hero-cat{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+    letter-spacing:0.18em;text-transform:uppercase;padding:3px 10px;border:1px solid currentColor;}
+  .hero-case{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:0.1em;color:var(--muted);margin-left:auto;}
+  .hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(24px,5vw,40px);
+    letter-spacing:0.05em;text-transform:uppercase;line-height:1.15;margin-bottom:6px;color:var(--text);}
+  .hero-en{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:400;
+    letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:22px;}
+  .hero-desc{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.85;
+    color:#aaa;max-width:660px;margin-bottom:28px;}
+  .hero-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+    gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:28px;}
+  .stat-item{background:var(--bg2);padding:12px 14px;}
+  .stat-label{font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:700;
+    letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .stat-value{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:500;
+    color:var(--text);letter-spacing:0.04em;}
+  .toc{display:flex;gap:0;border:1px solid var(--line);overflow-x:auto;}
+  .toc a{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+    letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;
+    padding:9px 14px;border-right:1px solid var(--line);white-space:nowrap;transition:color 0.15s,background 0.15s;}
+  .toc a:hover{color:var(--text);background:var(--bg3);}
+  .toc a:last-child{border-right:none;}
+  .content{max-width:860px;margin:0 auto;padding:0 32px 80px;}
+  .section{padding:48px 0 40px;border-bottom:1px solid var(--line);}
+  .section:last-child{border-bottom:none;}
+  .section-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+    letter-spacing:0.3em;color:var(--muted);margin-bottom:6px;}
+  .section-title{font-family:'Archivo Black',sans-serif;font-size:18px;letter-spacing:0.1em;
+    text-transform:uppercase;margin-bottom:24px;display:flex;align-items:baseline;gap:12px;}
+  .section-title-en{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:400;
+    letter-spacing:0.2em;color:var(--muted);}
+  .prose{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.95;
+    color:#999;max-width:640px;}
+  .prose p{margin-bottom:1.4em;}
+  .prose p:last-child{margin-bottom:0;}
+  /* FEATURES */
+  .features-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .feature-item{background:var(--bg2);padding:22px 24px;}
+  .feature-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+    letter-spacing:0.25em;color:var(--accent);margin-bottom:6px;}
+  .feature-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;
+    letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .feature-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .feature-bullets{margin-top:10px;padding-left:0;list-style:none;}
+  .feature-bullets li{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;
+    letter-spacing:0.06em;color:var(--muted);padding:3px 0 3px 14px;position:relative;}
+  .feature-bullets li::before{content:'—';position:absolute;left:0;color:var(--line2);}
+  /* IMPACT — color-coded */
+  .impact-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .impact-item{background:var(--bg2);padding:22px 24px;border-left:3px solid var(--impact-color, #888);}
+  .impact-code{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+    letter-spacing:0.2em;text-transform:uppercase;color:var(--impact-color,#888);margin-bottom:6px;}
+  .impact-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;
+    letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .impact-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .impact-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:20px;}
+  .impact-tag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+    letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;border:1px solid;}
+  /* REFS */
+  .refs-grid{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .ref-item{background:var(--bg2);display:flex;align-items:center;gap:14px;
+    padding:13px 18px;text-decoration:none;transition:background 0.12s;}
+  .ref-item:hover{background:var(--bg3);}
+  .ref-icon{width:24px;height:24px;flex-shrink:0;}
+  .ref-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;}
+  .ref-domain{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.05em;}
+  .ref-arrow{margin-left:auto;color:var(--muted);font-size:14px;}
+  /* PAGINATION */
+  .pagination{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px;}
+  .page-item{flex:1;background:var(--bg2);padding:16px 18px;text-decoration:none;transition:background 0.12s;}
+  .page-item:hover{background:var(--bg3);}
+  .page-dir{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+    letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .page-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--text);}
+  .page-sub{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);margin-top:2px;}
+  .page-item.next{text-align:right;}
+  footer{border-top:1px solid var(--line);padding:18px 32px;font-family:'Barlow Condensed',sans-serif;
+    font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);
+    display:flex;align-items:center;justify-content:space-between;}
+  footer a{color:var(--muted);text-decoration:none;}
+  footer a:hover{color:var(--text);}
+  .note{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.08em;margin-top:20px;}
 </style>
 </head>
 <body>
-
 <nav>
-  <a href="index.html" class="nav-logo">Art × Placemaking DB</a>
-  <div class="breadcrumb"><a href="index.html">HOME</a><span>›</span><span>福井</span></div>
-  <a href="index.html" class="nav-back">← 一覧</a>
+  <a class="nav-logo" href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a>
+  <a class="nav-back" href="https://bawb199765-bot.github.io/Art_PlaceMaking/database/index.html">← Database</a>
 </nav>
-
 <div class="hero">
-  <div class="hero-text">
-    <div class="hero-tags">
-      <span class="tag tag-region">中部</span>
-      <span class="tag tag-region">福井県</span>
-      <span class="tag tag-type">地場産業×デザイン×まちづくり</span>
-    </div>
-    <div class="hero-index">Case 18 / 47</div>
-    <h1>鯖江市めがねのまちのアートプロジェクト</h1>
-    <div class="hero-en">SABAE MEGANE NO MACHI ART PROJECT</div>
-    <p class="hero-desc">国内シェア96%を誇るめがね産地・鯖江において、眼鏡産業とアート・デザインをかけ合わせた地域ブランディングと産業観光のプロジェクト。職人文化をクリエイティブ資源として再発見する取り組み。</p>
-  </div>
   <div class="hero-meta">
-    <div class="meta-row"><span class="meta-label">LOCATION</span><span class="meta-value">福井県鯖江市</span></div>
-    <div class="meta-row"><span class="meta-label">STARTED</span><span class="meta-value">2010年代〜</span></div>
-    <div class="meta-row"><span class="meta-label">SCALE</span><span class="meta-value">市内工場・商店街・公共空間</span></div>
-    <div class="meta-row"><span class="meta-label">ORGANIZER</span><span class="meta-value">鯖江市・地域商工団体・市民</span></div>
-    <div class="meta-row"><span class="meta-label">CATEGORY</span><span class="meta-value">産業観光／地域ブランディング</span></div>
+    <span class="hero-region">中部</span>
+    <span class="hero-sep">/</span>
+    <span class="hero-region">福井県</span>
+    <span class="hero-sep">/</span>
+    <span class="hero-cat" style="color:#a06ec8;border-color:#a06ec8">AIR・制作拠点型</span>
+    <span class="hero-case">Case 18 / 48</span>
   </div>
+  <h1>Zen AIR（禅×AIR）</h1>
+  <div class="hero-en">Zen Artist in Residence</div>
+  <p class="hero-desc">禅の里として知られる福井県永平寺町を会場に、アーティストが禅文化に触れ地元住民と交流しながら制作・研究する機会を提供するテーマ特化型レジデンス。滞在成果を作品や研究として発信する。</p>
+  <div class="hero-stats"><div class="stat-item"><div class="stat-label">拠点</div><div class="stat-value">福井県吉田郡永平寺町</div></div><div class="stat-item"><div class="stat-label">開始年</div><div class="stat-value">2019年〜</div></div><div class="stat-item"><div class="stat-label">主体</div><div class="stat-value">Zen AIR実行委員会</div></div><div class="stat-item"><div class="stat-label">形態</div><div class="stat-value">通年AIR</div></div><div class="stat-item"><div class="stat-label">次回開催</div><div class="stat-value">不明</div></div><div class="stat-item"><div class="stat-label">東京からのアクセス</div><div class="stat-value">約4h（新幹線＋バス）</div></div></div>
+  <nav class="toc">
+    <a href="#overview">01 概要</a>
+    <a href="#features">02 特徴</a>
+    <a href="#impact">03 街への効果</a>
+    <a href="#refs">04 参考</a>
+  </nav>
 </div>
-
-<nav class="section-nav">
-  <a href="#overview" class="sec-link">概要</a>
-  <a href="#features" class="sec-link">特徴</a>
-  <a href="#impact" class="sec-link">街への効果</a>
-  <a href="#refs" class="sec-link">参考</a>
-</nav>
-
 <div class="content">
-
-  <section id="overview" class="section">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2>概要 <span>OVERVIEW</span></h2>
-    </div>
-    <div class="overview-text">
-      <p>福井県鯖江市は、日本製めがねフレームの約96%を生産する世界有数の眼鏡産地です。しかし少子高齢化・産業の空洞化・若者の流出という課題を抱える中、市はアート・デザイン・ITを活用した地域再生を積極的に推進してきました。</p>
-      <p>めがね産業とアートを接続する取り組みとして、工場見学・職人体験・デザイナーとのコラボレーション展示・アートイベントなどが展開されています。また「JK課（女子高生課）」に代表されるシビックテック・市民参画の先進的な取り組みとも連動し、若い世代が地元の産業文化を誇りに思える環境づくりが進んでいます。</p>
-      <p>地域固有の産業技術をアートやデザインの文脈で再解釈することで、鯖江の「ものづくり精神」が都市の文化的アイデンティティとして内外に発信されています。</p>
-    </div>
+  <section class="section" id="overview">
+    <div class="section-num">01</div>
+    <div class="section-title">概要 <span class="section-title-en">Overview</span></div>
+    <div class="prose"><p>Zen AIRは、曹洞宗の大本山・永平寺がある福井県永平寺町を舞台にしたアーティスト・イン・レジデンスプログラム。「禅」という明確なテーマを軸に、国内外のアーティストが永平寺の文化・哲学・自然環境に触れながら滞在制作を行う、テーマ特化型AIRとして国際的にもユニークな存在。</p><p>参加アーティストは一定期間永平寺町に滞在し、坐禅体験・托鉢同行・宗教文化のリサーチを通じて禅の思想・美学を独自の視点で解釈した作品を制作する。禅文化と現代表現が対話することで、伝統宗教文化の現代的な再解釈と国際発信が実現される。</p><p>永平寺という世界的に知られた禅寺を持つ地域のブランドを活かした差別化が秀逸で、「禅×アート」という文脈は国際的なアートシーンでも注目度が高い。サステナビリティ・マインドフルネス・自然との共生という現代的価値観との親和性も高く、海外からのアーティスト・来場者を引き付けるコンテンツとして機能している。</p></div>
   </section>
-
-  <section id="features" class="section">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2>特徴 <span>FEATURES</span></h2>
-    </div>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-num">01</div>
-        <div class="feature-title">産地96%の技術をアート資源に変換</div>
-        <div class="feature-body">
-          <p>世界トップクラスの眼鏡製造技術を「観る・体験する・買う」観光コンテンツとして再編集。職人の技が地域の誇りとなる物語を構築。</p>
-          <ul>
-            <li>工場見学・職人体験プログラムの整備</li>
-            <li>めがね産地ならではの体験型ツーリズム</li>
-            <li>産地ブランドの国際的な認知向上</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">02</div>
-        <div class="feature-title">デザイナー・アーティストとの協働</div>
-        <div class="feature-body">
-          <p>外部のデザイナー・クリエイターが産地の職人技術と協働し、新しい製品・作品・展示を生み出すコラボレーションを継続的に実施。</p>
-          <ul>
-            <li>デザインコンテスト・展覧会の開催</li>
-            <li>若手デザイナーの産地派遣・研修制度</li>
-            <li>伝統技術×現代デザインの新製品開発</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">03</div>
-        <div class="feature-title">若者・移住者を巻き込む参加型まちづくり</div>
-        <div class="feature-body">
-          <p>「JK課」など若者主体の地域づくりと連携し、アートプロジェクトが若年層の地元愛着・移住促進・起業支援の場として機能。</p>
-          <ul>
-            <li>若者・移住者向けコワーキング・交流拠点</li>
-            <li>地域産業を学ぶ教育・体験プログラム</li>
-            <li>Iターン・UIターン促進イベントとの連動</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">04</div>
-        <div class="feature-title">「めがねのまち」としての都市ブランド化</div>
-        <div class="feature-body">
-          <p>アートとデザインを通じて「めがねの鯖江」という唯一無二のシティブランドを構築。メディア露出・観光客誘致・移住促進に直結する認知向上を実現。</p>
-          <ul>
-            <li>めがね型モニュメント・パブリックアートの設置</li>
-            <li>全国・海外メディアへの積極的なPR</li>
-            <li>めがんミュージアムなど文化施設整備</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <section class="section" id="features">
+    <div class="section-num">02</div>
+    <div class="section-title">主な特徴 <span class="section-title-en">Key Features</span></div>
+    <div class="features-grid"><div class="feature-item">
+          <div class="feature-num">01</div>
+          <div class="feature-title">「禅」という強いテーマによる差別化</div>
+          <div class="feature-desc">汎用的なAIRではなく「禅」という明確なテーマを持つことで、国内外の多くのAIRプログラムとの差別化が実現される。禅に関心を持つ海外アーティストにとって強力な来日動機となる。</div>
+          <ul class="feature-bullets"><li>明確なテーマ性による参加アーティストの選別</li><li>禅・仏教文化への深い関心を持つ作家の誘致</li><li>テーマの明確さによる国際的な認知向上</li></ul>
+        </div><div class="feature-item">
+          <div class="feature-num">02</div>
+          <div class="feature-title">永平寺での坐禅・修行体験との連動</div>
+          <div class="feature-desc">AIR参加者が単に地域に滞在するだけでなく、永平寺での坐禅体験・托鉢同行・宗教的空間への深い関与を通じて作品制作のインスピレーションを得る、宗教的文化体験と創作の連動が特徴。</div>
+          <ul class="feature-bullets"><li>坐禅体験・托鉢同行の機会提供</li><li>永平寺の境内・僧侶との交流</li><li>禅の美学・哲学の深いリサーチ</li></ul>
+        </div><div class="feature-item">
+          <div class="feature-num">03</div>
+          <div class="feature-title">現代的価値観（サステナビリティ・マインドフルネス）との親和性</div>
+          <div class="feature-desc">禅の思想が持つ「自然との共生」「現在への集中」「シンプルな生活」という価値観は、現代のサステナビリティ・マインドフルネスへの関心と重なる。国際的なアートシーンでの共鳴が大きい。</div>
+          <ul class="feature-bullets"><li>エコロジー・サステナビリティとの接続</li><li>マインドフルネス文化との親和性</li><li>欧米アーティストの禅哲学への関心</li></ul>
+        </div><div class="feature-item">
+          <div class="feature-num">04</div>
+          <div class="feature-title">滞在成果の展示・発信による地域の国際化</div>
+          <div class="feature-desc">AIRの成果作品を地域内で展示・発信することで、永平寺町が国際的なアート・文化の交流地として認知される。作品制作の過程で生まれる住民との交流が地域の国際化を促進する。</div>
+          <ul class="feature-bullets"><li>滞在成果展示会の開催</li><li>国際的なアートメディアへの発信</li><li>住民との文化交流・多様性への理解促進</li></ul>
+        </div></div>
   </section>
-
-  <section id="impact" class="section">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2>街への効果 <span>URBAN IMPACT</span></h2>
-    </div>
-    <p class="impact-intro">地場産業をアート・デザイン文脈で「見せる化」することで、移住促進・若者の地元誇り醸成・地域ブランドの国際的強化・クリエイティブな人材集積が同時進行している。</p>
-
-    <div class="impact-category-group">
-      <div class="impact-cat-label cat-social">社会的効果 — SOCIAL</div>
-      <div class="impact-cards">
-        <div class="impact-card">
-          <div class="impact-card-tag"><span class="impact-tag-dot dot-soc"></span><span class="impact-tag-text">2-② 移住・定住促進</span></div>
-          <div class="impact-card-title">アート×産業の掛け合わせによる移住者誘引</div>
-          <div class="impact-card-body">ものづくり文化とデザイン・アートへの関心を持つ若いクリエイターや職人が鯖江に移住・定住するケースが増加。産地の後継者不足への対応にも貢献している。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="impact-category-group">
-      <div class="impact-cat-label cat-cultural">文化的効果 — CULTURAL</div>
-      <div class="impact-cards">
-        <div class="impact-card">
-          <div class="impact-card-tag"><span class="impact-tag-dot dot-cul"></span><span class="impact-tag-text">3-① 地域ブランディング・アイデンティティ</span></div>
-          <div class="impact-card-title">「めがねのまち」という唯一のアイデンティティ</div>
-          <div class="impact-card-body">世界シェア96%という産地の誇りをアートとデザインで可視化・発信することで、鯖江固有の産業文化を地域アイデンティティの核として再確立。住民・若者の地元愛着を強化している。</div>
-        </div>
-        <div class="impact-card">
-          <div class="impact-card-tag"><span class="impact-tag-dot dot-cul"></span><span class="impact-tag-text">3-③ クリエイティブエコシステム創出</span></div>
-          <div class="impact-card-title">産地×デザイナーの協働生態系の形成</div>
-          <div class="impact-card-body">職人技術とクリエイターが出会い、新製品・新ブランドが生まれる場として鯖江が機能。産業・デザイン・アートが融合したクリエイティブエコシステムが着実に定着している。</div>
-        </div>
-        <div class="impact-card">
-          <div class="impact-card-tag"><span class="impact-tag-dot dot-eco"></span><span class="impact-tag-text">1-① 交流人口増加</span></div>
-          <div class="impact-card-title">産業観光・体験ツーリズムによる誘客</div>
-          <div class="impact-card-body">「めがねのまち」体験ツアー・工場見学が産業観光の定番コースとして認知され、修学旅行・企業研修・個人旅行者が継続的に訪れる。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="impact-badges">
-      <span class="impact-badges-label">IMPACT TAGS</span>
-      <span class="badge badge-soc">2-② 移住・定住促進</span>
-      <span class="badge badge-cul">3-① 地域ブランディング</span>
-      <span class="badge badge-cul">3-③ クリエイティブエコシステム</span>
-      <span class="badge badge-eco">1-① 交流人口増加</span>
-    </div>
+  <section class="section" id="impact">
+    <div class="section-num">03</div>
+    <div class="section-title">街への効果 <span class="section-title-en">Urban Impact</span></div>
+    <div class="impact-grid"><div class="impact-item" style="--impact-color:#6ecac8">
+          <div class="impact-code">2-② 社会的効果｜移住・定住促進</div>
+          <div class="impact-title">禅・アートという文脈で永平寺町を知る関係人口の形成</div>
+          <div class="impact-desc">AIR参加者や滞在成果展示の来場者が永平寺町の豊かな自然・文化に触れ、継続的な関係を持つ関係人口が生まれている。</div>
+        </div><div class="impact-item" style="--impact-color:#a06ec8">
+          <div class="impact-code">3-① 文化的効果｜地域ブランディング</div>
+          <div class="impact-title">「禅×アート」という独自ブランドによる国際的認知向上</div>
+          <div class="impact-desc">世界的に知られた永平寺の文化的資産にアートという現代的な文脈を加えることで、「禅の里・永平寺町」の国際的なブランド価値を向上させる。</div>
+        </div><div class="impact-item" style="--impact-color:#a06ec8">
+          <div class="impact-code">3-③ 文化的効果｜クリエイティブエコシステム</div>
+          <div class="impact-title">禅文化と現代表現の対話による新たな創造的言説の形成</div>
+          <div class="impact-desc">禅の哲学・美学と現代アートが出会うことで、双方に新たな発見と可能性が生まれる。継続的な対話が「禅×現代表現」という独自の創造的言説を育てる。</div>
+        </div></div>
+    <div class="impact-tags"><span class="impact-tag" style="color:#6ecac8;border-color:#6ecac8">2-② 移住・定住促進</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-① 地域ブランディング</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-③ クリエイティブエコシステム</span><span class="impact-tag" style="color:#e8c96e;border-color:#e8c96e">1-① 交流人口増加</span></div>
   </section>
-
-  <section id="refs" class="section">
-    <div class="section-header">
-      <span class="section-num">04</span>
-      <h2>参考 <span>REFERENCES</span></h2>
-    </div>
-    <div class="refs-grid">
-      <a href="https://www.city.sabae.fukui.jp/" target="_blank" class="ref-item">
-        <div class="ref-icon">gov</div>
-        <div><div class="ref-title">鯖江市公式サイト</div><div class="ref-domain">city.sabae.fukui.jp</div></div>
-        <span class="ref-arrow">↗</span>
-      </a>
-      <a href="https://megane.gr.jp/" target="_blank" class="ref-item">
-        <div class="ref-icon">web</div>
-        <div><div class="ref-title">福井県眼鏡工業組合</div><div class="ref-domain">megane.gr.jp</div></div>
-        <span class="ref-arrow">↗</span>
-      </a>
-    </div>
+  <section class="section" id="refs">
+    <div class="section-num">04</div>
+    <div class="section-title">参考リンク <span class="section-title-en">References</span></div>
+    <div class="refs-grid"><a class="ref-item" href="https://zen-air.org/" target="_blank">
+          <img class="ref-icon" src="https://www.google.com/s2/favicons?domain=zen-air.org&sz=64" alt=""/>
+          <div><div class="ref-title">Zen AIR 公式サイト</div><div class="ref-domain">zen-air.org</div></div>
+          <span class="ref-arrow">→</span>
+        </a><a class="ref-item" href="https://www.eiheiji.jp/" target="_blank">
+          <img class="ref-icon" src="https://www.google.com/s2/favicons?domain=eiheiji.jp&sz=64" alt=""/>
+          <div><div class="ref-title">永平寺 公式サイト</div><div class="ref-domain">eiheiji.jp</div></div>
+          <span class="ref-arrow">→</span>
+        </a></div>
+    <p class="note">※掲載情報は2026年1月末時点の情報を参考にしています。</p>
   </section>
-
+  <div class="pagination"><a class="page-item prev" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-ishikawa.html">
+      <div class="page-dir">← 前の事例</div>
+      <div class="page-name">Go FOR KOGEI</div>
+      <div class="page-sub">中部 — 石川県</div>
+    </a><a class="page-item next" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-yamanashi.html">
+      <div class="page-dir">次の事例 →</div>
+      <div class="page-name">FUJI TEXTILE WEEK</div>
+      <div class="page-sub">中部 — 山梨県</div>
+    </a></div>
 </div>
-
-<div class="footer-nav">
-  <a href="detail-ishikawa.html" class="footer-nav-item">
-    <span class="fnav-label">← PREV</span>
-    <span class="fnav-title">金沢アートグミ</span>
-    <span class="fnav-count">Case 17 — 石川</span>
-  </a>
-  <a href="detail-yamanashi.html" class="footer-nav-item fnav-right">
-    <span class="fnav-label">NEXT →</span>
-    <span class="fnav-title">清里フォトアートミュージアム周辺プロジェクト</span>
-    <span class="fnav-count">Case 19 — 山梨</span>
-  </a>
-</div>
-
 <footer>
-  <span>Art × Placemaking DB</span>
-  <span>Case 18 / 47 — 福井</span>
+  <a href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking</a>
+  <span>© 2026 Art × Placemaking Database</span>
 </footer>
-
 </body>
 </html>

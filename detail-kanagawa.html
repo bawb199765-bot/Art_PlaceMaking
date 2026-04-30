@@ -1,325 +1,217 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>神奈川 — 黄金町バザール | アート×まちづくりDB</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
-<style>
-  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
-  .nav-logo:hover { color: var(--ink); }
-  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-  .breadcrumb a { color: var(--muted); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--accent); }
-  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
-  .nav-back:hover { background: var(--accent); color: white; }
-  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
-  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
-  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
-  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
-  .tag-region { border-color: var(--muted); color: var(--muted); }
-  .tag-type { border-color: var(--accent); color: var(--accent); }
-  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
-  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
-  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
-  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
-  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
-  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .meta-row:first-child { border-top: 1px solid var(--border); }
-  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
-  .meta-value { font-weight: 600; }
-  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
-  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
-  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
-  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
-  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
-  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
-  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
-  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
-  .overview-text p + p { margin-top: 1.5em; }
-  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
-  .feature-card { background: var(--paper); padding: 2rem; }
-  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
-  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
-  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
-  .feature-body ul { list-style: none; margin-top: 0.75rem; }
-  .feature-body li::before { content: '—  '; color: var(--muted); }
-  .feature-body li { margin-bottom: 4px; }
-  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
-  .impact-category-group { margin-bottom: 2.5rem; }
-  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
-  .cat-economic { background: var(--tag-eco); }
-  .cat-social { background: var(--tag-soc); }
-  .cat-cultural { background: var(--tag-cul); }
-  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
-  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
-  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
-  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-eco { background: var(--tag-eco); }
-  .dot-soc { background: var(--tag-soc); }
-  .dot-cul { background: var(--tag-cul); }
-  .impact-tag-text { color: var(--muted); }
-  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
-  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
-  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
-  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
-  .badge-eco { border-color: #5dade2; color: #5dade2; }
-  .badge-soc { border-color: #58d68d; color: #58d68d; }
-  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
-  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
-  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
-  .ref-item:hover { background: white; }
-  .ref-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
-  .ref-icon img { width: 16px; height: 16px; }
-  .ref-title { font-size: 14px; font-weight: 600; }
-  .ref-domain { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
-  .ref-arrow { margin-left: auto; font-size: 18px; color: var(--muted); }
-  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
-  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
-  .footer-nav-item:hover { background: var(--effect-bg); }
-  .fnav-right { border-left: 1px solid var(--border); text-align: right; align-items: flex-end; }
-  .fnav-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.1em; }
-  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
-  .fnav-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
-  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-text { padding: 3rem 2rem 2rem; }
-    .hero-meta { padding: 2rem; }
-    .content { padding: 0 2rem; }
-    .features-grid { grid-template-columns: 1fr; }
-    .section-nav { padding: 0 2rem; overflow-x: auto; }
-    .footer-nav { grid-template-columns: 1fr; }
-    .fnav-right { border-left: none; border-top: 1px solid var(--border); text-align: left; align-items: flex-start; }
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>神奈川 — 黄金町エリアマネジメント/バザール | アート×まちづくりDB</title>
+  <meta name="description" content="横浜市黄金町の特殊飲食店街をアートで再生した先駆的エリアマネジメント事例。NPO主導で継続的なまちづくりを展開。"/>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400&display=swap');
+  :root {
+    --bg:#181818;--bg2:#1f1f1f;--bg3:#262626;
+    --line:#2e2e2e;--line2:#3a3a3a;
+    --text:#f0f0f0;--muted:#666;--dim:#444;--accent:#e8c96e;
   }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;}
+  nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;}
+  .nav-logo{font-family:'Archivo Black',sans-serif;font-size:12px;letter-spacing:0.18em;
+    text-transform:uppercase;color:var(--accent);text-decoration:none;}
+  .nav-back{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;
+    letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.15s;}
+  .nav-back:hover{color:var(--text);}
+  .hero{border-bottom:1px solid var(--line);padding:56px 32px 40px;max-width:860px;margin:0 auto;}
+  .hero-meta{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+  .hero-region{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+    letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);}
+  .hero-sep{color:var(--line2);}
+  .hero-cat{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+    letter-spacing:0.18em;text-transform:uppercase;padding:3px 10px;border:1px solid currentColor;}
+  .hero-case{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:0.1em;color:var(--muted);margin-left:auto;}
+  .hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(24px,5vw,40px);
+    letter-spacing:0.05em;text-transform:uppercase;line-height:1.15;margin-bottom:6px;color:var(--text);}
+  .hero-en{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:400;
+    letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:22px;}
+  .hero-desc{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.85;
+    color:#aaa;max-width:660px;margin-bottom:28px;}
+  .hero-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+    gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:28px;}
+  .stat-item{background:var(--bg2);padding:12px 14px;}
+  .stat-label{font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:700;
+    letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .stat-value{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:500;
+    color:var(--text);letter-spacing:0.04em;}
+  .toc{display:flex;gap:0;border:1px solid var(--line);overflow-x:auto;}
+  .toc a{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+    letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;
+    padding:9px 14px;border-right:1px solid var(--line);white-space:nowrap;transition:color 0.15s,background 0.15s;}
+  .toc a:hover{color:var(--text);background:var(--bg3);}
+  .toc a:last-child{border-right:none;}
+  .content{max-width:860px;margin:0 auto;padding:0 32px 80px;}
+  .section{padding:48px 0 40px;border-bottom:1px solid var(--line);}
+  .section:last-child{border-bottom:none;}
+  .section-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+    letter-spacing:0.3em;color:var(--muted);margin-bottom:6px;}
+  .section-title{font-family:'Archivo Black',sans-serif;font-size:18px;letter-spacing:0.1em;
+    text-transform:uppercase;margin-bottom:24px;display:flex;align-items:baseline;gap:12px;}
+  .section-title-en{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:400;
+    letter-spacing:0.2em;color:var(--muted);}
+  .prose{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.95;
+    color:#999;max-width:640px;}
+  .prose p{margin-bottom:1.4em;}
+  .prose p:last-child{margin-bottom:0;}
+  /* FEATURES */
+  .features-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .feature-item{background:var(--bg2);padding:22px 24px;}
+  .feature-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+    letter-spacing:0.25em;color:var(--accent);margin-bottom:6px;}
+  .feature-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;
+    letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .feature-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .feature-bullets{margin-top:10px;padding-left:0;list-style:none;}
+  .feature-bullets li{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;
+    letter-spacing:0.06em;color:var(--muted);padding:3px 0 3px 14px;position:relative;}
+  .feature-bullets li::before{content:'—';position:absolute;left:0;color:var(--line2);}
+  /* IMPACT — color-coded */
+  .impact-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .impact-item{background:var(--bg2);padding:22px 24px;border-left:3px solid var(--impact-color, #888);}
+  .impact-code{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+    letter-spacing:0.2em;text-transform:uppercase;color:var(--impact-color,#888);margin-bottom:6px;}
+  .impact-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;
+    letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .impact-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .impact-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:20px;}
+  .impact-tag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+    letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;border:1px solid;}
+  /* REFS */
+  .refs-grid{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .ref-item{background:var(--bg2);display:flex;align-items:center;gap:14px;
+    padding:13px 18px;text-decoration:none;transition:background 0.12s;}
+  .ref-item:hover{background:var(--bg3);}
+  .ref-icon{width:24px;height:24px;flex-shrink:0;}
+  .ref-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;}
+  .ref-domain{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.05em;}
+  .ref-arrow{margin-left:auto;color:var(--muted);font-size:14px;}
+  /* PAGINATION */
+  .pagination{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px;}
+  .page-item{flex:1;background:var(--bg2);padding:16px 18px;text-decoration:none;transition:background 0.12s;}
+  .page-item:hover{background:var(--bg3);}
+  .page-dir{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+    letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .page-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--text);}
+  .page-sub{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);margin-top:2px;}
+  .page-item.next{text-align:right;}
+  footer{border-top:1px solid var(--line);padding:18px 32px;font-family:'Barlow Condensed',sans-serif;
+    font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);
+    display:flex;align-items:center;justify-content:space-between;}
+  footer a{color:var(--muted);text-decoration:none;}
+  footer a:hover{color:var(--text);}
+  .note{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.08em;margin-top:20px;}
 </style>
 </head>
 <body>
-
 <nav>
-  <a href="index.html" class="nav-logo">Art × Placemaking DB</a>
-  <div class="breadcrumb"><a href="index.html">HOME</a><span>›</span><span>神奈川</span></div>
-  <a href="index.html" class="nav-back">← 一覧</a>
+  <a class="nav-logo" href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a>
+  <a class="nav-back" href="https://bawb199765-bot.github.io/Art_PlaceMaking/database/index.html">← Database</a>
 </nav>
-
 <div class="hero">
-  <div class="hero-text">
-    <div class="hero-tags">
-      <span class="tag tag-region">関東</span>
-      <span class="tag tag-region">神奈川県</span>
-      <span class="tag tag-type">横浜・港町・在日文化・エリア再生</span>
-    </div>
-    <div class="hero-index">Case 14 / 47</div>
-    <h1>黄金町バザール</h1>
-    <div class="hero-en">Koganecho Bazaar</div>
-    <p class="hero-desc">横浜・黄金町の売春・違法営業エリアだった場所を、アートによって安全で文化的な街に転換した都市再生プロジェクト。治安改善から創作拠点化まで含む総合的な都市再生モデルとして国際的に評価される。港町・在日文化・旧遊郭の歴史というこの場所固有のアイデンティティをアートが媒介する。</p>
-  </div>
   <div class="hero-meta">
-    <div class="meta-row"><span class="meta-label">地域</span><span class="meta-value">神奈川県横浜市・黄金町エリア</span></div>
-    <div class="meta-row"><span class="meta-label">形態</span><span class="meta-value">エリアマネジメント型芸術祭・常設AIR</span></div>
-    <div class="meta-row"><span class="meta-label">開始</span><span class="meta-value">2008年〜継続</span></div>
-    <div class="meta-row"><span class="meta-label">主体</span><span class="meta-value">NPO法人黄金町エリアマネジメントセンター</span></div>
-    <div class="meta-row"><span class="meta-label">規模</span><span class="meta-value">高架下スタジオ群・年1回の芸術祭</span></div>
+    <span class="hero-region">関東</span>
+    <span class="hero-sep">/</span>
+    <span class="hero-region">神奈川県</span>
+    <span class="hero-sep">/</span>
+    <span class="hero-cat" style="color:#6ecac8;border-color:#6ecac8">エリアマネジメント型</span>
+    <span class="hero-case">Case 14 / 48</span>
   </div>
+  <h1>黄金町エリアマネジメント/バザール</h1>
+  <div class="hero-en">Koganecho Area Management / Bazaar</div>
+  <p class="hero-desc">かつて特殊飲食店がひしめいていた横浜市黄金町エリアを、2005年頃からアートを核に据えて再生。2008年から年に1度の黄金町バザールを開始、2009年にNPO法人黄金町エリアマネジメントセンターが発足し継続的なまちづくりが進む。</p>
+  <div class="hero-stats"><div class="stat-item"><div class="stat-label">拠点</div><div class="stat-value">神奈川県横浜市黄金町・日ノ出町</div></div><div class="stat-item"><div class="stat-label">開始年</div><div class="stat-value">2005年〜</div></div><div class="stat-item"><div class="stat-label">主体</div><div class="stat-value">NPO法人黄金町エリアマネジメントセンター</div></div><div class="stat-item"><div class="stat-label">形態</div><div class="stat-value">通年・毎年バザール開催</div></div><div class="stat-item"><div class="stat-label">次回開催</div><div class="stat-value">2026年</div></div><div class="stat-item"><div class="stat-label">東京からのアクセス</div><div class="stat-value">約0.5h（京急線）</div></div></div>
+  <nav class="toc">
+    <a href="#overview">01 概要</a>
+    <a href="#features">02 特徴</a>
+    <a href="#impact">03 街への効果</a>
+    <a href="#refs">04 参考</a>
+  </nav>
 </div>
-
-<nav class="section-nav">
-  <a href="#overview" class="sec-link">概要</a>
-  <a href="#features" class="sec-link">特徴</a>
-  <a href="#impact" class="sec-link">街への効果</a>
-  <a href="#refs" class="sec-link">参考</a>
-</nav>
-
 <div class="content">
-
-  <section id="overview" class="section">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2>概要 <span>Overview</span></h2>
-    </div>
-    <div class="overview-text">
-      <p>黄金町バザールは、横浜市・京浜急行電鉄・NPOなどが連携して2008年に始めた都市再生型アートプロジェクト。かつて違法な売春施設が立ち並んでいた黄金町エリアの高架下・小屋群を撤去・改修し、アーティストの制作スタジオ・展示空間として活用する「黄金スタジオ」を整備した。</p>
-      <p>年1回の国際芸術祭「黄金町バザール」と、通年運営の高架下スタジオ群によって、エリア全体が常時クリエイティブな活動の場となっている。治安改善・エリアイメージの刷新・創作拠点の形成という三位一体の都市再生が実現した、国際的にも注目されるモデル事例。</p>
-      <p>横浜の港町文化・在日コリアン・在日外国人コミュニティ・旧遊郭の歴史など、この場所が持つ複雑で固有のアイデンティティをアートが媒介し、「なかったことにしない」かたちで地域の記憶を継承している点でも高く評価されている。</p>
-    </div>
+  <section class="section" id="overview">
+    <div class="section-num">01</div>
+    <div class="section-title">概要 <span class="section-title-en">Overview</span></div>
+    <div class="prose"><p>黄金町エリアマネジメントは、横浜市黄金町・日ノ出町エリアで展開されるアートを核にした都市再生の取り組み。かつて特殊飲食店が密集し、治安上の問題を抱えていたエリアが、警察・行政・地域住民・アーティストの連携によって段階的に再生された、日本のアートによるエリアマネジメントの代表的事例。</p><p>2005年の一斉摘発・撤去後、空いた建物をアーティストスタジオ・ギャラリーとして活用する取り組みが始まり、2008年から年に1度の芸術祭「黄金町バザール」が開催されるようになった。2009年にNPO法人黄金町エリアマネジメントセンターが設立され、芸術祭の運営に加えてスタジオ管理・テナント誘致・地域コミュニティ活動など通年の活動を展開している。</p><p>高架下の狭い空間に国内外のアーティストが入居し、制作・発表・販売を行う「ハイアーツ」という仕組みが独自のアート生態系を形成。在日コリアン文化が根付く港町・黄金町という複雑なアイデンティティをアートが継承・再解釈することで、地域の多様性を資産として活かすまちづくりが実現されている。</p></div>
   </section>
-
-  <section id="features" class="section">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2>特徴 <span>Features</span></h2>
-    </div>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-num">01</div>
-        <div class="feature-title">高架下スタジオ群による常設クリエイティブ拠点化</div>
-        <div class="feature-body">
-          京急電鉄の高架下を改修した「黄金スタジオ」が、国内外アーティストの制作スタジオ・ショップ・展示空間として通年運用される。「芸術祭の時だけ賑わう」ではなく、日常的にクリエイターが活動する拠点として機能している。
-          <ul>
-            <li>高架下スタジオの常設アーティスト入居</li>
-            <li>展示・制作・販売が同時進行する空間</li>
-            <li>年間を通じた回遊性・訪問目的の提供</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">02</div>
-        <div class="feature-title">治安改善・エリアイメージ刷新という都市再生の実績</div>
-        <div class="feature-body">
-          違法営業の撤去後の空洞をアートで埋め、エリアイメージを「危険な場所」から「訪れる価値のある文化的場所」へと転換。アートによる都市再生が治安・安全・エリア評価の実質的な改善に寄与したモデルとして、都市政策の観点からも参照される。
-          <ul>
-            <li>高架下の違法施設撤去後のアート転用</li>
-            <li>昼夜の来訪者増加による「目」の確保</li>
-            <li>エリアイメージの実質的な刷新</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">03</div>
-        <div class="feature-title">港町・在日文化・場所の歴史を媒介するアート</div>
-        <div class="feature-body">
-          横浜の港町文化・在日コリアン・在日外国人コミュニティ・旧遊郭の歴史など、この場所が持つ固有の記憶と文化的多様性を素材にした作品制作が多く行われる。「難しい歴史」から目を背けず、アートが誠実に向き合うことで、新たな文化的アイデンティティが生まれる。
-          <ul>
-            <li>在日文化・多文化共生をテーマにした制作</li>
-            <li>港町・旧遊郭の歴史への芸術的アプローチ</li>
-            <li>地域住民・在日コミュニティとの協働</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">04</div>
-        <div class="feature-title">NPO主導の自律的なエリアマネジメント</div>
-        <div class="feature-body">
-          行政依存ではなく、NPO法人が中心となって持続的なエリアマネジメントを担う体制が確立されている。アーティストの入居審査・スタジオ管理・芸術祭運営・周辺コミュニティとの関係構築まで、民間自律的な組織が担っている。
-          <ul>
-            <li>NPO法人による持続的エリアマネジメント</li>
-            <li>行政・民間・アーティストの三者連携</li>
-            <li>自律的な資金調達・収益確保の仕組み</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <section class="section" id="features">
+    <div class="section-num">02</div>
+    <div class="section-title">主な特徴 <span class="section-title-en">Key Features</span></div>
+    <div class="features-grid"><div class="feature-item">
+          <div class="feature-num">01</div>
+          <div class="feature-title">特殊飲食店街からアート街へという劇的な転換</div>
+          <div class="feature-desc">かつて風俗店が並んでいたエリアがアーティストスタジオとギャラリーの集積地へと転換した事実そのものが強力なストーリーを持つ。ネガティブな印象の場所をアートで反転させた日本でも希少な事例。</div>
+          <ul class="feature-bullets"><li>治安・印象・地域価値の劇的な改善</li><li>行政・警察・住民・アーティストの連携成功例</li><li>「問題地区」から「アート地区」への転換モデル</li></ul>
+        </div><div class="feature-item">
+          <div class="feature-num">02</div>
+          <div class="feature-title">NPO法人による通年の持続的なエリアマネジメント</div>
+          <div class="feature-desc">年1回のバザールだけでなく、NPO法人が通年でスタジオ管理・テナント誘致・地域コミュニティ活動を継続することで、芸術祭と日常のまちづくりが一体化した持続的な運営体制が確立されている。</div>
+          <ul class="feature-bullets"><li>NPO法人による不動産管理・テナント運営</li><li>アーティストのロングステイ・定住支援</li><li>地域住民との継続的なコミュニティ活動</li></ul>
+        </div><div class="feature-item">
+          <div class="feature-num">03</div>
+          <div class="feature-title">京急高架下の空間を活用したスタジオ・ギャラリー群</div>
+          <div class="feature-desc">京急電鉄の高架橋の下や隣接する路地の建物を活用し、小さなアーティストスタジオ・ギャラリー・カフェが密集する独自の文化的景観を形成。都市インフラをアート空間として転用した先進事例。</div>
+          <ul class="feature-bullets"><li>高架下スペースのスタジオ・ギャラリー転用</li><li>国内外アーティストの中長期入居</li><li>制作・展示・販売が同居するエコシステム</li></ul>
+        </div><div class="feature-item">
+          <div class="feature-num">04</div>
+          <div class="feature-title">横浜・港町・在日文化という多様なアイデンティティの継承</div>
+          <div class="feature-desc">黄金町エリアが持つ横浜港・関内・在日コリアン文化という重層的なアイデンティティをアートが掘り起こし、地域の多様性を可視化する。単なる「きれいなアート街」ではなく、場所の歴史と複雑さを継承するまちづくり。</div>
+          <ul class="feature-bullets"><li>在日文化・港町の歴史の継承</li><li>地域の複雑な歴史と向き合うアートプログラム</li><li>多文化共生を体現する地域コミュニティ形成</li></ul>
+        </div></div>
   </section>
-
-  <section id="impact" class="section">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2>街への効果 <span>Urban Impact</span></h2>
-    </div>
-    <p class="impact-intro">黄金町バザールが持つ都市への効果を9分類システムで分析する。高架下・遊休空間の都市再編、市民コミュニティの再形成、港町・在日文化の固有アイデンティティの継承、そしてクリエイティブエコシステムの形成という4軸で効果が確認されている。</p>
-
-    <div class="impact-category-group">
-      <div class="impact-cat-label cat-economic">経済的効果 / Economic</div>
-      <div class="impact-cards">
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-eco"></span>
-            <span class="impact-tag-text">1-③ 経済的効果｜都市空間の再編</span>
-          </div>
-          <div class="impact-card-title">違法施設跡地・高架下のクリエイティブ拠点への全面転換</div>
-          <div class="impact-card-body">違法な売春施設が立ち並んでいた高架下スペースを、アーティストスタジオ・ギャラリー・工房へと全面転換した。都市の「問題空間」が文化的・経済的価値を持つ拠点へと再生された事例として、国内外の都市再生政策の参照モデルとなっている。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="impact-category-group">
-      <div class="impact-cat-label cat-social">社会的効果 / Social</div>
-      <div class="impact-cards">
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-soc"></span>
-            <span class="impact-tag-text">2-① 社会的効果｜コミュニティ形成</span>
-          </div>
-          <div class="impact-card-title">多様な背景を持つ住民・アーティストの共存コミュニティ形成</div>
-          <div class="impact-card-body">在日外国人・地域高齢者・若手アーティスト・行政関係者など多様な属性の人々が共存するコミュニティが黄金町に形成された。アーティストと住民の日常的な交流が積み重なることで、「この街に住み続けたい」という帰属意識が育まれている。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="impact-category-group">
-      <div class="impact-cat-label cat-cultural">文化的効果 / Cultural</div>
-      <div class="impact-cards">
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-cul"></span>
-            <span class="impact-tag-text">3-① 文化的効果｜地域ブランディング・アイデンティティ</span>
-          </div>
-          <div class="impact-card-title">港町・在日文化・場所の記憶をアートが媒介する複合的アイデンティティの構築</div>
-          <div class="impact-card-body">横浜の港町としての歴史・在日コリアンを含む多様な外来文化・旧遊郭という困難な歴史を「なかったこと」にせず、アートが誠実に向き合う。場所の複雑な固有性が「黄金町らしさ」として積極的に評価される文化的アイデンティティへと転換されている。</div>
-        </div>
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-cul"></span>
-            <span class="impact-tag-text">3-③ 文化的効果｜クリエイティブエコシステム創出</span>
-          </div>
-          <div class="impact-card-title">常設スタジオ群が育む持続的クリエイティブエコシステム</div>
-          <div class="impact-card-body">高架下スタジオへの国内外アーティストの入居が通年で続き、制作・展示・販売・交流が日常的に行われるクリエイティブ・エコシステムが定着。芸術祭期間外も継続するこの日常的な文化活動こそが、黄金町の持続的な再生力の源泉となっている。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="impact-badges">
-      <span class="impact-badges-label">選定カテゴリ</span>
-      <span class="badge badge-eco">1-③ 都市空間の再編</span>
-      <span class="badge badge-soc">2-① コミュニティ形成</span>
-      <span class="badge badge-cul">3-① 地域ブランディング</span>
-      <span class="badge badge-cul">3-③ クリエイティブエコシステム</span>
-    </div>
+  <section class="section" id="impact">
+    <div class="section-num">03</div>
+    <div class="section-title">街への効果 <span class="section-title-en">Urban Impact</span></div>
+    <div class="impact-grid"><div class="impact-item" style="--impact-color:#e8c96e">
+          <div class="impact-code">1-③ 経済的効果｜都市空間の再編</div>
+          <div class="impact-title">問題地区の創造的産業地区への転換による不動産価値向上</div>
+          <div class="impact-desc">アートによるエリア再生が黄金町周辺の不動産価値と来街者数を改善。高架下・路地の遊休空間が創造的産業の集積地に転換したことで、エリア全体の経済的価値が向上した。</div>
+        </div><div class="impact-item" style="--impact-color:#6ecac8">
+          <div class="impact-code">2-① 社会的効果｜コミュニティ形成</div>
+          <div class="impact-title">多様な背景を持つ住民・アーティスト・来街者の交流</div>
+          <div class="impact-desc">国内外のアーティスト、地域の在日コリアン住民、新たに移住してきたクリエイター、観光来街者が混在するコミュニティが形成され、多様性を活かした地域社会が育まれている。</div>
+        </div><div class="impact-item" style="--impact-color:#a06ec8">
+          <div class="impact-code">3-③ 文化的効果｜クリエイティブエコシステム</div>
+          <div class="impact-title">アーティストが持続的に活動できる都市内クリエイティブ拠点の形成</div>
+          <div class="impact-desc">低廉な家賃でスタジオを構えられる黄金町が、若手アーティストや実験的な表現者の活動拠点として機能することで、横浜・首都圏のアートシーンのエコシステムを支えている。</div>
+        </div></div>
+    <div class="impact-tags"><span class="impact-tag" style="color:#e8c96e;border-color:#e8c96e">1-③ 都市空間の再編</span><span class="impact-tag" style="color:#6ecac8;border-color:#6ecac8">2-① コミュニティ形成</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-① 地域ブランディング</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-③ クリエイティブエコシステム</span></div>
   </section>
-
-  <section id="refs" class="section">
-    <div class="section-header">
-      <span class="section-num">04</span>
-      <h2>参考リンク <span>References</span></h2>
-    </div>
-    <div class="refs-grid">
-      <a href="https://www.koganecho.net/" target="_blank" rel="noopener" class="ref-item">
-        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=koganecho.net&sz=64" alt=""></div>
-        <div>
-          <div class="ref-title">黄金町エリアマネジメントセンター 公式サイト</div>
-          <div class="ref-domain">koganecho.net</div>
-        </div>
-        <div class="ref-arrow">→</div>
-      </a>
-      <a href="https://www.city.yokohama.lg.jp/kurashi/machizukuri-kankyo/toshiseibi/kaihatsu/area/koganecho.html" target="_blank" rel="noopener" class="ref-item">
-        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=city.yokohama.lg.jp&sz=64" alt=""></div>
-        <div>
-          <div class="ref-title">横浜市 黄金町地区まちづくり</div>
-          <div class="ref-domain">city.yokohama.lg.jp</div>
-        </div>
-        <div class="ref-arrow">→</div>
-      </a>
-    </div>
+  <section class="section" id="refs">
+    <div class="section-num">04</div>
+    <div class="section-title">参考リンク <span class="section-title-en">References</span></div>
+    <div class="refs-grid"><a class="ref-item" href="https://koganecho.net/" target="_blank">
+          <img class="ref-icon" src="https://www.google.com/s2/favicons?domain=koganecho.net&sz=64" alt=""/>
+          <div><div class="ref-title">黄金町エリアマネジメントセンター 公式サイト</div><div class="ref-domain">koganecho.net</div></div>
+          <span class="ref-arrow">→</span>
+        </a><a class="ref-item" href="https://www.city.yokohama.lg.jp/" target="_blank">
+          <img class="ref-icon" src="https://www.google.com/s2/favicons?domain=city.yokohama.lg.jp&sz=64" alt=""/>
+          <div><div class="ref-title">横浜市 公式サイト</div><div class="ref-domain">city.yokohama.lg.jp</div></div>
+          <span class="ref-arrow">→</span>
+        </a></div>
+    <p class="note">※掲載情報は2026年1月末時点の情報を参考にしています。</p>
   </section>
-
+  <div class="pagination"><a class="page-item prev" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-tokyo.html">
+      <div class="page-dir">← 前の事例</div>
+      <div class="page-name">東京ビエンナーレ</div>
+      <div class="page-sub">関東 — 東京都</div>
+    </a><a class="page-item next" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-niigata.html">
+      <div class="page-dir">次の事例 →</div>
+      <div class="page-name">大地の芸術祭</div>
+      <div class="page-sub">中部 — 新潟県</div>
+    </a></div>
 </div>
-
-<div class="footer-nav">
-  <a href="detail-tokyo.html" class="footer-nav-item">
-    <span class="fnav-label">← 前の事例</span>
-    <span class="fnav-title">東京ビエンナーレ</span>
-    <span class="fnav-count">関東 — 6 / 7</span>
-  </a>
-  <a href="detail-niigata.html" class="footer-nav-item fnav-right">
-    <span class="fnav-label">次の事例 →</span>
-    <span class="fnav-title">大地の芸術祭 越後妻有</span>
-    <span class="fnav-count">中部 — 1 / 9</span>
-  </a>
-</div>
-
 <footer>
-  <span>※掲載情報は2026年1月末時点の情報を参考にしています。</span>
-  <a href="index.html" style="color: var(--muted); text-decoration: none;">Art × Placemaking</a>
+  <a href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking</a>
+  <span>© 2026 Art × Placemaking Database</span>
 </footer>
-
 </body>
 </html>
