@@ -1,193 +1,86 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>広島 — ひろしまトリエンナーレ | アート×まちづくりDB</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<html lang="ja"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>広島 — 広島国際建築祭 | アート×まちづくりDB</title><meta name="description" content="建築を軸に広島の都市と記憶を読み解く専門特化型フェスティバル。被爆建物・復興建築・現代建築を巡り、平和と都市の再生を問い直す。"/>
 <style>
-  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
-  .nav-logo:hover { color: var(--ink); }
-  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-  .breadcrumb a { color: var(--muted); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--accent); }
-  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
-  .nav-back:hover { background: var(--accent); color: white; }
-  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
-  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
-  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
-  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
-  .tag-region { border-color: var(--muted); color: var(--muted); }
-  .tag-type { border-color: var(--accent); color: var(--accent); }
-  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
-  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
-  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
-  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
-  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
-  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .meta-row:first-child { border-top: 1px solid var(--border); }
-  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
-  .meta-value { font-weight: 600; }
-  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
-  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
-  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
-  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
-  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
-  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
-  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
-  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
-  .overview-text p + p { margin-top: 1.5em; }
-  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
-  .feature-card { background: var(--paper); padding: 2rem; }
-  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
-  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
-  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
-  .feature-body ul { list-style: none; margin-top: 0.75rem; }
-  .feature-body li::before { content: '—  '; color: var(--muted); }
-  .feature-body li { margin-bottom: 4px; }
-  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
-  .impact-category-group { margin-bottom: 2.5rem; }
-  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
-  .cat-economic { background: var(--tag-eco); }
-  .cat-social { background: var(--tag-soc); }
-  .cat-cultural { background: var(--tag-cul); }
-  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
-  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
-  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
-  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-eco { background: var(--tag-eco); }
-  .dot-soc { background: var(--tag-soc); }
-  .dot-cul { background: var(--tag-cul); }
-  .impact-tag-text { color: var(--muted); }
-  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
-  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
-  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
-  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
-  .badge-eco { border-color: #5dade2; color: #5dade2; }
-  .badge-soc { border-color: #58d68d; color: #58d68d; }
-  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
-  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
-  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
-  .ref-item:hover { background: white; }
-  .ref-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); flex-shrink: 0; }
-  .ref-title { font-size: 14px; font-weight: 600; }
-  .ref-url { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  .ref-arrow { margin-left: auto; color: var(--accent); font-size: 18px; flex-shrink: 0; }
-  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
-  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
-  .footer-nav-item:hover { background: var(--effect-bg); }
-  .fnav-right { border-left: 1px solid var(--border); text-align: right; }
-  .fnav-dir { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
-  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
-  .fnav-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-  .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  .footer-case { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-text { padding: 3rem 2rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
-    .hero-meta { padding: 2rem; }
-    .content { padding: 0 2rem; }
-    .section-nav { padding: 0 2rem; overflow-x: auto; }
-    .features-grid { grid-template-columns: 1fr; }
-    .footer-nav { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 8px; text-align: center; }
-  }
-</style>
-</head>
-<body>
-<nav>
-  <a href="index.html" class="nav-logo">ART × PLACEMAKING DB</a>
-  <div class="breadcrumb"><a href="index.html">TOP</a><span>›</span><span>広島</span></div>
-  <a href="index.html" class="nav-back">← 一覧へ</a>
-</nav>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400&display=swap');
+  :root{--bg:#181818;--bg2:#1f1f1f;--bg3:#262626;--line:#2e2e2e;--line2:#3a3a3a;--text:#f0f0f0;--muted:#666;--dim:#444;--accent:#e8c96e;}
+  *{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+  body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;}
+  nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;}
+  .nav-logo{font-family:'Archivo Black',sans-serif;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);text-decoration:none;}
+  .nav-back{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.15s;}
+  .nav-back:hover{color:var(--text);}
+  .hero{border-bottom:1px solid var(--line);padding:56px 32px 40px;max-width:860px;margin:0 auto;}
+  .hero-meta{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+  .hero-region{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);}
+  .hero-sep{color:var(--line2);}
+  .hero-cat{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:3px 10px;border:1px solid currentColor;}
+  .hero-case{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:0.1em;color:var(--muted);margin-left:auto;}
+  .hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(22px,4.5vw,38px);letter-spacing:0.04em;text-transform:uppercase;line-height:1.15;margin-bottom:6px;color:var(--text);}
+  .hero-en{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:22px;}
+  .hero-desc{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.85;color:#aaa;max-width:660px;margin-bottom:28px;}
+  .hero-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:28px;}
+  .stat-item{background:var(--bg2);padding:12px 14px;}
+  .stat-label{font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .stat-value{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:500;color:var(--text);letter-spacing:0.04em;}
+  .toc{display:flex;gap:0;border:1px solid var(--line);overflow-x:auto;}
+  .toc a{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:9px 14px;border-right:1px solid var(--line);white-space:nowrap;transition:color 0.15s,background 0.15s;}
+  .toc a:hover{color:var(--text);background:var(--bg3);}
+  .toc a:last-child{border-right:none;}
+  .content{max-width:860px;margin:0 auto;padding:0 32px 80px;}
+  .section{padding:48px 0 40px;border-bottom:1px solid var(--line);}
+  .section:last-child{border-bottom:none;}
+  .section-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.3em;color:var(--muted);margin-bottom:6px;}
+  .section-title{font-family:'Archivo Black',sans-serif;font-size:18px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:baseline;gap:12px;}
+  .section-title-en{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:400;letter-spacing:0.2em;color:var(--muted);}
+  .prose{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.95;color:#999;max-width:640px;}
+  .prose p{margin-bottom:1.4em;}.prose p:last-child{margin-bottom:0;}
+  .features-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .feature-item{background:var(--bg2);padding:22px 24px;}
+  .feature-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.25em;color:var(--accent);margin-bottom:6px;}
+  .feature-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .feature-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .feature-bullets{margin-top:10px;padding-left:0;list-style:none;}
+  .feature-bullets li{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.06em;color:var(--muted);padding:3px 0 3px 14px;position:relative;}
+  .feature-bullets li::before{content:'—';position:absolute;left:0;color:var(--line2);}
+  .impact-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .impact-item{background:var(--bg2);padding:22px 24px;border-left:3px solid var(--impact-color,#888);}
+  .impact-code{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--impact-color,#888);margin-bottom:6px;}
+  .impact-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .impact-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .impact-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:20px;}
+  .impact-tag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;border:1px solid;}
+  .refs-grid{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .ref-item{background:var(--bg2);display:flex;align-items:center;gap:14px;padding:13px 18px;text-decoration:none;transition:background 0.12s;}
+  .ref-item:hover{background:var(--bg3);}
+  .ref-icon{width:24px;height:24px;flex-shrink:0;}
+  .ref-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;}
+  .ref-domain{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.05em;}
+  .ref-arrow{margin-left:auto;color:var(--muted);font-size:14px;}
+  .pagination{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px;}
+  .page-item{flex:1;background:var(--bg2);padding:16px 18px;text-decoration:none;transition:background 0.12s;}
+  .page-item:hover{background:var(--bg3);}
+  .page-dir{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .page-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--text);}
+  .page-sub{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);margin-top:2px;}
+  .page-item.next{text-align:right;}
+  footer{border-top:1px solid var(--line);padding:18px 32px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:space-between;}
+  footer a{color:var(--muted);text-decoration:none;}footer a:hover{color:var(--text);}
+  .note{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.08em;margin-top:20px;}
+</style></head><body>
+<nav><a class="nav-logo" href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a><a class="nav-back" href="https://bawb199765-bot.github.io/Art_PlaceMaking/database/index.html">← Database</a></nav>
 <div class="hero">
-  <div class="hero-text">
-    <div class="hero-tags"><span class="tag tag-region">中国</span>
-      <span class="tag tag-region">広島県</span>
-      <span class="tag tag-type">国際芸術祭</span>
-      <span class="tag tag-type">平和・記憶</span>
-</div>
-    <div class="hero-index">Case 34 / 47</div>
-    <h1>ひろしまトリエンナーレ</h1>
-    <div class="hero-en">HIROSHIMA TRIENNALE</div>
-    <p class="hero-desc">平和記念都市・広島を舞台に、原爆の記憶と平和への希求をテーマに据えた国際芸術祭。被爆の記憶が残る建造物・川沿い・旧市街を会場に、世界各地の紛争・暴力・回復をテーマにしたアートが国際的な対話の場を創出する。</p>
-  </div>
-  <div class="hero-meta">    <div class="meta-row"><span class="meta-label">REGION</span><span class="meta-value">広島市内・福山市・尾道市</span></div>
-    <div class="meta-row"><span class="meta-label">STARTED</span><span class="meta-value">2017年〜（3年ごと）</span></div>
-    <div class="meta-row"><span class="meta-label">ORGANIZER</span><span class="meta-value">広島県・ひろしまトリエンナーレ実行委員会</span></div>
-    <div class="meta-row"><span class="meta-label">SCALE</span><span class="meta-value">県内複数都市・50以上の国際アーティスト</span></div>
-    <div class="meta-row"><span class="meta-label">KEYWORDS</span><span class="meta-value">平和・被爆・原爆ドーム・尾道・瀬戸内</span></div></div>
-</div>
-<div class="section-nav">
-  <a href="#overview" class="sec-link">01 概要</a>
-  <a href="#features" class="sec-link">02 特徴</a>
-  <a href="#impact" class="sec-link">03 街への効果</a>
-  <a href="#refs" class="sec-link">04 参考</a>
+  <div class="hero-meta"><span class="hero-region">中国・四国</span><span class="hero-sep">/</span><span class="hero-region">広島県</span><span class="hero-sep">/</span><span class="hero-cat" style="color:#8ecf6e;border-color:#8ecf6e">地域型芸術祭型</span><span class="hero-case">Case 34 / 48</span></div>
+  <h1>広島国際建築祭</h1><div class="hero-en">Hiroshima International Architecture Festival</div><p class="hero-desc">2025年から開始された建築という専門分野に特化した広島発の国際フェスティバル。福山市・尾道市などを中心に、現代建築を巡るツアーや展示・シンポジウムを通じて都市の記憶・復興・再生を多角的に問い直す。</p>
+  <div class="hero-stats"><div class="stat-item"><div class="stat-label">拠点</div><div class="stat-value">広島県広島市・福山市・尾道市ほか</div></div><div class="stat-item"><div class="stat-label">開始年</div><div class="stat-value">2025年〜</div></div><div class="stat-item"><div class="stat-label">主体</div><div class="stat-value">広島国際建築祭実行委員会</div></div><div class="stat-item"><div class="stat-label">形態</div><div class="stat-value">不定期開催</div></div><div class="stat-item"><div class="stat-label">次回開催</div><div class="stat-value">2028年</div></div><div class="stat-item"><div class="stat-label">東京からのアクセス</div><div class="stat-value">約4h（新幹線）</div></div></div>
+  <nav class="toc"><a href="#overview">01 概要</a><a href="#features">02 特徴</a><a href="#impact">03 街への効果</a><a href="#refs">04 参考</a></nav>
 </div>
 <div class="content">
-  <section class="section" id="overview">
-    <div class="section-header"><span class="section-num">01</span><h2>概要 <span>OVERVIEW</span></h2></div>
-    <div class="overview-text">      <p>ひろしまトリエンナーレは広島という場所が持つ歴史的文脈——1945年8月の原爆投下と、そこからの復興・平和都市への歩み——を現代アートの文脈に置き換えた国際芸術祭です。平和・記憶・傷・回復・希望というテーマが世界各国のアーティストに共有され、多様な文化的背景からの応答が広島の地に集まります。</p>
-      <p>原爆ドーム周辺・平和記念公園・旧広島市民球場跡地など被爆の記憶が刻まれたスポットが会場となることで、アート作品が持つ意味が歴史的文脈と深く共鳴します。また、尾道・福山など県内の他都市にも展開し、瀬戸内の自然・文化と組み合わせた多彩な体験を提供します。</p>
-      <p>アートを通じた平和教育・国際対話という視点から、学術機関・NGO・国際機関との連携も積極的に図られており、単なる芸術祭を超えた「平和のための文化外交」としての機能も担っています。</p></div>
-  </section>
-  <section class="section" id="features">
-    <div class="section-header"><span class="section-num">02</span><h2>特徴 <span>FEATURES</span></h2></div>
-    <div class="features-grid"><div class="feature-card"><div class="feature-num">01</div><div class="feature-title">被爆の記憶とアートの対話</div><div class="feature-body"><p>原爆ドーム・平和記念館周辺という歴史的空間で、世界各地の戦争・紛争・回復をテーマにした国際アーティストの作品が展示される。被爆体験の普遍化と現代的継承をアートが担う。</p><ul><li>原爆ドーム周辺の特別展示許可エリア活用</li><li>被爆二世・三世とアーティストの協働証言プロジェクト</li><li>戦争・平和・記憶をテーマとする国際招聘作品</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">02</div><div class="feature-title">尾道・瀬戸内との連携</div><div class="feature-body"><p>世界的知名度を持つ坂の街・尾道や瀬戸内海の島々との連携展示。尾道の古民家・廃寺・映画ゆかりのロケ地などを会場に、広島とは異なる文脈でのアート体験を提供する。</p><ul><li>尾道の廃寺・古民家ギャラリー活用</li><li>瀬戸内の無人島での野外インスタレーション</li><li>しまなみ海道を歩きながら鑑賞するルート設計</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">03</div><div class="feature-title">福山・鞆の浦の活用</div><div class="feature-body"><p>江戸時代の港町の面影を残す鞆の浦や城下町・福山を会場に加えることで、広島固有の歴史的多様性をアートが浮き彫りにする。保存される古い町並みとの対話が独特の場所性を生み出す。</p><ul><li>鞆の浦の古い港町でのサイトスペシフィック作品</li><li>福山城周辺のランドマークアート</li><li>江戸時代の豪商屋敷をギャラリーに活用</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">04</div><div class="feature-title">平和教育・国際対話プログラム</div><div class="feature-body"><p>学校・NGO・国際機関と連携した平和教育ワークショップや国際シンポジウムを開催。広島の被爆体験を世界の紛争・平和問題と接続する文化外交の場として機能する。</p><ul><li>学校教育と連携した被爆証言×アートWS</li><li>国連機関・国際NGOとの共同シンポジウム</li><li>国際メディア向け平和アートプレスツアー</li></ul></div></div>
+  <section class="section" id="overview"><div class="section-num">01</div><div class="section-title">概要 <span class="section-title-en">Overview</span></div><div class="prose"><p>広島国際建築祭は、建築という専門分野に特化した広島発の国際フェスティバル。被爆建物・戦後復興建築・現代建築という三つの時代の建築が共存する広島の都市的特性を活かし、建築を通じて都市の記憶・復興・再生を問い直すプログラムを展開する。</p><p>広島の文脈における建築は単なる構造物ではなく、平和・記憶・復興・生命という普遍的なテーマを体現するメディアとして機能する。原爆ドーム（世界遺産）・平和記念公園（丹下健三設計）・その後の復興建築群という建築の連続が、都市の歴史そのものを語る。</p><p>尾道の斜面に張り付く木造建築群・福山の近代建築・竹原の重伝建地区など、広島県が持つ多様な建築的資源を一つのフェスティバルで体験できる設計が、建築専門家だけでなく一般の来場者を引き付ける力を持つ。</p></div></section>
+  <section class="section" id="features"><div class="section-num">02</div><div class="section-title">主な特徴 <span class="section-title-en">Key Features</span></div><div class="features-grid"><div class="feature-item"><div class="feature-num">01</div><div class="feature-title">被爆建物・復興建築という広島固有の文脈の活用</div><div class="feature-desc">原爆ドーム・平和記念公園・復興建築という「生き残った建物・再建された建物・これから建てる建物」という三つの時代の建築を巡るプログラムが、広島でしか体験できない深度ある建築巡礼を提供する。</div><ul class="feature-bullets"><li>原爆ドーム・平和記念公園を建築として読む</li><li>丹下健三設計の復興建築群の鑑賞ツアー</li><li>被爆遺構の保存と活用をめぐる対話</li></ul></div><div class="feature-item"><div class="feature-num">02</div><div class="feature-title">建築一分野への特化による専門的ブランドの構築</div><div class="feature-desc">現代美術・映像・パフォーマンスなど複合的な芸術祭ではなく「建築」に特化することで、建築・都市デザイン・不動産・まちづくり分野のプロフェッショナルが集まる専門的なフェスティバルとして差別化される。</div><ul class="feature-bullets"><li>建築・都市設計専門家が集まるプラットフォーム</li><li>建築教育・学生向けプログラムの充実</li><li>国際的な建築言説への広島からの貢献</li></ul></div><div class="feature-item"><div class="feature-num">03</div><div class="feature-title">尾道・竹原・福山など広島県の多様な建築資源の活用</div><div class="feature-desc">広島市だけでなく、傾斜地の木造建築が密集する尾道・近代産業遺産を持つ呉・重伝建地区の竹原・近代建築が充実する福山など、広島県の多様な建築的文脈を一つのフェスティバルで体験できる広域展開。</div><ul class="feature-bullets"><li>尾道の斜面木造建築群の活用</li><li>竹原・福山の近代建築・重伝建との連携</li><li>広島県全体の建築的魅力の統合的発信</li></ul></div><div class="feature-item"><div class="feature-num">04</div><div class="feature-title">平和・記憶・再生という普遍的テーマの国際的発信</div><div class="feature-desc">「建築と平和」「建築と記憶」「建築と復興」という広島固有の文脈から生まれた問いは、世界各地の紛争後復興・自然災害からの再建・都市の記憶継承という普遍的な課題に接続する。広島から世界へ向けた文化的発信の力がある。</div><ul class="feature-bullets"><li>平和・復興という普遍的テーマの建築的考察</li><li>国際的な建築家・研究者の招聘</li><li>広島の経験を世界の建築言説へ還元</li></ul></div></div></section>
+  <section class="section" id="impact"><div class="section-num">03</div><div class="section-title">街への効果 <span class="section-title-en">Urban Impact</span></div><div class="impact-grid"><div class="impact-item" style="--impact-color:#e8c96e"><div class="impact-code">1-① 経済的効果｜交流人口増加</div><div class="impact-title">建築目的の専門家・学生・愛好家の広島への訪問増加</div><div class="impact-desc">建築に特化したフェスティバルが、建築・都市設計・不動産・まちづくり分野の専門家・学生・愛好家を広島に引き付け、新たな来訪者層を開拓する。</div></div><div class="impact-item" style="--impact-color:#a06ec8"><div class="impact-code">3-① 文化的効果｜地域ブランディング</div><div class="impact-title">「建築と平和の都市・広島」という国際的なブランドの強化</div><div class="impact-desc">建築フェスティバルが広島の「平和・復興・記憶」という文化的ブランドを建築という専門的な切り口で世界に発信し、国際的な文化都市としての認知をさらに強化する。</div></div><div class="impact-item" style="--impact-color:#a06ec8"><div class="impact-code">3-② 文化的効果｜ランドマーク形成</div><div class="impact-title">被爆建物・復興建築群の文化的ランドマークとしての再評価</div><div class="impact-desc">建築フェスティバルが広島の建築遺産を改めて「見るべき文化的ランドマーク」として位置づけることで、建築ツーリズムの目的地としての広島の価値が向上する。</div></div></div><div class="impact-tags"><span class="impact-tag" style="color:#e8c96e;border-color:#e8c96e">1-① 交流人口増加</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-① 地域ブランディング</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-② ランドマーク形成</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-③ クリエイティブエコシステム</span></div></section>
+  <section class="section" id="refs"><div class="section-num">04</div><div class="section-title">参考リンク <span class="section-title-en">References</span></div><div class="refs-grid"><a class="ref-item" href="https://hiroshima-architecture-exhibition.jp/" target="_blank"><img class="ref-icon" src="https://www.google.com/s2/favicons?domain=hiroshima-architecture-exhibition.jp&sz=64" alt=""/><div><div class="ref-title">広島国際建築祭 公式サイト</div><div class="ref-domain">hiroshima-architecture-exhibition.jp</div></div><span class="ref-arrow">→</span></a><a class="ref-item" href="https://www.city.hiroshima.lg.jp/" target="_blank"><img class="ref-icon" src="https://www.google.com/s2/favicons?domain=city.hiroshima.lg.jp&sz=64" alt=""/><div><div class="ref-title">広島市 公式サイト</div><div class="ref-domain">city.hiroshima.lg.jp</div></div><span class="ref-arrow">→</span></a></div><p class="note">※掲載情報は2026年1月末時点の情報を参考にしています。</p></section>
+  <div class="pagination"><a class="page-item prev" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-okayama.html"><div class="page-dir">← 前の事例</div><div class="page-name">岡山芸術交流</div><div class="page-sub">中国・四国 — 岡山県</div></a><a class="page-item next" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-yamaguchi.html"><div class="page-dir">次の事例 →</div><div class="page-name">YCAM（山口情報芸術センター）</div><div class="page-sub">中国・四国 — 山口県</div></a></div>
 </div>
-  </section>
-  <section class="section" id="impact">
-    <div class="section-header"><span class="section-num">03</span><h2>街への効果 <span>URBAN IMPACT</span></h2></div>
-    <p class="impact-intro">被爆の記憶という広島固有の歴史的文脈が、国際アートを通じて平和・文化ブランドとして世界に発信される。</p>
-    <div class="impact-category-group"><div class="impact-cat-label cat-economic">ECONOMIC — 経済的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-eco"></div><span class="impact-tag-text">1-① 交流人口増加</span></div><div class="impact-card-title">平和観光×アートの新たな来訪層創出</div><div class="impact-card-body">原爆ドーム・平和記念館という既存の平和観光に現代アートの体験価値が加わり、若い世代・外国人観光客・文化観光層の新規取り込みが進む。開催期間中の広島市内宿泊需要が大幅に増加する。</div></div>
-</div></div>
-<div class="impact-category-group"><div class="impact-cat-label cat-cultural">CULTURAL — 文化的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-① 地域ブランディング・アイデンティティ</span></div><div class="impact-card-title">「平和都市・広島」ブランドの現代的更新</div><div class="impact-card-body">原爆・平和という広島固有の歴史的アイデンティティが現代アートと結びつくことで、「博物館的な記憶」から「現代的な対話の場」へと広島のブランドイメージが更新。国際文化都市としての認知が高まる。</div></div>
-<div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-② ランドマーク形成</span></div><div class="impact-card-title">被爆遺構・尾道・鞆の浦の文化的再価値化</div><div class="impact-card-body">原爆ドーム周辺・尾道の坂道・鞆の浦の港町など広島固有の景観スポットがアート体験と結びつき、新たな文化的目的地として国内外に認知される。</div></div>
-<div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-③ クリエイティブエコシステム創出</span></div><div class="impact-card-title">平和×アートの国際クリエイター・ネットワーク</div><div class="impact-card-body">広島を拠点に平和・人権・回復をテーマとする国際アーティストのネットワークが形成されつつある。広島という場所への創造的関与が継続することで独自のクリエイティブ集積が生まれている。</div></div>
-</div></div>
-
-    <div class="impact-badges"><span class="impact-badges-label">IMPACT TAGS</span><span class="badge badge-eco">1-① 交流人口増加</span>
-<span class="badge badge-cul">3-① 地域ブランディング</span>
-<span class="badge badge-cul">3-② ランドマーク形成</span>
-<span class="badge badge-cul">3-③ クリエイティブエコシステム</span>
-</div>
-  </section>
-  <section class="section" id="refs">
-    <div class="section-header"><span class="section-num">04</span><h2>参考 <span>REFERENCES</span></h2></div>
-    <div class="refs-grid"><a href="https://hiroshima-triennale.jp/" target="_blank" class="ref-item"><span class="ref-num">01</span><div><div class="ref-title">ひろしまトリエンナーレ公式</div><div class="ref-url">hiroshima-triennale.jp</div></div><span class="ref-arrow">→</span></a>
-<a href="https://pref.hiroshima.lg.jp/" target="_blank" class="ref-item"><span class="ref-num">02</span><div><div class="ref-title">広島県文化芸術課</div><div class="ref-url">pref.hiroshima.lg.jp</div></div><span class="ref-arrow">→</span></a>
-<a href="https://hiroshima-navi.or.jp/" target="_blank" class="ref-item"><span class="ref-num">03</span><div><div class="ref-title">広島観光コンベンションビューロー</div><div class="ref-url">hiroshima-navi.or.jp</div></div><span class="ref-arrow">→</span></a>
-</div>
-  </section>
-</div>
-<div class="footer-nav">
-  <a href="detail-okayama.html" class="footer-nav-item">
-    <span class="fnav-dir">← PREV</span>
-    <span class="fnav-title">岡山芸術交流</span>
-    <span class="fnav-count">Case 33 — 岡山</span>
-  </a>
-  <a href="detail-yamaguchi.html" class="footer-nav-item fnav-right">
-    <span class="fnav-dir">NEXT →</span>
-    <span class="fnav-title">山口情報芸術センター YCAM</span>
-    <span class="fnav-count">Case 35 — 山口</span>
-  </a>
-</div>
-<footer>
-  <span class="footer-copy">© 2024 Art × Placemaking DB</span>
-  <span class="footer-case">Case 34 / 47 — 広島</span>
-</footer>
-</body>
-</html>
+<footer><a href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking</a><span>© 2026 Art × Placemaking Database</span></footer>
+</body></html>

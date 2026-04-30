@@ -1,193 +1,86 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>岡山 — 岡山芸術交流 | アート×まちづくりDB</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<html lang="ja"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>岡山 — 岡山芸術交流 | アート×まちづくりDB</title><meta name="description" content="岡山市の城下町エリアを主会場に3年に1度開催される国際現代芸術展。世界水準のインスタレーションと都市回遊設計が融合した都市型国際展。"/>
 <style>
-  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
-  .nav-logo:hover { color: var(--ink); }
-  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-  .breadcrumb a { color: var(--muted); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--accent); }
-  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
-  .nav-back:hover { background: var(--accent); color: white; }
-  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
-  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
-  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
-  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
-  .tag-region { border-color: var(--muted); color: var(--muted); }
-  .tag-type { border-color: var(--accent); color: var(--accent); }
-  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
-  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
-  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
-  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
-  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
-  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .meta-row:first-child { border-top: 1px solid var(--border); }
-  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
-  .meta-value { font-weight: 600; }
-  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
-  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
-  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
-  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
-  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
-  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
-  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
-  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
-  .overview-text p + p { margin-top: 1.5em; }
-  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
-  .feature-card { background: var(--paper); padding: 2rem; }
-  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
-  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
-  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
-  .feature-body ul { list-style: none; margin-top: 0.75rem; }
-  .feature-body li::before { content: '—  '; color: var(--muted); }
-  .feature-body li { margin-bottom: 4px; }
-  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
-  .impact-category-group { margin-bottom: 2.5rem; }
-  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
-  .cat-economic { background: var(--tag-eco); }
-  .cat-social { background: var(--tag-soc); }
-  .cat-cultural { background: var(--tag-cul); }
-  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
-  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
-  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
-  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-eco { background: var(--tag-eco); }
-  .dot-soc { background: var(--tag-soc); }
-  .dot-cul { background: var(--tag-cul); }
-  .impact-tag-text { color: var(--muted); }
-  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
-  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
-  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
-  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
-  .badge-eco { border-color: #5dade2; color: #5dade2; }
-  .badge-soc { border-color: #58d68d; color: #58d68d; }
-  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
-  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
-  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
-  .ref-item:hover { background: white; }
-  .ref-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); flex-shrink: 0; }
-  .ref-title { font-size: 14px; font-weight: 600; }
-  .ref-url { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  .ref-arrow { margin-left: auto; color: var(--accent); font-size: 18px; flex-shrink: 0; }
-  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
-  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
-  .footer-nav-item:hover { background: var(--effect-bg); }
-  .fnav-right { border-left: 1px solid var(--border); text-align: right; }
-  .fnav-dir { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
-  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
-  .fnav-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-  .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  .footer-case { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-text { padding: 3rem 2rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
-    .hero-meta { padding: 2rem; }
-    .content { padding: 0 2rem; }
-    .section-nav { padding: 0 2rem; overflow-x: auto; }
-    .features-grid { grid-template-columns: 1fr; }
-    .footer-nav { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 8px; text-align: center; }
-  }
-</style>
-</head>
-<body>
-<nav>
-  <a href="index.html" class="nav-logo">ART × PLACEMAKING DB</a>
-  <div class="breadcrumb"><a href="index.html">TOP</a><span>›</span><span>岡山</span></div>
-  <a href="index.html" class="nav-back">← 一覧へ</a>
-</nav>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400&display=swap');
+  :root{--bg:#181818;--bg2:#1f1f1f;--bg3:#262626;--line:#2e2e2e;--line2:#3a3a3a;--text:#f0f0f0;--muted:#666;--dim:#444;--accent:#e8c96e;}
+  *{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+  body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;}
+  nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;}
+  .nav-logo{font-family:'Archivo Black',sans-serif;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);text-decoration:none;}
+  .nav-back{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.15s;}
+  .nav-back:hover{color:var(--text);}
+  .hero{border-bottom:1px solid var(--line);padding:56px 32px 40px;max-width:860px;margin:0 auto;}
+  .hero-meta{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+  .hero-region{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);}
+  .hero-sep{color:var(--line2);}
+  .hero-cat{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:3px 10px;border:1px solid currentColor;}
+  .hero-case{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:0.1em;color:var(--muted);margin-left:auto;}
+  .hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(22px,4.5vw,38px);letter-spacing:0.04em;text-transform:uppercase;line-height:1.15;margin-bottom:6px;color:var(--text);}
+  .hero-en{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:22px;}
+  .hero-desc{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.85;color:#aaa;max-width:660px;margin-bottom:28px;}
+  .hero-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:28px;}
+  .stat-item{background:var(--bg2);padding:12px 14px;}
+  .stat-label{font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .stat-value{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:500;color:var(--text);letter-spacing:0.04em;}
+  .toc{display:flex;gap:0;border:1px solid var(--line);overflow-x:auto;}
+  .toc a{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:9px 14px;border-right:1px solid var(--line);white-space:nowrap;transition:color 0.15s,background 0.15s;}
+  .toc a:hover{color:var(--text);background:var(--bg3);}
+  .toc a:last-child{border-right:none;}
+  .content{max-width:860px;margin:0 auto;padding:0 32px 80px;}
+  .section{padding:48px 0 40px;border-bottom:1px solid var(--line);}
+  .section:last-child{border-bottom:none;}
+  .section-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.3em;color:var(--muted);margin-bottom:6px;}
+  .section-title{font-family:'Archivo Black',sans-serif;font-size:18px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:baseline;gap:12px;}
+  .section-title-en{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:400;letter-spacing:0.2em;color:var(--muted);}
+  .prose{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.95;color:#999;max-width:640px;}
+  .prose p{margin-bottom:1.4em;}.prose p:last-child{margin-bottom:0;}
+  .features-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .feature-item{background:var(--bg2);padding:22px 24px;}
+  .feature-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.25em;color:var(--accent);margin-bottom:6px;}
+  .feature-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .feature-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .feature-bullets{margin-top:10px;padding-left:0;list-style:none;}
+  .feature-bullets li{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.06em;color:var(--muted);padding:3px 0 3px 14px;position:relative;}
+  .feature-bullets li::before{content:'—';position:absolute;left:0;color:var(--line2);}
+  .impact-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .impact-item{background:var(--bg2);padding:22px 24px;border-left:3px solid var(--impact-color,#888);}
+  .impact-code{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--impact-color,#888);margin-bottom:6px;}
+  .impact-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .impact-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .impact-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:20px;}
+  .impact-tag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;border:1px solid;}
+  .refs-grid{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .ref-item{background:var(--bg2);display:flex;align-items:center;gap:14px;padding:13px 18px;text-decoration:none;transition:background 0.12s;}
+  .ref-item:hover{background:var(--bg3);}
+  .ref-icon{width:24px;height:24px;flex-shrink:0;}
+  .ref-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;}
+  .ref-domain{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.05em;}
+  .ref-arrow{margin-left:auto;color:var(--muted);font-size:14px;}
+  .pagination{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px;}
+  .page-item{flex:1;background:var(--bg2);padding:16px 18px;text-decoration:none;transition:background 0.12s;}
+  .page-item:hover{background:var(--bg3);}
+  .page-dir{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .page-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--text);}
+  .page-sub{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);margin-top:2px;}
+  .page-item.next{text-align:right;}
+  footer{border-top:1px solid var(--line);padding:18px 32px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:space-between;}
+  footer a{color:var(--muted);text-decoration:none;}footer a:hover{color:var(--text);}
+  .note{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.08em;margin-top:20px;}
+</style></head><body>
+<nav><a class="nav-logo" href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a><a class="nav-back" href="https://bawb199765-bot.github.io/Art_PlaceMaking/database/index.html">← Database</a></nav>
 <div class="hero">
-  <div class="hero-text">
-    <div class="hero-tags"><span class="tag tag-region">中国</span>
-      <span class="tag tag-region">岡山県</span>
-      <span class="tag tag-type">国際芸術祭</span>
-      <span class="tag tag-type">城下町</span>
-</div>
-    <div class="hero-index">Case 33 / 47</div>
-    <h1>岡山芸術交流</h1>
-    <div class="hero-en">OKAYAMA ART SUMMIT</div>
-    <p class="hero-desc">岡山城・後楽園を擁する城下町・岡山市を舞台にした国際現代芸術祭。3年ごとに世界的アーティストの作品が歴史的市街地を彩り、倉敷・美観地区との連携で広域文化観光を牽引する。</p>
-  </div>
-  <div class="hero-meta">    <div class="meta-row"><span class="meta-label">REGION</span><span class="meta-value">岡山市内（城下・表町・後楽園周辺）</span></div>
-    <div class="meta-row"><span class="meta-label">STARTED</span><span class="meta-value">2016年〜（3年ごと）</span></div>
-    <div class="meta-row"><span class="meta-label">ORGANIZER</span><span class="meta-value">岡山芸術交流実行委員会</span></div>
-    <div class="meta-row"><span class="meta-label">SCALE</span><span class="meta-value">市内30以上の会場・国際アーティスト20組以上</span></div>
-    <div class="meta-row"><span class="meta-label">KEYWORDS</span><span class="meta-value">岡山城・後楽園・倉敷・表町・晴れの国</span></div></div>
-</div>
-<div class="section-nav">
-  <a href="#overview" class="sec-link">01 概要</a>
-  <a href="#features" class="sec-link">02 特徴</a>
-  <a href="#impact" class="sec-link">03 街への効果</a>
-  <a href="#refs" class="sec-link">04 参考</a>
+  <div class="hero-meta"><span class="hero-region">中国・四国</span><span class="hero-sep">/</span><span class="hero-region">岡山県</span><span class="hero-sep">/</span><span class="hero-cat" style="color:#8ecf6e;border-color:#8ecf6e">地域型芸術祭型</span><span class="hero-case">Case 33 / 48</span></div>
+  <h1>岡山芸術交流</h1><div class="hero-en">Okayama Art Summit</div><p class="hero-desc">岡山市の城下町エリアを主会場に、3年に1度開催される国際現代芸術展。林原美術館・旧内山下小学校など歴史的な建物や公共空間を使い、世界水準のインスタレーションを展開する。徒歩で回遊できるコンパクトな会場配置が特色。</p>
+  <div class="hero-stats"><div class="stat-item"><div class="stat-label">拠点</div><div class="stat-value">岡山県岡山市中心部</div></div><div class="stat-item"><div class="stat-label">開始年</div><div class="stat-value">2016年〜</div></div><div class="stat-item"><div class="stat-label">主体</div><div class="stat-value">岡山芸術交流実行委員会</div></div><div class="stat-item"><div class="stat-label">形態</div><div class="stat-value">3年に1度</div></div><div class="stat-item"><div class="stat-label">次回開催</div><div class="stat-value">2028年</div></div><div class="stat-item"><div class="stat-label">東京からのアクセス</div><div class="stat-value">約3h（新幹線）</div></div></div>
+  <nav class="toc"><a href="#overview">01 概要</a><a href="#features">02 特徴</a><a href="#impact">03 街への効果</a><a href="#refs">04 参考</a></nav>
 </div>
 <div class="content">
-  <section class="section" id="overview">
-    <div class="section-header"><span class="section-num">01</span><h2>概要 <span>OVERVIEW</span></h2></div>
-    <div class="overview-text">      <p>岡山芸術交流（Okayama Art Summit）は3年に1度開催される国際的な現代芸術祭で、岡山城・後楽園を中心とした岡山市の歴史的市街地に国内外の著名アーティストの作品を展開します。</p>
-      <p>旧商業地・表町商店街の空き店舗、江戸時代の大名庭園・後楽園の空間、岡山城天守閣周辺など、歴史と現代が交差する多様な会場が魅力。各アーティストが岡山の文脈を深く読み込んだ作品を制作することで、岡山の文化的固有性が浮き彫りになります。</p>
-      <p>倉敷・美観地区という全国的知名度の高い観光地との連携も視野に入れており、岡山県全体の文化観光の底上げを図る広域的な文化戦略としても位置付けられています。</p></div>
-  </section>
-  <section class="section" id="features">
-    <div class="section-header"><span class="section-num">02</span><h2>特徴 <span>FEATURES</span></h2></div>
-    <div class="features-grid"><div class="feature-card"><div class="feature-num">01</div><div class="feature-title">国際的アーティストによる高質な現代美術</div><div class="feature-body"><p>世界各国の著名現代アーティストが岡山の場所と対話した作品を制作・展示。作品の国際的質の高さが美術関係者・メディアの注目を集め、アートファンの専門的来訪を引き寄せる。</p><ul><li>3年ごとに全作品を更新する高サイクル</li><li>招聘アーティストの選定にキュレーターが深く関与</li><li>国際的な現代美術批評・メディアへの露出</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">02</div><div class="feature-title">城下町の歴史的空間との対話</div><div class="feature-body"><p>岡山城・後楽園という日本有数の観光資源と現代アートが同じ空間に共存することで、文化財鑑賞とアート体験が一体となった独自の鑑賞体験を提供する。</p><ul><li>後楽園内の特別展示エリア設定</li><li>岡山城天守閣でのサイトスペシフィック作品</li><li>表町商店街の空き店舗を活用したギャラリー空間</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">03</div><div class="feature-title">倉敷・美観地区との広域連携</div><div class="feature-body"><p>国際的知名度を持つ倉敷・美観地区の観光資源と連携することで、岡山市内の芸術祭来訪者が倉敷へも足を伸ばす広域観光の動線を形成。大原美術館との連携プログラムも展開。</p><ul><li>倉敷美観地区での連携展示</li><li>大原美術館との共同教育プログラム</li><li>JR特急による岡山・倉敷スムーズアクセス案内</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">04</div><div class="feature-title">若い世代へのアート教育</div><div class="feature-body"><p>地元の学校・大学・美術館と連携したアート教育プログラムを充実させ、次世代の芸術文化の担い手を育成。現代アートに触れる機会が少ない地域において国際水準のアートとの接点を提供。</p><ul><li>市内小中学校とのアーティストトーク連携</li><li>岡山大学・就実大学のアート教育連携</li><li>学生ボランティアによる解説プログラム</li></ul></div></div>
+  <section class="section" id="overview"><div class="section-num">01</div><div class="section-title">概要 <span class="section-title-en">Overview</span></div><div class="prose"><p>岡山芸術交流は、岡山市の城下町エリアを舞台に2016年から3年に1度開催される国際現代芸術展。岡山城・後楽園という二大観光資源に隣接する歴史的な文化施設・公共空間を会場として、著名な国際キュレーターのもとで世界水準の現代美術が展開される。</p><p>会場が岡山市中心部の半径1km程度にコンパクトにまとまっており、来場者が徒歩で複数会場を巡れる設計が特徴。林原美術館・旧内山下小学校・石山公園・天満屋など、岡山の日常的な都市空間が世界的なアーティストの舞台となる。</p><p>2016年の第1回キュレーターはリャン・ハン、2019年はインディペンデント・キュレーターのリャン・ジュフイと、毎回国際的なキュレーターを招聘することで展覧会の質と国際的な認知を担保している。瀬戸内国際芸術祭と連携した「アート巡礼・岡山」というツーリズムも形成されつつある。</p></div></section>
+  <section class="section" id="features"><div class="section-num">02</div><div class="section-title">主な特徴 <span class="section-title-en">Key Features</span></div><div class="features-grid"><div class="feature-item"><div class="feature-num">01</div><div class="feature-title">城下町の歴史的空間と世界水準の現代アートの融合</div><div class="feature-desc">岡山城の城下町として形成された歴史的な都市空間に、世界的なアーティストの大型インスタレーションが設置される体験は他都市では代替できない。歴史と現代の対話が岡山芸術交流の独自性を形成する。</div><ul class="feature-bullets"><li>岡山城・後楽園に隣接する歴史的会場設定</li><li>城下町の空間スケールと作品の一体化</li><li>歴史的文脈と現代表現の緊張感ある対話</li></ul></div><div class="feature-item"><div class="feature-num">02</div><div class="feature-title">徒歩回遊できるコンパクトな会場設計</div><div class="feature-desc">会場が市中心部に集中しているため、来場者が地図を片手に徒歩で複数会場を巡れる。回遊の過程で普段は気づかない岡山の都市の魅力を発見する体験が、来場者の満足度と再訪意欲を高める。</div><ul class="feature-bullets"><li>半径1km圏内への会場集約</li><li>徒歩回遊による都市探索体験の設計</li><li>公共空間・広場を活用した野外展示</li></ul></div><div class="feature-item"><div class="feature-num">03</div><div class="feature-title">国際キュレーターによる編集力と世界水準の作品選定</div><div class="feature-desc">毎回国際的に評価されたキュレーターを招聘することで、展覧会全体のコンセプトの強度と世界水準の作品選定が担保される。岡山という地域の固有文脈とグローバルな現代美術の言説が交差する展覧会が生まれる。</div><ul class="feature-bullets"><li>毎回著名な国際キュレーターを招聘</li><li>グローバルな現代美術ネットワークへの接続</li><li>国際的なアートメディアへの露出向上</li></ul></div><div class="feature-item"><div class="feature-num">04</div><div class="feature-title">瀬戸内国際芸術祭との連携による岡山エリアのアートツーリズム</div><div class="feature-desc">同じ岡山県内で開催される瀬戸内国際芸術祭（香川県直島・豊島との連携も含む）と組み合わせた「アートの旅・岡山」という広域ツーリズムが形成されることで、単独開催以上の集客力と経済効果が生まれる。</div><ul class="feature-bullets"><li>瀬戸内トリエンナーレとの周遊推奨</li><li>岡山県全体のアート観光コンテンツ化</li><li>国内外からのアート目的旅行者の誘致</li></ul></div></div></section>
+  <section class="section" id="impact"><div class="section-num">03</div><div class="section-title">街への効果 <span class="section-title-en">Urban Impact</span></div><div class="impact-grid"><div class="impact-item" style="--impact-color:#e8c96e"><div class="impact-code">1-① 経済的効果｜交流人口増加</div><div class="impact-title">国際水準の芸術展を目的とした県外・海外からの来場者増加</div><div class="impact-desc">3年に1度の国際芸術展が岡山市への新たな来場動機を創出し、宿泊・飲食・交通への経済波及効果とともに、アート目的の質の高い観光客を誘引する。</div></div><div class="impact-item" style="--impact-color:#e8c96e"><div class="impact-code">1-② 経済的効果｜経済効果</div><div class="impact-title">都市のブランド価値向上による企業立地・人材集積への貢献</div><div class="impact-desc">「文化都市・岡山」としてのブランド価値向上が、企業誘致・高度人材の集積・スタートアップの立地選択にポジティブな影響を与える間接的な経済効果が期待される。</div></div><div class="impact-item" style="--impact-color:#a06ec8"><div class="impact-code">3-① 文化的効果｜地域ブランディング</div><div class="impact-title">岡山の城下町文化と現代アートを融合した国際文化都市ブランドの形成</div><div class="impact-desc">岡山城・後楽園という既存の文化観光資産に国際現代芸術を加えることで、岡山が国際的な文化都市として認知されるブランド形成に貢献している。</div></div></div><div class="impact-tags"><span class="impact-tag" style="color:#e8c96e;border-color:#e8c96e">1-① 交流人口増加</span><span class="impact-tag" style="color:#e8c96e;border-color:#e8c96e">1-② 経済効果</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-① 地域ブランディング</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-② ランドマーク形成</span></div></section>
+  <section class="section" id="refs"><div class="section-num">04</div><div class="section-title">参考リンク <span class="section-title-en">References</span></div><div class="refs-grid"><a class="ref-item" href="https://www.okayamaartsummit.jp/" target="_blank"><img class="ref-icon" src="https://www.google.com/s2/favicons?domain=okayamaartsummit.jp&sz=64" alt=""/><div><div class="ref-title">岡山芸術交流 公式サイト</div><div class="ref-domain">okayamaartsummit.jp</div></div><span class="ref-arrow">→</span></a><a class="ref-item" href="https://www.city.okayama.jp/" target="_blank"><img class="ref-icon" src="https://www.google.com/s2/favicons?domain=city.okayama.jp&sz=64" alt=""/><div><div class="ref-title">岡山市 公式サイト</div><div class="ref-domain">city.okayama.jp</div></div><span class="ref-arrow">→</span></a></div><p class="note">※掲載情報は2026年1月末時点の情報を参考にしています。</p></section>
+  <div class="pagination"><a class="page-item prev" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-shimane.html"><div class="page-dir">← 前の事例</div><div class="page-name">石見アーツプロジェクト</div><div class="page-sub">中国・四国 — 島根県</div></a><a class="page-item next" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-hiroshima.html"><div class="page-dir">次の事例 →</div><div class="page-name">広島国際建築祭</div><div class="page-sub">中国・四国 — 広島県</div></a></div>
 </div>
-  </section>
-  <section class="section" id="impact">
-    <div class="section-header"><span class="section-num">03</span><h2>街への効果 <span>URBAN IMPACT</span></h2></div>
-    <p class="impact-intro">城下町の歴史的磁力に現代美術の国際的質を重ね、交流人口増加・地場産業の付加価値化・城下町ブランドの刷新が連動する。</p>
-    <div class="impact-category-group"><div class="impact-cat-label cat-economic">ECONOMIC — 経済的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-eco"></div><span class="impact-tag-text">1-① 交流人口増加</span></div><div class="impact-card-title">国内外アートファンの専門来訪</div><div class="impact-card-body">高質な現代美術が国内外のアートファン・美術関係者を引き寄せ、岡山への新たな来訪層の創出に成功。開催期間中の市内宿泊施設の稼働率が大幅に上昇し、岡山城・後楽園観光との相乗効果も見られる。</div></div>
-<div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-eco"></div><span class="impact-tag-text">1-② 経済効果</span></div><div class="impact-card-title">城下町観光への現代的付加価値</div><div class="impact-card-body">岡山城・後楽園という既存の観光資源にアート体験という現代的な付加価値が加わり、若い世代・外国人観光客の新規取り込みが進む。飲食・宿泊・土産物など周辺消費の増加も報告されている。</div></div>
-</div></div>
-<div class="impact-category-group"><div class="impact-cat-label cat-cultural">CULTURAL — 文化的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-① 地域ブランディング・アイデンティティ</span></div><div class="impact-card-title">「晴れの国」の産業・文化のアートによる国際発信</div><div class="impact-card-body">岡山城・後楽園や倉敷の繊維産業・蒜山の農業など岡山固有の産業文化的文脈が、国際的アーティストの視点で再解釈される。岡山の文化的豊かさが国際的な言語で発信される。</div></div>
-<div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-② ランドマーク形成</span></div><div class="impact-card-title">城下町エリアの現代美術スポット化</div><div class="impact-card-body">後楽園・岡山城周辺および表町商店街エリアが「現代アートが体験できる場所」として認知され、従来の庭園・城郭観光とは異なる文化的目的地としての価値が積み重なっている。</div></div>
-</div></div>
-
-    <div class="impact-badges"><span class="impact-badges-label">IMPACT TAGS</span><span class="badge badge-eco">1-① 交流人口増加</span>
-<span class="badge badge-eco">1-② 経済効果</span>
-<span class="badge badge-cul">3-① 地域ブランディング</span>
-<span class="badge badge-cul">3-② ランドマーク形成</span>
-</div>
-  </section>
-  <section class="section" id="refs">
-    <div class="section-header"><span class="section-num">04</span><h2>参考 <span>REFERENCES</span></h2></div>
-    <div class="refs-grid"><a href="https://okayamaartsummit.jp/" target="_blank" class="ref-item"><span class="ref-num">01</span><div><div class="ref-title">岡山芸術交流公式</div><div class="ref-url">okayamaartsummit.jp</div></div><span class="ref-arrow">→</span></a>
-<a href="https://okayama-kanko.net/" target="_blank" class="ref-item"><span class="ref-num">02</span><div><div class="ref-title">岡山市観光協会</div><div class="ref-url">okayama-kanko.net</div></div><span class="ref-arrow">→</span></a>
-<a href="https://kurashiki-kankou.com/" target="_blank" class="ref-item"><span class="ref-num">03</span><div><div class="ref-title">倉敷市観光課</div><div class="ref-url">kurashiki-kankou.com</div></div><span class="ref-arrow">→</span></a>
-</div>
-  </section>
-</div>
-<div class="footer-nav">
-  <a href="detail-shimane.html" class="footer-nav-item">
-    <span class="fnav-dir">← PREV</span>
-    <span class="fnav-title">石見アートプロジェクト</span>
-    <span class="fnav-count">Case 32 — 島根</span>
-  </a>
-  <a href="detail-hiroshima.html" class="footer-nav-item fnav-right">
-    <span class="fnav-dir">NEXT →</span>
-    <span class="fnav-title">ひろしまトリエンナーレ</span>
-    <span class="fnav-count">Case 34 — 広島</span>
-  </a>
-</div>
-<footer>
-  <span class="footer-copy">© 2024 Art × Placemaking DB</span>
-  <span class="footer-case">Case 33 / 47 — 岡山</span>
-</footer>
-</body>
-</html>
+<footer><a href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking</a><span>© 2026 Art × Placemaking Database</span></footer>
+</body></html>

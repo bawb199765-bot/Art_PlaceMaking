@@ -1,194 +1,86 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>鳥取 — 鳥取砂丘　アートプロジェクト | アート×まちづくりDB</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<html lang="ja"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>鳥取 — 鳥取県立美術館の取り組み | アート×まちづくりDB</title><meta name="description" content="2025年開館の鳥取県立美術館を核に、整備段階から地域との対話を重ねた文化政策。民藝運動の地・鳥取の風土を体現するミュージアム型まちづくり。"/>
 <style>
-  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
-  .nav-logo:hover { color: var(--ink); }
-  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-  .breadcrumb a { color: var(--muted); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--accent); }
-  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
-  .nav-back:hover { background: var(--accent); color: white; }
-  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
-  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
-  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
-  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
-  .tag-region { border-color: var(--muted); color: var(--muted); }
-  .tag-type { border-color: var(--accent); color: var(--accent); }
-  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
-  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
-  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
-  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
-  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
-  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .meta-row:first-child { border-top: 1px solid var(--border); }
-  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
-  .meta-value { font-weight: 600; }
-  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
-  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
-  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
-  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
-  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
-  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
-  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
-  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
-  .overview-text p + p { margin-top: 1.5em; }
-  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
-  .feature-card { background: var(--paper); padding: 2rem; }
-  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
-  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
-  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
-  .feature-body ul { list-style: none; margin-top: 0.75rem; }
-  .feature-body li::before { content: '—  '; color: var(--muted); }
-  .feature-body li { margin-bottom: 4px; }
-  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
-  .impact-category-group { margin-bottom: 2.5rem; }
-  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
-  .cat-economic { background: var(--tag-eco); }
-  .cat-social { background: var(--tag-soc); }
-  .cat-cultural { background: var(--tag-cul); }
-  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
-  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
-  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
-  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-eco { background: var(--tag-eco); }
-  .dot-soc { background: var(--tag-soc); }
-  .dot-cul { background: var(--tag-cul); }
-  .impact-tag-text { color: var(--muted); }
-  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
-  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
-  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
-  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
-  .badge-eco { border-color: #5dade2; color: #5dade2; }
-  .badge-soc { border-color: #58d68d; color: #58d68d; }
-  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
-  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
-  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
-  .ref-item:hover { background: white; }
-  .ref-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); flex-shrink: 0; }
-  .ref-title { font-size: 14px; font-weight: 600; }
-  .ref-url { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  .ref-arrow { margin-left: auto; color: var(--accent); font-size: 18px; flex-shrink: 0; }
-  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
-  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
-  .footer-nav-item:hover { background: var(--effect-bg); }
-  .fnav-right { border-left: 1px solid var(--border); text-align: right; }
-  .fnav-dir { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
-  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
-  .fnav-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-  .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  .footer-case { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-text { padding: 3rem 2rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
-    .hero-meta { padding: 2rem; }
-    .content { padding: 0 2rem; }
-    .section-nav { padding: 0 2rem; overflow-x: auto; }
-    .features-grid { grid-template-columns: 1fr; }
-    .footer-nav { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 8px; text-align: center; }
-  }
-</style>
-</head>
-<body>
-<nav>
-  <a href="index.html" class="nav-logo">ART × PLACEMAKING DB</a>
-  <div class="breadcrumb"><a href="index.html">TOP</a><span>›</span><span>鳥取</span></div>
-  <a href="index.html" class="nav-back">← 一覧へ</a>
-</nav>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400&display=swap');
+  :root{--bg:#181818;--bg2:#1f1f1f;--bg3:#262626;--line:#2e2e2e;--line2:#3a3a3a;--text:#f0f0f0;--muted:#666;--dim:#444;--accent:#e8c96e;}
+  *{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+  body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;}
+  nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;}
+  .nav-logo{font-family:'Archivo Black',sans-serif;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);text-decoration:none;}
+  .nav-back{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.15s;}
+  .nav-back:hover{color:var(--text);}
+  .hero{border-bottom:1px solid var(--line);padding:56px 32px 40px;max-width:860px;margin:0 auto;}
+  .hero-meta{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+  .hero-region{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);}
+  .hero-sep{color:var(--line2);}
+  .hero-cat{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:3px 10px;border:1px solid currentColor;}
+  .hero-case{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:0.1em;color:var(--muted);margin-left:auto;}
+  .hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(22px,4.5vw,38px);letter-spacing:0.04em;text-transform:uppercase;line-height:1.15;margin-bottom:6px;color:var(--text);}
+  .hero-en{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:22px;}
+  .hero-desc{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.85;color:#aaa;max-width:660px;margin-bottom:28px;}
+  .hero-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:28px;}
+  .stat-item{background:var(--bg2);padding:12px 14px;}
+  .stat-label{font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .stat-value{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:500;color:var(--text);letter-spacing:0.04em;}
+  .toc{display:flex;gap:0;border:1px solid var(--line);overflow-x:auto;}
+  .toc a{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:9px 14px;border-right:1px solid var(--line);white-space:nowrap;transition:color 0.15s,background 0.15s;}
+  .toc a:hover{color:var(--text);background:var(--bg3);}
+  .toc a:last-child{border-right:none;}
+  .content{max-width:860px;margin:0 auto;padding:0 32px 80px;}
+  .section{padding:48px 0 40px;border-bottom:1px solid var(--line);}
+  .section:last-child{border-bottom:none;}
+  .section-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.3em;color:var(--muted);margin-bottom:6px;}
+  .section-title{font-family:'Archivo Black',sans-serif;font-size:18px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:baseline;gap:12px;}
+  .section-title-en{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:400;letter-spacing:0.2em;color:var(--muted);}
+  .prose{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.95;color:#999;max-width:640px;}
+  .prose p{margin-bottom:1.4em;}.prose p:last-child{margin-bottom:0;}
+  .features-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .feature-item{background:var(--bg2);padding:22px 24px;}
+  .feature-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.25em;color:var(--accent);margin-bottom:6px;}
+  .feature-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .feature-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .feature-bullets{margin-top:10px;padding-left:0;list-style:none;}
+  .feature-bullets li{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.06em;color:var(--muted);padding:3px 0 3px 14px;position:relative;}
+  .feature-bullets li::before{content:'—';position:absolute;left:0;color:var(--line2);}
+  .impact-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .impact-item{background:var(--bg2);padding:22px 24px;border-left:3px solid var(--impact-color,#888);}
+  .impact-code{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--impact-color,#888);margin-bottom:6px;}
+  .impact-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .impact-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .impact-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:20px;}
+  .impact-tag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;border:1px solid;}
+  .refs-grid{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .ref-item{background:var(--bg2);display:flex;align-items:center;gap:14px;padding:13px 18px;text-decoration:none;transition:background 0.12s;}
+  .ref-item:hover{background:var(--bg3);}
+  .ref-icon{width:24px;height:24px;flex-shrink:0;}
+  .ref-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;}
+  .ref-domain{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.05em;}
+  .ref-arrow{margin-left:auto;color:var(--muted);font-size:14px;}
+  .pagination{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px;}
+  .page-item{flex:1;background:var(--bg2);padding:16px 18px;text-decoration:none;transition:background 0.12s;}
+  .page-item:hover{background:var(--bg3);}
+  .page-dir{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .page-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--text);}
+  .page-sub{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);margin-top:2px;}
+  .page-item.next{text-align:right;}
+  footer{border-top:1px solid var(--line);padding:18px 32px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:space-between;}
+  footer a{color:var(--muted);text-decoration:none;}footer a:hover{color:var(--text);}
+  .note{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.08em;margin-top:20px;}
+</style></head><body>
+<nav><a class="nav-logo" href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a><a class="nav-back" href="https://bawb199765-bot.github.io/Art_PlaceMaking/database/index.html">← Database</a></nav>
 <div class="hero">
-  <div class="hero-text">
-    <div class="hero-tags"><span class="tag tag-region">中国</span>
-      <span class="tag tag-region">鳥取県</span>
-      <span class="tag tag-type">野外アート</span>
-      <span class="tag tag-type">砂丘・自然</span>
-</div>
-    <div class="hero-index">Case 31 / 47</div>
-    <h1>鳥取砂丘<br>アートプロジェクト</h1>
-    <div class="hero-en">TOTTORI SAND DUNES ART PROJECT</div>
-    <p class="hero-desc">日本最大の砂丘を舞台に、砂・風・光を素材に活用するユニークなアートプロジェクト。砂の美術館を拠点に国際サンドアートを展開しつつ、因幡・伯耆の農漁村でも協働制作を行い、コミュニティ再生と移住促進を図る。</p>
-  </div>
-  <div class="hero-meta">    <div class="meta-row"><span class="meta-label">REGION</span><span class="meta-value">鳥取市・岩美町・倉吉市ほか</span></div>
-    <div class="meta-row"><span class="meta-label">STARTED</span><span class="meta-value">2011年〜</span></div>
-    <div class="meta-row"><span class="meta-label">ORGANIZER</span><span class="meta-value">鳥取県・とっとり砂の美術館</span></div>
-    <div class="meta-row"><span class="meta-label">SCALE</span><span class="meta-value">砂丘エリア・県内各地</span></div>
-    <div class="meta-row"><span class="meta-label">KEYWORDS</span><span class="meta-value">砂丘・砂の彫刻・因幡・伯耆・農漁村</span></div></div>
-</div>
-<div class="section-nav">
-  <a href="#overview" class="sec-link">01 概要</a>
-  <a href="#features" class="sec-link">02 特徴</a>
-  <a href="#impact" class="sec-link">03 街への効果</a>
-  <a href="#refs" class="sec-link">04 参考</a>
+  <div class="hero-meta"><span class="hero-region">中国・四国</span><span class="hero-sep">/</span><span class="hero-region">鳥取県</span><span class="hero-sep">/</span><span class="hero-cat" style="color:#d4826a;border-color:#d4826a">ミュージアム・拠点型</span><span class="hero-case">Case 31 / 48</span></div>
+  <h1>鳥取県立美術館の取り組み</h1><div class="hero-en">Tottori Prefectural Museum of Art</div><p class="hero-desc">2025年に倉吉市にオープンした鳥取県立美術館を核に、整備段階から地域との対話を重ねて進められてきた文化政策。民藝運動ゆかりの地・鳥取の風土を活かしながら、県民の学び・交流・創造活動の拠点として設計。</p>
+  <div class="hero-stats"><div class="stat-item"><div class="stat-label">拠点</div><div class="stat-value">鳥取県倉吉市</div></div><div class="stat-item"><div class="stat-label">開館年</div><div class="stat-value">2025年</div></div><div class="stat-item"><div class="stat-label">主体</div><div class="stat-value">鳥取県</div></div><div class="stat-item"><div class="stat-label">形態</div><div class="stat-value">ミュージアム型・通年</div></div><div class="stat-item"><div class="stat-label">次回開催</div><div class="stat-value">通年</div></div><div class="stat-item"><div class="stat-label">東京からのアクセス</div><div class="stat-value">約5.5h（飛行機 or 高速バス）</div></div></div>
+  <nav class="toc"><a href="#overview">01 概要</a><a href="#features">02 特徴</a><a href="#impact">03 街への効果</a><a href="#refs">04 参考</a></nav>
 </div>
 <div class="content">
-  <section class="section" id="overview">
-    <div class="section-header"><span class="section-num">01</span><h2>概要 <span>OVERVIEW</span></h2></div>
-    <div class="overview-text">      <p>鳥取砂丘アートプロジェクトは、国立公園にも指定された鳥取砂丘の圧倒的な自然景観を舞台に、砂・風・光という素材と現代アートを融合させた取り組みです。</p>
-      <p>砂の彫刻（サンドアート）の国際コンペティション、砂丘を舞台にした野外インスタレーション、砂丘夜間ライトアートなど多彩な形式でアートを展開。砂という可変的な素材が持つ「消えゆく美」が国内外の観光客に強烈な体験を提供します。</p>
-      <p>砂丘周辺から内陸の農漁村部にも展開エリアを広げ、過疎化が深刻な集落にアーティストを派遣するレジデンスプログラムや、地域の漁師・農家との協働制作を通じてコミュニティ再生を図る取り組みも展開しています。</p></div>
-  </section>
-  <section class="section" id="features">
-    <div class="section-header"><span class="section-num">02</span><h2>特徴 <span>FEATURES</span></h2></div>
-    <div class="features-grid"><div class="feature-card"><div class="feature-num">01</div><div class="feature-title">砂を素材にした国際アート</div><div class="feature-body"><p>世界各国のサンドアーティストを招聘した砂の彫刻コンペティションを開催。砂という一時的な素材が持つ「消えゆく美」がテーマとなり、完成から風化していく過程そのものがアートとなる。</p><ul><li>国際砂像フェスティバルの定期開催</li><li>砂丘の夜間ライトアップ×現代美術</li><li>砂の変化を記録するタイムラプス映像作品</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">02</div><div class="feature-title">農漁村でのコミュニティアート</div><div class="feature-body"><p>砂丘沿岸から内陸の因幡・伯耆地域の農漁村にアーティストが長期滞在し、地域住民と協働制作。漁師・農家・職人の技術や生活様式をモチーフにした作品が生まれる。</p><ul><li>漁村での網漁・昆布漁とアートの協働</li><li>農村の古民家を活用したアーティスト・レジデンス</li><li>廃校を活用したコミュニティアートセンター</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">03</div><div class="feature-title">とっとり砂の美術館の通年運営</div><div class="feature-body"><p>世界唯一の砂の美術館（鳥取市）が砂丘アートの拠点機能を担う。毎年テーマを変えた砂像常設展示が年間70万人超の来訪者を集め、砂丘エリアの通年観光化に貢献。</p><ul><li>世界の砂像アーティストによる大型作品常設</li><li>砂像制作の体験ワークショップ</li><li>国際砂像アーティストの育成プログラム</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">04</div><div class="feature-title">移住・二地域居住の促進</div><div class="feature-body"><p>砂丘や農漁村の魅力を体験したアーティスト・クリエイターが鳥取への移住・二地域居住を選ぶケースが増加。鳥取県の移住支援制度と連携したクリエイター向け定住促進プログラムも整備。</p><ul><li>鳥取県移住支援センターとのマッチング</li><li>空き家バンク×アーティスト住居マッチング</li><li>「田舎暮らし×創作活動」体験ツアー</li></ul></div></div>
+  <section class="section" id="overview"><div class="section-num">01</div><div class="section-title">概要 <span class="section-title-en">Overview</span></div><div class="prose"><p>鳥取県立美術館は、2025年に鳥取県倉吉市にオープンした鳥取県の新たな文化拠点。従来の県立博物館（鳥取市）を補完・発展させる形で整備され、現代アートを中心とした専門的な展覧会機能と、幅広い県民が参加できる教育・交流プログラムを持つ総合文化施設として設計されている。</p><p>特筆すべきはその整備プロセスで、開館前から地域住民・学校・福祉施設・NPOとの対話と協働を積み重ねてきた点。「美術館は完成形でなく、地域とともに育てていくもの」という姿勢が設計・運営思想に貫かれており、単なる箱物施設とは異なるアプローチが注目される。</p><p>鳥取は柳宗悦らが興した民藝運動にゆかりが深く、砂丘・大山・日本海という雄大な自然と民藝的な生活文化が共存する土地。こうした鳥取固有の文化的文脈を美術館が体現し、倉吉市および鳥取県全体の文化的ランドマークとして機能することが期待されている。</p></div></section>
+  <section class="section" id="features"><div class="section-num">02</div><div class="section-title">主な特徴 <span class="section-title-en">Key Features</span></div><div class="features-grid"><div class="feature-item"><div class="feature-num">01</div><div class="feature-title">開館前からの地域との対話プロセス</div><div class="feature-desc">建設・開館前から地域の学校・住民・NPO・福祉施設との対話プログラムを実施。美術館が完成してから関係を始めるのではなく、整備段階から地域との信頼関係を育てる先進的なアプローチ。</div><ul class="feature-bullets"><li>開館前プレプログラムの継続的な実施</li><li>学校・福祉施設との連携プログラム設計</li><li>地域住民の声を設計・運営に反映</li></ul></div><div class="feature-item"><div class="feature-num">02</div><div class="feature-title">民藝運動との深いつながりの継承</div><div class="feature-desc">柳宗悦・河井寛次郎・濱田庄司らが興した民藝運動と深いゆかりを持つ鳥取の文化的文脈を、現代の美術館が継承・発展させる。「日常の美」という民藝の精神が美術館のプログラムに息づく。</div><ul class="feature-bullets"><li>民藝コレクション・関連展示の充実</li><li>民藝精神に根ざした生活文化との接続</li><li>現代工芸・民藝の継続的な発信</li></ul></div><div class="feature-item"><div class="feature-num">03</div><div class="feature-title">倉吉市の中心市街地再生との連動</div><div class="feature-desc">倉吉市の歴史的な打吹地区（赤瓦の町並み）に近接する立地を活かし、美術館来館者が周辺の歴史的町並みや飲食店へ回遊する動線を設計。美術館が中心市街地再生の起爆剤となる役割を担う。</div><ul class="feature-bullets"><li>打吹地区の歴史的町並みとの連動</li><li>来館者の周辺エリアへの回遊設計</li><li>倉吉市中心市街地の賑わい創出への貢献</li></ul></div><div class="feature-item"><div class="feature-num">04</div><div class="feature-title">砂丘・大山・日本海の自然景観との接続</div><div class="feature-desc">鳥取砂丘・大山・日本海という鳥取固有の雄大な自然景観をアートのコンテクストとして取り込み、自然と文化が共存する鳥取のアイデンティティを美術館が体現する。</div><ul class="feature-bullets"><li>鳥取の自然をテーマにした展示プログラム</li><li>野外展示・自然環境との接続</li><li>鳥取固有の景観と現代アートの対話</li></ul></div></div></section>
+  <section class="section" id="impact"><div class="section-num">03</div><div class="section-title">街への効果 <span class="section-title-en">Urban Impact</span></div><div class="impact-grid"><div class="impact-item" style="--impact-color:#6ecac8"><div class="impact-code">2-① 社会的効果｜コミュニティ形成</div><div class="impact-title">開館前からの対話プロセスによる地域との信頼関係形成</div><div class="impact-desc">整備段階から積み上げてきた地域住民・学校・福祉施設との関係性が開館後の活発な来館・参加につながり、美術館を中心とした地域コミュニティが形成される。</div></div><div class="impact-item" style="--impact-color:#a06ec8"><div class="impact-code">3-① 文化的効果｜地域ブランディング</div><div class="impact-title">「民藝と現代アートの鳥取」という文化ブランドの国際発信</div><div class="impact-desc">民藝運動のゆかりと現代アートを組み合わせた鳥取の文化ブランドが美術館を通じて国内外に発信され、文化観光の新たな目的地として認知される。</div></div><div class="impact-item" style="--impact-color:#a06ec8"><div class="impact-code">3-② 文化的効果｜ランドマーク形成</div><div class="impact-title">鳥取県・倉吉市の文化的ランドマークとしての美術館の定着</div><div class="impact-desc">鳥取県の文化的シンボルとして美術館が定着することで、県民の誇りと外来者の目的地としての両面から地域の文化的価値を高める。</div></div></div><div class="impact-tags"><span class="impact-tag" style="color:#6ecac8;border-color:#6ecac8">2-① コミュニティ形成</span><span class="impact-tag" style="color:#6ecac8;border-color:#6ecac8">2-③ 社会包摂</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-① 地域ブランディング</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-② ランドマーク形成</span></div></section>
+  <section class="section" id="refs"><div class="section-num">04</div><div class="section-title">参考リンク <span class="section-title-en">References</span></div><div class="refs-grid"><a class="ref-item" href="https://tottori-moa.jp/" target="_blank"><img class="ref-icon" src="https://www.google.com/s2/favicons?domain=tottori-moa.jp&sz=64" alt=""/><div><div class="ref-title">鳥取県立美術館 公式サイト</div><div class="ref-domain">tottori-moa.jp</div></div><span class="ref-arrow">→</span></a><a class="ref-item" href="https://www.pref.tottori.lg.jp/" target="_blank"><img class="ref-icon" src="https://www.google.com/s2/favicons?domain=pref.tottori.lg.jp&sz=64" alt=""/><div><div class="ref-title">鳥取県 公式サイト</div><div class="ref-domain">pref.tottori.lg.jp</div></div><span class="ref-arrow">→</span></a></div><p class="note">※掲載情報は2026年1月末時点の情報を参考にしています。</p></section>
+  <div class="pagination"><a class="page-item prev" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-wakayama.html"><div class="page-dir">← 前の事例</div><div class="page-name">JAPAN WALLS（和歌山）</div><div class="page-sub">関西 — 和歌山県</div></a><a class="page-item next" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-shimane.html"><div class="page-dir">次の事例 →</div><div class="page-name">石見アーツプロジェクト</div><div class="page-sub">中国・四国 — 島根県</div></a></div>
 </div>
-  </section>
-  <section class="section" id="impact">
-    <div class="section-header"><span class="section-num">03</span><h2>街への効果 <span>URBAN IMPACT</span></h2></div>
-    <p class="impact-intro">砂丘という唯一無二の自然資源を核に、通年観光化・農漁村のコミュニティ再生・クリエイター移住が連動する。</p>
-    <div class="impact-category-group"><div class="impact-cat-label cat-economic">ECONOMIC — 経済的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-eco"></div><span class="impact-tag-text">1-① 交流人口増加</span></div><div class="impact-card-title">砂丘×アートによる通年観光化</div><div class="impact-card-body">季節変動が大きかった砂丘観光に砂の美術館・国際砂像フェスティバル・夜間ライトアートなどの通年コンテンツが加わり、来訪者の平準化と増加が実現。年間70万人超を集める通年型観光地に成長している。</div></div>
-</div></div>
-<div class="impact-category-group"><div class="impact-cat-label cat-social">SOCIAL — 社会的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-soc"></div><span class="impact-tag-text">2-① コミュニティ形成</span></div><div class="impact-card-title">農漁村での協働制作と住民の誇り回復</div><div class="impact-card-body">過疎化が進む農漁村にアーティストが滞在することで、住民が自分たちの生活や技術に新たな価値を見いだすきっかけが生まれている。集落の対話と誇りの回復が見られる。</div></div>
-<div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-soc"></div><span class="impact-tag-text">2-② 移住・定住促進</span></div><div class="impact-card-title">クリエイター移住の実績積み上げ</div><div class="impact-card-body">砂丘・農漁村の魅力に引き寄せられた若いアーティストやクリエイターが鳥取に移住するケースが積み重なり、人口比での移住者数において鳥取は全国上位を維持している。</div></div>
-</div></div>
-<div class="impact-category-group"><div class="impact-cat-label cat-cultural">CULTURAL — 文化的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-① 地域ブランディング・アイデンティティ</span></div><div class="impact-card-title">砂丘×農漁村文化の固有性発信</div><div class="impact-card-body">日本最大の砂丘という希少な地理的特性と因幡・伯耆の農漁村文化がアートと結びつくことで、「鳥取にしかない体験」が国内外に発信されている。</div></div>
-</div></div>
-
-    <div class="impact-badges"><span class="impact-badges-label">IMPACT TAGS</span><span class="badge badge-eco">1-① 交流人口増加</span>
-<span class="badge badge-soc">2-① コミュニティ形成</span>
-<span class="badge badge-soc">2-② 移住・定住促進</span>
-<span class="badge badge-cul">3-① 地域ブランディング</span>
-</div>
-  </section>
-  <section class="section" id="refs">
-    <div class="section-header"><span class="section-num">04</span><h2>参考 <span>REFERENCES</span></h2></div>
-    <div class="refs-grid"><a href="https://sand-museum.jp/" target="_blank" class="ref-item"><span class="ref-num">01</span><div><div class="ref-title">砂の美術館</div><div class="ref-url">sand-museum.jp</div></div><span class="ref-arrow">→</span></a>
-<a href="https://tottori-guide.jp/" target="_blank" class="ref-item"><span class="ref-num">02</span><div><div class="ref-title">鳥取県観光連盟</div><div class="ref-url">tottori-guide.jp</div></div><span class="ref-arrow">→</span></a>
-<a href="https://furusato.tottori.jp/" target="_blank" class="ref-item"><span class="ref-num">03</span><div><div class="ref-title">鳥取県移住情報</div><div class="ref-url">furusato.tottori.jp</div></div><span class="ref-arrow">→</span></a>
-</div>
-  </section>
-</div>
-<div class="footer-nav">
-  <a href="detail-wakayama.html" class="footer-nav-item">
-    <span class="fnav-dir">← PREV</span>
-    <span class="fnav-title">紀の国わかやま文化祭</span>
-    <span class="fnav-count">Case 30 — 和歌山</span>
-  </a>
-  <a href="detail-shimane.html" class="footer-nav-item fnav-right">
-    <span class="fnav-dir">NEXT →</span>
-    <span class="fnav-title">石見アートプロジェクト</span>
-    <span class="fnav-count">Case 32 — 島根</span>
-  </a>
-</div>
-<footer>
-  <span class="footer-copy">© 2024 Art × Placemaking DB</span>
-  <span class="footer-case">Case 31 / 47 — 鳥取</span>
-</footer>
-</body>
-</html>
+<footer><a href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking</a><span>© 2026 Art × Placemaking Database</span></footer>
+</body></html>
