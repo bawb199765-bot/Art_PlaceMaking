@@ -1,193 +1,86 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>和歌山 — 紀の国わかやま文化祭 | アート×まちづくりDB</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<html lang="ja"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>和歌山 — JAPAN WALLS（和歌山） | アート×まちづくりDB</title><meta name="description" content="国内外のストリートアーティストが和歌山市内の外壁に大型壁画を制作するプロジェクト。景観更新と回遊創出を実現する小規模プロジェクト型の先行事例。"/>
 <style>
-  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
-  .nav-logo:hover { color: var(--ink); }
-  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-  .breadcrumb a { color: var(--muted); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--accent); }
-  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
-  .nav-back:hover { background: var(--accent); color: white; }
-  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
-  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
-  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
-  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
-  .tag-region { border-color: var(--muted); color: var(--muted); }
-  .tag-type { border-color: var(--accent); color: var(--accent); }
-  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
-  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
-  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
-  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
-  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
-  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .meta-row:first-child { border-top: 1px solid var(--border); }
-  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
-  .meta-value { font-weight: 600; }
-  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
-  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
-  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
-  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
-  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
-  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
-  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
-  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
-  .overview-text p + p { margin-top: 1.5em; }
-  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
-  .feature-card { background: var(--paper); padding: 2rem; }
-  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
-  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
-  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
-  .feature-body ul { list-style: none; margin-top: 0.75rem; }
-  .feature-body li::before { content: '—  '; color: var(--muted); }
-  .feature-body li { margin-bottom: 4px; }
-  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
-  .impact-category-group { margin-bottom: 2.5rem; }
-  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
-  .cat-economic { background: var(--tag-eco); }
-  .cat-social { background: var(--tag-soc); }
-  .cat-cultural { background: var(--tag-cul); }
-  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
-  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
-  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
-  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-eco { background: var(--tag-eco); }
-  .dot-soc { background: var(--tag-soc); }
-  .dot-cul { background: var(--tag-cul); }
-  .impact-tag-text { color: var(--muted); }
-  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
-  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
-  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
-  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
-  .badge-eco { border-color: #5dade2; color: #5dade2; }
-  .badge-soc { border-color: #58d68d; color: #58d68d; }
-  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
-  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
-  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
-  .ref-item:hover { background: white; }
-  .ref-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); flex-shrink: 0; }
-  .ref-title { font-size: 14px; font-weight: 600; }
-  .ref-url { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  .ref-arrow { margin-left: auto; color: var(--accent); font-size: 18px; flex-shrink: 0; }
-  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
-  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
-  .footer-nav-item:hover { background: var(--effect-bg); }
-  .fnav-right { border-left: 1px solid var(--border); text-align: right; }
-  .fnav-dir { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
-  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
-  .fnav-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-  .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  .footer-case { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-text { padding: 3rem 2rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
-    .hero-meta { padding: 2rem; }
-    .content { padding: 0 2rem; }
-    .section-nav { padding: 0 2rem; overflow-x: auto; }
-    .features-grid { grid-template-columns: 1fr; }
-    .footer-nav { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 8px; text-align: center; }
-  }
-</style>
-</head>
-<body>
-<nav>
-  <a href="index.html" class="nav-logo">ART × PLACEMAKING DB</a>
-  <div class="breadcrumb"><a href="index.html">TOP</a><span>›</span><span>和歌山</span></div>
-  <a href="index.html" class="nav-back">← 一覧へ</a>
-</nav>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400&display=swap');
+  :root{--bg:#181818;--bg2:#1f1f1f;--bg3:#262626;--line:#2e2e2e;--line2:#3a3a3a;--text:#f0f0f0;--muted:#666;--dim:#444;--accent:#e8c96e;}
+  *{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+  body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;}
+  nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;}
+  .nav-logo{font-family:'Archivo Black',sans-serif;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);text-decoration:none;}
+  .nav-back{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.15s;}
+  .nav-back:hover{color:var(--text);}
+  .hero{border-bottom:1px solid var(--line);padding:56px 32px 40px;max-width:860px;margin:0 auto;}
+  .hero-meta{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+  .hero-region{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);}
+  .hero-sep{color:var(--line2);}
+  .hero-cat{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:3px 10px;border:1px solid currentColor;}
+  .hero-case{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:0.1em;color:var(--muted);margin-left:auto;}
+  .hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(24px,5vw,40px);letter-spacing:0.05em;text-transform:uppercase;line-height:1.15;margin-bottom:6px;color:var(--text);}
+  .hero-en{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:22px;}
+  .hero-desc{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.85;color:#aaa;max-width:660px;margin-bottom:28px;}
+  .hero-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:28px;}
+  .stat-item{background:var(--bg2);padding:12px 14px;}
+  .stat-label{font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .stat-value{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:500;color:var(--text);letter-spacing:0.04em;}
+  .toc{display:flex;gap:0;border:1px solid var(--line);overflow-x:auto;}
+  .toc a{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:9px 14px;border-right:1px solid var(--line);white-space:nowrap;transition:color 0.15s,background 0.15s;}
+  .toc a:hover{color:var(--text);background:var(--bg3);}
+  .toc a:last-child{border-right:none;}
+  .content{max-width:860px;margin:0 auto;padding:0 32px 80px;}
+  .section{padding:48px 0 40px;border-bottom:1px solid var(--line);}
+  .section:last-child{border-bottom:none;}
+  .section-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.3em;color:var(--muted);margin-bottom:6px;}
+  .section-title{font-family:'Archivo Black',sans-serif;font-size:18px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:baseline;gap:12px;}
+  .section-title-en{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:400;letter-spacing:0.2em;color:var(--muted);}
+  .prose{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.95;color:#999;max-width:640px;}
+  .prose p{margin-bottom:1.4em;}.prose p:last-child{margin-bottom:0;}
+  .features-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .feature-item{background:var(--bg2);padding:22px 24px;}
+  .feature-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.25em;color:var(--accent);margin-bottom:6px;}
+  .feature-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .feature-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .feature-bullets{margin-top:10px;padding-left:0;list-style:none;}
+  .feature-bullets li{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.06em;color:var(--muted);padding:3px 0 3px 14px;position:relative;}
+  .feature-bullets li::before{content:'—';position:absolute;left:0;color:var(--line2);}
+  .impact-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .impact-item{background:var(--bg2);padding:22px 24px;border-left:3px solid var(--impact-color,#888);}
+  .impact-code{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--impact-color,#888);margin-bottom:6px;}
+  .impact-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .impact-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .impact-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:20px;}
+  .impact-tag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;border:1px solid;}
+  .refs-grid{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .ref-item{background:var(--bg2);display:flex;align-items:center;gap:14px;padding:13px 18px;text-decoration:none;transition:background 0.12s;}
+  .ref-item:hover{background:var(--bg3);}
+  .ref-icon{width:24px;height:24px;flex-shrink:0;}
+  .ref-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;}
+  .ref-domain{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.05em;}
+  .ref-arrow{margin-left:auto;color:var(--muted);font-size:14px;}
+  .pagination{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px;}
+  .page-item{flex:1;background:var(--bg2);padding:16px 18px;text-decoration:none;transition:background 0.12s;}
+  .page-item:hover{background:var(--bg3);}
+  .page-dir{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .page-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--text);}
+  .page-sub{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);margin-top:2px;}
+  .page-item.next{text-align:right;}
+  footer{border-top:1px solid var(--line);padding:18px 32px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:space-between;}
+  footer a{color:var(--muted);text-decoration:none;}footer a:hover{color:var(--text);}
+  .note{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.08em;margin-top:20px;}
+</style></head><body>
+<nav><a class="nav-logo" href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a><a class="nav-back" href="https://bawb199765-bot.github.io/Art_PlaceMaking/database/index.html">← Database</a></nav>
 <div class="hero">
-  <div class="hero-text">
-    <div class="hero-tags"><span class="tag tag-region">近畿</span>
-      <span class="tag tag-region">和歌山県</span>
-      <span class="tag tag-type">地域文化祭</span>
-      <span class="tag tag-type">農業・食文化</span>
-</div>
-    <div class="hero-index">Case 30 / 47</div>
-    <h1>紀の国わかやま文化祭</h1>
-    <div class="hero-en">KINOKUNI WAKAYAMA CULTURAL FESTIVAL</div>
-    <p class="hero-desc">紀州のみかん・梅・漆器・備長炭・熊野信仰をテーマに、農業の現場から聖地まで現代アートが広がる県民文化の祭典。産地と聖地をアートで繋ぎ、住民が地域固有の豊かさを再発見する場を創出する。</p>
-  </div>
-  <div class="hero-meta">    <div class="meta-row"><span class="meta-label">REGION</span><span class="meta-value">和歌山県全域（和歌山市・田辺・新宮ほか）</span></div>
-    <div class="meta-row"><span class="meta-label">STARTED</span><span class="meta-value">2015年〜</span></div>
-    <div class="meta-row"><span class="meta-label">ORGANIZER</span><span class="meta-value">和歌山県・和歌山県文化振興財団</span></div>
-    <div class="meta-row"><span class="meta-label">SCALE</span><span class="meta-value">県内20市町・60以上の作品</span></div>
-    <div class="meta-row"><span class="meta-label">KEYWORDS</span><span class="meta-value">みかん・梅・紀州漆器・備長炭・熊野古道</span></div></div>
-</div>
-<div class="section-nav">
-  <a href="#overview" class="sec-link">01 概要</a>
-  <a href="#features" class="sec-link">02 特徴</a>
-  <a href="#impact" class="sec-link">03 街への効果</a>
-  <a href="#refs" class="sec-link">04 参考</a>
+  <div class="hero-meta"><span class="hero-region">関西</span><span class="hero-sep">/</span><span class="hero-region">和歌山県</span><span class="hero-sep">/</span><span class="hero-cat" style="color:#f0a050;border-color:#f0a050">小規模プロジェクト型</span><span class="hero-case">Case 30 / 48</span></div>
+  <h1>JAPAN WALLS（和歌山）</h1><div class="hero-en">Japan Walls Wakayama</div><p class="hero-desc">国内外のストリートアーティストを招聘し、和歌山市内の建物外壁に大型ウォールアートを制作するプロジェクト。街の景観を一変させるビジュアルインパクトの高さからSNSでの拡散力が強く、新たな来街者を生み出す。</p>
+  <div class="hero-stats"><div class="stat-item"><div class="stat-label">拠点</div><div class="stat-value">和歌山県和歌山市</div></div><div class="stat-item"><div class="stat-label">開始年</div><div class="stat-value">2019年頃〜</div></div><div class="stat-item"><div class="stat-label">主体</div><div class="stat-value">実行委員会・市内事業者</div></div><div class="stat-item"><div class="stat-label">形態</div><div class="stat-value">通年（順次制作）</div></div><div class="stat-item"><div class="stat-label">次回開催</div><div class="stat-value">通年</div></div><div class="stat-item"><div class="stat-label">東京からのアクセス</div><div class="stat-value">約5h（新幹線＋特急）</div></div></div>
+  <nav class="toc"><a href="#overview">01 概要</a><a href="#features">02 特徴</a><a href="#impact">03 街への効果</a><a href="#refs">04 参考</a></nav>
 </div>
 <div class="content">
-  <section class="section" id="overview">
-    <div class="section-header"><span class="section-num">01</span><h2>概要 <span>OVERVIEW</span></h2></div>
-    <div class="overview-text">      <p>紀の国わかやま文化祭は、和歌山県が主催する大規模な文化芸術の祭典です。日本有数の農業・林業・漁業の産地である和歌山の豊かな一次産業文化を、現代アートの視点で再解釈し発信することを軸に据えています。</p>
-      <p>みかん・梅・紀州備長炭・紀州漆器・紀州材など、和歌山固有の地場産業を素材・テーマにしたアート作品が県内各地に展示されます。生産者とアーティストが協働し、農業・漁業・林業の現場そのものをアートの場として開く取り組みが特徴的です。</p>
-      <p>世界遺産・熊野古道の巡礼文化、紀の国の豊かな自然景観、港町・和歌山市の歴史など多様な文化資産がアートと結びつき、住民が地域固有の価値を再発見するプロセスが重視されています。</p></div>
-  </section>
-  <section class="section" id="features">
-    <div class="section-header"><span class="section-num">02</span><h2>特徴 <span>FEATURES</span></h2></div>
-    <div class="features-grid"><div class="feature-card"><div class="feature-num">01</div><div class="feature-title">みかん・梅産地とアートの協働</div><div class="feature-body"><p>和歌山が誇る農業遺産——みかん・梅——の産地と現代アーティストが協働し、農業の現場を鑑賞体験の場へ転換。収穫期に農園・梅林でインスタレーションが展開される。</p><ul><li>みかん山での大型野外インスタレーション</li><li>梅林をキャンバスにした季節限定アート</li><li>農家と食のドキュメンタリーアートプロジェクト</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">02</div><div class="feature-title">紀州漆器・備長炭との協働</div><div class="feature-body"><p>有田・御坊の紀州漆器、みなべ・田辺の紀州備長炭という伝統工芸・産業とアーティストが協働。消えゆく職人技術を現代アートとして記録・継承する。</p><ul><li>漆器職人とのライブ制作ワークショップ</li><li>備長炭を素材にした彫刻・インスタレーション</li><li>紀州材を使った建築×アートの実験</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">03</div><div class="feature-title">熊野・那智の聖地とアート</div><div class="feature-body"><p>世界遺産・那智の滝・熊野本宮大社などの聖地をアートと結びつけるプログラム。巡礼路を歩きながら作品を鑑賞する体験が、和歌山の精神的文化資産の魅力を高める。</p><ul><li>那智の滝周辺での夜間アートイベント</li><li>熊野古道沿いの石積みを活用した作品</li><li>新宮・速玉大社との協働展示</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">04</div><div class="feature-title">港町・和歌山市街の再生</div><div class="feature-body"><p>和歌山城・雑賀崎など市内の歴史的スポットや漁港エリアにアートを点在させ、観光客が街を歩き回る仕掛けを創出。シャッター通りの空き店舗活用も推進する。</p><ul><li>和歌山城周辺のプロジェクションマッピング</li><li>雑賀崎漁港のアートマーケット</li><li>中心市街地の空き店舗ギャラリー化</li></ul></div></div>
+  <section class="section" id="overview"><div class="section-num">01</div><div class="section-title">概要 <span class="section-title-en">Overview</span></div><div class="prose"><p>JAPAN WALLSは、国内外のストリートアーティスト・ミューラリストを招聘し、建物の外壁に大型壁画（ミューラル）を制作するアートプロジェクト。和歌山市内では中心市街地の商業ビル・シャッター店舗・公共施設の外壁に次々と大型壁画が制作され、街の景観が劇的に変化した。</p><p>ミューラル（壁画）は完成後も永続的に残る特性から、一過性のイベントと異なり継続的に集客・SNS拡散効果を発揮する。和歌山城の城下町という歴史的な景観に色鮮やかな現代壁画が加わることで、新旧の文化が共存する独自の都市景観が形成されている。</p><p>初期投資が比較的小さく短期間で景観が変わる手法として、シャッター街化が進む中小都市の中心市街地活性化に有効なツールとして注目される。予算規模に関わらず始められる「最初の一歩」モデルとして、他の自治体への波及も期待されている。</p></div></section>
+  <section class="section" id="features"><div class="section-num">02</div><div class="section-title">主な特徴 <span class="section-title-en">Key Features</span></div><div class="features-grid"><div class="feature-item"><div class="feature-num">01</div><div class="feature-title">大型壁画による街の景観の劇的な更新</div><div class="feature-desc">外壁に大型ミューラルが描かれることで、それまでシャッターや白壁だった場所が鮮やかなアート空間に変容する。景観の変化は即座に視認でき、街の印象を短期間で大きく変える力を持つ。</div><ul class="feature-bullets"><li>大型ミューラルによる景観の劇的変化</li><li>シャッター・廃屋の外壁をキャンバスに</li><li>費用対効果の高い景観更新手法</li></ul></div><div class="feature-item"><div class="feature-num">02</div><div class="feature-title">SNS・インスタグラムでの強い拡散力</div><div class="feature-desc">写真映えする大型壁画はSNS（特にインスタグラム）での拡散力が高く、制作直後から多くの人が撮影・投稿する。SNSを通じた認知拡大が新たな来訪者を生み出し、継続的な集客効果をもたらす。</div><ul class="feature-bullets"><li>インスタグラム映えするビジュアルの創出</li><li>制作過程のSNSライブ中継・拡散</li><li>ハッシュタグによるコミュニティ形成</li></ul></div><div class="feature-item"><div class="feature-num">03</div><div class="feature-title">国内外アーティストの招聘による多様な表現の集積</div><div class="feature-desc">毎回異なる国内外のアーティストを招聘することで、壁画のスタイル・テーマ・表現技法が多様化し、街を歩くたびに新しい発見がある空間が形成される。アーティストの多様性が街の多様性を体現する。</div><ul class="feature-bullets"><li>毎年新しいアーティスト・壁画の追加</li><li>日本・海外アーティストの多様な表現</li><li>街全体がオープンエアーギャラリーに</li></ul></div><div class="feature-item"><div class="feature-num">04</div><div class="feature-title">中小都市の中心市街地活性化への応用可能性</div><div class="feature-desc">大規模な芸術祭と比較して初期投資が少なく、関係者の調整が比較的シンプルで、短期間で成果が可視化される。人口規模の小さな地方都市でも実施可能なモデルとして、全国の中心市街地活性化に応用できる。</div><ul class="feature-bullets"><li>小規模予算で始められる景観更新</li><li>短期間での可視的な成果の実現</li><li>全国中小都市への応用可能なモデル</li></ul></div></div></section>
+  <section class="section" id="impact"><div class="section-num">03</div><div class="section-title">街への効果 <span class="section-title-en">Urban Impact</span></div><div class="impact-grid"><div class="impact-item" style="--impact-color:#e8c96e"><div class="impact-code">1-① 経済的効果｜交流人口増加</div><div class="impact-title">壁画を目的とした新たな来街者の創出</div><div class="impact-desc">SNSで壁画を見た人が「実際に見に行きたい」という動機で和歌山市を訪れる新たな来街者層が生まれている。アートを目的とした若い世代の来訪が中心市街地の賑わいに貢献する。</div></div><div class="impact-item" style="--impact-color:#e8c96e"><div class="impact-code">1-② 経済的効果｜経済効果</div><div class="impact-title">中心市街地の空き店舗・シャッター物件への入居促進</div><div class="impact-desc">壁画によって街の印象が改善され、空き店舗への出店意欲が高まる効果が期待される。明るい景観がエリアの商業的な魅力を向上させ、テナント誘致に貢献する。</div></div><div class="impact-item" style="--impact-color:#a06ec8"><div class="impact-code">3-① 文化的効果｜地域ブランディング</div><div class="impact-title">「壁画アートの街・和歌山」という新たな都市イメージの付加</div><div class="impact-desc">和歌山城・熊野古道という既存の観光ブランドに、現代ストリートアートという新しい文化的魅力が加わることで、より多様な来訪者層へのアピールが可能になる。</div></div></div><div class="impact-tags"><span class="impact-tag" style="color:#e8c96e;border-color:#e8c96e">1-① 交流人口増加</span><span class="impact-tag" style="color:#e8c96e;border-color:#e8c96e">1-② 経済効果</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-① 地域ブランディング</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-② ランドマーク形成</span></div></section>
+  <section class="section" id="refs"><div class="section-num">04</div><div class="section-title">参考リンク <span class="section-title-en">References</span></div><div class="refs-grid"><a class="ref-item" href="https://prtimes.jp/main/html/rd/p/000000015.000067444.html" target="_blank"><img class="ref-icon" src="https://www.google.com/s2/favicons?domain=prtimes.jp&sz=64" alt=""/><div><div class="ref-title">JAPAN WALLS 和歌山 プレスリリース</div><div class="ref-domain">prtimes.jp</div></div><span class="ref-arrow">→</span></a><a class="ref-item" href="https://www.city.wakayama.wakayama.jp/" target="_blank"><img class="ref-icon" src="https://www.google.com/s2/favicons?domain=city.wakayama.wakayama.jp&sz=64" alt=""/><div><div class="ref-title">和歌山市 公式サイト</div><div class="ref-domain">city.wakayama.wakayama.jp</div></div><span class="ref-arrow">→</span></a></div><p class="note">※掲載情報は2026年1月末時点の情報を参考にしています。</p></section>
+  <div class="pagination"><a class="page-item prev" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-nara.html"><div class="page-dir">← 前の事例</div><div class="page-name">はならぁと</div><div class="page-sub">関西 — 奈良県</div></a><a class="page-item next" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-tottori.html"><div class="page-dir">次の事例 →</div><div class="page-name">鳥取県立美術館の取り組み</div><div class="page-sub">中国・四国 — 鳥取県</div></a></div>
 </div>
-  </section>
-  <section class="section" id="impact">
-    <div class="section-header"><span class="section-num">03</span><h2>街への効果 <span>URBAN IMPACT</span></h2></div>
-    <p class="impact-intro">一次産業の産地・聖地・城下町が連動し、交流人口増加・地場産業の付加価値化・地域ブランド強化が一体的に進む。</p>
-    <div class="impact-category-group"><div class="impact-cat-label cat-economic">ECONOMIC — 経済的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-eco"></div><span class="impact-tag-text">1-① 交流人口増加</span></div><div class="impact-card-title">農業産地・聖地への新たな誘客</div><div class="impact-card-body">みかん山・梅林・漆器工房などがアート体験の場となり、これまで観光地化されていなかった生産地へ来訪者が訪れるようになった。農業体験×アート鑑賞の新しい観光スタイルが生まれている。</div></div>
-<div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-eco"></div><span class="impact-tag-text">1-② 経済効果</span></div><div class="impact-card-title">地場産業への文化的付加価値</div><div class="impact-card-body">みかん・梅・漆器・備長炭の生産者がアーティストと協働することで農産品・工芸品に文化的ストーリーが加わり、高付加価値商品開発や新規販路開拓につながるケースが生まれている。</div></div>
-</div></div>
-<div class="impact-category-group"><div class="impact-cat-label cat-cultural">CULTURAL — 文化的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-① 地域ブランディング・アイデンティティ</span></div><div class="impact-card-title">紀州の産業文化をアートで再発見</div><div class="impact-card-body">みかん・梅・漆器・備長炭・熊野信仰という和歌山固有の産業・文化がアートを通じてフィーチャーされ、住民が改めて地域の豊かさに気づく機会となっている。</div></div>
-<div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-② ランドマーク形成</span></div><div class="impact-card-title">産地・聖地の観光スポット化</div><div class="impact-card-body">那智の滝・熊野古道・みかん山・梅林などにアート体験が加わり、新たなフォトスポット・体験スポットとして新規観光動線が生まれている。</div></div>
-</div></div>
-
-    <div class="impact-badges"><span class="impact-badges-label">IMPACT TAGS</span><span class="badge badge-eco">1-① 交流人口増加</span>
-<span class="badge badge-eco">1-② 経済効果</span>
-<span class="badge badge-cul">3-① 地域ブランディング</span>
-<span class="badge badge-cul">3-② ランドマーク形成</span>
-</div>
-  </section>
-  <section class="section" id="refs">
-    <div class="section-header"><span class="section-num">04</span><h2>参考 <span>REFERENCES</span></h2></div>
-    <div class="refs-grid"><a href="https://wacaf.or.jp/" target="_blank" class="ref-item"><span class="ref-num">01</span><div><div class="ref-title">和歌山県文化振興財団</div><div class="ref-url">wacaf.or.jp</div></div><span class="ref-arrow">→</span></a>
-<a href="https://wakayama-kanko.gr.jp/" target="_blank" class="ref-item"><span class="ref-num">02</span><div><div class="ref-title">和歌山県観光連盟</div><div class="ref-url">wakayama-kanko.gr.jp</div></div><span class="ref-arrow">→</span></a>
-<a href="https://tb-kumano.jp/" target="_blank" class="ref-item"><span class="ref-num">03</span><div><div class="ref-title">熊野古道センター</div><div class="ref-url">tb-kumano.jp</div></div><span class="ref-arrow">→</span></a>
-</div>
-  </section>
-</div>
-<div class="footer-nav">
-  <a href="detail-nara.html" class="footer-nav-item">
-    <span class="fnav-dir">← PREV</span>
-    <span class="fnav-title">奈良アートプロムナード</span>
-    <span class="fnav-count">Case 29 — 奈良</span>
-  </a>
-  <a href="detail-tottori.html" class="footer-nav-item fnav-right">
-    <span class="fnav-dir">NEXT →</span>
-    <span class="fnav-title">鳥取砂丘アートプロジェクト</span>
-    <span class="fnav-count">Case 31 — 鳥取</span>
-  </a>
-</div>
-<footer>
-  <span class="footer-copy">© 2024 Art × Placemaking DB</span>
-  <span class="footer-case">Case 30 / 47 — 和歌山</span>
-</footer>
-</body>
-</html>
+<footer><a href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking</a><span>© 2026 Art × Placemaking Database</span></footer>
+</body></html>
