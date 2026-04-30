@@ -1,318 +1,440 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>岩手県 — 三陸国際芸術祭 | アート×まちづくりDB</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #1a1714;
-    --paper: #f5f1eb;
-    --accent: #c8410e;
-    --muted: #8a7f72;
-    --border: #d4cec5;
-    --tag-eco: #1a5276;
-    --tag-soc: #1d6840;
-    --tag-cul: #6d2f8f;
-    --effect-bg: #faf7f2;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
-  .nav-logo:hover { color: var(--ink); }
-  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-  .breadcrumb a { color: var(--muted); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--accent); }
-  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
-  .nav-back:hover { background: var(--accent); color: white; }
-  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
-  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
-  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
-  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
-  .tag-region { border-color: var(--muted); color: var(--muted); }
-  .tag-type { border-color: var(--accent); color: var(--accent); }
-  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
-  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
-  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
-  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
-  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
-  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .meta-row:first-child { border-top: 1px solid var(--border); }
-  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
-  .meta-value { font-weight: 600; }
-  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; }
-  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
-  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
-  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
-  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
-  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
-  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
-  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
-  .overview-text p + p { margin-top: 1.5em; }
-  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
-  .feature-card { background: var(--paper); padding: 2rem; }
-  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
-  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
-  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
-  .feature-body ul { list-style: none; margin-top: 0.75rem; }
-  .feature-body li::before { content: '—  '; color: var(--muted); }
-  .feature-body li { margin-bottom: 4px; }
-  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
-  .impact-category-group { margin-bottom: 2.5rem; }
-  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
-  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
-  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
-  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-eco { background: var(--tag-eco); }
-  .dot-soc { background: var(--tag-soc); }
-  .dot-cul { background: var(--tag-cul); }
-  .impact-tag-text { color: var(--muted); }
-  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
-  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
-  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
-  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid; }
-  .badge-eco { border-color: #5dade2; color: #5dade2; }
-  .badge-soc { border-color: #58d68d; color: #58d68d; }
-  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
-  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
-  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
-  .ref-item:hover { background: white; }
-  .ref-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
-  .ref-icon img { width: 16px; height: 16px; }
-  .ref-title { font-size: 14px; font-weight: 600; }
-  .ref-domain { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
-  .ref-arrow { margin-left: auto; font-size: 18px; color: var(--muted); }
-  .footer-nav { border-top: 2px solid var(--ink); display: grid; grid-template-columns: 1fr 1fr; }
-  .footer-nav-item { padding: 2rem 4rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
-  .footer-nav-item:hover { background: rgba(0,0,0,0.03); }
-  .footer-nav-item + .footer-nav-item { border-left: 1px solid var(--border); }
-  .fnav-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
-  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 600; }
-  .fnav-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
-  .fnav-right { text-align: right; }
-  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-text { padding: 4rem 1.5rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
-    .hero-meta { padding: 2rem 1.5rem; }
-    .content { padding: 0 1.5rem; }
-    .section-nav { padding: 0 1.5rem; }
-    .features-grid { grid-template-columns: 1fr; }
-    .footer-nav { grid-template-columns: 1fr; }
-    .footer-nav-item { padding: 2rem 1.5rem; }
-    .footer-nav-item + .footer-nav-item { border-left: none; border-top: 1px solid var(--border); }
-    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
-    .fnav-right { text-align: left; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>岩手 — 三陸国際芸術祭 | アート×まちづくりDB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #181818;
+      --bg2:     #1f1f1f;
+      --bg3:     #262626;
+      --line:    #2e2e2e;
+      --line2:   #3a3a3a;
+      --text:    #f0f0f0;
+      --muted:   #666;
+      --dim:     #444;
+      --accent:  #e8c96e;
+      --accent2: #6ecac8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px; height: 52px;
+    }
+    .nav-logo {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); text-decoration: none;
+    }
+    .nav-back {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.15s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      border-bottom: 1px solid var(--line);
+      padding: 56px 32px 40px;
+      max-width: 860px; margin: 0 auto;
+    }
+    .hero-meta {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .hero-region {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted);
+    }
+    .hero-sep { color: var(--line2); }
+    .hero-cat {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); border: 1px solid var(--accent); padding: 2px 8px;
+    }
+    .hero-case {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; color: var(--muted); margin-left: auto;
+      letter-spacing: 0.1em;
+    }
+    .hero h1 {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(26px, 4vw, 40px);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      line-height: 1.2; margin-bottom: 6px; color: var(--text);
+    }
+    .hero-en {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px;
+    }
+    .hero-desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px; font-weight: 300;
+      line-height: 1.85; color: #999; max-width: 680px; margin-bottom: 28px;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 1px; background: var(--line); border: 1px solid var(--line);
+      margin-bottom: 24px;
+    }
+    .stat-item { background: var(--bg2); padding: 12px 14px; }
+    .stat-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 8px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 4px;
+    }
+    .stat-value {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px; font-weight: 500;
+      color: var(--text); letter-spacing: 0.04em;
+    }
+
+    /* TOC */
+    .toc {
+      display: flex; gap: 0;
+      border: 1px solid var(--line); overflow-x: auto;
+    }
+    .toc a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      padding: 9px 14px; border-right: 1px solid var(--line);
+      white-space: nowrap; transition: color 0.15s, background 0.15s;
+    }
+    .toc a:hover { color: var(--text); background: var(--bg3); }
+    .toc a:last-child { border-right: none; }
+
+    /* CONTENT */
+    .content {
+      max-width: 860px; margin: 0 auto;
+      padding: 0 32px 80px;
+    }
+    .section {
+      padding: 48px 0 40px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section:last-child { border-bottom: none; }
+    .section-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 6px;
+    }
+    .section-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 18px; letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 24px; color: var(--text);
+      display: flex; align-items: baseline; gap: 14px;
+    }
+    .section-title-en {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 400;
+      letter-spacing: 0.2em; color: var(--muted);
+    }
+    .prose {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px; font-weight: 300;
+      line-height: 1.95; color: #888; max-width: 640px;
+    }
+    .prose p { margin-bottom: 1.3em; }
+    .prose p:last-child { margin-bottom: 0; }
+
+    /* FEATURES */
+    .features-grid {
+      display: grid; gap: 1px;
+      background: var(--line); border: 1px solid var(--line);
+    }
+    .feature-item { background: var(--bg2); padding: 22px 24px; }
+    .feature-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.25em; color: var(--accent); margin-bottom: 6px;
+    }
+    .feature-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px; font-weight: 700;
+      letter-spacing: 0.04em; margin-bottom: 8px; color: var(--text);
+    }
+    .feature-desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px; font-weight: 300;
+      line-height: 1.85; color: #777;
+    }
+    .feature-bullets {
+      margin-top: 10px; padding-left: 0; list-style: none;
+    }
+    .feature-bullets li {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; font-weight: 500;
+      color: var(--muted); padding: 3px 0 3px 14px;
+      position: relative; letter-spacing: 0.06em;
+    }
+    .feature-bullets li::before {
+      content: '—'; position: absolute; left: 0; color: var(--line2);
+    }
+
+    /* IMPACT */
+    .impact-grid {
+      display: grid; gap: 1px;
+      background: var(--line); border: 1px solid var(--line);
+      margin-bottom: 20px;
+    }
+    .impact-item { background: var(--bg2); padding: 22px 24px; }
+    .impact-code {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.2em; color: var(--accent2); margin-bottom: 6px;
+    }
+    .impact-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 0.04em; margin-bottom: 8px; color: var(--text);
+    }
+    .impact-desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px; font-weight: 300;
+      line-height: 1.85; color: #777;
+    }
+    .impact-tags {
+      display: flex; flex-wrap: wrap; gap: 5px; margin-top: 20px;
+    }
+    .impact-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.1em; padding: 3px 10px;
+      border: 1px solid var(--accent2); color: var(--accent2);
+    }
+
+    /* REFS */
+    .refs-grid {
+      display: flex; flex-direction: column;
+      gap: 1px; background: var(--line); border: 1px solid var(--line);
+      margin-bottom: 20px;
+    }
+    .ref-item {
+      background: var(--bg2); display: flex; align-items: center;
+      gap: 14px; padding: 13px 18px;
+      text-decoration: none; transition: background 0.12s;
+    }
+    .ref-item:hover { background: var(--bg3); }
+    .ref-icon { width: 26px; height: 26px; flex-shrink: 0; }
+    .ref-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px;
+    }
+    .ref-domain {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; color: var(--muted); letter-spacing: 0.05em;
+    }
+    .ref-arrow { margin-left: auto; color: var(--muted); font-size: 13px; }
+
+    /* PAGINATION */
+    .pagination {
+      display: flex; gap: 1px;
+      background: var(--line); border: 1px solid var(--line); margin-top: 40px;
+    }
+    .page-item {
+      flex: 1; background: var(--bg2); padding: 16px 18px;
+      text-decoration: none; transition: background 0.12s;
+    }
+    .page-item:hover { background: var(--bg3); }
+    .page-dir {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 4px;
+    }
+    .page-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px; font-weight: 700; color: var(--text);
+    }
+    .page-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; color: var(--muted); margin-top: 2px; letter-spacing: 0.06em;
+    }
+    .page-item.next { text-align: right; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 18px 32px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+  </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">Art × まちづくりDB</a>
-  <div class="breadcrumb">
-    <a href="index.html">TOP</a>
-    <span>›</span>
-    <span>北海道・東北</span>
-    <span>›</span>
-    <span>岩手県</span>
-  </div>
-  <a href="index.html" class="nav-back">← 一覧</a>
+  <a class="nav-logo" href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a>
+  <a class="nav-back" href="https://bawb199765-bot.github.io/Art_PlaceMaking/database/index.html">← 一覧に戻る</a>
 </nav>
 
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-tags">
-      <span class="tag tag-region">北海道・東北</span>
-      <span class="tag tag-type">地域芸術祭型（文化継承・コミュニティ重視型）</span>
-    </div>
-    <div class="hero-index">Iwate — 03</div>
-    <h1>三陸国際芸術祭</h1>
-    <div class="hero-en">Sanriku International Arts Festival</div>
-    <p class="hero-desc">東日本大震災後の三陸沿岸地域を舞台に、郷土芸能・舞台芸術を軸として開催される地域芸術祭。人・身体・語り・祭りという無形文化を主軸に、地域の文化を再評価・継承する。</p>
-  </div>
+<div class="hero">
   <div class="hero-meta">
-    <div class="meta-row">
-      <span class="meta-label">場所</span>
-      <span class="meta-value">大船渡市・陸前高田市・釜石市ほか</span>
+    <span class="hero-region">北海道・東北</span>
+    <span class="hero-sep">/</span>
+    <span class="hero-region">岩手県</span>
+    <span class="hero-sep">/</span>
+    <span class="hero-cat">地域型芸術祭型</span>
+    <span class="hero-case">Case 03 / 48</span>
+  </div>
+  <h1>三陸国際芸術祭</h1>
+  <div class="hero-en">Sanriku International Arts Festival</div>
+  <p class="hero-desc">三陸の伝統芸能に国内外のアーティストが共鳴することで、東日本大震災で被災した郷土芸能や文化芸術の復興を図るとともに、次世代の担い手育成や多様性のある文化の理解促進、国内外への三陸の魅力発信を目指す。</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-label">拠点</div>
+      <div class="stat-value">岩手県三陸沿岸各地</div>
     </div>
-    <div class="meta-row">
-      <span class="meta-label">開催</span>
-      <span class="meta-value">2014年〜毎年開催</span>
+    <div class="stat-item">
+      <div class="stat-label">開始年</div>
+      <div class="stat-value">2013年〜</div>
     </div>
-    <div class="meta-row">
-      <span class="meta-label">主催</span>
-      <span class="meta-value">三陸国際芸術祭実行委員会</span>
+    <div class="stat-item">
+      <div class="stat-label">主体</div>
+      <div class="stat-value">三陸国際芸術祭実行委員会</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">形態</div>
+      <div class="stat-value">隔年開催</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">次回開催</div>
+      <div class="stat-value">不明</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">東京からのアクセス</div>
+      <div class="stat-value">約3時間</div>
     </div>
   </div>
-</section>
-
-<nav class="section-nav">
-  <a href="#overview" class="sec-link">概要</a>
-  <a href="#features" class="sec-link">特徴</a>
-  <a href="#impact" class="sec-link">街への効果</a>
-  <a href="#refs" class="sec-link">参考</a>
-</nav>
+  <nav class="toc">
+    <a href="#overview">01 概要</a>
+    <a href="#features">02 特徴</a>
+    <a href="#impact">03 街への効果</a>
+    <a href="#refs">04 参考</a>
+  </nav>
+</div>
 
 <div class="content">
 
-  <section id="overview" class="section">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2>概要 <span>Overview</span></h2>
-    </div>
-    <div class="overview-text">
-      <p>東日本大震災後の三陸沿岸地域を舞台に、郷土芸能・舞台芸術・現代的表現を軸として開催されてきた地域芸術祭。従来の「展示中心の現代美術」ではなく、人・身体・語り・祭りといった無形文化を主軸に据え、地域に根ざした文化の再評価と継承を目的としている。</p>
-    </div>
+  <section class="section" id="overview">
+    <div class="section-num">01</div>
+    <div class="section-title">概要 <span class="section-title-en">Overview</span></div>
+    <div class="prose"><p>三陸国際芸術祭は、東日本大震災（2011年）で甚大な被害を受けた岩手県三陸沿岸地域を主な舞台とした国際芸術祭。三陸に伝わる神楽・太鼓・虎舞など豊富な郷土芸能を核に据えながら、国内外のアーティストとの共演・共創を実現する「文化の復興」をテーマとした取り組み。</p><p>震災によって担い手を失ったり、継続が困難になった伝統芸能を「記録・継承・発展」させながら、外部の芸術家との出会いを通じて新たな表現の可能性を模索する。地域のアーティストや住民が主体的に参加するプログラムが多く、単なる「見せる」芸術祭ではなく、地域文化の担い手育成に力点がある。</p><p>三陸の漁師町・港・山里の多様なロケーションを会場に、芸能・音楽・現代アート・舞台芸術が交差する独自の体験を生み出している。</p></div>
   </section>
 
-  <section id="features" class="section">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2>特徴 <span>Key Features</span></h2>
-    </div>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-num">01</div>
-        <div class="feature-title">郷土芸能を核とした芸術祭</div>
-        <div class="feature-body">
-          虎舞、鹿踊り、神楽など三陸各地の伝統芸能が中心。アーティストは地域文化を翻訳・拡張する存在として関与。
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">02</div>
-        <div class="feature-title">復興文脈に依存しすぎない設計</div>
-        <div class="feature-body">
-          「震災の記憶」だけを前面に出さない。三陸が元々持っていた文化的厚み・生活文化を可視化。
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">03</div>
-        <div class="feature-title">点在・分散型の開催形式</div>
-        <div class="feature-body">
-          複数市町村に会場が分散。観客は移動しながら三陸を体験。沿岸地域全体を"舞台"として捉える構造。
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">04</div>
-        <div class="feature-title">市民・担い手の参加比重が高い</div>
-        <div class="feature-body">
-          若手世代・子どもへの継承を重視。文化の担い手育成型芸術祭として設計。
-        </div>
-      </div>
-    </div>
+  <section class="section" id="features">
+    <div class="section-num">02</div>
+    <div class="section-title">主な特徴 <span class="section-title-en">Key Features</span></div>
+    <div class="features-grid"><div class="feature-item">
+  <div class="feature-num">01</div>
+  <div class="feature-title">郷土芸能を核にした「文化の復興」</div>
+  <div class="feature-desc">震災によって継続が困難になった三陸の伝統芸能（神楽・虎舞・剣舞など）を芸術祭の中心に据え、記録・継承・発展を同時に図る。文化の復興なくして地域の復興はないという思想に基づく。</div>
+  <ul class="feature-bullets"><li>被災した伝統芸能団体の参加・共演</li><li>映像記録・アーカイブ制作との連動</li><li>次世代担い手へのワークショップ・稽古機会の提供</li></ul>
+</div><div class="feature-item">
+  <div class="feature-num">02</div>
+  <div class="feature-title">国際芸術家との共創による新しい表現の発見</div>
+  <div class="feature-desc">国内外のアーティストが三陸の伝統芸能と出会い、共演・コラボレーションを行うことで、既存の文化に新たな視点と活力をもたらす。</div>
+  <ul class="feature-bullets"><li>世界各地の芸能・音楽とのコラボレーション</li><li>三陸の芸能の国際的文脈での再発見</li><li>アーティストの滞在制作による地域との深い関与</li></ul>
+</div><div class="feature-item">
+  <div class="feature-num">03</div>
+  <div class="feature-title">三陸の自然・海・港を活かした会場設計</div>
+  <div class="feature-desc">漁港・浜辺・山里など三陸固有の景観・環境をそのまま会場として活用。「場所の力」が作品・演目と共鳴し、三陸でしか体験できない芸術祭の固有性を生み出す。</div>
+  <ul class="feature-bullets"><li>海・港を舞台にした野外パフォーマンス</li><li>漁師集落・神社・学校など地域施設の活用</li><li>三陸の食文化・漁業とのプログラム連携</li></ul>
+</div><div class="feature-item">
+  <div class="feature-num">04</div>
+  <div class="feature-title">住民主体・地域密着の運営体制</div>
+  <div class="feature-desc">外部主導ではなく、地域住民・伝統芸能団体・漁業関係者など多様な地元の担い手が実行委員会を構成。地域に根ざした運営が芸術祭の継続性と信頼性を支えている。</div>
+  <ul class="feature-bullets"><li>地元伝統芸能団体が主要プログラムを担う</li><li>漁業・商業・観光業界との連携</li><li>子どもから高齢者まで参加できる多様なプログラム</li></ul>
+</div></div>
   </section>
 
-  <section id="impact" class="section">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2>街への効果 <span>Urban Impact</span></h2>
-    </div>
-    <p class="impact-intro">以下の効果を、経済・社会・文化の3領域、9つの観点から分類・整理。各事例につき最も当てはまる4項目を選定しています。</p>
-
-    <!-- 社会的効果 -->
-    <div class="impact-category-group">
-      <div class="impact-cards">
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-soc"></span>
-            <span class="impact-tag-text">2-① 社会的効果｜コミュニティ形成</span>
-          </div>
-          <div class="impact-card-title">地区・世代・自治体を越えた再接続</div>
-          <div class="impact-card-body">震災で分断されたコミュニティの間を、郷土芸能という共有の文化資源が橋渡し。地区・世代・自治体を超えた横断的ネットワークが再形成され、芸能を媒介とした継続的な交流関係が生まれている。</div>
-        </div>
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-soc"></span>
-            <span class="impact-tag-text">2-③ 社会的効果｜社会包摂・インクルージョン</span>
-          </div>
-          <div class="impact-card-title">無形文化継承による世代間包摂</div>
-          <div class="impact-card-body">高齢の担い手から若者・子どもへの技術と記憶の継承を組み込んだ設計により、年齢・立場を問わず参加できる文化的包摂の場を創出。「教えること」「学ぶこと」を通じた社会的役割の再付与が、特に震災以降の精神的復興に寄与。</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 文化的・経済的効果 -->
-    <div class="impact-category-group">
-      <div class="impact-cards">
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-cul"></span>
-            <span class="impact-tag-text">3-① 文化的効果｜地域ブランディング・アイデンティティ</span>
-          </div>
-          <div class="impact-card-title">無形文化の可視化と文化的自己肯定感の向上</div>
-          <div class="impact-card-body">日常に埋もれていた三陸の郷土芸能が「外部に語れる文化資源」として再評価。虎舞・鹿踊りなどが芸術祭を通じて国際的な文脈と接続され、地域住民の文化的誇りと自己肯定感の向上に繋がっている。</div>
-        </div>
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-eco"></span>
-            <span class="impact-tag-text">1-① 経済的効果｜交流人口増加</span>
-          </div>
-          <div class="impact-card-title">文化理解・学び型来訪者との接点形成</div>
-          <div class="impact-card-body">消費型観光ではなく、文化理解・学びを目的とした来訪者を呼び込む。滞在時間・再訪意欲の高い層との持続的な接点を形成し、「復興支援の訪問」から「文化目的の来訪」へと来訪動機を転換。関係人口の長期的な蓄積に貢献。</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="impact-badges">
-      <span class="impact-badges-label">選定カテゴリ</span>
-      <span class="badge badge-soc">2-① コミュニティ形成</span>
-      <span class="badge badge-soc">2-③ 社会包摂</span>
-      <span class="badge badge-cul">3-① 地域ブランディング</span>
-      <span class="badge badge-eco">1-① 交流人口増加</span>
-    </div>
+  <section class="section" id="impact">
+    <div class="section-num">03</div>
+    <div class="section-title">街への効果 <span class="section-title-en">Urban Impact</span></div>
+    <div class="impact-grid"><div class="impact-item">
+  <div class="impact-code">2-① 社会的効果｜コミュニティ形成</div>
+  <div class="impact-title">震災後の分断を超えたコミュニティの再構築</div>
+  <div class="impact-desc">震災によって離散・分断されたコミュニティを、芸術祭という共通の場が再びつなぎ直す。伝統芸能を媒介とした世代間・集落間の交流が活性化している。</div>
+</div><div class="impact-item">
+  <div class="impact-code">2-③ 社会的効果｜社会包摂</div>
+  <div class="impact-title">被災経験を持つ住民の表現・参加機会の創出</div>
+  <div class="impact-desc">震災の経験・記憶・悲しみを表現として昇華する場を提供。芸術祭への参加が、被災住民の心理的回復・自己肯定感の醸成に寄与している。</div>
+</div><div class="impact-item">
+  <div class="impact-code">3-① 文化的効果｜地域ブランディング</div>
+  <div class="impact-title">「三陸の芸能・文化」の国内外への発信</div>
+  <div class="impact-desc">従来、地域内で閉じていた郷土芸能を国際的な場に持ち込み、三陸の文化的豊かさを広く発信。芸術祭目的の来訪者が三陸の魅力を再発見する機会を創出している。</div>
+</div><div class="impact-item">
+  <div class="impact-code">1-① 経済的効果｜交流人口増加</div>
+  <div class="impact-title">文化目的の来訪者による観光消費の拡大</div>
+  <div class="impact-desc">芸術祭を通じて三陸を訪れる新たな来訪者層（アート・芸能ファン）が生まれ、宿泊・飲食・地場産品購入など観光消費に貢献している。</div>
+</div></div>
+    <div class="impact-tags"><span class="impact-tag">2-① コミュニティ形成</span><span class="impact-tag">2-③ 社会包摂</span><span class="impact-tag">3-① 地域ブランディング</span><span class="impact-tag">1-① 交流人口増加</span></div>
   </section>
 
-  <section id="refs" class="section">
-    <div class="section-header">
-      <span class="section-num">04</span>
-      <h2>参考リンク <span>References</span></h2>
-    </div>
-    <div class="refs-grid">
-      <a href="https://sanriku-artfes.jp/" target="_blank" rel="noopener" class="ref-item">
-        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=sanriku-artfes.jp&sz=64" alt=""></div>
-        <div>
-          <div class="ref-title">三陸国際芸術祭 公式サイト</div>
-          <div class="ref-domain">sanriku-artfes.jp</div>
-        </div>
-        <div class="ref-arrow">→</div>
-      </a>
-      <a href="https://www.pref.iwate.jp/" target="_blank" rel="noopener" class="ref-item">
-        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=pref.iwate.jp&sz=64" alt=""></div>
-        <div>
-          <div class="ref-title">岩手県 文化芸術振興</div>
-          <div class="ref-domain">pref.iwate.jp</div>
-        </div>
-        <div class="ref-arrow">→</div>
-      </a>
-    </div>
+  <section class="section" id="refs">
+    <div class="section-num">04</div>
+    <div class="section-title">参考リンク <span class="section-title-en">References</span></div>
+    <div class="refs-grid"><a class="ref-item" href="https://sanfes.com/" target="_blank">
+  <img class="ref-icon" src="https://www.google.com/s2/favicons?domain=sanfes.com&sz=64" alt="" />
+  <div><div class="ref-title">三陸国際芸術祭 公式サイト</div><div class="ref-domain">sanfes.com</div></div>
+  <span class="ref-arrow">→</span>
+</a><a class="ref-item" href="https://www.pref.iwate.jp/" target="_blank">
+  <img class="ref-icon" src="https://www.google.com/s2/favicons?domain=pref.iwate.jp&sz=64" alt="" />
+  <div><div class="ref-title">岩手県 公式サイト</div><div class="ref-domain">pref.iwate.jp</div></div>
+  <span class="ref-arrow">→</span>
+</a></div>
+    <p style="font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.1em;">
+      ※掲載情報は2026年1月末時点の情報を参考にしています。
+    </p>
   </section>
 
-</div>
+  <div class="pagination">
+    <a class="page-item prev" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-aomori.html">
+      <div class="page-dir">← 前の事例</div>
+      <div class="page-name">AOMORI GOKAN</div>
+      <div class="page-sub">北海道・東北 — 青森県</div>
+    </a>
+    <a class="page-item next" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-miyagi.html">
+      <div class="page-dir">次の事例 →</div>
+      <div class="page-name">リボーンアートフェス</div>
+      <div class="page-sub">北海道・東北 — 宮城県</div>
+    </a>
+  </div>
 
-<div class="footer-nav">
-  <a href="detail-aomori.html" class="footer-nav-item">
-    <span class="fnav-label">← 前の事例</span>
-    <span class="fnav-title">AOMORI GOKAN</span>
-    <span class="fnav-count">北海道・東北 — 2 / 7</span>
-  </a>
-  <a href="detail-miyagi.html" class="footer-nav-item fnav-right">
-    <span class="fnav-label">次の事例 →</span>
-    <span class="fnav-title">リボーンアートフェス</span>
-    <span class="fnav-count">北海道・東北 — 4 / 7</span>
-  </a>
 </div>
 
 <footer>
-  <span>※掲載情報は2026年1月末時点の情報を参考にしています。</span>
-  <a href="index.html" style="color: var(--muted); text-decoration: none;">Art × Placemaking</a>
+  <a href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a>
+  <span>© 2026 Art × Placemaking Database</span>
 </footer>
 
 </body>

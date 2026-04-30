@@ -1,334 +1,440 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>茨城 — 取手アートプロジェクト | アート×まちづくりDB</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
-<style>
-  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
-  .nav-logo:hover { color: var(--ink); }
-  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-  .breadcrumb a { color: var(--muted); text-decoration: none; }
-  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
-  .nav-back:hover { background: var(--accent); color: white; }
-  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
-  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
-  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
-  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
-  .tag-region { border-color: var(--muted); color: var(--muted); }
-  .tag-type { border-color: var(--accent); color: var(--accent); }
-  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
-  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
-  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
-  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
-  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
-  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .meta-row:first-child { border-top: 1px solid var(--border); }
-  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
-  .meta-value { font-weight: 600; }
-  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
-  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
-  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
-  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
-  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
-  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
-  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
-  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
-  .overview-text p + p { margin-top: 1.5em; }
-  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
-  .feature-card { background: var(--paper); padding: 2rem; }
-  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
-  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
-  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
-  .feature-body ul { list-style: none; margin-top: 0.75rem; }
-  .feature-body li::before { content: '—  '; color: var(--muted); }
-  .feature-body li { margin-bottom: 4px; }
-  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
-  .impact-category-group { margin-bottom: 2.5rem; }
-  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
-  .cat-economic { background: var(--tag-eco); }
-  .cat-social { background: var(--tag-soc); }
-  .cat-cultural { background: var(--tag-cul); }
-  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
-  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
-  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
-  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-eco { background: var(--tag-eco); }
-  .dot-soc { background: var(--tag-soc); }
-  .dot-cul { background: var(--tag-cul); }
-  .impact-tag-text { color: var(--muted); }
-  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
-  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
-  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
-  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
-  .badge-eco { border-color: #5dade2; color: #5dade2; }
-  .badge-soc { border-color: #58d68d; color: #58d68d; }
-  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
-  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
-  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
-  .ref-item:hover { background: white; }
-  .ref-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
-  .ref-icon img { width: 16px; height: 16px; }
-  .ref-title { font-size: 14px; font-weight: 600; }
-  .ref-domain { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
-  .ref-arrow { margin-left: auto; font-size: 18px; color: var(--muted); }
-  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
-  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
-  .footer-nav-item:hover { background: var(--effect-bg); }
-  .fnav-right { border-left: 1px solid var(--border); text-align: right; align-items: flex-end; }
-  .fnav-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.1em; }
-  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
-  .fnav-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
-  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-text { padding: 3rem 2rem 2rem; }
-    .hero-meta { padding: 2rem; }
-    .content { padding: 0 2rem; }
-    .features-grid { grid-template-columns: 1fr; }
-    .section-nav { padding: 0 2rem; overflow-x: auto; }
-    .footer-nav { grid-template-columns: 1fr; }
-    .fnav-right { border-left: none; border-top: 1px solid var(--border); text-align: left; align-items: flex-start; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>茨城 — アーカスプロジェクト（ARCUS） | アート×まちづくりDB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #181818;
+      --bg2:     #1f1f1f;
+      --bg3:     #262626;
+      --line:    #2e2e2e;
+      --line2:   #3a3a3a;
+      --text:    #f0f0f0;
+      --muted:   #666;
+      --dim:     #444;
+      --accent:  #e8c96e;
+      --accent2: #6ecac8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px; height: 52px;
+    }
+    .nav-logo {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); text-decoration: none;
+    }
+    .nav-back {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.15s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      border-bottom: 1px solid var(--line);
+      padding: 56px 32px 40px;
+      max-width: 860px; margin: 0 auto;
+    }
+    .hero-meta {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .hero-region {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted);
+    }
+    .hero-sep { color: var(--line2); }
+    .hero-cat {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); border: 1px solid var(--accent); padding: 2px 8px;
+    }
+    .hero-case {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; color: var(--muted); margin-left: auto;
+      letter-spacing: 0.1em;
+    }
+    .hero h1 {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(26px, 4vw, 40px);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      line-height: 1.2; margin-bottom: 6px; color: var(--text);
+    }
+    .hero-en {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px;
+    }
+    .hero-desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px; font-weight: 300;
+      line-height: 1.85; color: #999; max-width: 680px; margin-bottom: 28px;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 1px; background: var(--line); border: 1px solid var(--line);
+      margin-bottom: 24px;
+    }
+    .stat-item { background: var(--bg2); padding: 12px 14px; }
+    .stat-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 8px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 4px;
+    }
+    .stat-value {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px; font-weight: 500;
+      color: var(--text); letter-spacing: 0.04em;
+    }
+
+    /* TOC */
+    .toc {
+      display: flex; gap: 0;
+      border: 1px solid var(--line); overflow-x: auto;
+    }
+    .toc a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      padding: 9px 14px; border-right: 1px solid var(--line);
+      white-space: nowrap; transition: color 0.15s, background 0.15s;
+    }
+    .toc a:hover { color: var(--text); background: var(--bg3); }
+    .toc a:last-child { border-right: none; }
+
+    /* CONTENT */
+    .content {
+      max-width: 860px; margin: 0 auto;
+      padding: 0 32px 80px;
+    }
+    .section {
+      padding: 48px 0 40px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section:last-child { border-bottom: none; }
+    .section-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 6px;
+    }
+    .section-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 18px; letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 24px; color: var(--text);
+      display: flex; align-items: baseline; gap: 14px;
+    }
+    .section-title-en {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 400;
+      letter-spacing: 0.2em; color: var(--muted);
+    }
+    .prose {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px; font-weight: 300;
+      line-height: 1.95; color: #888; max-width: 640px;
+    }
+    .prose p { margin-bottom: 1.3em; }
+    .prose p:last-child { margin-bottom: 0; }
+
+    /* FEATURES */
+    .features-grid {
+      display: grid; gap: 1px;
+      background: var(--line); border: 1px solid var(--line);
+    }
+    .feature-item { background: var(--bg2); padding: 22px 24px; }
+    .feature-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.25em; color: var(--accent); margin-bottom: 6px;
+    }
+    .feature-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px; font-weight: 700;
+      letter-spacing: 0.04em; margin-bottom: 8px; color: var(--text);
+    }
+    .feature-desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px; font-weight: 300;
+      line-height: 1.85; color: #777;
+    }
+    .feature-bullets {
+      margin-top: 10px; padding-left: 0; list-style: none;
+    }
+    .feature-bullets li {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; font-weight: 500;
+      color: var(--muted); padding: 3px 0 3px 14px;
+      position: relative; letter-spacing: 0.06em;
+    }
+    .feature-bullets li::before {
+      content: '—'; position: absolute; left: 0; color: var(--line2);
+    }
+
+    /* IMPACT */
+    .impact-grid {
+      display: grid; gap: 1px;
+      background: var(--line); border: 1px solid var(--line);
+      margin-bottom: 20px;
+    }
+    .impact-item { background: var(--bg2); padding: 22px 24px; }
+    .impact-code {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.2em; color: var(--accent2); margin-bottom: 6px;
+    }
+    .impact-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 0.04em; margin-bottom: 8px; color: var(--text);
+    }
+    .impact-desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px; font-weight: 300;
+      line-height: 1.85; color: #777;
+    }
+    .impact-tags {
+      display: flex; flex-wrap: wrap; gap: 5px; margin-top: 20px;
+    }
+    .impact-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.1em; padding: 3px 10px;
+      border: 1px solid var(--accent2); color: var(--accent2);
+    }
+
+    /* REFS */
+    .refs-grid {
+      display: flex; flex-direction: column;
+      gap: 1px; background: var(--line); border: 1px solid var(--line);
+      margin-bottom: 20px;
+    }
+    .ref-item {
+      background: var(--bg2); display: flex; align-items: center;
+      gap: 14px; padding: 13px 18px;
+      text-decoration: none; transition: background 0.12s;
+    }
+    .ref-item:hover { background: var(--bg3); }
+    .ref-icon { width: 26px; height: 26px; flex-shrink: 0; }
+    .ref-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px;
+    }
+    .ref-domain {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; color: var(--muted); letter-spacing: 0.05em;
+    }
+    .ref-arrow { margin-left: auto; color: var(--muted); font-size: 13px; }
+
+    /* PAGINATION */
+    .pagination {
+      display: flex; gap: 1px;
+      background: var(--line); border: 1px solid var(--line); margin-top: 40px;
+    }
+    .page-item {
+      flex: 1; background: var(--bg2); padding: 16px 18px;
+      text-decoration: none; transition: background 0.12s;
+    }
+    .page-item:hover { background: var(--bg3); }
+    .page-dir {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 4px;
+    }
+    .page-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px; font-weight: 700; color: var(--text);
+    }
+    .page-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; color: var(--muted); margin-top: 2px; letter-spacing: 0.06em;
+    }
+    .page-item.next { text-align: right; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 18px 32px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+  </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">Art × Placemaking DB</a>
-  <div class="breadcrumb">
-    <a href="index.html">HOME</a>
-    <span>›</span>
-    <span>茨城</span>
-  </div>
-  <a href="index.html" class="nav-back">← 一覧</a>
+  <a class="nav-logo" href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a>
+  <a class="nav-back" href="https://bawb199765-bot.github.io/Art_PlaceMaking/database/index.html">← 一覧に戻る</a>
 </nav>
 
 <div class="hero">
-  <div class="hero-text">
-    <div class="hero-tags">
-      <span class="tag tag-region">関東</span>
-      <span class="tag tag-region">茨城県</span>
-      <span class="tag tag-type">AIR・郊外型アートプロジェクト</span>
-    </div>
-    <div class="hero-index">Case 08 / 47</div>
-    <h1>取手アートプロジェクト</h1>
-    <div class="hero-en">Toride Art Project (TAP)</div>
-    <p class="hero-desc">東京藝術大学と取手市が1999年から展開するアートプロジェクト。首都圏郊外の住宅地・団地・農地を舞台に、AIR（アーティスト・イン・レジデンス）を軸として市民とアーティストが共に暮らし・制作する実践を継続。越境的な人の流れと多様なコミュニティの包摂が特徴。</p>
-  </div>
   <div class="hero-meta">
-    <div class="meta-row">
-      <span class="meta-label">開催地</span>
-      <span class="meta-value">茨城県取手市</span>
+    <span class="hero-region">関東</span>
+    <span class="hero-sep">/</span>
+    <span class="hero-region">茨城県</span>
+    <span class="hero-sep">/</span>
+    <span class="hero-cat">AIR・制作拠点型</span>
+    <span class="hero-case">Case 08 / 48</span>
+  </div>
+  <h1>アーカスプロジェクト（ARCUS）</h1>
+  <div class="hero-en">ARCUS Project — Artist in Residence</div>
+  <p class="hero-desc">茨城県を主催に1994年に始動した、国内でも歴史の長いアーティスト・イン・レジデンス（AIR）。国際的に活動するアーティストが滞在制作を行うプログラムと、地域の方々が主体となれる場づくりやワークショップ等のラーニングプログラムを展開。</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-label">拠点</div>
+      <div class="stat-value">茨城県守谷市</div>
     </div>
-    <div class="meta-row">
-      <span class="meta-label">開始年</span>
-      <span class="meta-value">1999年</span>
+    <div class="stat-item">
+      <div class="stat-label">開始年</div>
+      <div class="stat-value">1994年〜</div>
     </div>
-    <div class="meta-row">
-      <span class="meta-label">主催</span>
-      <span class="meta-value">東京藝術大学 / 取手市</span>
+    <div class="stat-item">
+      <div class="stat-label">主体</div>
+      <div class="stat-value">公益財団法人茨城県芸術文化振興財団</div>
     </div>
-    <div class="meta-row">
-      <span class="meta-label">形態</span>
-      <span class="meta-value">大学×自治体連携・AIR型プロジェクト</span>
+    <div class="stat-item">
+      <div class="stat-label">形態</div>
+      <div class="stat-value">通年・AIR</div>
     </div>
-    <div class="meta-row">
-      <span class="meta-label">カテゴリ</span>
-      <span class="meta-value">郊外型アートプロジェクト・AIR</span>
+    <div class="stat-item">
+      <div class="stat-label">次回開催</div>
+      <div class="stat-value">2027年</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">東京からのアクセス</div>
+      <div class="stat-value">約1.5時間</div>
     </div>
   </div>
+  <nav class="toc">
+    <a href="#overview">01 概要</a>
+    <a href="#features">02 特徴</a>
+    <a href="#impact">03 街への効果</a>
+    <a href="#refs">04 参考</a>
+  </nav>
 </div>
-
-<nav class="section-nav">
-  <a href="#overview" class="sec-link">01 概要</a>
-  <a href="#features" class="sec-link">02 特徴</a>
-  <a href="#impact" class="sec-link">03 街への効果</a>
-  <a href="#refs" class="sec-link">04 参考</a>
-</nav>
 
 <div class="content">
 
-  <section id="overview" class="section">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2>概要 <span>Overview</span></h2>
-    </div>
-    <div class="overview-text">
-      <p>取手アートプロジェクト（TAP）は、東京藝術大学と茨城県取手市が1999年から共同展開する郊外型のアートプロジェクトである。首都圏通勤圏に位置する取手市の住宅団地・農地・商店街・公共空間を舞台に、AIR（アーティスト・イン・レジデンス）を軸とした滞在制作・地域連携プロジェクトを年間を通じて実施している。</p>
-      <p>TAPが独特なのは、「地域にアーティストを呼ぶ」だけでなく、「アーティストが取手に住み、市民の隣人として暮らす」という関係性を重視している点である。東京への通勤者が多い郊外住宅地という文脈を生かし、多様なバックグラウンドを持つ居住者・移住者・外国人・障がい者などが一緒にアートを通じて関わる「越境的インクルージョン」の実践として、国際的にも注目を集めている。</p>
-    </div>
+  <section class="section" id="overview">
+    <div class="section-num">01</div>
+    <div class="section-title">概要 <span class="section-title-en">Overview</span></div>
+    <div class="prose"><p>アーカスプロジェクト（ARCUS Project）は、茨城県が主催する国内最長クラスのアーティスト・イン・レジデンス（AIR）プログラム。1994年の開始以来、毎年国内外から選抜されたアーティストが茨城県守谷市のスタジオに数ヶ月間滞在し、地域と関わりながら制作活動を行う。</p><p>滞在アーティストは制作の傍ら、地域住民向けのオープンスタジオ・ワークショップ・学校訪問などのラーニングプログラムにも積極的に参加。アーティストと市民の継続的な交流が、地域に深いアートとの関わりを育んでいる。</p><p>30年以上の蓄積により、アーカス出身のアーティストが国際的に活躍するケースも多く、プログラムそのものが現代美術界における信頼のある「登竜門」として機能している。関係人口の長期的な蓄積という観点でも、短期型の芸術祭とは異なる独自の効果を発揮する。</p></div>
   </section>
 
-  <section id="features" class="section">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2>主な特徴 <span>Key Features</span></h2>
-    </div>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-num">01</div>
-        <div class="feature-title">AIRを軸とした「住む」アーティストとの関係</div>
-        <div class="feature-body">
-          アーティストが取手市内に居住しながら制作・地域活動を行うAIRを中核に据えることで、短期的なイベント出演者ではなく「地域の一員」としてのアーティストの存在が定着している。
-          <ul>
-            <li>取手市内でのアーティスト長期滞在・居住</li>
-            <li>住宅・農地・空き家をスタジオとして活用</li>
-            <li>AIR卒業後も取手に定住するアーティスト輩出</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">02</div>
-        <div class="feature-title">東京藝術大学との大学連携モデル</div>
-        <div class="feature-body">
-          日本最高峰の芸術大学である東京藝術大学が自治体と連携する先進モデルとして、日本の大学×地域連携プロジェクトの草分け的存在。学生・卒業生・教員が実験的な場として活用している。
-          <ul>
-            <li>藝大学生・大学院生の制作・研究フィールド</li>
-            <li>教員による実験的地域プロジェクトの展開</li>
-            <li>全国の類似プロジェクトへの影響・モデル提供</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">03</div>
-        <div class="feature-title">郊外住宅地の多様性を生かした包摂的設計</div>
-        <div class="feature-body">
-          首都圏郊外住宅地の特性（多様な出身地・職業・国籍の居住者）を積極的に生かし、アートを通じて異なるバックグラウンドの人々が関わる場を設計。外国人・高齢者・障がい者なども参加しやすいプログラムが充実。
-          <ul>
-            <li>多国籍コミュニティとのプロジェクト展開</li>
-            <li>高齢者・障がい者参加型ワークショップ</li>
-            <li>子育て世代・若者向けの参加機会</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">04</div>
-        <div class="feature-title">農地・団地・空き家など多様な空間の活用</div>
-        <div class="feature-body">
-          農地・住宅団地の共有スペース・空き家・商店街など、取手市内の多様な空間を会場として活用。都市と農村が交差する郊外の地理的特性が、多様な制作・展示の文脈を生み出している。
-          <ul>
-            <li>農地での土地特有のインスタレーション</li>
-            <li>団地の共有スペースを使ったコミュニティアート</li>
-            <li>空き家・廃工場のアートスペース化</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <section class="section" id="features">
+    <div class="section-num">02</div>
+    <div class="section-title">主な特徴 <span class="section-title-en">Key Features</span></div>
+    <div class="features-grid"><div class="feature-item">
+  <div class="feature-num">01</div>
+  <div class="feature-title">30年以上の蓄積が生む信頼と実績</div>
+  <div class="feature-desc">1994年の開始以来、毎年継続してきた実績が国内外のアート界における信頼を確立。出身アーティストが世界各地で活躍することで、プログラムの質・価値が国際的に認知されている。</div>
+  <ul class="feature-bullets"><li>国際的に活躍するアーカス出身アーティストの輩出</li><li>国内外の芸術支援機関・AIRネットワークとの連携</li><li>蓄積されたアーカイブ・記録による研究価値</li></ul>
+</div><div class="feature-item">
+  <div class="feature-num">02</div>
+  <div class="feature-title">滞在による地域との深い関与</div>
+  <div class="feature-desc">日帰りや短期ではなく、数ヶ月にわたる滞在が地域との深い関係性を生む。アーティストが守谷の日常・自然・人々と真摯に向き合う中で生まれる制作が、場所に根ざした固有の表現につながる。</div>
+  <ul class="feature-bullets"><li>守谷市の自然・農地・地域コミュニティとの関わり</li><li>制作プロセスを地域住民と共有するオープンスタジオ</li><li>地域の歴史・文化・産業からインスピレーションを得た作品</li></ul>
+</div><div class="feature-item">
+  <div class="feature-num">03</div>
+  <div class="feature-title">ラーニングプログラムによる市民との接続</div>
+  <div class="feature-desc">滞在制作だけでなく、ワークショップ・学校訪問・公開制作など市民参加型のプログラムを充実させることで、アーティストと地域住民の双方向的な関係を構築している。</div>
+  <ul class="feature-bullets"><li>小中学校でのアーティスト訪問・授業</li><li>一般市民向けワークショップ・トーク</li><li>オープンスタジオでの制作公開・交流</li></ul>
+</div><div class="feature-item">
+  <div class="feature-num">04</div>
+  <div class="feature-title">関係人口の長期的蓄積</div>
+  <div class="feature-desc">短期型の芸術祭と異なり、毎年継続する滞在型プログラムが、守谷・茨城と深く関わるアーティスト・研究者・愛好者の長期的なネットワークを形成。人のつながりの蓄積が地域の文化的資産となる。</div>
+  <ul class="feature-bullets"><li>アーカス出身アーティストとの長期的な関係継続</li><li>国際的なアーティストネットワークと守谷のつながり</li><li>リピーターや支援者コミュニティの形成</li></ul>
+</div></div>
   </section>
 
-  <section id="impact" class="section">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2>街への効果 <span>Urban Impact</span></h2>
-    </div>
-    <p class="impact-intro">取手アートプロジェクトの地域への効果を分析する。移住促進・社会包摂・クリエイティブエコシステムの3軸が主効果として確認されており、交流人口とは異なる「関係人口」の創出が際立った特徴。</p>
-
-    <!-- 社会的効果 -->
-    <div class="impact-category-group">
-      <div class="impact-cat-label cat-social">社会的効果 / Social</div>
-      <div class="impact-cards">
-
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-soc"></span>
-            <span class="impact-tag-text">2-② 社会的効果｜移住・定住促進</span>
-          </div>
-          <div class="impact-card-title">AIRを起点とした「取手に住む」アーティストの定着</div>
-          <div class="impact-card-body">滞在制作プログラムをきっかけに取手市に定住するアーティストが継続的に生まれており、アーティストの移住・定住のロールモデルを示している。東京近郊でありながら農的環境も残る取手の地理的特性が、アーティスト移住の動機となっている。</div>
-        </div>
-
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-soc"></span>
-            <span class="impact-tag-text">2-③ 社会的効果｜社会包摂・インクルージョン</span>
-          </div>
-          <div class="impact-card-title">郊外の越境的多様性を生かした包摂型アートの実践</div>
-          <div class="impact-card-body">首都圏郊外に集まる多国籍住民・高齢者・障がい者・外国人労働者など、多様な背景の人々がアートを通じて関わる越境的なインクルージョンの実践が蓄積。「誰が参加してもいい」という開かれた設計が国際的にも注目されている。</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- 文化的効果 -->
-    <div class="impact-category-group">
-      <div class="impact-cat-label cat-cultural">文化的効果 / Cultural</div>
-      <div class="impact-cards">
-
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-cul"></span>
-            <span class="impact-tag-text">3-③ 文化的効果｜クリエイティブエコシステム創出</span>
-          </div>
-          <div class="impact-card-title">藝大×郊外都市が生む実験的クリエイティブネットワーク</div>
-          <div class="impact-card-body">東京藝術大学のネットワークと取手市の地域資源が組み合わさることで、東京とは異なるスピード・スケールで実験的な制作・発表が可能な場が形成されている。国内外のアーティストが「東京近郊の実験場」として取手に関わり続けるクリエイティブ生態系が醸成されている。</div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="impact-badges">
-      <span class="impact-badges-label">選定カテゴリ</span>
-      <span class="badge badge-eco">1-① 交流人口増加</span>
-      <span class="badge badge-soc">2-② 移住・定住促進</span>
-      <span class="badge badge-soc">2-③ 社会包摂・インクルージョン</span>
-      <span class="badge badge-cul">3-③ クリエイティブエコシステム</span>
-    </div>
+  <section class="section" id="impact">
+    <div class="section-num">03</div>
+    <div class="section-title">街への効果 <span class="section-title-en">Urban Impact</span></div>
+    <div class="impact-grid"><div class="impact-item">
+  <div class="impact-code">1-① 経済的効果｜交流人口増加</div>
+  <div class="impact-title">国内外のアーティスト・関係者の来訪促進</div>
+  <div class="impact-desc">滞在制作中の訪問者・オープンスタジオ来場者・成果発表会への参加者など、アーカスを通じて守谷を訪れる人々が毎年継続的に生まれている。</div>
+</div><div class="impact-item">
+  <div class="impact-code">2-② 社会的効果｜移住・定住促進</div>
+  <div class="impact-title">アーティストの守谷・茨城への定着促進</div>
+  <div class="impact-desc">滞在を通じて守谷への愛着を持ったアーティストが、プログラム終了後も継続的に地域と関わる・移住するケースが生まれている。</div>
+</div><div class="impact-item">
+  <div class="impact-code">2-③ 社会的効果｜社会包摂</div>
+  <div class="impact-title">多文化・多言語の芸術家との交流による市民の国際感覚育成</div>
+  <div class="impact-desc">国籍・文化・言語が異なるアーティストとの日常的な交流が、守谷市民の国際感覚・多様性への理解を育む教育的効果を持つ。</div>
+</div><div class="impact-item">
+  <div class="impact-code">3-③ 文化的効果｜クリエイティブエコシステム</div>
+  <div class="impact-title">国際的なアートネットワークと地域をつなぐ拠点</div>
+  <div class="impact-desc">アーカスを通じて守谷・茨城が国際的なアートシーンと接続され、地域が創造的活動の場として国際的に認知される。</div>
+</div></div>
+    <div class="impact-tags"><span class="impact-tag">1-① 交流人口増加</span><span class="impact-tag">2-② 移住・定住促進</span><span class="impact-tag">2-③ 社会包摂</span><span class="impact-tag">3-③ クリエイティブエコシステム</span></div>
   </section>
 
-  <section id="refs" class="section">
-    <div class="section-header">
-      <span class="section-num">04</span>
-      <h2>参考リンク <span>References</span></h2>
-    </div>
-    <div class="refs-grid">
-      <a href="https://www.toride-ap.gr.jp/" target="_blank" rel="noopener" class="ref-item">
-        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=toride-ap.gr.jp&sz=64" alt=""></div>
-        <div>
-          <div class="ref-title">取手アートプロジェクト 公式サイト</div>
-          <div class="ref-domain">toride-ap.gr.jp</div>
-        </div>
-        <div class="ref-arrow">→</div>
-      </a>
-      <a href="https://www.geidai.ac.jp/" target="_blank" rel="noopener" class="ref-item">
-        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=geidai.ac.jp&sz=64" alt=""></div>
-        <div>
-          <div class="ref-title">東京藝術大学 公式サイト</div>
-          <div class="ref-domain">geidai.ac.jp</div>
-        </div>
-        <div class="ref-arrow">→</div>
-      </a>
-    </div>
+  <section class="section" id="refs">
+    <div class="section-num">04</div>
+    <div class="section-title">参考リンク <span class="section-title-en">References</span></div>
+    <div class="refs-grid"><a class="ref-item" href="https://www.arcus-project.com/" target="_blank">
+  <img class="ref-icon" src="https://www.google.com/s2/favicons?domain=arcus-project.com&sz=64" alt="" />
+  <div><div class="ref-title">アーカスプロジェクト 公式サイト</div><div class="ref-domain">arcus-project.com</div></div>
+  <span class="ref-arrow">→</span>
+</a><a class="ref-item" href="https://www.pref.ibaraki.jp/" target="_blank">
+  <img class="ref-icon" src="https://www.google.com/s2/favicons?domain=pref.ibaraki.jp&sz=64" alt="" />
+  <div><div class="ref-title">茨城県 公式サイト</div><div class="ref-domain">pref.ibaraki.jp</div></div>
+  <span class="ref-arrow">→</span>
+</a></div>
+    <p style="font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.1em;">
+      ※掲載情報は2026年1月末時点の情報を参考にしています。
+    </p>
   </section>
 
-</div>
+  <div class="pagination">
+    <a class="page-item prev" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-fukushima.html">
+      <div class="page-dir">← 前の事例</div>
+      <div class="page-name">ハマカルアートプロジェクト</div>
+      <div class="page-sub">北海道・東北 — 福島県</div>
+    </a>
+    <a class="page-item next" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-tochigi.html">
+      <div class="page-dir">次の事例 →</div>
+      <div class="page-name">KEAT 小砂環境芸術祭</div>
+      <div class="page-sub">関東 — 栃木県</div>
+    </a>
+  </div>
 
-<div class="footer-nav">
-  <a href="detail-fukushima.html" class="footer-nav-item">
-    <span class="fnav-label">← 前の事例</span>
-    <span class="fnav-title">はじまりの美術館</span>
-    <span class="fnav-count">北海道・東北 — 7 / 7</span>
-  </a>
-  <a href="detail-tochigi.html" class="footer-nav-item fnav-right">
-    <span class="fnav-label">次の事例 →</span>
-    <span class="fnav-title">那須塩原アートプロジェクト</span>
-    <span class="fnav-count">関東 — 2 / 9</span>
-  </a>
 </div>
 
 <footer>
-  <span>※掲載情報は2026年1月末時点の情報を参考にしています。</span>
-  <a href="index.html" style="color: var(--muted); text-decoration: none;">Art × Placemaking</a>
+  <a href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a>
+  <span>© 2026 Art × Placemaking Database</span>
 </footer>
 
 </body>

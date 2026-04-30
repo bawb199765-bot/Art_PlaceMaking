@@ -1,480 +1,440 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>北海道 — 札幌国際芸術祭 | アート×まちづくりDB</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #1a1714;
-    --paper: #f5f1eb;
-    --accent: #c8410e;
-    --muted: #8a7f72;
-    --border: #d4cec5;
-    --tag-eco: #1a5276;
-    --tag-soc: #1d6840;
-    --tag-cul: #6d2f8f;
-    --effect-bg: #faf7f2;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>北海道 — 札幌国際芸術祭（SIAF） | アート×まちづくりDB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #181818;
+      --bg2:     #1f1f1f;
+      --bg3:     #262626;
+      --line:    #2e2e2e;
+      --line2:   #3a3a3a;
+      --text:    #f0f0f0;
+      --muted:   #666;
+      --dim:     #444;
+      --accent:  #e8c96e;
+      --accent2: #6ecac8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
 
-  body {
-    font-family: 'Noto Serif JP', serif;
-    background: var(--paper);
-    color: var(--ink);
-    line-height: 1.8;
-    font-size: 15px;
-  }
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px; height: 52px;
+    }
+    .nav-logo {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); text-decoration: none;
+    }
+    .nav-back {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.15s;
+    }
+    .nav-back:hover { color: var(--text); }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(245,241,235,0.95);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 56px;
-  }
-  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
-  .nav-logo:hover { color: var(--ink); }
-  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-  .breadcrumb a { color: var(--muted); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--accent); }
-  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
-  .nav-back:hover { background: var(--accent); color: white; }
+    /* HERO */
+    .hero {
+      border-bottom: 1px solid var(--line);
+      padding: 56px 32px 40px;
+      max-width: 860px; margin: 0 auto;
+    }
+    .hero-meta {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .hero-region {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted);
+    }
+    .hero-sep { color: var(--line2); }
+    .hero-cat {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); border: 1px solid var(--accent); padding: 2px 8px;
+    }
+    .hero-case {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; color: var(--muted); margin-left: auto;
+      letter-spacing: 0.1em;
+    }
+    .hero h1 {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(26px, 4vw, 40px);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      line-height: 1.2; margin-bottom: 6px; color: var(--text);
+    }
+    .hero-en {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px;
+    }
+    .hero-desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px; font-weight: 300;
+      line-height: 1.85; color: #999; max-width: 680px; margin-bottom: 28px;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 1px; background: var(--line); border: 1px solid var(--line);
+      margin-bottom: 24px;
+    }
+    .stat-item { background: var(--bg2); padding: 12px 14px; }
+    .stat-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 8px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 4px;
+    }
+    .stat-value {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px; font-weight: 500;
+      color: var(--text); letter-spacing: 0.04em;
+    }
 
-  /* HERO */
-  .hero {
-    margin-top: 56px;
-    min-height: 60vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border-bottom: 2px solid var(--ink);
-  }
-  .hero-text {
-    padding: 5rem 4rem 4rem;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    border-right: 1px solid var(--border);
-  }
-  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
-  .tag {
-    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em;
-    padding: 3px 10px; border-radius: 2px; border: 1px solid;
-  }
-  .tag-region { border-color: var(--muted); color: var(--muted); }
-  .tag-type { border-color: var(--accent); color: var(--accent); }
-  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
-  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
-  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
-  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
-  .hero-meta {
-    padding: 5rem 3rem 4rem;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    gap: 0;
-  }
-  .meta-row {
-    display: grid; grid-template-columns: 100px 1fr;
-    padding: 14px 0; border-bottom: 1px solid var(--border);
-    font-size: 13px;
-  }
-  .meta-row:first-child { border-top: 1px solid var(--border); }
-  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
-  .meta-value { font-weight: 600; }
+    /* TOC */
+    .toc {
+      display: flex; gap: 0;
+      border: 1px solid var(--line); overflow-x: auto;
+    }
+    .toc a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      padding: 9px 14px; border-right: 1px solid var(--line);
+      white-space: nowrap; transition: color 0.15s, background 0.15s;
+    }
+    .toc a:hover { color: var(--text); background: var(--bg3); }
+    .toc a:last-child { border-right: none; }
 
-  /* SECTION NAV */
-  .section-nav {
-    position: sticky; top: 56px; z-index: 90;
-    background: var(--paper);
-    border-bottom: 1px solid var(--border);
-    padding: 0 4rem;
-    display: flex; gap: 0;
-  }
-  .sec-link {
-    font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em;
-    color: var(--muted); text-decoration: none;
-    padding: 14px 20px; border-bottom: 2px solid transparent;
-    transition: all .2s;
-  }
-  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+    /* CONTENT */
+    .content {
+      max-width: 860px; margin: 0 auto;
+      padding: 0 32px 80px;
+    }
+    .section {
+      padding: 48px 0 40px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section:last-child { border-bottom: none; }
+    .section-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 6px;
+    }
+    .section-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 18px; letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 24px; color: var(--text);
+      display: flex; align-items: baseline; gap: 14px;
+    }
+    .section-title-en {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 400;
+      letter-spacing: 0.2em; color: var(--muted);
+    }
+    .prose {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px; font-weight: 300;
+      line-height: 1.95; color: #888; max-width: 640px;
+    }
+    .prose p { margin-bottom: 1.3em; }
+    .prose p:last-child { margin-bottom: 0; }
 
-  /* CONTENT */
-  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+    /* FEATURES */
+    .features-grid {
+      display: grid; gap: 1px;
+      background: var(--line); border: 1px solid var(--line);
+    }
+    .feature-item { background: var(--bg2); padding: 22px 24px; }
+    .feature-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.25em; color: var(--accent); margin-bottom: 6px;
+    }
+    .feature-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px; font-weight: 700;
+      letter-spacing: 0.04em; margin-bottom: 8px; color: var(--text);
+    }
+    .feature-desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px; font-weight: 300;
+      line-height: 1.85; color: #777;
+    }
+    .feature-bullets {
+      margin-top: 10px; padding-left: 0; list-style: none;
+    }
+    .feature-bullets li {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; font-weight: 500;
+      color: var(--muted); padding: 3px 0 3px 14px;
+      position: relative; letter-spacing: 0.06em;
+    }
+    .feature-bullets li::before {
+      content: '—'; position: absolute; left: 0; color: var(--line2);
+    }
 
-  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
-  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
-  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
+    /* IMPACT */
+    .impact-grid {
+      display: grid; gap: 1px;
+      background: var(--line); border: 1px solid var(--line);
+      margin-bottom: 20px;
+    }
+    .impact-item { background: var(--bg2); padding: 22px 24px; }
+    .impact-code {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.2em; color: var(--accent2); margin-bottom: 6px;
+    }
+    .impact-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 0.04em; margin-bottom: 8px; color: var(--text);
+    }
+    .impact-desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px; font-weight: 300;
+      line-height: 1.85; color: #777;
+    }
+    .impact-tags {
+      display: flex; flex-wrap: wrap; gap: 5px; margin-top: 20px;
+    }
+    .impact-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.1em; padding: 3px 10px;
+      border: 1px solid var(--accent2); color: var(--accent2);
+    }
 
-  /* OVERVIEW */
-  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
-  .overview-text p + p { margin-top: 1.5em; }
+    /* REFS */
+    .refs-grid {
+      display: flex; flex-direction: column;
+      gap: 1px; background: var(--line); border: 1px solid var(--line);
+      margin-bottom: 20px;
+    }
+    .ref-item {
+      background: var(--bg2); display: flex; align-items: center;
+      gap: 14px; padding: 13px 18px;
+      text-decoration: none; transition: background 0.12s;
+    }
+    .ref-item:hover { background: var(--bg3); }
+    .ref-icon { width: 26px; height: 26px; flex-shrink: 0; }
+    .ref-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px;
+    }
+    .ref-domain {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; color: var(--muted); letter-spacing: 0.05em;
+    }
+    .ref-arrow { margin-left: auto; color: var(--muted); font-size: 13px; }
 
-  /* FEATURES */
-  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
-  .feature-card { background: var(--paper); padding: 2rem; }
-  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
-  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
-  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
-  .feature-body ul { list-style: none; margin-top: 0.75rem; }
-  .feature-body li::before { content: '—  '; color: var(--muted); }
-  .feature-body li { margin-bottom: 4px; }
+    /* PAGINATION */
+    .pagination {
+      display: flex; gap: 1px;
+      background: var(--line); border: 1px solid var(--line); margin-top: 40px;
+    }
+    .page-item {
+      flex: 1; background: var(--bg2); padding: 16px 18px;
+      text-decoration: none; transition: background 0.12s;
+    }
+    .page-item:hover { background: var(--bg3); }
+    .page-dir {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 4px;
+    }
+    .page-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px; font-weight: 700; color: var(--text);
+    }
+    .page-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; color: var(--muted); margin-top: 2px; letter-spacing: 0.06em;
+    }
+    .page-item.next { text-align: right; }
 
-  /* URBAN IMPACT — NEW 9-CATEGORY DESIGN */
-  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
-  
-  .impact-category-group { margin-bottom: 2.5rem; }
-  .impact-cat-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; letter-spacing: 0.12em;
-    padding: 6px 14px;
-    border-radius: 2px;
-    display: inline-flex; align-items: center; gap: 8px;
-    margin-bottom: 1.2rem;
-    color: white;
-  }
-  .cat-economic { background: var(--tag-eco); }
-  .cat-social { background: var(--tag-soc); }
-  .cat-cultural { background: var(--tag-cul); }
-
-  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
-  .impact-card {
-    background: var(--effect-bg);
-    padding: 1.8rem 2rem;
-    position: relative;
-  }
-  .impact-card-tag {
-    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em;
-    margin-bottom: 0.8rem;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .impact-tag-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .dot-eco { background: var(--tag-eco); }
-  .dot-soc { background: var(--tag-soc); }
-  .dot-cul { background: var(--tag-cul); }
-
-  .impact-tag-text { color: var(--muted); }
-  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
-  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
-
-  .impact-badges {
-    margin-top: 2.5rem;
-    padding: 1.5rem 2rem;
-    background: var(--ink);
-    color: white;
-    display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
-  }
-  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
-  .badge {
-    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em;
-    padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3);
-  }
-  .badge-eco { border-color: #5dade2; color: #5dade2; }
-  .badge-soc { border-color: #58d68d; color: #58d68d; }
-  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
-
-  /* REFERENCES */
-  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
-  .ref-item {
-    display: flex; align-items: center; gap: 1.5rem;
-    padding: 1.2rem 1.5rem;
-    background: var(--effect-bg);
-    text-decoration: none; color: var(--ink);
-    transition: background .2s;
-  }
-  .ref-item:hover { background: white; }
-  .ref-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
-  .ref-icon img { width: 16px; height: 16px; }
-  .ref-title { font-size: 14px; font-weight: 600; }
-  .ref-domain { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
-  .ref-arrow { margin-left: auto; font-size: 18px; color: var(--muted); }
-
-  /* FOOTER NAV */
-  .footer-nav {
-    border-top: 2px solid var(--ink);
-    display: grid; grid-template-columns: 1fr 1fr;
-  }
-  .footer-nav-item {
-    padding: 2rem 4rem;
-    text-decoration: none; color: var(--ink);
-    transition: background .2s;
-    display: flex; flex-direction: column; gap: 6px;
-  }
-  .footer-nav-item:hover { background: rgba(0,0,0,0.03); }
-  .footer-nav-item + .footer-nav-item { border-left: 1px solid var(--border); }
-  .fnav-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
-  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 600; }
-  .fnav-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
-  .fnav-right { text-align: right; }
-
-  footer {
-    padding: 2rem 4rem;
-    border-top: 1px solid var(--border);
-    display: flex; justify-content: space-between; align-items: center;
-    font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted);
-  }
-
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-text { padding: 4rem 1.5rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
-    .hero-meta { padding: 2rem 1.5rem; }
-    .content { padding: 0 1.5rem; }
-    .section-nav { padding: 0 1.5rem; }
-    .features-grid { grid-template-columns: 1fr; }
-    .footer-nav { grid-template-columns: 1fr; }
-    .footer-nav-item { padding: 2rem 1.5rem; }
-    .footer-nav-item + .footer-nav-item { border-left: none; border-top: 1px solid var(--border); }
-    footer { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
-    .fnav-right { text-align: left; }
-  }
-</style>
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 18px 32px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+  </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">Art × まちづくりDB</a>
-  <div class="breadcrumb">
-    <a href="index.html">TOP</a>
-    <span>›</span>
-    <span>北海道・東北</span>
-    <span>›</span>
-    <span>北海道</span>
-  </div>
-  <a href="index.html" class="nav-back">← 一覧</a>
+  <a class="nav-logo" href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a>
+  <a class="nav-back" href="https://bawb199765-bot.github.io/Art_PlaceMaking/database/index.html">← 一覧に戻る</a>
 </nav>
 
-<section class="hero">
-  <div class="hero-text">
-    <div class="hero-tags">
-      <span class="tag tag-region">北海道・東北</span>
-      <span class="tag tag-type">芸術祭型</span>
-    </div>
-    <div class="hero-index">Hokkaido — 01</div>
-    <h1>札幌国際芸術祭</h1>
-    <div class="hero-en">Sapporo International Art Festival</div>
-    <p class="hero-desc">都市・自然・テクノロジー・市民生活を横断的にテーマ化し、「現代アート×テクノロジー都市」としての札幌を世界に発信する国際芸術祭。</p>
-  </div>
+<div class="hero">
   <div class="hero-meta">
-    <div class="meta-row">
-      <span class="meta-label">場所</span>
-      <span class="meta-value">札幌市</span>
+    <span class="hero-region">北海道・東北</span>
+    <span class="hero-sep">/</span>
+    <span class="hero-region">北海道県</span>
+    <span class="hero-sep">/</span>
+    <span class="hero-cat">都市型芸術祭型</span>
+    <span class="hero-case">Case 01 / 48</span>
+  </div>
+  <h1>札幌国際芸術祭（SIAF）</h1>
+  <div class="hero-en">Sapporo International Art Festival</div>
+  <p class="hero-desc">札幌市の「創造都市」という思想と、豊かな自然と都市機能の調和、大学やIT産業が集まるメディアアーツ都市という特徴を生かした国際現代芸術祭。3年に1度、冬の札幌を舞台に国内外のアーティストによる多彩な現代表現が展開される。</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-label">拠点</div>
+      <div class="stat-value">北海道札幌市</div>
     </div>
-    <div class="meta-row">
-      <span class="meta-label">最終開催</span>
-      <span class="meta-value">2024.1.20 – 2.25</span>
+    <div class="stat-item">
+      <div class="stat-label">開始年</div>
+      <div class="stat-value">2014年〜</div>
     </div>
-    <div class="meta-row">
-      <span class="meta-label">次回予定</span>
-      <span class="meta-value">2027年</span>
+    <div class="stat-item">
+      <div class="stat-label">主体</div>
+      <div class="stat-value">公益財団法人札幌市芸術文化財団</div>
     </div>
-    <div class="meta-row">
-      <span class="meta-label">主催</span>
-      <span class="meta-value">札幌国際芸術祭実行委員会 / 札幌市</span>
+    <div class="stat-item">
+      <div class="stat-label">形態</div>
+      <div class="stat-value">3年に1回・都市型</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">次回開催</div>
+      <div class="stat-value">2027年</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">東京からのアクセス</div>
+      <div class="stat-value">約2（飛行機）時間</div>
     </div>
   </div>
-</section>
-
-<nav class="section-nav">
-  <a href="#overview" class="sec-link">概要</a>
-  <a href="#features" class="sec-link">特徴</a>
-  <a href="#impact" class="sec-link">街への効果</a>
-  <a href="#refs" class="sec-link">参考</a>
-</nav>
+  <nav class="toc">
+    <a href="#overview">01 概要</a>
+    <a href="#features">02 特徴</a>
+    <a href="#impact">03 街への効果</a>
+    <a href="#refs">04 参考</a>
+  </nav>
+</div>
 
 <div class="content">
 
-  <!-- 概要 -->
-  <section id="overview" class="section">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2>概要 <span>Overview</span></h2>
-    </div>
-    <div class="overview-text">
-      <p>札幌市を舞台に数年おきに開催される国際芸術祭。都市・自然・テクノロジー・市民生活を横断的にテーマ化し、美術館や文化施設に加えて、街なか・公園・公共空間を会場として展開される。</p>
-      <p>2014年、2021年、2024年に開催。次回は2027年に予定されており、地域芸術祭が自然や集落に寄りがちな中で、都市スケールでテクノロジー・現代表現を実装しやすいのが際立った強みとなっている。</p>
-    </div>
+  <section class="section" id="overview">
+    <div class="section-num">01</div>
+    <div class="section-title">概要 <span class="section-title-en">Overview</span></div>
+    <div class="prose"><p>札幌国際芸術祭（SIAF）は、2014年に初回を開催した北海道札幌市発の国際現代芸術祭。「創造都市＝市民一人一人のアイデアが都市を豊かにする」という思想のもと、3年に1度開催されてきた。2017年の第2回、2020年の第3回（COVID-19の影響で2021年に延期）、2024年の第4回と継続的に実施されている。</p><p>各回でゲストディレクターを迎え、テーマに沿った国内外のアーティストによる展示・パフォーマンス・ワークショップを展開。会場は札幌市内の美術館・文化施設・まちなか空間など複数にわたり、冬の札幌という独特の気候条件も作品や体験の一部として組み込まれる。</p><p>メディアアートや映像・音楽・パフォーマンスなど領域横断的な現代表現に強みを持ち、日本の他の地域型芸術祭とは異なる「都市×テクノロジー×表現」の文脈で独自のポジションを確立している。</p></div>
   </section>
 
-  <!-- 特徴 -->
-  <section id="features" class="section">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2>特徴 <span>Key Features</span></h2>
-    </div>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-num">01</div>
-        <div class="feature-title">「都市×テクノロジー」を軸にした芸術祭</div>
-        <div class="feature-body">
-          メディアアート、サウンド、インタラクティブ作品が多い。IT・研究機関・クリエイターとの連携が特徴。
-          <ul>
-            <li>札幌の都市特性（研究都市・技術都市）と親和性が高い</li>
-            <li>国内外のメディアアーティストとの協働制作</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">02</div>
-        <div class="feature-title">冬・雪を含めた都市環境そのものを活用</div>
-        <div class="feature-body">
-          冬期開催・寒冷地ならではの表現。公園・屋外空間・都市景観を作品化。
-          <ul>
-            <li>「冬の都市＝不利」という固定観念の転換</li>
-            <li>雪・低温・光を活かしたサイトスペシフィックな作品</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">03</div>
-        <div class="feature-title">市民参加・教育プログラムが厚い</div>
-        <div class="feature-body">
-          ワークショップ、レクチャー、子ども向けプログラムが充実。
-          <ul>
-            <li>鑑賞者ではなく"関与者"を増やす設計</li>
-            <li>学校連携・地域コミュニティとの共同プログラム</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">04</div>
-        <div class="feature-title">都市全体に分散した会場構成</div>
-        <div class="feature-body">
-          美術館＋街なか＋郊外（公園等）。点ではなく都市スケールでの回遊を促す構成。
-          <ul>
-            <li>モエレ沼公園、札幌市民交流プラザ等を主要会場に</li>
-            <li>地下鉄・バスを活用した回遊設計</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <section class="section" id="features">
+    <div class="section-num">02</div>
+    <div class="section-title">主な特徴 <span class="section-title-en">Key Features</span></div>
+    <div class="features-grid"><div class="feature-item">
+  <div class="feature-num">01</div>
+  <div class="feature-title">冬の都市を舞台にした独自の文脈</div>
+  <div class="feature-desc">雪と寒さという北海道固有の気候条件を制約ではなく表現の文脈として活かす。冬季に大規模な芸術祭を開催することで、観光閑散期の集客にも貢献している。</div>
+  <ul class="feature-bullets"><li>冬期開催による観光・経済波及効果</li><li>雪・寒冷気候を活かしたサイトスペシフィックな作品制作</li><li>光・音・映像など冬の都市環境に呼応した表現</li></ul>
+</div><div class="feature-item">
+  <div class="feature-num">02</div>
+  <div class="feature-title">ゲストディレクター制による毎回異なる視点</div>
+  <div class="feature-desc">毎回著名なアーティスト・キュレーターをゲストディレクターとして迎え、テーマ設定から作家選定まで一貫した視点を持つ芸術祭として構成。組織の一貫性と毎回の新鮮さを両立する。</div>
+  <ul class="feature-bullets"><li>坂本龍一、大友良英など国際的アーティストが歴代ディレクターに</li><li>テーマに沿った国際的な作家ラインナップ</li><li>芸術祭の批評的・思想的な奥行きを担保</li></ul>
+</div><div class="feature-item">
+  <div class="feature-num">03</div>
+  <div class="feature-title">まちなかへの展開と市民参加</div>
+  <div class="feature-desc">美術館内展示にとどまらず、地下街・公共空間・商業施設など市民の日常空間にも作品を展開。市民がアートを「見に行く」のではなく「日常の中で出会う」体験を設計する。</div>
+  <ul class="feature-bullets"><li>サテライト会場による市内各所への展開</li><li>市民参加型ワークショップ・教育プログラムの実施</li><li>地元アーティスト・クリエイターの参加機会</li></ul>
+</div><div class="feature-item">
+  <div class="feature-num">04</div>
+  <div class="feature-title">テクノロジー・メディアアートとの親和性</div>
+  <div class="feature-desc">IT産業・大学・研究機関が集積する札幌の都市特性を活かし、テクノロジーを活用したメディアアートや映像作品を積極的に取り上げる。</div>
+  <ul class="feature-bullets"><li>メディアアート・映像・音響作品の充実</li><li>地元IT企業・大学との連携プロジェクト</li><li>国際的なメディアアートシーンへの接続</li></ul>
+</div></div>
   </section>
 
-  <!-- 街への効果（新9分類） -->
-  <section id="impact" class="section">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2>街への効果 <span>Urban Impact</span></h2>
-    </div>
-    <p class="impact-intro">以下の効果を、経済・社会・文化の3領域、9つの観点から分類・整理。各事例につき最も当てはまる4項目を選定しています。</p>
-
-    <!-- 経済的効果 -->
-    <div class="impact-category-group">
-      <div class="impact-cards">
-
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-eco"></span>
-            <span class="impact-tag-text">1-① 経済的効果｜交流人口増加</span>
-          </div>
-          <div class="impact-card-title">国内外からの来訪者獲得</div>
-          <div class="impact-card-body">2024年の開催では約23万人が来場。冬季という独自性と都市型コンテンツが組み合わさり、従来の「雪まつり観光」とは異なる層の来訪を促進。リピーターや遠方からの文化目的観光を呼び込む力が増している。</div>
-        </div>
-
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-eco"></span>
-            <span class="impact-tag-text">1-② 経済的効果｜経済効果</span>
-          </div>
-          <div class="impact-card-title">開催期間中の消費・宿泊需要の創出</div>
-          <div class="impact-card-body">芸術祭開催に伴う宿泊・飲食・交通消費が市内全体に波及。開催年は文化目的の宿泊者が増加し、冬期のオフシーズン観光底上げに寄与。関連グッズや図録の販売など、文化消費の多様化も確認されている。</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- 文化的効果 -->
-    <div class="impact-category-group">
-      <div class="impact-cards">
-
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-cul"></span>
-            <span class="impact-tag-text">3-① 文化的効果｜地域ブランディング・アイデンティティ</span>
-          </div>
-          <div class="impact-card-title">「現代アート×テクノロジー都市」への転換</div>
-          <div class="impact-card-body">「観光都市・雪まつりの街」から「現代アート×テクノロジー都市」へのイメージ拡張。メディアアート・インタラクティブ表現を中心に据えることで、札幌の研究都市・技術都市としての顔を文化面から可視化し、国際的な認知向上に貢献。</div>
-        </div>
-
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-cul"></span>
-            <span class="impact-tag-text">3-③ 文化的効果｜クリエイティブエコシステム創出</span>
-          </div>
-          <div class="impact-card-title">国内外クリエイターとの関係人口形成</div>
-          <div class="impact-card-body">国内外のアーティスト・研究者・クリエイターが札幌と継続的に関わることで、知的ネットワークが形成。参加アーティストがその後も市内外でプロジェクトを展開するなど、芸術祭を起点とした創造的人材の循環が生まれつつある。</div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="impact-badges">
-      <span class="impact-badges-label">選定カテゴリ</span>
-      <span class="badge badge-eco">1-① 交流人口増加</span>
-      <span class="badge badge-eco">1-② 経済効果</span>
-      <span class="badge badge-cul">3-① 地域ブランディング</span>
-      <span class="badge badge-cul">3-③ クリエイティブエコシステム</span>
-    </div>
+  <section class="section" id="impact">
+    <div class="section-num">03</div>
+    <div class="section-title">街への効果 <span class="section-title-en">Urban Impact</span></div>
+    <div class="impact-grid"><div class="impact-item">
+  <div class="impact-code">1-① 経済的効果｜交流人口増加</div>
+  <div class="impact-title">冬季観光の起爆剤としての芸術祭効果</div>
+  <div class="impact-desc">閑散期にあたる冬季に大規模な芸術祭を開催することで、道外・海外からの来訪者を呼び込む。各回の来場者数は数十万人規模に達し、宿泊・飲食・交通など周辺産業への経済波及効果が大きい。</div>
+</div><div class="impact-item">
+  <div class="impact-code">1-② 経済的効果｜経済効果</div>
+  <div class="impact-title">文化産業・クリエイティブ産業の集積促進</div>
+  <div class="impact-desc">芸術祭を通じた国内外のアーティスト・クリエイターとの接点が、札幌のクリエイティブ産業の国際的な認知度向上に寄与。</div>
+</div><div class="impact-item">
+  <div class="impact-code">3-① 文化的効果｜地域ブランディング</div>
+  <div class="impact-title">「創造都市さっぽろ」のブランド強化</div>
+  <div class="impact-desc">ユネスコ創造都市ネットワーク（メディアアーツ都市）への加盟と連動し、SIAFが「創造都市さっぽろ」のシンボルイベントとして機能。国内外への都市ブランド発信に貢献している。</div>
+</div><div class="impact-item">
+  <div class="impact-code">3-③ 文化的効果｜クリエイティブエコシステム</div>
+  <div class="impact-title">地元アーティスト育成と国際交流の場</div>
+  <div class="impact-desc">国際的なアーティストとの協働や発表機会が、地元の若手アーティスト・クリエイターの育成と国際的ネットワーク構築に寄与している。</div>
+</div></div>
+    <div class="impact-tags"><span class="impact-tag">1-① 交流人口増加</span><span class="impact-tag">1-② 経済効果</span><span class="impact-tag">3-① 地域ブランディング</span><span class="impact-tag">3-③ クリエイティブエコシステム</span></div>
   </section>
 
-  <!-- 参考リンク -->
-  <section id="refs" class="section">
-    <div class="section-header">
-      <span class="section-num">04</span>
-      <h2>参考リンク <span>References</span></h2>
-    </div>
-    <div class="refs-grid">
-      <a href="https://siaf.jp/" target="_blank" rel="noopener" class="ref-item">
-        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=siaf.jp&sz=64" alt=""></div>
-        <div>
-          <div class="ref-title">札幌国際芸術祭 公式サイト</div>
-          <div class="ref-domain">siaf.jp</div>
-        </div>
-        <div class="ref-arrow">→</div>
-      </a>
-      <a href="https://www.city.sapporo.jp/shimin/bunka/sapporokokusaigeijutsusai/index.html" target="_blank" rel="noopener" class="ref-item">
-        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=city.sapporo.jp&sz=64" alt=""></div>
-        <div>
-          <div class="ref-title">札幌市 公式HP — 札幌国際芸術祭</div>
-          <div class="ref-domain">city.sapporo.jp</div>
-        </div>
-        <div class="ref-arrow">→</div>
-      </a>
-      <a href="https://www.jal.co.jp/jp/ja/dom/hokkaido/music/siaf.html" target="_blank" rel="noopener" class="ref-item">
-        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=jal.co.jp&sz=64" alt=""></div>
-        <div>
-          <div class="ref-title">JAL 特集ページ — SIAF</div>
-          <div class="ref-domain">jal.co.jp</div>
-        </div>
-        <div class="ref-arrow">→</div>
-      </a>
-    </div>
+  <section class="section" id="refs">
+    <div class="section-num">04</div>
+    <div class="section-title">参考リンク <span class="section-title-en">References</span></div>
+    <div class="refs-grid"><a class="ref-item" href="https://siaf.jp/" target="_blank">
+  <img class="ref-icon" src="https://www.google.com/s2/favicons?domain=siaf.jp&sz=64" alt="" />
+  <div><div class="ref-title">札幌国際芸術祭（SIAF）公式サイト</div><div class="ref-domain">siaf.jp</div></div>
+  <span class="ref-arrow">→</span>
+</a><a class="ref-item" href="https://www.city.sapporo.jp/somu/creative/" target="_blank">
+  <img class="ref-icon" src="https://www.google.com/s2/favicons?domain=city.sapporo.jp&sz=64" alt="" />
+  <div><div class="ref-title">札幌市 創造都市さっぽろ</div><div class="ref-domain">city.sapporo.jp</div></div>
+  <span class="ref-arrow">→</span>
+</a></div>
+    <p style="font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.1em;">
+      ※掲載情報は2026年1月末時点の情報を参考にしています。
+    </p>
   </section>
 
-</div>
+  <div class="pagination">
+    <a class="page-item prev" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-okinawa.html">
+      <div class="page-dir">← 前の事例</div>
+      <div class="page-name">やんばるアートフェスティバル</div>
+      <div class="page-sub">九州・沖縄 — 沖縄県</div>
+    </a>
+    <a class="page-item next" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-aomori.html">
+      <div class="page-dir">次の事例 →</div>
+      <div class="page-name">AOMORI GOKAN</div>
+      <div class="page-sub">北海道・東北 — 青森県</div>
+    </a>
+  </div>
 
-<div class="footer-nav">
-  <a href="index.html" class="footer-nav-item">
-    <span class="fnav-label">← 一覧に戻る</span>
-    <span class="fnav-title">事例リスト</span>
-    <span class="fnav-count">47都道府県</span>
-  </a>
-  <a href="detail-aomori.html" class="footer-nav-item fnav-right">
-    <span class="fnav-label">次の事例 →</span>
-    <span class="fnav-title">AOMORI GOKAN</span>
-    <span class="fnav-count">北海道・東北 — 2 / 7</span>
-  </a>
 </div>
 
 <footer>
-  <span>※掲載情報は2026年1月末時点の情報を参考にしています。</span>
-  <a href="index.html" style="color: var(--muted); text-decoration: none;">Art × Placemaking</a>
+  <a href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a>
+  <span>© 2026 Art × Placemaking Database</span>
 </footer>
 
 </body>

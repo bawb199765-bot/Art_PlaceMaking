@@ -1,379 +1,440 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>宮城 — 仙台短編映像祭 | アート×まちづくりDB</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #1a1714;
-    --paper: #f5f1eb;
-    --accent: #c8410e;
-    --muted: #8a7f72;
-    --border: #d4cec5;
-    --tag-eco: #1a5276;
-    --tag-soc: #1d6840;
-    --tag-cul: #6d2f8f;
-    --effect-bg: #faf7f2;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>宮城 — リボーンアートフェス | アート×まちづくりDB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #181818;
+      --bg2:     #1f1f1f;
+      --bg3:     #262626;
+      --line:    #2e2e2e;
+      --line2:   #3a3a3a;
+      --text:    #f0f0f0;
+      --muted:   #666;
+      --dim:     #444;
+      --accent:  #e8c96e;
+      --accent2: #6ecac8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
 
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
-  .nav-logo:hover { color: var(--ink); }
-  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-  .breadcrumb a { color: var(--muted); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--accent); }
-  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
-  .nav-back:hover { background: var(--accent); color: white; }
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px; height: 52px;
+    }
+    .nav-logo {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); text-decoration: none;
+    }
+    .nav-back {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; transition: color 0.15s;
+    }
+    .nav-back:hover { color: var(--text); }
 
-  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
-  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
-  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
-  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
-  .tag-region { border-color: var(--muted); color: var(--muted); }
-  .tag-type { border-color: var(--accent); color: var(--accent); }
-  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
-  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
-  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
-  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
-  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
-  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .meta-row:first-child { border-top: 1px solid var(--border); }
-  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
-  .meta-value { font-weight: 600; }
+    /* HERO */
+    .hero {
+      border-bottom: 1px solid var(--line);
+      padding: 56px 32px 40px;
+      max-width: 860px; margin: 0 auto;
+    }
+    .hero-meta {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px; flex-wrap: wrap;
+    }
+    .hero-region {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted);
+    }
+    .hero-sep { color: var(--line2); }
+    .hero-cat {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); border: 1px solid var(--accent); padding: 2px 8px;
+    }
+    .hero-case {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; color: var(--muted); margin-left: auto;
+      letter-spacing: 0.1em;
+    }
+    .hero h1 {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(26px, 4vw, 40px);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      line-height: 1.2; margin-bottom: 6px; color: var(--text);
+    }
+    .hero-en {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px;
+    }
+    .hero-desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px; font-weight: 300;
+      line-height: 1.85; color: #999; max-width: 680px; margin-bottom: 28px;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 1px; background: var(--line); border: 1px solid var(--line);
+      margin-bottom: 24px;
+    }
+    .stat-item { background: var(--bg2); padding: 12px 14px; }
+    .stat-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 8px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 4px;
+    }
+    .stat-value {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px; font-weight: 500;
+      color: var(--text); letter-spacing: 0.04em;
+    }
 
-  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
-  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
-  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+    /* TOC */
+    .toc {
+      display: flex; gap: 0;
+      border: 1px solid var(--line); overflow-x: auto;
+    }
+    .toc a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      padding: 9px 14px; border-right: 1px solid var(--line);
+      white-space: nowrap; transition: color 0.15s, background 0.15s;
+    }
+    .toc a:hover { color: var(--text); background: var(--bg3); }
+    .toc a:last-child { border-right: none; }
 
-  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
-  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
-  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
-  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
+    /* CONTENT */
+    .content {
+      max-width: 860px; margin: 0 auto;
+      padding: 0 32px 80px;
+    }
+    .section {
+      padding: 48px 0 40px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section:last-child { border-bottom: none; }
+    .section-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 6px;
+    }
+    .section-title {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 18px; letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 24px; color: var(--text);
+      display: flex; align-items: baseline; gap: 14px;
+    }
+    .section-title-en {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 400;
+      letter-spacing: 0.2em; color: var(--muted);
+    }
+    .prose {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px; font-weight: 300;
+      line-height: 1.95; color: #888; max-width: 640px;
+    }
+    .prose p { margin-bottom: 1.3em; }
+    .prose p:last-child { margin-bottom: 0; }
 
-  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
-  .overview-text p + p { margin-top: 1.5em; }
+    /* FEATURES */
+    .features-grid {
+      display: grid; gap: 1px;
+      background: var(--line); border: 1px solid var(--line);
+    }
+    .feature-item { background: var(--bg2); padding: 22px 24px; }
+    .feature-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.25em; color: var(--accent); margin-bottom: 6px;
+    }
+    .feature-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px; font-weight: 700;
+      letter-spacing: 0.04em; margin-bottom: 8px; color: var(--text);
+    }
+    .feature-desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px; font-weight: 300;
+      line-height: 1.85; color: #777;
+    }
+    .feature-bullets {
+      margin-top: 10px; padding-left: 0; list-style: none;
+    }
+    .feature-bullets li {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; font-weight: 500;
+      color: var(--muted); padding: 3px 0 3px 14px;
+      position: relative; letter-spacing: 0.06em;
+    }
+    .feature-bullets li::before {
+      content: '—'; position: absolute; left: 0; color: var(--line2);
+    }
 
-  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
-  .feature-card { background: var(--paper); padding: 2rem; }
-  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
-  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
-  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
-  .feature-body ul { list-style: none; margin-top: 0.75rem; }
-  .feature-body li::before { content: '—  '; color: var(--muted); }
-  .feature-body li { margin-bottom: 4px; }
+    /* IMPACT */
+    .impact-grid {
+      display: grid; gap: 1px;
+      background: var(--line); border: 1px solid var(--line);
+      margin-bottom: 20px;
+    }
+    .impact-item { background: var(--bg2); padding: 22px 24px; }
+    .impact-code {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.2em; color: var(--accent2); margin-bottom: 6px;
+    }
+    .impact-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 0.04em; margin-bottom: 8px; color: var(--text);
+    }
+    .impact-desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px; font-weight: 300;
+      line-height: 1.85; color: #777;
+    }
+    .impact-tags {
+      display: flex; flex-wrap: wrap; gap: 5px; margin-top: 20px;
+    }
+    .impact-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.1em; padding: 3px 10px;
+      border: 1px solid var(--accent2); color: var(--accent2);
+    }
 
-  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
-  .impact-category-group { margin-bottom: 2.5rem; }
-  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
-  .cat-economic { background: var(--tag-eco); }
-  .cat-social { background: var(--tag-soc); }
-  .cat-cultural { background: var(--tag-cul); }
+    /* REFS */
+    .refs-grid {
+      display: flex; flex-direction: column;
+      gap: 1px; background: var(--line); border: 1px solid var(--line);
+      margin-bottom: 20px;
+    }
+    .ref-item {
+      background: var(--bg2); display: flex; align-items: center;
+      gap: 14px; padding: 13px 18px;
+      text-decoration: none; transition: background 0.12s;
+    }
+    .ref-item:hover { background: var(--bg3); }
+    .ref-icon { width: 26px; height: 26px; flex-shrink: 0; }
+    .ref-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px;
+    }
+    .ref-domain {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; color: var(--muted); letter-spacing: 0.05em;
+    }
+    .ref-arrow { margin-left: auto; color: var(--muted); font-size: 13px; }
 
-  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
-  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
-  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
-  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-eco { background: var(--tag-eco); }
-  .dot-soc { background: var(--tag-soc); }
-  .dot-cul { background: var(--tag-cul); }
-  .impact-tag-text { color: var(--muted); }
-  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
-  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
+    /* PAGINATION */
+    .pagination {
+      display: flex; gap: 1px;
+      background: var(--line); border: 1px solid var(--line); margin-top: 40px;
+    }
+    .page-item {
+      flex: 1; background: var(--bg2); padding: 16px 18px;
+      text-decoration: none; transition: background 0.12s;
+    }
+    .page-item:hover { background: var(--bg3); }
+    .page-dir {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 4px;
+    }
+    .page-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px; font-weight: 700; color: var(--text);
+    }
+    .page-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; color: var(--muted); margin-top: 2px; letter-spacing: 0.06em;
+    }
+    .page-item.next { text-align: right; }
 
-  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
-  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
-  .badge-eco { border-color: #5dade2; color: #5dade2; }
-  .badge-soc { border-color: #58d68d; color: #58d68d; }
-  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
-
-  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
-  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
-  .ref-item:hover { background: white; }
-  .ref-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
-  .ref-icon img { width: 16px; height: 16px; }
-  .ref-title { font-size: 14px; font-weight: 600; }
-  .ref-domain { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
-  .ref-arrow { margin-left: auto; font-size: 18px; color: var(--muted); }
-
-  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
-  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
-  .footer-nav-item:hover { background: var(--effect-bg); }
-  .fnav-right { border-left: 1px solid var(--border); text-align: right; align-items: flex-end; }
-  .fnav-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 0.1em; }
-  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
-  .fnav-count { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
-
-  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); }
-
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-text { padding: 3rem 2rem 2rem; }
-    .hero-meta { padding: 2rem; }
-    .content { padding: 0 2rem; }
-    .features-grid { grid-template-columns: 1fr; }
-    .section-nav { padding: 0 2rem; overflow-x: auto; }
-    .footer-nav { grid-template-columns: 1fr; }
-    .fnav-right { border-left: none; border-top: 1px solid var(--border); text-align: left; align-items: flex-start; }
-  }
-</style>
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 18px 32px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+  </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">Art × Placemaking DB</a>
-  <div class="breadcrumb">
-    <a href="index.html">HOME</a>
-    <span>›</span>
-    <span>宮城</span>
-  </div>
-  <a href="index.html" class="nav-back">← 一覧</a>
+  <a class="nav-logo" href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a>
+  <a class="nav-back" href="https://bawb199765-bot.github.io/Art_PlaceMaking/database/index.html">← 一覧に戻る</a>
 </nav>
 
 <div class="hero">
-  <div class="hero-text">
-    <div class="hero-tags">
-      <span class="tag tag-region">東北</span>
-      <span class="tag tag-region">宮城県</span>
-      <span class="tag tag-type">映像祭・都市再編</span>
-    </div>
-    <div class="hero-index">Case 04 / 47</div>
-    <h1>仙台短編映像祭</h1>
-    <div class="hero-en">Sendai Short Film Festival & Competition</div>
-    <p class="hero-desc">仙台を拠点に展開する東北最大規模の映像祭。市内の複数会場を舞台に、国内外の短編映像作品を上映するとともに、アーケード商店街や廃屋・空き地など既存の都市空間を活用した展示が特徴。震災後の都市復興と文化的アイデンティティの再構築を射程に置く。</p>
-  </div>
   <div class="hero-meta">
-    <div class="meta-row">
-      <span class="meta-label">開催地</span>
-      <span class="meta-value">宮城県仙台市</span>
+    <span class="hero-region">北海道・東北</span>
+    <span class="hero-sep">/</span>
+    <span class="hero-region">宮城県</span>
+    <span class="hero-sep">/</span>
+    <span class="hero-cat">地域型芸術祭型</span>
+    <span class="hero-case">Case 04 / 48</span>
+  </div>
+  <h1>リボーンアートフェス</h1>
+  <div class="hero-en">Reborn-Art Festival</div>
+  <p class="hero-desc">東日本大震災の被災地・石巻を舞台にしたアート/音楽/食の総合芸術祭。Reborn-Art＝人が生きる術をキーワードに、アーティストによる作品展示、地場食材を活かした食体験、多様な音楽ライブなどを実施。</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-label">拠点</div>
+      <div class="stat-value">宮城県石巻市・牡鹿半島</div>
     </div>
-    <div class="meta-row">
-      <span class="meta-label">開始年</span>
-      <span class="meta-value">1999年</span>
+    <div class="stat-item">
+      <div class="stat-label">開始年</div>
+      <div class="stat-value">2017年〜</div>
     </div>
-    <div class="meta-row">
-      <span class="meta-label">開催頻度</span>
-      <span class="meta-value">年1回（冬期）</span>
+    <div class="stat-item">
+      <div class="stat-label">主体</div>
+      <div class="stat-value">Reborn-Art Festival実行委員会</div>
     </div>
-    <div class="meta-row">
-      <span class="meta-label">主催</span>
-      <span class="meta-value">仙台短編映像祭実行委員会</span>
+    <div class="stat-item">
+      <div class="stat-label">形態</div>
+      <div class="stat-value">不定期開催（2〜3年に1回）</div>
     </div>
-    <div class="meta-row">
-      <span class="meta-label">カテゴリ</span>
-      <span class="meta-value">映像芸術・都市型フェスティバル</span>
+    <div class="stat-item">
+      <div class="stat-label">次回開催</div>
+      <div class="stat-value">不明</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-label">東京からのアクセス</div>
+      <div class="stat-value">約3時間</div>
     </div>
   </div>
+  <nav class="toc">
+    <a href="#overview">01 概要</a>
+    <a href="#features">02 特徴</a>
+    <a href="#impact">03 街への効果</a>
+    <a href="#refs">04 参考</a>
+  </nav>
 </div>
-
-<nav class="section-nav">
-  <a href="#overview" class="sec-link">01 概要</a>
-  <a href="#features" class="sec-link">02 特徴</a>
-  <a href="#impact" class="sec-link">03 街への効果</a>
-  <a href="#refs" class="sec-link">04 参考</a>
-</nav>
 
 <div class="content">
 
-  <!-- 概要 -->
-  <section id="overview" class="section">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2>概要 <span>Overview</span></h2>
-    </div>
-    <div class="overview-text">
-      <p>仙台短編映像祭は、1999年に創設された東北最大規模の映像祭で、仙台市を中心に毎年冬に開催されている。国内外からの短編映像作品を一般公募し、上映・審査・授賞を行う競技部門に加え、教育プログラムや市民参加型のワークショップを実施することで、映像文化を市民の日常に近づけている。</p>
-      <p>特徴的なのは、商業施設・市民センター・空き店舗・公共広場など、仙台市内の多様な都市空間を会場として活用する点である。街なかに映像文化を「散りばめる」アプローチにより、既存のインフラや未活用スペースを一時的なアート空間へと転換し、都市空間の新たな使い方を提示している。東日本大震災以降は、復興の文脈とも接続しながら、仙台の文化的自己定義を問い直すプロジェクトとしても機能してきた。</p>
-    </div>
+  <section class="section" id="overview">
+    <div class="section-num">01</div>
+    <div class="section-title">概要 <span class="section-title-en">Overview</span></div>
+    <div class="prose"><p>リボーンアートフェスティバルは、2017年に石巻・牡鹿半島で初開催された、アート・音楽・食を組み合わせた総合芸術祭。「Reborn-Art＝人が生きる術」をキーワードに、震災後の復興が続く地域を舞台に、命・食・つながりをテーマとしたプロジェクトを展開する。</p><p>小渕浜・荻浜・鮎川など牡鹿半島の複数エリアに作品が点在し、半島を巡る体験設計が特徴。国内外の著名アーティストによるインスタレーションと、地元漁師・食に関わる人々との協働による食プログラム、野外音楽ライブが三位一体で構成される。</p><p>単なる芸術祭にとどまらず、震災復興という文脈の中で「何のためにアートがあるのか」を問い続けるプロジェクト。地元住民が「もてなす側」として主体的に関わる体制が、外部アーティストとの関係性に深みをもたらしている。</p></div>
   </section>
 
-  <!-- 特徴 -->
-  <section id="features" class="section">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2>主な特徴 <span>Key Features</span></h2>
-    </div>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-num">01</div>
-        <div class="feature-title">都市空間を会場に転用するシティ型展開</div>
-        <div class="feature-body">
-          映画館や美術館にとどまらず、商店街アーケード・広場・空き施設など既存の都市空間を会場として活用。映像を「街中に溶け込ませる」展示手法が仙台の都市的個性と結びついている。
-          <ul>
-            <li>仙台駅前・一番町エリアなど中心商業地と連携</li>
-            <li>空き店舗・廃屋の一時的なアート空間への転用</li>
-            <li>屋外投影・パブリックスクリーニングの実施</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">02</div>
-        <div class="feature-title">国際公募とローカル育成の両立</div>
-        <div class="feature-body">
-          世界各国からの短編映像作品を競技上映する国際コンペティションを核としつつ、宮城・東北の若手映像作家育成プログラムを併設。グローバルな視点とローカルな表現者の育成が両立している。
-          <ul>
-            <li>国内外の短編映像を競技上映・審査・表彰</li>
-            <li>東北の若手映像作家向けワークショップ</li>
-            <li>学校・教育機関との連携上映</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">03</div>
-        <div class="feature-title">震災復興との接続と記憶の文化的継承</div>
-        <div class="feature-body">
-          東日本大震災（2011年）以降、仙台・東北の「記憶」「復興」「再生」をテーマにした作品特集や上映プログラムを展開。映像という記録媒体が持つ力を活かし、震災の記憶を文化的に継承している。
-          <ul>
-            <li>復興・震災記憶をテーマとした特集プログラム</li>
-            <li>沿岸部被災地での出張上映</li>
-            <li>映像アーカイブとしての役割</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-num">04</div>
-        <div class="feature-title">市民参加型のボランティア・協働運営</div>
-        <div class="feature-body">
-          運営の多くを市民ボランティアが担う協働体制を採用。映像祭を「観に行く」だけでなく「つくり・動かす」市民のコミュニティが形成されており、地域の文化的自治の実践の場となっている。
-          <ul>
-            <li>市民ボランティアによる運営参加</li>
-            <li>地元企業・学校との協賛・連携</li>
-            <li>学生インターン・制作参加プログラム</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <section class="section" id="features">
+    <div class="section-num">02</div>
+    <div class="section-title">主な特徴 <span class="section-title-en">Key Features</span></div>
+    <div class="features-grid"><div class="feature-item">
+  <div class="feature-num">01</div>
+  <div class="feature-title">アート・音楽・食の三位一体構成</div>
+  <div class="feature-desc">現代アートの展示だけでなく、地場食材を活かした食体験と野外音楽ライブを組み合わせる独自の構成。五感を通じた豊かな体験が芸術祭の世界観を形成する。</div>
+  <ul class="feature-bullets"><li>国内外の著名アーティストによるインスタレーション</li><li>地元漁師・生産者との食コラボレーション</li><li>音楽アーティストによる野外ライブ</li></ul>
+</div><div class="feature-item">
+  <div class="feature-num">02</div>
+  <div class="feature-title">牡鹿半島を巡る体験設計</div>
+  <div class="feature-desc">半島の複数エリアに分散して作品が点在し、船・車・徒歩で半島を巡る旅そのものが体験となる。場所の記憶・自然・震災の痕跡が作品と共鳴する。</div>
+  <ul class="feature-bullets"><li>船で渡る島・浜へのアクセス体験</li><li>震災の痕跡と共存するサイトスペシフィック作品</li><li>半島固有の自然景観を活かした作品配置</li></ul>
+</div><div class="feature-item">
+  <div class="feature-num">03</div>
+  <div class="feature-title">震災復興の文脈に根ざした問い</div>
+  <div class="feature-desc">「なぜここでアートをするのか」という問いを内包しながら、震災後の社会・コミュニティ・命のあり方を芸術祭全体で問い続ける。アーティストが地域に滞在し住民と協働するプロセスを重視。</div>
+  <ul class="feature-bullets"><li>アーティストの長期滞在・地域住民との協働制作</li><li>震災の記憶・経験を共有するプログラム</li><li>復興の現状・課題を外部に発信する機能</li></ul>
+</div><div class="feature-item">
+  <div class="feature-num">04</div>
+  <div class="feature-title">地元住民が「もてなす側」として参加</div>
+  <div class="feature-desc">食・宿・ガイドなど、地元住民が芸術祭の主要なホスト役を担う。来場者と地元住民の対等な交流が生まれ、芸術祭が地域経済・コミュニティ活性化に直結する。</div>
+  <ul class="feature-bullets"><li>地元漁師・農家による食プログラム運営</li><li>住民ガイドによる半島ツアー</li><li>地場産品・宿泊施設との連携</li></ul>
+</div></div>
   </section>
 
-  <!-- 街への効果 -->
-  <section id="impact" class="section">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2>街への効果 <span>Urban Impact</span></h2>
-    </div>
-    <p class="impact-intro">仙台短編映像祭が持つ都市への効果を、9分類システムに基づいて分析する。交流人口の確保、未活用空間の再編、コミュニティ形成、そして仙台の文化的アイデンティティ強化という4軸で効果が確認されている。</p>
-
-    <!-- 経済的効果 -->
-    <div class="impact-category-group">
-      <div class="impact-cat-label cat-economic">経済的効果 / Economic</div>
-      <div class="impact-cards">
-
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-eco"></span>
-            <span class="impact-tag-text">1-① 経済的効果｜交流人口増加</span>
-          </div>
-          <div class="impact-card-title">映像祭来場者による冬期の文化的交流人口形成</div>
-          <div class="impact-card-body">東北の冬期（12月前後）に来場者を集める映像祭として、仙台市内外・東北各地・全国から観客を呼び込む機能を果たしている。映像・映画を目的とした「文化観光」として機能し、宿泊・飲食・交通消費を喚起する。</div>
-        </div>
-
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-eco"></span>
-            <span class="impact-tag-text">1-③ 経済的効果｜都市空間の再編</span>
-          </div>
-          <div class="impact-card-title">空き店舗・未活用空間のアート会場への転用</div>
-          <div class="impact-card-body">仙台市中心部の空き施設や商業スペースを期間中の上映・展示会場として活用することで、未使用空間に一時的な価値と賑わいを生み出す。「まちなか映画館」的な分散型会場設定が、商店街の回遊性向上にも貢献。</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- 社会的効果 -->
-    <div class="impact-category-group">
-      <div class="impact-cat-label cat-social">社会的効果 / Social</div>
-      <div class="impact-cards">
-
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-soc"></span>
-            <span class="impact-tag-text">2-① 社会的効果｜コミュニティ形成</span>
-          </div>
-          <div class="impact-card-title">映像文化を軸とした市民コミュニティの形成</div>
-          <div class="impact-card-body">市民ボランティアを中心とした協働運営体制が、映像文化愛好者・若手クリエイター・地域住民を結びつけるコミュニティを醸成。映像祭を「観る」だけでなく「担う」関わりが、持続的なローカル文化コミュニティを形成している。</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- 文化的効果 -->
-    <div class="impact-category-group">
-      <div class="impact-cat-label cat-cultural">文化的効果 / Cultural</div>
-      <div class="impact-cards">
-
-        <div class="impact-card">
-          <div class="impact-card-tag">
-            <span class="impact-tag-dot dot-cul"></span>
-            <span class="impact-tag-text">3-① 文化的効果｜地域ブランディング・アイデンティティ</span>
-          </div>
-          <div class="impact-card-title">「震災の記憶と再生の街」としての文化的自己定義</div>
-          <div class="impact-card-body">東日本大震災以降、映像という記録・証言メディアを通じて仙台・東北固有の経験と風土を可視化。「復興都市仙台」としての自己定義を、外部からの行政的イメージ付与ではなく、市民・アーティストの表現を通じて内側から更新し続けている。</div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="impact-badges">
-      <span class="impact-badges-label">選定カテゴリ</span>
-      <span class="badge badge-eco">1-① 交流人口増加</span>
-      <span class="badge badge-eco">1-③ 都市空間の再編</span>
-      <span class="badge badge-soc">2-① コミュニティ形成</span>
-      <span class="badge badge-cul">3-① 地域ブランディング</span>
-    </div>
+  <section class="section" id="impact">
+    <div class="section-num">03</div>
+    <div class="section-title">街への効果 <span class="section-title-en">Urban Impact</span></div>
+    <div class="impact-grid"><div class="impact-item">
+  <div class="impact-code">1-① 経済的効果｜交流人口増加</div>
+  <div class="impact-title">新しい来訪者層の開拓と滞在型観光の促進</div>
+  <div class="impact-desc">アート・音楽ファンという新しい来訪者層が牡鹿半島を訪れ、食・宿泊など滞在型消費が生まれる。震災前には観光地としての認知が薄かった地域への誘客効果は顕著。</div>
+</div><div class="impact-item">
+  <div class="impact-code">1-③ 経済的効果｜都市空間の再編</div>
+  <div class="impact-title">震災後の被災地空間をアートが新たな意味で再編</div>
+  <div class="impact-desc">津波被害を受けた浜・集落の空間を会場として活用することで、震災の記憶を保存しながら新たな文化的文脈を与え、場所の再生に寄与している。</div>
+</div><div class="impact-item">
+  <div class="impact-code">2-① 社会的効果｜コミュニティ形成</div>
+  <div class="impact-title">芸術祭を媒介にした住民・アーティスト・来場者のつながり</div>
+  <div class="impact-desc">地元住民・国内外のアーティスト・来場者が食・作品・会話を通じてつながる場を創出。震災後のコミュニティ再構築に芸術祭が貢献している。</div>
+</div><div class="impact-item">
+  <div class="impact-code">3-① 文化的効果｜地域ブランディング</div>
+  <div class="impact-title">石巻・牡鹿半島の文化的イメージの刷新</div>
+  <div class="impact-desc">震災の被災地というイメージから、アート・食・自然が輝く「行きたい場所」へのイメージ転換に芸術祭が大きく寄与している。</div>
+</div></div>
+    <div class="impact-tags"><span class="impact-tag">1-① 交流人口増加</span><span class="impact-tag">1-③ 都市空間の再編</span><span class="impact-tag">2-① コミュニティ形成</span><span class="impact-tag">3-① 地域ブランディング</span></div>
   </section>
 
-  <!-- 参考リンク -->
-  <section id="refs" class="section">
-    <div class="section-header">
-      <span class="section-num">04</span>
-      <h2>参考リンク <span>References</span></h2>
-    </div>
-    <div class="refs-grid">
-      <a href="https://www.sentan.jp/" target="_blank" rel="noopener" class="ref-item">
-        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=sentan.jp&sz=64" alt=""></div>
-        <div>
-          <div class="ref-title">仙台短編映像祭 公式サイト</div>
-          <div class="ref-domain">sentan.jp</div>
-        </div>
-        <div class="ref-arrow">→</div>
-      </a>
-      <a href="https://www.city.sendai.jp/bunka-geijutsu/index.html" target="_blank" rel="noopener" class="ref-item">
-        <div class="ref-icon"><img src="https://www.google.com/s2/favicons?domain=city.sendai.jp&sz=64" alt=""></div>
-        <div>
-          <div class="ref-title">仙台市 文化・芸術トップページ</div>
-          <div class="ref-domain">city.sendai.jp</div>
-        </div>
-        <div class="ref-arrow">→</div>
-      </a>
-    </div>
+  <section class="section" id="refs">
+    <div class="section-num">04</div>
+    <div class="section-title">参考リンク <span class="section-title-en">References</span></div>
+    <div class="refs-grid"><a class="ref-item" href="https://www.reborn-art-fes.jp/" target="_blank">
+  <img class="ref-icon" src="https://www.google.com/s2/favicons?domain=reborn-art-fes.jp&sz=64" alt="" />
+  <div><div class="ref-title">リボーンアートフェスティバル 公式サイト</div><div class="ref-domain">reborn-art-fes.jp</div></div>
+  <span class="ref-arrow">→</span>
+</a><a class="ref-item" href="https://www.city.ishinomaki.lg.jp/" target="_blank">
+  <img class="ref-icon" src="https://www.google.com/s2/favicons?domain=city.ishinomaki.lg.jp&sz=64" alt="" />
+  <div><div class="ref-title">石巻市 公式サイト</div><div class="ref-domain">city.ishinomaki.lg.jp</div></div>
+  <span class="ref-arrow">→</span>
+</a></div>
+    <p style="font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.1em;">
+      ※掲載情報は2026年1月末時点の情報を参考にしています。
+    </p>
   </section>
 
-</div>
+  <div class="pagination">
+    <a class="page-item prev" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-iwate.html">
+      <div class="page-dir">← 前の事例</div>
+      <div class="page-name">三陸国際芸術祭</div>
+      <div class="page-sub">北海道・東北 — 岩手県</div>
+    </a>
+    <a class="page-item next" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-akita.html">
+      <div class="page-dir">次の事例 →</div>
+      <div class="page-name">かみこあにプロジェクト</div>
+      <div class="page-sub">北海道・東北 — 秋田県</div>
+    </a>
+  </div>
 
-<div class="footer-nav">
-  <a href="detail-iwate.html" class="footer-nav-item">
-    <span class="fnav-label">← 前の事例</span>
-    <span class="fnav-title">三陸国際芸術祭</span>
-    <span class="fnav-count">北海道・東北 — 3 / 7</span>
-  </a>
-  <a href="detail-akita.html" class="footer-nav-item fnav-right">
-    <span class="fnav-label">次の事例 →</span>
-    <span class="fnav-title">大地の芸術祭 秋田版</span>
-    <span class="fnav-count">北海道・東北 — 5 / 7</span>
-  </a>
 </div>
 
 <footer>
-  <span>※掲載情報は2026年1月末時点の情報を参考にしています。</span>
-  <a href="index.html" style="color: var(--muted); text-decoration: none;">Art × Placemaking</a>
+  <a href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a>
+  <span>© 2026 Art × Placemaking Database</span>
 </footer>
 
 </body>
