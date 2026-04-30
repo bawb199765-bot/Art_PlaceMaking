@@ -1,193 +1,86 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>鹿児島 — 種子島・奄美　アートプロジェクト | アート×まちづくりDB</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<html lang="ja"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>鹿児島 — 霧島アートの森活用まちづくり | アート×まちづくりDB</title><meta name="description" content="湧水町にある県立野外美術館・霧島アートの森を核にした拠点波及型まちづくり。火山地形と彫刻が共存する霧島の自然ミュージアムを地域全体に波及させる。"/>
 <style>
-  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
-  .nav-logo:hover { color: var(--ink); }
-  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-  .breadcrumb a { color: var(--muted); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--accent); }
-  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
-  .nav-back:hover { background: var(--accent); color: white; }
-  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
-  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
-  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
-  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
-  .tag-region { border-color: var(--muted); color: var(--muted); }
-  .tag-type { border-color: var(--accent); color: var(--accent); }
-  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
-  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
-  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
-  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
-  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
-  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .meta-row:first-child { border-top: 1px solid var(--border); }
-  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
-  .meta-value { font-weight: 600; }
-  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
-  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
-  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
-  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
-  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
-  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
-  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
-  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
-  .overview-text p + p { margin-top: 1.5em; }
-  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
-  .feature-card { background: var(--paper); padding: 2rem; }
-  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
-  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
-  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
-  .feature-body ul { list-style: none; margin-top: 0.75rem; }
-  .feature-body li::before { content: '—  '; color: var(--muted); }
-  .feature-body li { margin-bottom: 4px; }
-  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
-  .impact-category-group { margin-bottom: 2.5rem; }
-  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
-  .cat-economic { background: var(--tag-eco); }
-  .cat-social { background: var(--tag-soc); }
-  .cat-cultural { background: var(--tag-cul); }
-  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
-  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
-  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
-  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-eco { background: var(--tag-eco); }
-  .dot-soc { background: var(--tag-soc); }
-  .dot-cul { background: var(--tag-cul); }
-  .impact-tag-text { color: var(--muted); }
-  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
-  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
-  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
-  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
-  .badge-eco { border-color: #5dade2; color: #5dade2; }
-  .badge-soc { border-color: #58d68d; color: #58d68d; }
-  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
-  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
-  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
-  .ref-item:hover { background: white; }
-  .ref-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); flex-shrink: 0; }
-  .ref-title { font-size: 14px; font-weight: 600; }
-  .ref-url { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  .ref-arrow { margin-left: auto; color: var(--accent); font-size: 18px; flex-shrink: 0; }
-  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
-  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
-  .footer-nav-item:hover { background: var(--effect-bg); }
-  .fnav-right { border-left: 1px solid var(--border); text-align: right; }
-  .fnav-dir { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
-  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
-  .fnav-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-  .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  .footer-case { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-text { padding: 3rem 2rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
-    .hero-meta { padding: 2rem; }
-    .content { padding: 0 2rem; }
-    .section-nav { padding: 0 2rem; overflow-x: auto; }
-    .features-grid { grid-template-columns: 1fr; }
-    .footer-nav { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 8px; text-align: center; }
-  }
-</style>
-</head>
-<body>
-<nav>
-  <a href="index.html" class="nav-logo">ART × PLACEMAKING DB</a>
-  <div class="breadcrumb"><a href="index.html">TOP</a><span>›</span><span>鹿児島</span></div>
-  <a href="index.html" class="nav-back">← 一覧へ</a>
-</nav>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400&display=swap');
+  :root{--bg:#181818;--bg2:#1f1f1f;--bg3:#262626;--line:#2e2e2e;--line2:#3a3a3a;--text:#f0f0f0;--muted:#666;--dim:#444;--accent:#e8c96e;}
+  *{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+  body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;}
+  nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;}
+  .nav-logo{font-family:'Archivo Black',sans-serif;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);text-decoration:none;}
+  .nav-back{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.15s;}
+  .nav-back:hover{color:var(--text);}
+  .hero{border-bottom:1px solid var(--line);padding:56px 32px 40px;max-width:860px;margin:0 auto;}
+  .hero-meta{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+  .hero-region{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);}
+  .hero-sep{color:var(--line2);}
+  .hero-cat{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:3px 10px;border:1px solid currentColor;}
+  .hero-case{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:0.1em;color:var(--muted);margin-left:auto;}
+  .hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(22px,4.5vw,38px);letter-spacing:0.04em;text-transform:uppercase;line-height:1.15;margin-bottom:6px;color:var(--text);}
+  .hero-en{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:22px;}
+  .hero-desc{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.85;color:#aaa;max-width:660px;margin-bottom:28px;}
+  .hero-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:28px;}
+  .stat-item{background:var(--bg2);padding:12px 14px;}
+  .stat-label{font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .stat-value{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:500;color:var(--text);letter-spacing:0.04em;}
+  .toc{display:flex;gap:0;border:1px solid var(--line);overflow-x:auto;}
+  .toc a{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:9px 14px;border-right:1px solid var(--line);white-space:nowrap;transition:color 0.15s,background 0.15s;}
+  .toc a:hover{color:var(--text);background:var(--bg3);}
+  .toc a:last-child{border-right:none;}
+  .content{max-width:860px;margin:0 auto;padding:0 32px 80px;}
+  .section{padding:48px 0 40px;border-bottom:1px solid var(--line);}
+  .section:last-child{border-bottom:none;}
+  .section-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.3em;color:var(--muted);margin-bottom:6px;}
+  .section-title{font-family:'Archivo Black',sans-serif;font-size:18px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:baseline;gap:12px;}
+  .section-title-en{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:400;letter-spacing:0.2em;color:var(--muted);}
+  .prose{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.95;color:#999;max-width:640px;}
+  .prose p{margin-bottom:1.4em;}.prose p:last-child{margin-bottom:0;}
+  .features-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .feature-item{background:var(--bg2);padding:22px 24px;}
+  .feature-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.25em;color:var(--accent);margin-bottom:6px;}
+  .feature-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .feature-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .feature-bullets{margin-top:10px;padding-left:0;list-style:none;}
+  .feature-bullets li{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.06em;color:var(--muted);padding:3px 0 3px 14px;position:relative;}
+  .feature-bullets li::before{content:'—';position:absolute;left:0;color:var(--line2);}
+  .impact-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .impact-item{background:var(--bg2);padding:22px 24px;border-left:3px solid var(--impact-color,#888);}
+  .impact-code{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--impact-color,#888);margin-bottom:6px;}
+  .impact-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .impact-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .impact-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:20px;}
+  .impact-tag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;border:1px solid;}
+  .refs-grid{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .ref-item{background:var(--bg2);display:flex;align-items:center;gap:14px;padding:13px 18px;text-decoration:none;transition:background 0.12s;}
+  .ref-item:hover{background:var(--bg3);}
+  .ref-icon{width:24px;height:24px;flex-shrink:0;}
+  .ref-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;}
+  .ref-domain{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.05em;}
+  .ref-arrow{margin-left:auto;color:var(--muted);font-size:14px;}
+  .pagination{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px;}
+  .page-item{flex:1;background:var(--bg2);padding:16px 18px;text-decoration:none;transition:background 0.12s;}
+  .page-item:hover{background:var(--bg3);}
+  .page-dir{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .page-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--text);}
+  .page-sub{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);margin-top:2px;}
+  .page-item.next{text-align:right;}
+  footer{border-top:1px solid var(--line);padding:18px 32px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:space-between;}
+  footer a{color:var(--muted);text-decoration:none;}footer a:hover{color:var(--text);}
+  .note{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.08em;margin-top:20px;}
+</style></head><body>
+<nav><a class="nav-logo" href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a><a class="nav-back" href="https://bawb199765-bot.github.io/Art_PlaceMaking/database/index.html">← Database</a></nav>
 <div class="hero">
-  <div class="hero-text">
-    <div class="hero-tags"><span class="tag tag-region">九州</span>
-      <span class="tag tag-region">鹿児島県</span>
-      <span class="tag tag-type">島嶼×アート</span>
-      <span class="tag tag-type">自然・農業</span>
-</div>
-    <div class="hero-index">Case 46 / 47</div>
-    <h1>種子島・奄美<br>アートプロジェクト</h1>
-    <div class="hero-en">TANEGASHIMA & AMAMI ART PROJECT / KAGOSHIMA</div>
-    <p class="hero-desc">宇宙センターが立地する種子島と、ユネスコ自然遺産・奄美群島を舞台にした広域島嶼アートプロジェクト。宇宙・黒糖焼酎・紬・奄美の自然生態系という鹿児島固有の産業文化をアートで再解釈し、離島への移住促進と地域ブランド強化を図る。</p>
-  </div>
-  <div class="hero-meta">    <div class="meta-row"><span class="meta-label">REGION</span><span class="meta-value">種子島・奄美大島・屋久島・鹿児島市</span></div>
-    <div class="meta-row"><span class="meta-label">STARTED</span><span class="meta-value">2015年〜</span></div>
-    <div class="meta-row"><span class="meta-label">ORGANIZER</span><span class="meta-value">鹿児島県・NPOかごしまアートネットワーク</span></div>
-    <div class="meta-row"><span class="meta-label">SCALE</span><span class="meta-value">県内島嶼部・鹿児島市内</span></div>
-    <div class="meta-row"><span class="meta-label">KEYWORDS</span><span class="meta-value">種子島宇宙センター・奄美紬・黒糖焼酎・屋久杉・奄美の自然</span></div></div>
-</div>
-<div class="section-nav">
-  <a href="#overview" class="sec-link">01 概要</a>
-  <a href="#features" class="sec-link">02 特徴</a>
-  <a href="#impact" class="sec-link">03 街への効果</a>
-  <a href="#refs" class="sec-link">04 参考</a>
+  <div class="hero-meta"><span class="hero-region">九州・沖縄</span><span class="hero-sep">/</span><span class="hero-region">鹿児島県</span><span class="hero-sep">/</span><span class="hero-cat" style="color:#d4826a;border-color:#d4826a">ミュージアム・拠点型</span><span class="hero-case">Case 46 / 48</span></div>
+  <h1>霧島アートの森活用まちづくり</h1><div class="hero-en">Kirishima Open-Air Museum Placemaking</div><p class="hero-desc">湧水町にある県立野外美術館・霧島アートの森を核にしたまちづくり。霧島連山の火山地形と豊かな自然の中に国内外の彫刻・インスタレーション作品が点在し、鑑賞・教育・自然体験が一体となった場を形成する。</p>
+  <div class="hero-stats"><div class="stat-item"><div class="stat-label">拠点</div><div class="stat-value">鹿児島県姶良郡湧水町</div></div><div class="stat-item"><div class="stat-label">開館年</div><div class="stat-value">1999年</div></div><div class="stat-item"><div class="stat-label">主体</div><div class="stat-value">鹿児島県・湧水町</div></div><div class="stat-item"><div class="stat-label">形態</div><div class="stat-value">ミュージアム型・通年</div></div><div class="stat-item"><div class="stat-label">次回開催</div><div class="stat-value">通年</div></div><div class="stat-item"><div class="stat-label">東京からのアクセス</div><div class="stat-value">約5h（飛行機＋バス）</div></div></div>
+  <nav class="toc"><a href="#overview">01 概要</a><a href="#features">02 特徴</a><a href="#impact">03 街への効果</a><a href="#refs">04 参考</a></nav>
 </div>
 <div class="content">
-  <section class="section" id="overview">
-    <div class="section-header"><span class="section-num">01</span><h2>概要 <span>OVERVIEW</span></h2></div>
-    <div class="overview-text">      <p>種子島・奄美アートプロジェクトは、鹿児島県の多様な島嶼文化をアートで繋ぐ広域プロジェクトです。日本最大のロケット発射場・種子島宇宙センターを擁する種子島、ユネスコ自然遺産・奄美群島の豊かな生態系、世界遺産・屋久島の原生林など、鹿児島固有の多彩な自然・文化資産がアートの素材となります。</p>
-      <p>種子島では宇宙×アートをテーマに、ロケット発射の壮大なスケールと南の島の自然が交差する独特の体験を創出。奄美大島では、ユネスコ無形文化遺産候補の奄美の島唄・大島紬の染色技術・黒糖焼酎の醸造文化など奄美固有の産業文化がアーティストとの協働で再解釈されます。</p>
-      <p>奄美・種子島・屋久島など離島への移住促進においても、アートプロジェクトが重要な役割を果たしており、「島の文化と自然に触れたくて移住した」クリエイターの事例が積み重なっています。</p></div>
-  </section>
-  <section class="section" id="features">
-    <div class="section-header"><span class="section-num">02</span><h2>特徴 <span>FEATURES</span></h2></div>
-    <div class="features-grid"><div class="feature-card"><div class="feature-num">01</div><div class="feature-title">種子島宇宙センター×アート</div><div class="feature-body"><p>日本最大のロケット発射場がある種子島の宇宙的スケール感とサトウキビ畑が広がる農業の島という対比が独特の場所性を生む。宇宙・地球・自然のスケールを素材にしたランドアートが展開される。</p><ul><li>H3ロケット発射台を背景にしたランドアート作品</li><li>宇宙×農業×海という種子島固有の三重奏をテーマにした映像インスタレーション</li><li>射場近くの集落でのコミュニティアートWS</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">02</div><div class="feature-title">奄美大島の島唄・大島紬との協働</div><div class="feature-body"><p>ユネスコ無形文化遺産候補・奄美の島唄と現代パフォーミングアーツが交差するコラボレーション、200年以上の歴史を持つ大島紬の染色技術とテキスタイルアーティストの協働制作など、奄美固有の文化がアートと融合する。</p><ul><li>奄美の島唄師×コンテンポラリーミュージシャンの共演</li><li>大島紬職人×テキスタイルアーティストの共同制作</li><li>黒糖焼酎蔵をギャラリーに活用した展示</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">03</div><div class="feature-title">屋久杉・奄美の自然生態系とアート</div><div class="feature-body"><p>世界遺産・屋久島の原生林や奄美固有の生態系（アマミノクロウサギ・ルリカケスなど）をテーマにした環境アートを展開。生態系保全とアートが連動し、自然環境の価値を新たな視点で発信する。</p><ul><li>屋久杉の巨木を素材にしたランドアート（保全的手法）</li><li>奄美の固有種をモチーフにした野外インスタレーション</li><li>森林・海・サンゴ礁の生態系記録映像作品</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">04</div><div class="feature-title">離島移住・定住促進</div><div class="feature-body"><p>島の豊かな自然・文化に魅了されたアーティストやクリエイターが奄美・種子島への移住を選ぶケースが増加。空き家バンクとのマッチング、離島でのシェアアトリエ整備、「島暮らし×創作」体験ツアーを通じ移住促進を図る。</p><ul><li>奄美・種子島の空き家×クリエイターマッチング</li><li>離島シェアアトリエの整備</li><li>「島で暮らし、創る」3か月体験プログラム</li></ul></div></div>
+  <section class="section" id="overview"><div class="section-num">01</div><div class="section-title">概要 <span class="section-title-en">Overview</span></div><div class="prose"><p>霧島アートの森は1999年に開館した鹿児島県立の野外美術館。霧島連山を背景に広大な自然の中に国内外の現代彫刻・インスタレーション作品が常設展示され、屋外の自然空間を歩きながらアートを体験できる独自の美術館。草間彌生・イサム・ノグチ・エルネスト・ネト等の世界的アーティストの作品が霧島の景観と共存している。</p><p>「霧島アートの森活用まちづくり」は、この美術館を単体の観光施設としてではなく、地域のまちづくりの核として活用していく取り組み。湧水町・周辺地域の農業・食・温泉・自然体験と美術館を連動させることで、「アートと自然と暮らしが共存する霧島圏域」という広域的な文化的ランドマークの形成を目指している。</p><p>霧島火山・えびの高原という日本でも有数の火山景観地と、世界水準の野外美術という組み合わせは他に類を見ない。火山地形という「生きている自然」とアートの共存が、霧島固有の体験的価値として国内外の来場者を引き付けている。</p></div></section>
+  <section class="section" id="features"><div class="section-num">02</div><div class="section-title">主な特徴 <span class="section-title-en">Key Features</span></div><div class="features-grid"><div class="feature-item"><div class="feature-num">01</div><div class="feature-title">霧島の火山景観と世界水準の野外彫刻の共存</div><div class="feature-desc">霧島連山の雄大な火山地形・草原・森という自然の中に草間彌生・イサム・ノグチらの世界的作品が点在する景観は日本でも唯一無二。「自然の中でアートに出会う」という体験の独自性が強力な来場動機を生む。</div><ul class="feature-bullets"><li>草間彌生・イサム・ノグチ等の常設作品</li><li>霧島連山の自然景観との作品の一体感</li><li>野外彫刻と火山・草原・森の対話</li></ul></div><div class="feature-item"><div class="feature-num">02</div><div class="feature-title">鑑賞・教育・自然体験が一体化した複合的プログラム</div><div class="feature-desc">美術鑑賞だけでなく、自然観察・植物学習・農業体験・温泉体験を組み合わせた複合的なプログラムが展開される。家族・学校・シニア・専門家など多様な来場者層が異なる目的で楽しめる設計。</div><ul class="feature-bullets"><li>学校向け教育プログラムの充実</li><li>ファミリー・シニア向けの自然体験</li><li>アート鑑賞＋温泉・農業の組み合わせ体験</li></ul></div><div class="feature-item"><div class="feature-num">03</div><div class="feature-title">湧水町・霧島圏域への拠点波及型まちづくり</div><div class="feature-desc">美術館を核に、周辺の農業・温泉・食・自然体験と連携した広域的なまちづくりを展開することで、霧島圏域全体が「アートと自然と文化の目的地」として機能する。拠点から周辺への波及効果を最大化するモデル。</div><ul class="feature-bullets"><li>湧水町の農業・食との連携プログラム</li><li>霧島温泉郷との周遊設計</li><li>霧島圏域の観光コンテンツの統合的発信</li></ul></div><div class="feature-item"><div class="feature-num">04</div><div class="feature-title">薩摩・大隅の歴史文化との接続</div><div class="feature-desc">霧島神宮・坂本龍馬の新婚旅行地としての歴史、薩摩藩の文化・西郷隆盛ゆかりの地という鹿児島固有の歴史文化的文脈と、現代アートを接続することで、霧島アートの森が単なる野外美術館を超えた文化的目的地となる。</div><ul class="feature-bullets"><li>霧島神宮・坂本龍馬の歴史文化との接続</li><li>薩摩文化・西郷隆盛との文脈</li><li>鹿児島の歴史観光とアートの統合的発信</li></ul></div></div></section>
+  <section class="section" id="impact"><div class="section-num">03</div><div class="section-title">街への効果 <span class="section-title-en">Urban Impact</span></div><div class="impact-grid"><div class="impact-item" style="--impact-color:#e8c96e"><div class="impact-code">1-① 経済的効果｜交流人口増加</div><div class="impact-title">野外美術館目的の来場者による霧島・湧水町への集客</div><div class="impact-desc">世界水準の野外彫刻と霧島の景観を目当てにした国内外の来場者が年間を通じて霧島・湧水町を訪れ、宿泊・飲食・農産品購入などの消費が地域経済に貢献している。</div></div><div class="impact-item" style="--impact-color:#a06ec8"><div class="impact-code">3-② 文化的効果｜ランドマーク形成</div><div class="impact-title">霧島の火山景観とアートの融合による唯一無二の文化的ランドマーク形成</div><div class="impact-desc">霧島連山という日本でも稀有な火山景観と世界的な野外彫刻が融合した景観は、鹿児島・九州を代表する文化的ランドマークとして国内外に認知されている。</div></div><div class="impact-item" style="--impact-color:#6ecac8"><div class="impact-code">2-① 社会的効果｜コミュニティ形成</div><div class="impact-title">美術館を核にした湧水町コミュニティの誇りと活力の醸成</div><div class="impact-desc">世界水準の美術館が自分たちの町にあるという事実が湧水町住民の誇りと地域への愛着を高め、美術館のボランティア活動・地域行事への参加を通じたコミュニティ形成に貢献している。</div></div></div><div class="impact-tags"><span class="impact-tag" style="color:#e8c96e;border-color:#e8c96e">1-① 交流人口増加</span><span class="impact-tag" style="color:#e8c96e;border-color:#e8c96e">1-② 経済効果</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-① 地域ブランディング</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-② ランドマーク形成</span></div></section>
+  <section class="section" id="refs"><div class="section-num">04</div><div class="section-title">参考リンク <span class="section-title-en">References</span></div><div class="refs-grid"><a class="ref-item" href="https://open-air-museum.org/" target="_blank"><img class="ref-icon" src="https://www.google.com/s2/favicons?domain=open-air-museum.org&sz=64" alt=""/><div><div class="ref-title">霧島アートの森 公式サイト</div><div class="ref-domain">open-air-museum.org</div></div><span class="ref-arrow">→</span></a><a class="ref-item" href="https://www.town.yusui.kagoshima.jp/" target="_blank"><img class="ref-icon" src="https://www.google.com/s2/favicons?domain=town.yusui.kagoshima.jp&sz=64" alt=""/><div><div class="ref-title">湧水町 公式サイト</div><div class="ref-domain">town.yusui.kagoshima.jp</div></div><span class="ref-arrow">→</span></a></div><p class="note">※掲載情報は2026年1月末時点の情報を参考にしています。</p></section>
+  <div class="pagination"><a class="page-item prev" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-miyazaki.html"><div class="page-dir">← 前の事例</div><div class="page-name">新富芸術祭</div><div class="page-sub">九州・沖縄 — 宮崎県</div></a><a class="page-item next" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-okinawa.html"><div class="page-dir">次の事例 →</div><div class="page-name">やんばるアートフェスティバル</div><div class="page-sub">九州・沖縄 — 沖縄県</div></a></div>
 </div>
-  </section>
-  <section class="section" id="impact">
-    <div class="section-header"><span class="section-num">03</span><h2>街への効果 <span>URBAN IMPACT</span></h2></div>
-    <p class="impact-intro">宇宙・島唄・大島紬・屋久杉という鹿児島固有の多彩な自然・文化資産がアートで結ばれ、離島移住・地場産業活性化・地域ブランド強化が連動する。</p>
-    <div class="impact-category-group"><div class="impact-cat-label cat-economic">ECONOMIC — 経済的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-eco"></div><span class="impact-tag-text">1-① 交流人口増加</span></div><div class="impact-card-title">宇宙×アート・奄美自然遺産の新規来訪層創出</div><div class="impact-card-body">種子島宇宙センターの宇宙体験と奄美のユネスコ自然遺産にアート体験が加わることで、科学ファン・自然愛好家・アートファンという多様な来訪層が鹿児島の離島に引き寄せられる。</div></div>
-<div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-eco"></div><span class="impact-tag-text">1-② 経済効果</span></div><div class="impact-card-title">大島紬・黒糖焼酎への文化的付加価値</div><div class="impact-card-body">大島紬×テキスタイルアーティストの協働が新しいデザイン商品を生み出し、国内外の富裕層・ファッション市場への訴求力を高める。黒糖焼酎も文化的ストーリーを加えた高付加価値商品開発につながっている。</div></div>
-</div></div>
-<div class="impact-category-group"><div class="impact-cat-label cat-cultural">CULTURAL — 文化的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-① 地域ブランディング・アイデンティティ</span></div><div class="impact-card-title">鹿児島固有の産業・自然文化のアートによる発信</div><div class="impact-card-body">種子島の宇宙×農業・奄美の島唄×紬・屋久島の原生林という鹿児島固有の多彩な産業・自然文化がアートを通じてフィーチャーされ、「鹿児島にしかない豊かさ」として国内外に発信される。</div></div>
-<div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-② ランドマーク形成</span></div><div class="impact-card-title">離島の新しいアートスポット化</div><div class="impact-card-body">種子島の発射台周辺・奄美の紬工房・屋久島の森にアート体験が加わることで、SNSで拡散する新たな離島観光スポットが生まれ、若い世代を中心とした来訪動機の多様化が進んでいる。</div></div>
-</div></div>
-
-    <div class="impact-badges"><span class="impact-badges-label">IMPACT TAGS</span><span class="badge badge-eco">1-① 交流人口増加</span>
-<span class="badge badge-eco">1-② 経済効果</span>
-<span class="badge badge-cul">3-① 地域ブランディング</span>
-<span class="badge badge-cul">3-② ランドマーク形成</span>
-</div>
-  </section>
-  <section class="section" id="refs">
-    <div class="section-header"><span class="section-num">04</span><h2>参考 <span>REFERENCES</span></h2></div>
-    <div class="refs-grid"><a href="https://kagoshima-kankou.com/" target="_blank" class="ref-item"><span class="ref-num">01</span><div><div class="ref-title">鹿児島県観光連盟</div><div class="ref-url">kagoshima-kankou.com</div></div><span class="ref-arrow">→</span></a>
-<a href="https://tanegashima-navi.jp/" target="_blank" class="ref-item"><span class="ref-num">02</span><div><div class="ref-title">種子島観光協会</div><div class="ref-url">tanegashima-navi.jp</div></div><span class="ref-arrow">→</span></a>
-<a href="https://amami-tourism.com/" target="_blank" class="ref-item"><span class="ref-num">03</span><div><div class="ref-title">奄美大島観光物産協会</div><div class="ref-url">amami-tourism.com</div></div><span class="ref-arrow">→</span></a>
-</div>
-  </section>
-</div>
-<div class="footer-nav">
-  <a href="detail-miyazaki.html" class="footer-nav-item">
-    <span class="fnav-dir">← PREV</span>
-    <span class="fnav-title">みやざきアートセンター</span>
-    <span class="fnav-count">Case 45 — 宮崎</span>
-  </a>
-  <a href="detail-okinawa.html" class="footer-nav-item fnav-right">
-    <span class="fnav-dir">NEXT →</span>
-    <span class="fnav-title">沖縄アートプロジェクト</span>
-    <span class="fnav-count">Case 47 — 沖縄</span>
-  </a>
-</div>
-<footer>
-  <span class="footer-copy">© 2024 Art × Placemaking DB</span>
-  <span class="footer-case">Case 46 / 47 — 鹿児島</span>
-</footer>
-</body>
-</html>
+<footer><a href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking</a><span>© 2026 Art × Placemaking Database</span></footer>
+</body></html>

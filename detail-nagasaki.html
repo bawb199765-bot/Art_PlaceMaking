@@ -1,194 +1,86 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>長崎 — 長崎・出島アートプロジェクト | アート×まちづくりDB</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<html lang="ja"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>長崎 — 南島原市アートビレッジ・シラキノ | アート×まちづくりDB</title><meta name="description" content="長崎県南島原市の廃校を芸術文化複合施設に改修したAIR拠点。廃校活用と地域文化発展を両立させたミュージアム・拠点型の先行事例。"/>
 <style>
-  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
-  .nav-logo:hover { color: var(--ink); }
-  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-  .breadcrumb a { color: var(--muted); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--accent); }
-  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
-  .nav-back:hover { background: var(--accent); color: white; }
-  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
-  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
-  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
-  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
-  .tag-region { border-color: var(--muted); color: var(--muted); }
-  .tag-type { border-color: var(--accent); color: var(--accent); }
-  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
-  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
-  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
-  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
-  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
-  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .meta-row:first-child { border-top: 1px solid var(--border); }
-  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
-  .meta-value { font-weight: 600; }
-  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
-  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
-  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
-  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
-  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
-  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
-  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
-  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
-  .overview-text p + p { margin-top: 1.5em; }
-  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
-  .feature-card { background: var(--paper); padding: 2rem; }
-  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
-  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
-  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
-  .feature-body ul { list-style: none; margin-top: 0.75rem; }
-  .feature-body li::before { content: '—  '; color: var(--muted); }
-  .feature-body li { margin-bottom: 4px; }
-  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
-  .impact-category-group { margin-bottom: 2.5rem; }
-  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
-  .cat-economic { background: var(--tag-eco); }
-  .cat-social { background: var(--tag-soc); }
-  .cat-cultural { background: var(--tag-cul); }
-  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
-  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
-  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
-  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-eco { background: var(--tag-eco); }
-  .dot-soc { background: var(--tag-soc); }
-  .dot-cul { background: var(--tag-cul); }
-  .impact-tag-text { color: var(--muted); }
-  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
-  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
-  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
-  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
-  .badge-eco { border-color: #5dade2; color: #5dade2; }
-  .badge-soc { border-color: #58d68d; color: #58d68d; }
-  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
-  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
-  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
-  .ref-item:hover { background: white; }
-  .ref-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); flex-shrink: 0; }
-  .ref-title { font-size: 14px; font-weight: 600; }
-  .ref-url { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  .ref-arrow { margin-left: auto; color: var(--accent); font-size: 18px; flex-shrink: 0; }
-  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
-  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
-  .footer-nav-item:hover { background: var(--effect-bg); }
-  .fnav-right { border-left: 1px solid var(--border); text-align: right; }
-  .fnav-dir { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
-  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
-  .fnav-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-  .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  .footer-case { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-text { padding: 3rem 2rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
-    .hero-meta { padding: 2rem; }
-    .content { padding: 0 2rem; }
-    .section-nav { padding: 0 2rem; overflow-x: auto; }
-    .features-grid { grid-template-columns: 1fr; }
-    .footer-nav { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 8px; text-align: center; }
-  }
-</style>
-</head>
-<body>
-<nav>
-  <a href="index.html" class="nav-logo">ART × PLACEMAKING DB</a>
-  <div class="breadcrumb"><a href="index.html">TOP</a><span>›</span><span>長崎</span></div>
-  <a href="index.html" class="nav-back">← 一覧へ</a>
-</nav>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400&display=swap');
+  :root{--bg:#181818;--bg2:#1f1f1f;--bg3:#262626;--line:#2e2e2e;--line2:#3a3a3a;--text:#f0f0f0;--muted:#666;--dim:#444;--accent:#e8c96e;}
+  *{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+  body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;}
+  nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;}
+  .nav-logo{font-family:'Archivo Black',sans-serif;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);text-decoration:none;}
+  .nav-back{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.15s;}
+  .nav-back:hover{color:var(--text);}
+  .hero{border-bottom:1px solid var(--line);padding:56px 32px 40px;max-width:860px;margin:0 auto;}
+  .hero-meta{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+  .hero-region{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);}
+  .hero-sep{color:var(--line2);}
+  .hero-cat{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:3px 10px;border:1px solid currentColor;}
+  .hero-case{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:0.1em;color:var(--muted);margin-left:auto;}
+  .hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(22px,4.5vw,38px);letter-spacing:0.04em;text-transform:uppercase;line-height:1.15;margin-bottom:6px;color:var(--text);}
+  .hero-en{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:22px;}
+  .hero-desc{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.85;color:#aaa;max-width:660px;margin-bottom:28px;}
+  .hero-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:28px;}
+  .stat-item{background:var(--bg2);padding:12px 14px;}
+  .stat-label{font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .stat-value{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:500;color:var(--text);letter-spacing:0.04em;}
+  .toc{display:flex;gap:0;border:1px solid var(--line);overflow-x:auto;}
+  .toc a{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:9px 14px;border-right:1px solid var(--line);white-space:nowrap;transition:color 0.15s,background 0.15s;}
+  .toc a:hover{color:var(--text);background:var(--bg3);}
+  .toc a:last-child{border-right:none;}
+  .content{max-width:860px;margin:0 auto;padding:0 32px 80px;}
+  .section{padding:48px 0 40px;border-bottom:1px solid var(--line);}
+  .section:last-child{border-bottom:none;}
+  .section-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.3em;color:var(--muted);margin-bottom:6px;}
+  .section-title{font-family:'Archivo Black',sans-serif;font-size:18px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:baseline;gap:12px;}
+  .section-title-en{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:400;letter-spacing:0.2em;color:var(--muted);}
+  .prose{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.95;color:#999;max-width:640px;}
+  .prose p{margin-bottom:1.4em;}.prose p:last-child{margin-bottom:0;}
+  .features-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .feature-item{background:var(--bg2);padding:22px 24px;}
+  .feature-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.25em;color:var(--accent);margin-bottom:6px;}
+  .feature-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .feature-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .feature-bullets{margin-top:10px;padding-left:0;list-style:none;}
+  .feature-bullets li{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.06em;color:var(--muted);padding:3px 0 3px 14px;position:relative;}
+  .feature-bullets li::before{content:'—';position:absolute;left:0;color:var(--line2);}
+  .impact-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .impact-item{background:var(--bg2);padding:22px 24px;border-left:3px solid var(--impact-color,#888);}
+  .impact-code{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--impact-color,#888);margin-bottom:6px;}
+  .impact-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .impact-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .impact-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:20px;}
+  .impact-tag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;border:1px solid;}
+  .refs-grid{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .ref-item{background:var(--bg2);display:flex;align-items:center;gap:14px;padding:13px 18px;text-decoration:none;transition:background 0.12s;}
+  .ref-item:hover{background:var(--bg3);}
+  .ref-icon{width:24px;height:24px;flex-shrink:0;}
+  .ref-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;}
+  .ref-domain{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.05em;}
+  .ref-arrow{margin-left:auto;color:var(--muted);font-size:14px;}
+  .pagination{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px;}
+  .page-item{flex:1;background:var(--bg2);padding:16px 18px;text-decoration:none;transition:background 0.12s;}
+  .page-item:hover{background:var(--bg3);}
+  .page-dir{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .page-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--text);}
+  .page-sub{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);margin-top:2px;}
+  .page-item.next{text-align:right;}
+  footer{border-top:1px solid var(--line);padding:18px 32px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:space-between;}
+  footer a{color:var(--muted);text-decoration:none;}footer a:hover{color:var(--text);}
+  .note{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.08em;margin-top:20px;}
+</style></head><body>
+<nav><a class="nav-logo" href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a><a class="nav-back" href="https://bawb199765-bot.github.io/Art_PlaceMaking/database/index.html">← Database</a></nav>
 <div class="hero">
-  <div class="hero-text">
-    <div class="hero-tags"><span class="tag tag-region">九州</span>
-      <span class="tag tag-region">長崎県</span>
-      <span class="tag tag-type">国際交流芸術</span>
-      <span class="tag tag-type">歴史・港町</span>
-</div>
-    <div class="hero-index">Case 42 / 47</div>
-    <h1>長崎・出島アートプロジェクト</h1>
-    <div class="hero-en">NAGASAKI DEJIMA ART PROJECT</div>
-    <p class="hero-desc">日本と世界の交流点・出島の歴史を現代アートで再解釈するプロジェクト。鎖国時代の唯一の窓口だった出島の記憶、長崎の多文化的歴史（オランダ・中国・キリシタン文化）、離島・漁村の暮らしをアートが繋ぎ、移住促進と地域ブランドの強化を図る。</p>
-  </div>
-  <div class="hero-meta">    <div class="meta-row"><span class="meta-label">REGION</span><span class="meta-value">長崎市内・五島列島・壱岐・対馬</span></div>
-    <div class="meta-row"><span class="meta-label">STARTED</span><span class="meta-value">2012年〜</span></div>
-    <div class="meta-row"><span class="meta-label">ORGANIZER</span><span class="meta-value">長崎県・長崎市・長崎文化観光振興財団</span></div>
-    <div class="meta-row"><span class="meta-label">SCALE</span><span class="meta-value">長崎市内・県内島嶼部・複数会場</span></div>
-    <div class="meta-row"><span class="meta-label">KEYWORDS</span><span class="meta-value">出島・キリシタン・オランダ・五島・対馬・漁村</span></div></div>
-</div>
-<div class="section-nav">
-  <a href="#overview" class="sec-link">01 概要</a>
-  <a href="#features" class="sec-link">02 特徴</a>
-  <a href="#impact" class="sec-link">03 街への効果</a>
-  <a href="#refs" class="sec-link">04 参考</a>
+  <div class="hero-meta"><span class="hero-region">九州・沖縄</span><span class="hero-sep">/</span><span class="hero-region">長崎県</span><span class="hero-sep">/</span><span class="hero-cat" style="color:#d4826a;border-color:#d4826a">ミュージアム・拠点型</span><span class="hero-case">Case 42 / 48</span></div>
+  <h1>南島原市アートビレッジ・シラキノ</h1><div class="hero-en">Minami-Shimabara Art Village Shirakino</div><p class="hero-desc">長崎県南島原市の廃校を若手芸術家の支援と地域文化の発展を目的とした芸術文化複合施設として改修。国内外のアーティストが一定期間滞在して制作を行い、地域住民との交流やワークショップを通じて地域に創造の拠点を築く。</p>
+  <div class="hero-stats"><div class="stat-item"><div class="stat-label">拠点</div><div class="stat-value">長崎県南島原市南有馬町</div></div><div class="stat-item"><div class="stat-label">開館年</div><div class="stat-value">2018年</div></div><div class="stat-item"><div class="stat-label">主体</div><div class="stat-value">南島原市</div></div><div class="stat-item"><div class="stat-label">形態</div><div class="stat-value">AIR・常設施設</div></div><div class="stat-item"><div class="stat-label">次回開催</div><div class="stat-value">通年</div></div><div class="stat-item"><div class="stat-label">東京からのアクセス</div><div class="stat-value">約4.5h（飛行機＋バス）</div></div></div>
+  <nav class="toc"><a href="#overview">01 概要</a><a href="#features">02 特徴</a><a href="#impact">03 街への効果</a><a href="#refs">04 参考</a></nav>
 </div>
 <div class="content">
-  <section class="section" id="overview">
-    <div class="section-header"><span class="section-num">01</span><h2>概要 <span>OVERVIEW</span></h2></div>
-    <div class="overview-text">      <p>長崎・出島アートプロジェクトは、江戸時代の鎖国期に日本で唯一外国との交流が許されていた出島の歴史的文脈を現代アートで再解釈するプロジェクトです。オランダ・中国・ポルトガルとの交流が織り成した長崎固有の多文化的歴史が作品のモチーフとなります。</p>
-      <p>長崎市内の出島・グラバー園・唐人屋敷跡・大浦天主堂周辺という歴史的スポットに加え、五島列島・壱岐・対馬などの島々にもプロジェクトを展開。離島の漁村文化・キリシタン文化・対馬の韓国との歴史的交流など、長崎固有の多様な文化的文脈がアートの素材となります。</p>
-      <p>過疎化が深刻な離島地域に若いアーティストやクリエイターを呼び込み、移住・定住を促進する取り組みも積極的に展開。長崎の多文化的背景が持つ「異文化受容性」を現代の移住促進に活かすアプローチが特徴的です。</p></div>
-  </section>
-  <section class="section" id="features">
-    <div class="section-header"><span class="section-num">02</span><h2>特徴 <span>FEATURES</span></h2></div>
-    <div class="features-grid"><div class="feature-card"><div class="feature-num">01</div><div class="feature-title">出島・多文化的歴史とアートの対話</div><div class="feature-body"><p>オランダ・中国・ポルトガルとの交流が重なる出島周辺で、「異文化の交差点」をテーマにした国際的アーティストの作品が展開。長崎固有の多文化的記憶が現代的な国際対話の場として蘇る。</p><ul><li>復元出島でのインタラクティブ体験展示</li><li>グラバー園・大浦天主堂周辺のサイトスペシフィック作品</li><li>唐人屋敷跡での中国文化×現代アートプログラム</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">02</div><div class="feature-title">五島列島のキリシタン文化とアート</div><div class="feature-body"><p>世界遺産・長崎の教会群と関連する五島列島のキリシタン文化をアーティストが深く掘り起こす。迫害と信仰の歴史、海の民の暮らし、離島固有の自然景観が現代アートに翻訳される。</p><ul><li>五島の教会巡礼路×現代アートの融合</li><li>漁村の古い家屋を活用したアーティスト・レジデンス</li><li>五島沖の海中インスタレーション</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">03</div><div class="feature-title">対馬の日韓文化交流とアート</div><div class="feature-body"><p>日本と韓国の文化が交差する対馬の歴史的文脈を活用し、日韓のアーティストが協働制作するプロジェクトを展開。現代の日韓関係の文脈でも意義深い文化交流の場となる。</p><ul><li>日韓アーティストによる共同制作作品</li><li>対馬の朝鮮通信使の記憶をテーマにした展示</li><li>韓国との文化交流ツーリズム促進連携</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">04</div><div class="feature-title">離島への移住・定住促進</div><div class="feature-body"><p>五島・壱岐・対馬のアートプロジェクトを通じて離島の魅力を知った若いアーティストやクリエイターが移住するケースが増加。長崎県の「長崎島暮らし」移住支援制度と連携したクリエイター向けマッチングも整備。</p><ul><li>離島空き家×アーティスト住居のマッチング</li><li>「島に暮らす×創る」体験ツアー</li><li>離島移住者によるカフェ・宿・工房の開業支援</li></ul></div></div>
+  <section class="section" id="overview"><div class="section-num">01</div><div class="section-title">概要 <span class="section-title-en">Overview</span></div><div class="prose"><p>南島原市アートビレッジ・シラキノは、長崎県南島原市南有馬町の廃校（旧白木野小学校）を改修した芸術文化複合施設。2018年に開設され、国内外のアーティストが中長期滞在して作品を制作するアーティスト・イン・レジデンス機能と、地域住民が参加できるワークショップ・展覧会機能を備える。</p><p>南島原市は島原半島の南部に位置し、雲仙普賢岳噴火災害（1990〜1995年）の被災地として知られ、現在も人口減少・高齢化が深刻な地域。廃校という遊休施設をアート拠点として活用することで、地域の課題解決とアート活動の場の創出を同時に実現するモデルを示している。</p><p>白木野という農村集落の中に位置するシラキノは、都会のアーティストにとって「日常から切り離された静かな制作環境」を提供する。農村の景観・生活・人々との深い交流から生まれる作品が、地域に新しい文化的価値をもたらしている。</p></div></section>
+  <section class="section" id="features"><div class="section-num">02</div><div class="section-title">主な特徴 <span class="section-title-en">Key Features</span></div><div class="features-grid"><div class="feature-item"><div class="feature-num">01</div><div class="feature-title">廃校の全面改修による芸術文化複合施設の創出</div><div class="feature-desc">使われなくなった旧白木野小学校の校舎を、スタジオ・ギャラリー・宿泊施設・ワークショップスペースとして全面改修。廃校という地域の課題資産をアート拠点として転換した代表的な活用モデル。</div><ul class="feature-bullets"><li>旧校舎のスタジオ・ギャラリー転用</li><li>宿泊機能による長期滞在の可能性</li><li>農村集落の中の文化拠点という独自環境</li></ul></div><div class="feature-item"><div class="feature-num">02</div><div class="feature-title">農村環境を活かした深度ある滞在制作</div><div class="feature-desc">南島原の農村景観・農業・漁業・歴史（島原の乱の舞台）という濃密な地域的文脈の中での滞在制作が、都市では生まれにくい深度ある作品を生み出す。静かな環境での集中した制作が参加アーティストに高く評価される。</div><ul class="feature-bullets"><li>農村集落の日常への深い関与</li><li>島原の乱・有馬氏の歴史的文脈との接触</li><li>農業・漁業との協働体験プログラム</li></ul></div><div class="feature-item"><div class="feature-num">03</div><div class="feature-title">地域住民との継続的な交流・ワークショップ</div><div class="feature-desc">アーティストが地域住民と制作や日常生活を通じて交流するプログラムが継続的に実施される。外部のアーティストと地域の人々が出会う場として、集落コミュニティの活性化と地域の文化的な豊かさの向上に貢献する。</div><ul class="feature-bullets"><li>地域住民参加型のワークショップ</li><li>子ども向けアート教育プログラム</li><li>農作業・地域行事への参加交流</li></ul></div><div class="feature-item"><div class="feature-num">04</div><div class="feature-title">島原半島の自然・歴史的文脈との接続</div><div class="feature-desc">雲仙岳・島原湾・農村景観という島原半島固有の自然環境と、島原の乱・キリシタン文化・江戸時代の藩政という歴史的文脈がアート制作のインスピレーション源となる。場所の固有性が作品に深みをもたらす。</div><ul class="feature-bullets"><li>雲仙岳・島原湾の自然景観の活用</li><li>キリシタン文化・島原の乱の歴史的文脈</li><li>島原半島の農業・水産業との接続</li></ul></div></div></section>
+  <section class="section" id="impact"><div class="section-num">03</div><div class="section-title">街への効果 <span class="section-title-en">Urban Impact</span></div><div class="impact-grid"><div class="impact-item" style="--impact-color:#e8c96e"><div class="impact-code">1-③ 経済的効果｜都市空間の再編</div><div class="impact-title">廃校の芸術文化拠点への転用による集落空間の再価値化</div><div class="impact-desc">廃校という地域の衰退を象徴する施設がアート拠点として生まれ変わることで、白木野集落の空間的・文化的価値が向上し、集落の活気回復に貢献する。</div></div><div class="impact-item" style="--impact-color:#6ecac8"><div class="impact-code">2-② 社会的効果｜移住・定住促進</div><div class="impact-title">AIR参加アーティストの南島原への関係人口・移住促進</div><div class="impact-desc">滞在制作を通じて南島原の魅力を深く知ったアーティストが継続的に関与したり定住するケースが生まれ、農村集落への創造的人材の流入が促進される。</div></div><div class="impact-item" style="--impact-color:#a06ec8"><div class="impact-code">3-③ 文化的効果｜クリエイティブエコシステム</div><div class="impact-title">廃校活用AIRという周縁地域の文化拠点モデルの提示</div><div class="impact-desc">人口減少・廃校問題に直面する全国の農村・周縁地域に対し、廃校をアート拠点として活用する実践的なモデルを提示することで、文化政策の選択肢を広げる。</div></div></div><div class="impact-tags"><span class="impact-tag" style="color:#e8c96e;border-color:#e8c96e">1-③ 都市空間の再編</span><span class="impact-tag" style="color:#6ecac8;border-color:#6ecac8">2-② 移住・定住促進</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-③ クリエイティブエコシステム</span><span class="impact-tag" style="color:#6ecac8;border-color:#6ecac8">2-① コミュニティ形成</span></div></section>
+  <section class="section" id="refs"><div class="section-num">04</div><div class="section-title">参考リンク <span class="section-title-en">References</span></div><div class="refs-grid"><a class="ref-item" href="https://www.artvillage-shirakino.jp/" target="_blank"><img class="ref-icon" src="https://www.google.com/s2/favicons?domain=artvillage-shirakino.jp&sz=64" alt=""/><div><div class="ref-title">南島原市アートビレッジ・シラキノ 公式サイト</div><div class="ref-domain">artvillage-shirakino.jp</div></div><span class="ref-arrow">→</span></a><a class="ref-item" href="https://www.city.minamishimabara.lg.jp/" target="_blank"><img class="ref-icon" src="https://www.google.com/s2/favicons?domain=city.minamishimabara.lg.jp&sz=64" alt=""/><div><div class="ref-title">南島原市 公式サイト</div><div class="ref-domain">city.minamishimabara.lg.jp</div></div><span class="ref-arrow">→</span></a></div><p class="note">※掲載情報は2026年1月末時点の情報を参考にしています。</p></section>
+  <div class="pagination"><a class="page-item prev" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-saga.html"><div class="page-dir">← 前の事例</div><div class="page-name">Creative Residency in Arita</div><div class="page-sub">九州・沖縄 — 佐賀県</div></a><a class="page-item next" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-kumamoto.html"><div class="page-dir">次の事例 →</div><div class="page-name">くまもとアートポリス</div><div class="page-sub">九州・沖縄 — 熊本県</div></a></div>
 </div>
-  </section>
-  <section class="section" id="impact">
-    <div class="section-header"><span class="section-num">03</span><h2>街への効果 <span>URBAN IMPACT</span></h2></div>
-    <p class="impact-intro">出島の多文化的歴史という唯一の文脈を軸に、離島への移住促進・日韓文化交流・地域ブランド強化が連動する。</p>
-    <div class="impact-category-group"><div class="impact-cat-label cat-economic">ECONOMIC — 経済的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-eco"></div><span class="impact-tag-text">1-③ 都市空間の再編</span></div><div class="impact-card-title">五島・壱岐・対馬の空き家・廃教会の活用</div><div class="impact-card-body">過疎化する離島の空き家や廃止された教会・旧学校がアーティスト・レジデンス施設やギャラリーとして再生され、離島の文化インフラとして定着しつつある。</div></div>
-</div></div>
-<div class="impact-category-group"><div class="impact-cat-label cat-social">SOCIAL — 社会的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-soc"></div><span class="impact-tag-text">2-① コミュニティ形成</span></div><div class="impact-card-title">離島漁村の外部者流入とコミュニティ再生</div><div class="impact-card-body">アーティストの長期滞在が漁村集落に外からの訪問者を呼び込み、高齢化した漁師・農家に新たな交流と生きがいを生み出している。島のおばあちゃんと若いアーティストの交流が印象的な成果として語られる。</div></div>
-<div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-soc"></div><span class="impact-tag-text">2-② 移住・定住促進</span></div><div class="impact-card-title">クリエイター離島移住の継続的実績</div><div class="impact-card-body">五島・壱岐へのアーティスト移住が積み重なり、移住者が地元で宿・カフェ・工房を開業するケースも出ている。長崎県の移住支援と連携した「離島移住×創作」モデルが形成されつつある。</div></div>
-</div></div>
-<div class="impact-category-group"><div class="impact-cat-label cat-cultural">CULTURAL — 文化的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-③ クリエイティブエコシステム創出</span></div><div class="impact-card-title">出島・離島を核とした国際文化交流の蓄積</div><div class="impact-card-body">長崎の多文化的歴史に引き寄せられた国内外のアーティストが継続的に関与することで、「交流都市・長崎」という固有のクリエイティブ文脈が積み重なっている。</div></div>
-</div></div>
-
-    <div class="impact-badges"><span class="impact-badges-label">IMPACT TAGS</span><span class="badge badge-eco">1-③ 都市空間の再編</span>
-<span class="badge badge-soc">2-① コミュニティ形成</span>
-<span class="badge badge-soc">2-② 移住・定住促進</span>
-<span class="badge badge-cul">3-③ クリエイティブエコシステム</span>
-</div>
-  </section>
-  <section class="section" id="refs">
-    <div class="section-header"><span class="section-num">04</span><h2>参考 <span>REFERENCES</span></h2></div>
-    <div class="refs-grid"><a href="https://nagasaki-tabinet.com/" target="_blank" class="ref-item"><span class="ref-num">01</span><div><div class="ref-title">長崎市観光推進課</div><div class="ref-url">nagasaki-tabinet.com</div></div><span class="ref-arrow">→</span></a>
-<a href="https://goto-islands.jp/" target="_blank" class="ref-item"><span class="ref-num">02</span><div><div class="ref-title">五島市観光物産協会</div><div class="ref-url">goto-islands.jp</div></div><span class="ref-arrow">→</span></a>
-<a href="https://ncf.or.jp/" target="_blank" class="ref-item"><span class="ref-num">03</span><div><div class="ref-title">長崎文化観光振興財団</div><div class="ref-url">ncf.or.jp</div></div><span class="ref-arrow">→</span></a>
-</div>
-  </section>
-</div>
-<div class="footer-nav">
-  <a href="detail-saga.html" class="footer-nav-item">
-    <span class="fnav-dir">← PREV</span>
-    <span class="fnav-title">有田陶磁器×アートプロジェクト</span>
-    <span class="fnav-count">Case 41 — 佐賀</span>
-  </a>
-  <a href="detail-kumamoto.html" class="footer-nav-item fnav-right">
-    <span class="fnav-dir">NEXT →</span>
-    <span class="fnav-title">熊本城・阿蘇アートプロジェクト</span>
-    <span class="fnav-count">Case 43 — 熊本</span>
-  </a>
-</div>
-<footer>
-  <span class="footer-copy">© 2024 Art × Placemaking DB</span>
-  <span class="footer-case">Case 42 / 47 — 長崎</span>
-</footer>
-</body>
-</html>
+<footer><a href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking</a><span>© 2026 Art × Placemaking Database</span></footer>
+</body></html>

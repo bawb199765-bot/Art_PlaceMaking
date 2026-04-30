@@ -1,194 +1,86 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>宮崎 — みやざきアートセンター | アート×まちづくりDB</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Shippori+Mincho:wght@400;600;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<html lang="ja"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>宮崎 — 新富芸術祭 | アート×まちづくりDB</title><meta name="description" content="宮崎県新富町で開催される小規模自治体型の芸術祭。農村の田園風景・住民の日常をフィールドに地域負荷の小さな持続可能な設計が特徴。"/>
 <style>
-  :root { --ink: #1a1714; --paper: #f5f1eb; --accent: #c8410e; --muted: #8a7f72; --border: #d4cec5; --tag-eco: #1a5276; --tag-soc: #1d6840; --tag-cul: #6d2f8f; --effect-bg: #faf7f2; }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Noto Serif JP', serif; background: var(--paper); color: var(--ink); line-height: 1.8; font-size: 15px; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,235,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .nav-logo { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
-  .nav-logo:hover { color: var(--ink); }
-  .breadcrumb { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-  .breadcrumb a { color: var(--muted); text-decoration: none; }
-  .breadcrumb a:hover { color: var(--accent); }
-  .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); text-decoration: none; border: 1px solid var(--accent); padding: 4px 12px; border-radius: 2px; transition: all .2s; }
-  .nav-back:hover { background: var(--accent); color: white; }
-  .hero { margin-top: 56px; min-height: 60vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 2px solid var(--ink); }
-  .hero-text { padding: 5rem 4rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; border-right: 1px solid var(--border); }
-  .hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
-  .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 2px; border: 1px solid; }
-  .tag-region { border-color: var(--muted); color: var(--muted); }
-  .tag-type { border-color: var(--accent); color: var(--accent); }
-  .hero-index { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
-  h1 { font-family: 'Shippori Mincho', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
-  .hero-en { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 1.5rem; }
-  .hero-desc { font-size: 14px; color: #4a4540; line-height: 1.9; max-width: 480px; }
-  .hero-meta { padding: 5rem 3rem 4rem; display: flex; flex-direction: column; justify-content: flex-end; }
-  .meta-row { display: grid; grid-template-columns: 100px 1fr; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .meta-row:first-child { border-top: 1px solid var(--border); }
-  .meta-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; }
-  .meta-value { font-weight: 600; }
-  .section-nav { position: sticky; top: 56px; z-index: 90; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 4rem; display: flex; gap: 0; }
-  .sec-link { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; padding: 14px 20px; border-bottom: 2px solid transparent; transition: all .2s; }
-  .sec-link:hover { color: var(--ink); border-bottom-color: var(--ink); }
-  .content { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
-  .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
-  .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
-  .section-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  h2 { font-family: 'Shippori Mincho', serif; font-size: 1.6rem; font-weight: 800; }
-  h2 span { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 1rem; letter-spacing: 0.05em; }
-  .overview-text { max-width: 720px; font-size: 15px; line-height: 2; color: #3a3530; }
-  .overview-text p + p { margin-top: 1.5em; }
-  .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 2px solid var(--border); }
-  .feature-card { background: var(--paper); padding: 2rem; }
-  .feature-num { font-family: 'DM Mono', monospace; font-size: 28px; color: var(--border); font-weight: 300; margin-bottom: 1rem; }
-  .feature-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 1rem; }
-  .feature-body { font-size: 13px; line-height: 1.8; color: #4a4540; }
-  .feature-body ul { list-style: none; margin-top: 0.75rem; }
-  .feature-body li::before { content: '—  '; color: var(--muted); }
-  .feature-body li { margin-bottom: 4px; }
-  .impact-intro { max-width: 720px; margin-bottom: 3rem; font-size: 14px; color: var(--muted); line-height: 1.8; }
-  .impact-category-group { margin-bottom: 2.5rem; }
-  .impact-cat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; padding: 6px 14px; border-radius: 2px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 1.2rem; color: white; }
-  .cat-economic { background: var(--tag-eco); }
-  .cat-social { background: var(--tag-soc); }
-  .cat-cultural { background: var(--tag-cul); }
-  .impact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); }
-  .impact-card { background: var(--effect-bg); padding: 1.8rem 2rem; }
-  .impact-card-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px; }
-  .impact-tag-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-eco { background: var(--tag-eco); }
-  .dot-soc { background: var(--tag-soc); }
-  .dot-cul { background: var(--tag-cul); }
-  .impact-tag-text { color: var(--muted); }
-  .impact-card-title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
-  .impact-card-body { font-size: 13px; line-height: 1.85; color: #4a4540; }
-  .impact-badges { margin-top: 2.5rem; padding: 1.5rem 2rem; background: var(--ink); color: white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-  .impact-badges-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); flex-shrink: 0; }
-  .badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 2px; border: 1px solid rgba(255,255,255,0.3); }
-  .badge-eco { border-color: #5dade2; color: #5dade2; }
-  .badge-soc { border-color: #58d68d; color: #58d68d; }
-  .badge-cul { border-color: #c39bd3; color: #c39bd3; }
-  .refs-grid { display: flex; flex-direction: column; gap: 1px; }
-  .ref-item { display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 1.5rem; background: var(--effect-bg); text-decoration: none; color: var(--ink); transition: background .2s; }
-  .ref-item:hover { background: white; }
-  .ref-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); flex-shrink: 0; }
-  .ref-title { font-size: 14px; font-weight: 600; }
-  .ref-url { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  .ref-arrow { margin-left: auto; color: var(--accent); font-size: 18px; flex-shrink: 0; }
-  .footer-nav { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid var(--ink); }
-  .footer-nav-item { padding: 2.5rem 3rem; text-decoration: none; color: var(--ink); transition: background .2s; display: flex; flex-direction: column; gap: 6px; }
-  .footer-nav-item:hover { background: var(--effect-bg); }
-  .fnav-right { border-left: 1px solid var(--border); text-align: right; }
-  .fnav-dir { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); }
-  .fnav-title { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 800; }
-  .fnav-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-  .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  .footer-case { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-text { padding: 3rem 2rem 2rem; border-right: none; border-bottom: 1px solid var(--border); }
-    .hero-meta { padding: 2rem; }
-    .content { padding: 0 2rem; }
-    .section-nav { padding: 0 2rem; overflow-x: auto; }
-    .features-grid { grid-template-columns: 1fr; }
-    .footer-nav { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 8px; text-align: center; }
-  }
-</style>
-</head>
-<body>
-<nav>
-  <a href="index.html" class="nav-logo">ART × PLACEMAKING DB</a>
-  <div class="breadcrumb"><a href="index.html">TOP</a><span>›</span><span>宮崎</span></div>
-  <a href="index.html" class="nav-back">← 一覧へ</a>
-</nav>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400&display=swap');
+  :root{--bg:#181818;--bg2:#1f1f1f;--bg3:#262626;--line:#2e2e2e;--line2:#3a3a3a;--text:#f0f0f0;--muted:#666;--dim:#444;--accent:#e8c96e;}
+  *{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+  body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);line-height:1.8;}
+  nav{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:52px;}
+  .nav-logo{font-family:'Archivo Black',sans-serif;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);text-decoration:none;}
+  .nav-back{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.15s;}
+  .nav-back:hover{color:var(--text);}
+  .hero{border-bottom:1px solid var(--line);padding:56px 32px 40px;max-width:860px;margin:0 auto;}
+  .hero-meta{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+  .hero-region{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);}
+  .hero-sep{color:var(--line2);}
+  .hero-cat{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:3px 10px;border:1px solid currentColor;}
+  .hero-case{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:0.1em;color:var(--muted);margin-left:auto;}
+  .hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(22px,4.5vw,38px);letter-spacing:0.04em;text-transform:uppercase;line-height:1.15;margin-bottom:6px;color:var(--text);}
+  .hero-en{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:22px;}
+  .hero-desc{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.85;color:#aaa;max-width:660px;margin-bottom:28px;}
+  .hero-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:28px;}
+  .stat-item{background:var(--bg2);padding:12px 14px;}
+  .stat-label{font-family:'Barlow Condensed',sans-serif;font-size:8px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .stat-value{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:500;color:var(--text);letter-spacing:0.04em;}
+  .toc{display:flex;gap:0;border:1px solid var(--line);overflow-x:auto;}
+  .toc a{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:9px 14px;border-right:1px solid var(--line);white-space:nowrap;transition:color 0.15s,background 0.15s;}
+  .toc a:hover{color:var(--text);background:var(--bg3);}
+  .toc a:last-child{border-right:none;}
+  .content{max-width:860px;margin:0 auto;padding:0 32px 80px;}
+  .section{padding:48px 0 40px;border-bottom:1px solid var(--line);}
+  .section:last-child{border-bottom:none;}
+  .section-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.3em;color:var(--muted);margin-bottom:6px;}
+  .section-title{font-family:'Archivo Black',sans-serif;font-size:18px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:baseline;gap:12px;}
+  .section-title-en{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:400;letter-spacing:0.2em;color:var(--muted);}
+  .prose{font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;line-height:1.95;color:#999;max-width:640px;}
+  .prose p{margin-bottom:1.4em;}.prose p:last-child{margin-bottom:0;}
+  .features-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .feature-item{background:var(--bg2);padding:22px 24px;}
+  .feature-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.25em;color:var(--accent);margin-bottom:6px;}
+  .feature-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .feature-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .feature-bullets{margin-top:10px;padding-left:0;list-style:none;}
+  .feature-bullets li{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.06em;color:var(--muted);padding:3px 0 3px 14px;position:relative;}
+  .feature-bullets li::before{content:'—';position:absolute;left:0;color:var(--line2);}
+  .impact-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .impact-item{background:var(--bg2);padding:22px 24px;border-left:3px solid var(--impact-color,#888);}
+  .impact-code{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--impact-color,#888);margin-bottom:6px;}
+  .impact-title{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px;color:var(--text);}
+  .impact-desc{font-family:'Barlow',sans-serif;font-size:13px;font-weight:300;line-height:1.85;color:#777;}
+  .impact-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:20px;}
+  .impact-tag{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:3px 9px;border:1px solid;}
+  .refs-grid{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:24px;}
+  .ref-item{background:var(--bg2);display:flex;align-items:center;gap:14px;padding:13px 18px;text-decoration:none;transition:background 0.12s;}
+  .ref-item:hover{background:var(--bg3);}
+  .ref-icon{width:24px;height:24px;flex-shrink:0;}
+  .ref-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px;}
+  .ref-domain{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.05em;}
+  .ref-arrow{margin-left:auto;color:var(--muted);font-size:14px;}
+  .pagination{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px;}
+  .page-item{flex:1;background:var(--bg2);padding:16px 18px;text-decoration:none;transition:background 0.12s;}
+  .page-item:hover{background:var(--bg3);}
+  .page-dir{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .page-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--text);}
+  .page-sub{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);margin-top:2px;}
+  .page-item.next{text-align:right;}
+  footer{border-top:1px solid var(--line);padding:18px 32px;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:space-between;}
+  footer a{color:var(--muted);text-decoration:none;}footer a:hover{color:var(--text);}
+  .note{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0.08em;margin-top:20px;}
+</style></head><body>
+<nav><a class="nav-logo" href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking DB</a><a class="nav-back" href="https://bawb199765-bot.github.io/Art_PlaceMaking/database/index.html">← Database</a></nav>
 <div class="hero">
-  <div class="hero-text">
-    <div class="hero-tags"><span class="tag tag-region">九州</span>
-      <span class="tag tag-region">宮崎県</span>
-      <span class="tag tag-type">自然・農業×アート</span>
-      <span class="tag tag-type">地域芸術祭</span>
-</div>
-    <div class="hero-index">Case 45 / 47</div>
-    <h1>みやざきアートセンター</h1>
-    <div class="hero-en">MIYAZAKI ART CENTER PROJECT</div>
-    <p class="hero-desc">神話の国・宮崎の豊かな自然と農業文化を軸に展開するアートプロジェクト。高千穂峡・日南海岸・椎葉村の秘境集落を舞台に、神楽・焼畑農業・地鶏・マンゴー産業という宮崎固有の産業文化がアートと出会い、コミュニティ再生と移住促進を図る。</p>
-  </div>
-  <div class="hero-meta">    <div class="meta-row"><span class="meta-label">REGION</span><span class="meta-value">宮崎市・高千穂町・椎葉村・日南市</span></div>
-    <div class="meta-row"><span class="meta-label">STARTED</span><span class="meta-value">2011年〜</span></div>
-    <div class="meta-row"><span class="meta-label">ORGANIZER</span><span class="meta-value">宮崎県・宮崎市・NPOみやざきアートセンター</span></div>
-    <div class="meta-row"><span class="meta-label">SCALE</span><span class="meta-value">県内12市町村・40以上の作品</span></div>
-    <div class="meta-row"><span class="meta-label">KEYWORDS</span><span class="meta-value">高千穂・神楽・椎葉村・焼畑・日南海岸・マンゴー</span></div></div>
-</div>
-<div class="section-nav">
-  <a href="#overview" class="sec-link">01 概要</a>
-  <a href="#features" class="sec-link">02 特徴</a>
-  <a href="#impact" class="sec-link">03 街への効果</a>
-  <a href="#refs" class="sec-link">04 参考</a>
+  <div class="hero-meta"><span class="hero-region">九州・沖縄</span><span class="hero-sep">/</span><span class="hero-region">宮崎県</span><span class="hero-sep">/</span><span class="hero-cat" style="color:#8ecf6e;border-color:#8ecf6e">地域型芸術祭型</span><span class="hero-case">Case 45 / 48</span></div>
+  <h1>新富芸術祭</h1><div class="hero-en">Shintomi Art Festival</div><p class="hero-desc">新富町で開催される小規模自治体型の芸術祭。農村の田園風景・住民の日常・歴史的な祭祀空間をフィールドに、国内外のアーティストと地域住民が協働して作品を制作・展示。地域への負荷が小さく持続可能な設計が特徴。</p>
+  <div class="hero-stats"><div class="stat-item"><div class="stat-label">拠点</div><div class="stat-value">宮崎県児湯郡新富町</div></div><div class="stat-item"><div class="stat-label">開始年</div><div class="stat-value">2018年〜</div></div><div class="stat-item"><div class="stat-label">主体</div><div class="stat-value">新富芸術祭実行委員会</div></div><div class="stat-item"><div class="stat-label">形態</div><div class="stat-value">定期開催</div></div><div class="stat-item"><div class="stat-label">次回開催</div><div class="stat-value">不明</div></div><div class="stat-item"><div class="stat-label">東京からのアクセス</div><div class="stat-value">約5h（飛行機＋バス）</div></div></div>
+  <nav class="toc"><a href="#overview">01 概要</a><a href="#features">02 特徴</a><a href="#impact">03 街への効果</a><a href="#refs">04 参考</a></nav>
 </div>
 <div class="content">
-  <section class="section" id="overview">
-    <div class="section-header"><span class="section-num">01</span><h2>概要 <span>OVERVIEW</span></h2></div>
-    <div class="overview-text">      <p>みやざきアートセンタープロジェクトは、「神話の国・宮崎」の豊かな自然と多様な農業文化をアートの素材として活用する取り組みです。日本神話ゆかりの高千穂峡・天岩戸神社、秘境集落・椎葉村の焼畑農業、日南海岸の青い海岸線、宮崎市周辺のマンゴー・ピーマン・地鶏農業など、宮崎固有の多彩な文化的風景がアーティストを引き寄せます。</p>
-      <p>特に椎葉村など山間の過疎集落では、ユネスコ無形文化遺産候補の「椎葉の神楽」や焼畑農業という日本の農業の原型ともいえる文化がまだ息づいています。アーティストが集落に滞在し神楽の舞手や焼畑農家と協働することで、消えゆく文化の記録・継承と同時に外部からの関心を集める取り組みが展開されます。</p>
-      <p>宮崎市内の中心市街地再生にも取り組み、空き店舗を活用した若いアーティストや移住者向けのアトリエ・ギャラリーが生まれています。「日本一の日照時間」「温暖な気候」という宮崎固有の自然条件を活かし、農業×芸術×移住を組み合わせた新しい暮らし方の発信も行います。</p></div>
-  </section>
-  <section class="section" id="features">
-    <div class="section-header"><span class="section-num">02</span><h2>特徴 <span>FEATURES</span></h2></div>
-    <div class="features-grid"><div class="feature-card"><div class="feature-num">01</div><div class="feature-title">高千穂峡×神話とアートの共鳴</div><div class="feature-body"><p>天孫降臨の舞台・高千穂峡の神聖な渓谷美と日本神話の世界観をアーティストが現代に翻訳する作品群。神社境内・渓谷沿いに設置されたサイトスペシフィック作品が神話の土地の精神性を現代に浮かび上がらせる。</p><ul><li>高千穂峡の渓谷でのライトアートインスタレーション</li><li>天岩戸神社周辺でのランドアート作品</li><li>神話をモチーフにした映像・音響インスタレーション</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">02</div><div class="feature-title">椎葉村の神楽・焼畑とアートの協働</div><div class="feature-body"><p>日本の焼畑農業の原型が残る椎葉村の農家・神楽の舞手とアーティストが協働制作。九州山地の深い山林・棚田・古民家が会場となり、消えゆく文化の「生きたアーカイブ」としての作品が生まれる。</p><ul><li>椎葉の神楽×コンテンポラリーダンスの共演</li><li>焼畑農業の工程をドキュメンタリーアートで記録</li><li>古民家・茅葺き屋根を活用したインスタレーション</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">03</div><div class="feature-title">日南海岸のマリンアート</div><div class="feature-body"><p>日南海岸の青い海岸線・フェニックス並木・日南のカツオ漁港を舞台に、海・太陽・南国の風をテーマにした野外アートを展開。宮崎の気候的豊かさを最大限に活かした非日常の体験を創出する。</p><ul><li>日南海岸の崖・砂浜でのランドアート</li><li>フェニックス並木沿いのパブリックアート</li><li>日南のカツオ漁港と海洋文化をテーマにした作品</li></ul></div></div>
-<div class="feature-card"><div class="feature-num">04</div><div class="feature-title">農業×アートの移住促進</div><div class="feature-body"><p>マンゴー・ピーマン・地鶏・日向夏など宮崎の農業産品とアーティストが協働し、農業の現場をアート体験の場として開放。農業×創作活動の両立を実践する移住者モデルを発信し、クリエイター移住を促進する。</p><ul><li>マンゴー農園でのアーティスト・レジデンス</li><li>農家と共同で農業×アートの体験ツアー開発</li><li>「農業しながら創る」移住モデルの情報発信</li></ul></div></div>
+  <section class="section" id="overview"><div class="section-num">01</div><div class="section-title">概要 <span class="section-title-en">Overview</span></div><div class="prose"><p>新富芸術祭は、宮崎県の中央部・新富町で開催される小規模な地域芸術祭。人口約1万8千人の農業・農業関連産業が主産業の町で、国内外のアーティストが地域住民と協働しながら作品を制作・展示する。「規模は小さくても深く、継続できる芸術祭」をコンセプトに、地域の負荷を最小限に抑えた設計が評価されている。</p><p>新富町は九州山地と日向灘に挟まれた豊かな農村地帯で、田園風景・農家・神社・祭礼空間という日本の農村の原風景が残る。アーティストはこうした農村の日常に深く入り込み、地域の人々の生活・歴史・信仰から着想を得た作品を制作する。「フィールドとしての農村」が芸術祭の核となっている。</p><p>農業×アートという組み合わせが新富芸術祭の独自性を形成しており、農業法人や農家との協働プログラムが展開されている。新富町は農業の6次産業化でも注目されており、アートが農村の創造的な変革を支援する役割も担っている。</p></div></section>
+  <section class="section" id="features"><div class="section-num">02</div><div class="section-title">主な特徴 <span class="section-title-en">Key Features</span></div><div class="features-grid"><div class="feature-item"><div class="feature-num">01</div><div class="feature-title">農村の日常を「フィールド」として活かすアプローチ</div><div class="feature-desc">田んぼ・農家の庭・神社・農道など農村の日常空間をそのままアートの舞台として活用する。新しい施設を建てるのではなく、あるものの価値を引き出すアプローチが農村景観を守りながらアートを実現する。</div><ul class="feature-bullets"><li>農地・田んぼ・農家を会場として活用</li><li>日常空間への作品の自然な溶け込み</li><li>農村景観を守るミニマルな会場設計</li></ul></div><div class="feature-item"><div class="feature-num">02</div><div class="feature-title">地域負荷を最小限に抑えた持続可能な設計</div><div class="feature-desc">大量集客・大型予算・多数スタッフに頼らず、地域コミュニティが無理なく参加・継続できる規模感を維持する。「小さくても豊かな芸術祭」を実現するための設計思想が全国の小規模自治体への参考事例となっている。</div><ul class="feature-bullets"><li>町の負担能力に合わせた規模設定</li><li>地元ボランティアで運営できる体制</li><li>継続性を最優先にした予算・人員設計</li></ul></div><div class="feature-item"><div class="feature-num">03</div><div class="feature-title">農業法人・農家との協働による農業×アートの実践</div><div class="feature-desc">新富町の農業法人「こゆ財団」などとの連携により、農業の現場にアートが入り込むプログラムが展開される。農業の6次産業化・農村のブランディングとアートが連動した革新的な地域づくりが進む。</div><ul class="feature-bullets"><li>農業法人との共同制作・展示プログラム</li><li>農業体験とアート鑑賞の組み合わせ</li><li>農村の創造的変革へのアートの貢献</li></ul></div><div class="feature-item"><div class="feature-num">04</div><div class="feature-title">住民・移住者・アーティストが交わるコミュニティ形成</div><div class="feature-desc">芸術祭の準備・開催・アーカイブを通じて、新富町の農家・住民・UIターン移住者・参加アーティストが継続的に交流するコミュニティが育まれる。「アートが引き合わせた縁」が農村の社会的凝集力を高める。</div><ul class="feature-bullets"><li>住民・移住者・アーティストの継続的交流</li><li>芸術祭を軸にした地域コミュニティの形成</li><li>新富町への移住動機としての芸術祭の機能</li></ul></div></div></section>
+  <section class="section" id="impact"><div class="section-num">03</div><div class="section-title">街への効果 <span class="section-title-en">Urban Impact</span></div><div class="impact-grid"><div class="impact-item" style="--impact-color:#e8c96e"><div class="impact-code">1-① 経済的効果｜交流人口増加</div><div class="impact-title">農村アート体験を目的とした県外・国外からの来場者の創出</div><div class="impact-desc">「農村でアートに出会う」という希少な体験を求めて県外・海外から来場者が訪れ、宿泊・飲食・農産品購入を通じた消費が地域経済に貢献する。</div></div><div class="impact-item" style="--impact-color:#6ecac8"><div class="impact-code">2-① 社会的効果｜コミュニティ形成</div><div class="impact-title">芸術祭を媒介にした農村コミュニティの活性化と関係人口の形成</div><div class="impact-desc">芸術祭の準備・運営・交流を通じて農村コミュニティが活性化し、外部のアーティスト・来場者との継続的な関係が関係人口として蓄積される。</div></div><div class="impact-item" style="--impact-color:#6ecac8"><div class="impact-code">2-② 社会的効果｜移住・定住促進</div><div class="impact-title">農村×アートの魅力を通じた移住・UIターンの促進</div><div class="impact-desc">芸術祭を通じて新富町の農村の豊かさとアートの可能性を知った若い世代が、移住・UIターンを選択するきっかけとなる。農業×アートというライフスタイルの提案が移住動機を生む。</div></div></div><div class="impact-tags"><span class="impact-tag" style="color:#e8c96e;border-color:#e8c96e">1-① 交流人口増加</span><span class="impact-tag" style="color:#6ecac8;border-color:#6ecac8">2-① コミュニティ形成</span><span class="impact-tag" style="color:#6ecac8;border-color:#6ecac8">2-② 移住・定住促進</span><span class="impact-tag" style="color:#a06ec8;border-color:#a06ec8">3-① 地域ブランディング</span></div></section>
+  <section class="section" id="refs"><div class="section-num">04</div><div class="section-title">参考リンク <span class="section-title-en">References</span></div><div class="refs-grid"><a class="ref-item" href="https://shintomi-art.jp/" target="_blank"><img class="ref-icon" src="https://www.google.com/s2/favicons?domain=shintomi-art.jp&sz=64" alt=""/><div><div class="ref-title">新富芸術祭 公式サイト</div><div class="ref-domain">shintomi-art.jp</div></div><span class="ref-arrow">→</span></a><a class="ref-item" href="https://koyu.miyazaki.jp/" target="_blank"><img class="ref-icon" src="https://www.google.com/s2/favicons?domain=koyu.miyazaki.jp&sz=64" alt=""/><div><div class="ref-title">こゆ財団（新富町）</div><div class="ref-domain">koyu.miyazaki.jp</div></div><span class="ref-arrow">→</span></a></div><p class="note">※掲載情報は2026年1月末時点の情報を参考にしています。</p></section>
+  <div class="pagination"><a class="page-item prev" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-oita.html"><div class="page-dir">← 前の事例</div><div class="page-name">BEPPU PROJECT</div><div class="page-sub">九州・沖縄 — 大分県</div></a><a class="page-item next" href="https://bawb199765-bot.github.io/Art_PlaceMaking/detail-kagoshima.html"><div class="page-dir">次の事例 →</div><div class="page-name">霧島アートの森活用まちづくり</div><div class="page-sub">九州・沖縄 — 鹿児島県</div></a></div>
 </div>
-  </section>
-  <section class="section" id="impact">
-    <div class="section-header"><span class="section-num">03</span><h2>街への効果 <span>URBAN IMPACT</span></h2></div>
-    <p class="impact-intro">神話・神楽・焼畑・日南の海・農業という宮崎固有の自然と文化をアートが結び、コミュニティ再生・移住促進・地域ブランドの強化が連動する。</p>
-    <div class="impact-category-group"><div class="impact-cat-label cat-economic">ECONOMIC — 経済的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-eco"></div><span class="impact-tag-text">1-① 交流人口増加</span></div><div class="impact-card-title">高千穂・日南の観光価値向上</div><div class="impact-card-body">高千穂峡・日南海岸という既存の観光資源にアート体験が加わることで、若い世代・外国人観光客の新規取り込みと滞在延長が進む。神話ゆかりの地としての高千穂の国際的知名度もアートで高まっている。</div></div>
-</div></div>
-<div class="impact-category-group"><div class="impact-cat-label cat-social">SOCIAL — 社会的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-soc"></div><span class="impact-tag-text">2-① コミュニティ形成</span></div><div class="impact-card-title">椎葉村など過疎集落の文化的活性化</div><div class="impact-card-body">神楽・焼畑農業の担い手と外部アーティストの協働が椎葉村の集落に新たな活力をもたらし、若い担い手が村の文化を誇りとして再認識する機会となっている。外部者の継続的な関与が集落の孤立を防いでいる。</div></div>
-<div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-soc"></div><span class="impact-tag-text">2-② 移住・定住促進</span></div><div class="impact-card-title">農業×創作の二刀流移住モデルの浸透</div><div class="impact-card-body">宮崎の豊かな農業環境と温暖な気候を活かした「農業しながら創る」移住スタイルが、都市部の若いクリエイターに発信されており、移住者数の増加に寄与している。</div></div>
-</div></div>
-<div class="impact-category-group"><div class="impact-cat-label cat-cultural">CULTURAL — 文化的効果</div><div class="impact-cards"><div class="impact-card"><div class="impact-card-tag"><div class="impact-tag-dot dot-cul"></div><span class="impact-tag-text">3-① 地域ブランディング・アイデンティティ</span></div><div class="impact-card-title">宮崎の産業・自然文化のアートによる再照明</div><div class="impact-card-body">高千穂の神話・椎葉の神楽・日南のカツオ・宮崎のマンゴーという宮崎固有の文化・産業資産がアートを通じてフィーチャーされ、住民が「この土地の豊かさ」を再認識する機会となっている。</div></div>
-</div></div>
-
-    <div class="impact-badges"><span class="impact-badges-label">IMPACT TAGS</span><span class="badge badge-eco">1-① 交流人口増加</span>
-<span class="badge badge-soc">2-① コミュニティ形成</span>
-<span class="badge badge-soc">2-② 移住・定住促進</span>
-<span class="badge badge-cul">3-① 地域ブランディング</span>
-</div>
-  </section>
-  <section class="section" id="refs">
-    <div class="section-header"><span class="section-num">04</span><h2>参考 <span>REFERENCES</span></h2></div>
-    <div class="refs-grid"><a href="https://pref.miyazaki.lg.jp/" target="_blank" class="ref-item"><span class="ref-num">01</span><div><div class="ref-title">宮崎県文化観光スポーツ部</div><div class="ref-url">pref.miyazaki.lg.jp</div></div><span class="ref-arrow">→</span></a>
-<a href="https://takachiho-kanko.info/" target="_blank" class="ref-item"><span class="ref-num">02</span><div><div class="ref-title">高千穂町観光協会</div><div class="ref-url">takachiho-kanko.info</div></div><span class="ref-arrow">→</span></a>
-<a href="https://shiiba.jp/" target="_blank" class="ref-item"><span class="ref-num">03</span><div><div class="ref-title">椎葉村観光協会</div><div class="ref-url">shiiba.jp</div></div><span class="ref-arrow">→</span></a>
-</div>
-  </section>
-</div>
-<div class="footer-nav">
-  <a href="detail-oita.html" class="footer-nav-item">
-    <span class="fnav-dir">← PREV</span>
-    <span class="fnav-title">別府現代芸術フェスティバル</span>
-    <span class="fnav-count">Case 44 — 大分</span>
-  </a>
-  <a href="detail-kagoshima.html" class="footer-nav-item fnav-right">
-    <span class="fnav-dir">NEXT →</span>
-    <span class="fnav-title">種子島・奄美アートプロジェクト</span>
-    <span class="fnav-count">Case 46 — 鹿児島</span>
-  </a>
-</div>
-<footer>
-  <span class="footer-copy">© 2024 Art × Placemaking DB</span>
-  <span class="footer-case">Case 45 / 47 — 宮崎</span>
-</footer>
-</body>
-</html>
+<footer><a href="https://bawb199765-bot.github.io/Art_PlaceMaking/index.html">Art × Placemaking</a><span>© 2026 Art × Placemaking Database</span></footer>
+</body></html>
